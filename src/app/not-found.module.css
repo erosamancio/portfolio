@@ -1,0 +1,32 @@
+.page {
+  display: grid;
+  justify-items: center;
+  gap: 1.25rem;
+  padding: clamp(4rem, 12vw, 8rem) var(--gutter);
+  text-align: center;
+}
+
+.wall {
+  display: grid;
+  grid-template-columns: repeat(3, clamp(4.5rem, 14vw, 7rem));
+  gap: var(--grout);
+  background: var(--rejunte);
+  border: var(--grout) solid var(--rejunte);
+  margin-bottom: 1.5rem;
+}
+
+.gap {
+  aspect-ratio: 1;
+  background: repeating-linear-gradient(135deg, var(--esmalte-quebrado) 0 6px, var(--rejunte) 6px 7px);
+}
+
+.title {
+  font-size: clamp(2.2rem, 6vw, 4rem);
+  color: var(--cobalto-noite);
+}
+
+.home {
+  margin-top: 0.5rem;
+  font-weight: 800;
+  color: var(--cobalto);
+}

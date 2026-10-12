@@ -1,0 +1,143 @@
+.case {
+  padding-top: clamp(2.5rem, 6vw, 4.5rem);
+}
+
+.header {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  justify-self: start;
+  font-weight: 700;
+  color: var(--cobalto);
+}
+
+.back svg,
+.repo svg,
+.next svg {
+  width: 1.1em;
+  height: 1.1em;
+}
+
+.title {
+  font-size: clamp(2.75rem, 9vw, 6rem);
+  color: var(--cobalto-noite);
+}
+
+.summary {
+  max-width: 44rem;
+  font-size: clamp(1.15rem, 1.8vw, 1.4rem);
+  line-height: 1.5;
+}
+
+.facts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+  gap: 1rem 2rem;
+  margin: 1rem 0 0;
+  padding-block: 1.25rem;
+  border-block: var(--grout) solid var(--rejunte);
+}
+
+.facts dt {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--tinta-suave);
+}
+
+.facts dd {
+  margin: 0.15rem 0 0;
+  font-weight: 800;
+}
+
+.figure {
+  margin-block: clamp(2.5rem, 6vw, 4rem);
+  padding: clamp(0.5rem, 1.2vw, 0.9rem);
+  background: var(--esmalte);
+  border: var(--grout) solid var(--rejunte);
+  box-shadow:
+    inset 0 0 0 clamp(0.5rem, 1.2vw, 0.9rem) var(--esmalte),
+    inset 0 0 0 calc(clamp(0.5rem, 1.2vw, 0.9rem) + 2px) var(--cobalto);
+}
+
+.figure img {
+  width: 100%;
+}
+
+.body {
+  display: grid;
+  gap: 2.5rem;
+  padding-bottom: clamp(3.5rem, 8vw, 6rem);
+}
+
+.block {
+  display: grid;
+  gap: 0.75rem;
+  max-width: 44rem;
+}
+
+.blockTitle {
+  font-size: clamp(1.5rem, 2.6vw, 2rem);
+}
+
+.block p {
+  font-size: 1.125rem;
+  color: var(--tinta-suave);
+}
+
+.repo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  justify-self: start;
+  font-weight: 800;
+  color: var(--cobalto);
+}
+
+.footer {
+  background: var(--cobalto);
+  color: var(--esmalte);
+}
+
+.footerInner {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.25rem 2rem;
+  padding-block: 2.5rem;
+}
+
+.whats {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  min-height: 3.25rem;
+  padding: 0 1.5rem;
+  background: var(--esmalte);
+  color: var(--cobalto-noite);
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.whats svg {
+  font-size: 1.25em;
+  color: var(--cobalto);
+}
+
+.whats:hover {
+  background: var(--cobalto-claro);
+}
+
+.next {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-weight: 800;
+  font-stretch: 112%;
+  font-size: 1.15rem;
+}

@@ -1,32 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, ArrowUpRight, ChevronRight, FileCode, Mail } from "lucide-react";
-import { Hero } from "@/components/Hero";
-import { WhatsAppIcon, GitHubIcon } from "@/components/BrandIcons";
-import { contact, faq, projects, services, steps, whatsappLink } from "@/content/site";
+import { ArrowRight, ArrowUpRight, Braces, FileCode } from "lucide-react";
+import { Showcase } from "@/components/Showcase";
+import { CopyButton } from "@/components/CopyButton";
+import { contact, experience, skills, whatsappUrl } from "@/content/site";
+import { excerpt } from "@/content/source";
 import { personJsonLd } from "@/content/jsonld";
 import code from "@/components/code.module.css";
 import styles from "./page.module.css";
-
-// The real function behind the hero's WhatsApp button (src/content/site.ts), tokenized for display.
-const snippet: [keyof typeof code | null, string][][] = [
-  [["kw", "export function "], ["fn", "whatsappLink"], [null, "(message: "], ["ty", "string"], [null, ") {"]],
-  [[null, "  "], ["kw", "const "], [null, "phone = contact.whatsappNumber;"]],
-  [[null, "  "], ["kw", "const "], [null, "text = "], ["fn", "encodeURIComponent"], [null, "(message);"]],
-  [
-    [null, "  "],
-    ["kw", "return "],
-    ["st", "`https://wa.me/${"],
-    [null, "phone"],
-    ["st", "}?text=${"],
-    [null, "text"],
-    ["st", "}`"],
-    [null, ";"],
-  ],
-  [[null, "}"]],
-];
-
-const stack = ["React", "JavaScript", "Python", "FastAPI", "Flask", "Django", "Java", "Spring Boot", "SQL"];
 
 function H2({ id, children }: { id: string; children: React.ReactNode }) {
   return (
@@ -39,139 +20,156 @@ function H2({ id, children }: { id: string; children: React.ReactNode }) {
   );
 }
 
+const contactRows = [
+  { key: "email", label: contact.email, href: `mailto:${contact.email}` },
+  {
+    key: "linkedin",
+    label: "linkedin.com/in/erosamancio",
+    href: contact.linkedin,
+  },
+  { key: "github", label: "github.com/erosamancio", href: contact.github },
+  { key: "whatsapp", label: contact.whatsappDisplay, href: whatsappUrl },
+];
+
 export default function Home() {
-  const offered = services.filter((s) => s.summary);
-  const unsure = services.find((s) => s.id === "naosei")!;
-  const web = projects.filter((p) => p.isWebsite);
-  const games = projects.filter((p) => !p.isWebsite);
+  const hook = excerpt("components/Shell.tsx", "useActiveSection");
 
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }} />
-      <Hero />
+      <Showcase />
 
-      <div className={styles.stackBar}>
-        <div className={`wrap ${styles.stackInner}`}>
-          <p className={styles.stackLabel}>Trabalho com</p>
-          <ul className={styles.stackList}>
-            {stack.map((s) => (
-              <li key={s}>{s}</li>
-            ))}
-          </ul>
-        </div>
-      </div>
-
-      <section id="servicos" className={styles.section} aria-labelledby="servicos-title">
-        <div className="wrap">
-          <H2 id="servicos-title">Três jeitos de colocar seu negócio na internet</H2>
-          <ul className={styles.serviceList}>
-            {offered.map((s) => (
-              <li key={s.id} className={styles.service}>
-                <h3 className={styles.serviceName}>{s.name}</h3>
-                <p className={styles.serviceSummary}>{s.summary}</p>
-                <div>
-                  <p className={styles.includesLabel}>Você recebe</p>
-                  <ul className={styles.includes}>
-                    {s.includes!.map((item) => (
-                      <li key={item}>{item}</li>
-                    ))}
-                  </ul>
-                </div>
-              </li>
-            ))}
-          </ul>
-          <p className={styles.unsure}>
-            Não sabe qual é o seu caso?{" "}
-            <a href={whatsappLink(unsure.message)} target="_blank" rel="noopener">
-              Me conta o que você precisa
-            </a>{" "}
-            e eu te ajudo a decidir. Domínio, hospedagem e manutenção também entram na conversa, com custo combinado.
-          </p>
-        </div>
-      </section>
-
-      <section id="trabalhos" className={styles.section} aria-labelledby="trabalhos-title">
-        <div className="wrap">
-          <H2 id="trabalhos-title">O que eu já construí</H2>
-
-          <div className={styles.webList}>
-            {web.map((p) => (
-              <article key={p.slug} className={styles.work}>
-                <Link href={`/trabalhos/${p.slug}`} className={styles.shot} tabIndex={-1} aria-hidden="true">
-                  <span className={styles.shotBar}>{p.image.src.split("/").pop()}</span>
-                  <Image
-                    src={p.image.src}
-                    width={p.image.width}
-                    height={p.image.height}
-                    alt=""
-                    sizes="(min-width: 64rem) 46vw, 100vw"
-                  />
-                </Link>
-                <div className={styles.workText}>
-                  <h3 className={styles.h3}>
-                    <Link href={`/trabalhos/${p.slug}`}>{p.name}</Link>
-                  </h3>
-                  <p className={styles.meta}>
-                    {p.context} · {p.role}
-                  </p>
-                  <p>{p.summary}</p>
-                  <ul className={styles.tags} aria-label="Tecnologias">
-                    {p.stack.map((t) => (
-                      <li key={t}>{t}</li>
-                    ))}
-                  </ul>
-                  <Link href={`/trabalhos/${p.slug}`} className={styles.more}>
-                    Ver estudo de caso <ArrowRight aria-hidden="true" />
-                  </Link>
-                </div>
-              </article>
-            ))}
-          </div>
-
-          <h3 className={styles.offWeb}>
-            <span className="hash" aria-hidden="true">
-              ##
-            </span>
-            Fora da web
-          </h3>
-          <div className={styles.gameList}>
-            {games.map((p) => (
-              <article key={p.slug} className={styles.game}>
-                <Link href={`/trabalhos/${p.slug}`} className={styles.shot} tabIndex={-1} aria-hidden="true">
-                  <span className={styles.shotBar}>{p.image.src.split("/").pop()}</span>
-                  <Image
-                    src={p.image.src}
-                    width={p.image.width}
-                    height={p.image.height}
-                    alt=""
-                    sizes="(min-width: 64rem) 34vw, 100vw"
-                  />
-                </Link>
-                <h4 className={styles.h4}>
-                  <Link href={`/trabalhos/${p.slug}`}>{p.name}</Link>
-                </h4>
-                <p className={styles.meta}>
-                  {p.context} · {p.stack.join(" e ")}
-                </p>
-                <p className={styles.gameSummary}>{p.summary}</p>
-              </article>
-            ))}
+      <section id="experiencia" className={`${styles.section} ${styles.alt}`} aria-labelledby="experiencia-title">
+        <div className={`wrap ${styles.split}`}>
+          <H2 id="experiencia-title">Experiência</H2>
+          <div className={styles.timeline}>
+            <article className={styles.role}>
+              <header className={styles.roleHead}>
+                <h3 className={styles.h3}>Sociiz</h3>
+                <p className={styles.meta}>Estagiário de Banco de Dados · Recife, PE</p>
+              </header>
+              <p className={styles.soft}>
+                Um estágio que foi além do banco de dados, com backend, frontend, processamento de documentos e
+                comunicação em tempo real.
+              </p>
+              <ul className={styles.items}>
+                {experience.map((e) => (
+                  <li key={e.name}>
+                    <h4 className={styles.h4}>
+                      {e.slug ? <Link href={`/trabalhos/${e.slug}`}>{e.name}</Link> : e.name}
+                    </h4>
+                    <p>{e.text}</p>
+                  </li>
+                ))}
+              </ul>
+            </article>
+            <article className={styles.role}>
+              <header className={styles.roleHead}>
+                <h3 className={styles.h3}>CESAR School</h3>
+                <p className={styles.meta}>Ciência da Computação · em andamento, 4º período</p>
+              </header>
+              <p className={styles.soft}>
+                Algoritmos, estruturas de dados, orientação a objetos, banco de dados, redes, infraestrutura de software
+                e hardware, sistemas distribuídos e concorrência.
+              </p>
+            </article>
           </div>
         </div>
       </section>
 
-      <section id="este-site" className={`${styles.section} ${styles.alt}`} aria-labelledby="este-site-title">
-        <div className={`wrap ${styles.siteGrid}`}>
-          <div className={styles.siteText}>
-            <H2 id="este-site-title">Este site é a amostra</H2>
-            <p className={styles.lead}>
-              Tudo aqui foi desenhado e programado por mim, do zero. O seletor no topo da página, por exemplo, é só isto:
-              você escolhe o serviço e o link do WhatsApp já sai com a mensagem certa.
+      <section id="stack" className={styles.section} aria-labelledby="stack-title">
+        <div className={`wrap ${styles.split}`}>
+          <div className={styles.lead}>
+            <H2 id="stack-title">Tecnologias</H2>
+            <p className={styles.soft}>
+              O que já usei em projeto, no estágio ou na faculdade. Português nativo e inglês fluente, inclusive para
+              documentação e conversa técnica.
+            </p>
+          </div>
+          <figure className={`${code.panel} ${styles.json}`}>
+            <figcaption className={code.head}>
+              <Braces aria-hidden="true" /> stack.json
+            </figcaption>
+            <div className={code.body}>
+              <p className={code.row} aria-hidden="true">
+                <span className={code.ln}>1</span>
+                <span className={code.text}>{"{"}</span>
+              </p>
+              <ul className={styles.skillList}>
+                {skills.map((s, i) => (
+                  <li key={s.group} className={code.row}>
+                    <span className={code.ln} aria-hidden="true">
+                      {i + 2}
+                    </span>
+                    <span className={code.text}>
+                      {"  "}
+                      <span className={code.ty}>
+                        <span aria-hidden="true">“</span>
+                        {s.group}
+                        <span aria-hidden="true">”</span>
+                      </span>
+                      <span aria-hidden="true">: [</span>
+                      <span className="sr-only">: </span>
+                      <span>
+                        {s.items.map((item, j) => (
+                          <span key={item}>
+                            <span className={code.st}>“{item}”</span>
+                            {j < s.items.length - 1 && <span aria-hidden="true">, </span>}
+                          </span>
+                        ))}
+                      </span>
+                      <span aria-hidden="true">]{i < skills.length - 1 ? "," : ""}</span>
+                    </span>
+                  </li>
+                ))}
+              </ul>
+              <p className={code.row} aria-hidden="true">
+                <span className={code.ln}>{skills.length + 2}</span>
+                <span className={code.text}>{"}"}</span>
+              </p>
+            </div>
+          </figure>
+        </div>
+      </section>
+
+      <section id="sobre" className={`${styles.section} ${styles.alt}`} aria-labelledby="sobre-title">
+        <div className={`wrap ${styles.about}`}>
+          <div className={styles.portrait}>
+            <Image
+              src="/images/eros.jpg"
+              width={800}
+              height={800}
+              alt="Retrato de Eros Amancio, de barba e camiseta preta, à noite com luzes ao fundo"
+              sizes="(min-width: 64rem) 20rem, 70vw"
+            />
+          </div>
+          <div className={styles.aboutText}>
+            <H2 id="sobre-title">Sobre</H2>
+            <p className={styles.big}>Do banco de dados à interface, passando pela API que liga os dois.</p>
+            <p className={styles.soft}>
+              Entrei na Sociiz como estagiário de banco de dados e fui parar na interface da Sociiz Meet, no serviço que
+              autentica cada participante e no pipeline de OCR. Meus interesses estão em backend, full stack e segurança
+              da informação, que conversa com o que já faço em redes, autenticação por token e TLS.
+            </p>
+            <Link href="/sobre" className={styles.more}>
+              Experiência e formação completas <ArrowRight aria-hidden="true" />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      <section id="este-site" className={styles.section} aria-labelledby="este-site-title">
+        <div className={`wrap ${styles.site}`}>
+          <div className={styles.lead}>
+            <H2 id="este-site-title">Este site</H2>
+            <p className={styles.soft}>
+              Desenhei e programei este portfólio do zero, em Next.js e TypeScript, sem template. O arquivo destacado no
+              explorador acompanha a seção que você está lendo. É este hook, lido do código-fonte durante a build, então
+              o que aparece aqui é o que roda.
             </p>
             <ul className={styles.proofs}>
-              <li>Next.js e TypeScript, sem template.</li>
-              <li>Páginas geradas antes do acesso, para abrir rápido no celular.</li>
-              <li>Dá para navegar por tudo só com o teclado.</li>
+              <li>Páginas estáticas, geradas antes do acesso.</li>
+              <li>Navegação completa pelo teclado.</li>
               <li>
                 <a href={`${contact.github}/portfolio`} target="_blank" rel="noopener">
                   Código aberto no GitHub <ArrowUpRight aria-hidden="true" />
@@ -181,16 +179,16 @@ export default function Home() {
           </div>
           <figure className={`${code.panel} ${styles.snippet}`}>
             <figcaption className={code.head}>
-              <FileCode aria-hidden="true" /> src/content/site.ts
+              <FileCode aria-hidden="true" /> {hook.file}
             </figcaption>
-            <pre className={code.body}>
+            <pre className={`${code.body} ${styles.scroll}`} tabIndex={0} aria-label={`Trecho de ${hook.file}`}>
               <code>
-                {snippet.map((line, i) => (
+                {hook.lines.map((line, i) => (
                   <span key={i} className={code.row}>
                     <span className={code.ln} aria-hidden="true">
-                      {i + 9}
+                      {hook.start + i}
                     </span>
-                    <span className={code.text}>
+                    <span className={`${code.text} ${code.keep}`}>
                       {line.map(([kind, text], j) =>
                         kind ? (
                           <span key={j} className={code[kind]}>
@@ -209,101 +207,60 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="processo" className={styles.section} aria-labelledby="processo-title">
-        <div className="wrap">
-          <H2 id="processo-title">Do primeiro “oi” ao site no ar</H2>
-          <ol className={styles.steps}>
-            {steps.map((s, i) => (
-              <li key={s.name} className={styles.step}>
-                <span className={styles.stepNumber} aria-hidden="true">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <h3 className={styles.stepName}>{s.name}</h3>
-                <p>{s.text}</p>
-              </li>
-            ))}
-          </ol>
-        </div>
-      </section>
-
-      <section id="quem-faz" className={`${styles.section} ${styles.alt}`} aria-labelledby="quem-faz-title">
-        <div className={`wrap ${styles.aboutGrid}`}>
-          <div className={styles.portrait}>
-            <Image
-              src="/images/eros.jpg"
-              width={800}
-              height={800}
-              alt="Retrato de Eros Amancio, de barba e camiseta preta, à noite com luzes ao fundo"
-              sizes="(min-width: 64rem) 22rem, 80vw"
-            />
-          </div>
-          <div className={styles.aboutText}>
-            <H2 id="quem-faz-title">Quem faz o seu site</H2>
-            <p className={styles.lead}>
-              Sou o Eros Amancio, estudante de Ciência da Computação na CESAR School, em Recife.
-            </p>
-            <p>
-              Hoje estagio na Sociiz, onde trabalho com backend em Python (FastAPI, Flask e Django), processamento de
-              documentos com OCR e uma plataforma própria de videoconferência em React. Gosto de construir coisas que as
-              pessoas usam de verdade, e é isso que eu levo para cada site.
-            </p>
-            <ul className={styles.aboutLinks}>
-              <li>
-                <Link href="/sobre">
-                  Experiência completa <ArrowRight aria-hidden="true" />
-                </Link>
-              </li>
-              <li>
-                <a href={contact.github} target="_blank" rel="noopener">
-                  <GitHubIcon /> GitHub
-                </a>
-              </li>
-              <li>
-                <a href={contact.linkedin} target="_blank" rel="noopener">
-                  LinkedIn <ArrowUpRight aria-hidden="true" />
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <section id="perguntas" className={styles.section} aria-labelledby="perguntas-title">
-        <div className={`wrap ${styles.faqGrid}`}>
-          <H2 id="perguntas-title">Perguntas frequentes</H2>
-          <div className={styles.faqList}>
-            {faq.map((f) => (
-              <details key={f.q} className={styles.faqItem}>
-                <summary>
-                  <ChevronRight className={styles.faqIcon} aria-hidden="true" />
-                  {f.q}
-                </summary>
-                <p>{f.a}</p>
-              </details>
-            ))}
-          </div>
-        </div>
-      </section>
-
       <section id="contato" className={styles.contact} aria-labelledby="contato-title">
         <div className={`wrap ${styles.contactInner}`}>
-          <h2 id="contato-title" className={styles.contactTitle}>
-            Vamos fazer o site do seu negócio?
-          </h2>
-          <p className={styles.contactLead}>Me chama no WhatsApp e me conta o que você precisa. Eu mesmo respondo.</p>
-          <div className={styles.contactActions}>
-            <a className={styles.contactWhats} href={whatsappLink(unsure.message)} target="_blank" rel="noopener">
-              <WhatsAppIcon /> Chamar no WhatsApp
-            </a>
-            <p className={styles.contactAlt}>
-              {contact.whatsappDisplay}
-              <span className={styles.sep} aria-hidden="true">
-                ·
-              </span>
-              <a href={`mailto:${contact.email}`}>
-                <Mail aria-hidden="true" /> {contact.email}
+          <div className={styles.lead}>
+            <h2 id="contato-title" className={styles.contactTitle}>
+              Vamos conversar?
+            </h2>
+            <p className={styles.soft}>Para vagas, projetos ou uma troca de ideia. Respondo por qualquer um destes.</p>
+            <div className={styles.contactActions}>
+              <a className={styles.primary} href={`mailto:${contact.email}`}>
+                Mandar um e-mail
               </a>
+              <CopyButton value={contact.email} className={styles.copy} />
+            </div>
+          </div>
+          <div className={`${code.panel} ${styles.contactPanel}`}>
+            <p className={code.head} aria-hidden="true">
+              <FileCode /> contato.ts
             </p>
+            <div className={code.body}>
+              <p className={code.row} aria-hidden="true">
+                <span className={code.ln}>1</span>
+                <span className={code.text}>
+                  <span className={code.kw}>export const</span> contato = {"{"}
+                </span>
+              </p>
+              <ul className={styles.contactList}>
+                {contactRows.map((r, i) => (
+                  <li key={r.key} className={code.row}>
+                    <span className={code.ln} aria-hidden="true">
+                      {i + 2}
+                    </span>
+                    <span className={code.text}>
+                      {"  "}
+                      <span className={code.ty}>{r.key}</span>
+                      <span aria-hidden="true">: </span>
+                      <a
+                        className={styles.contactLink}
+                        href={r.href}
+                        {...(r.href.startsWith("http") ? { target: "_blank", rel: "noopener" } : {})}
+                      >
+                        <span aria-hidden="true">“</span>
+                        {r.label}
+                        <span aria-hidden="true">”</span>
+                      </a>
+                      <span aria-hidden="true">,</span>
+                    </span>
+                  </li>
+                ))}
+              </ul>
+              <p className={code.row} aria-hidden="true">
+                <span className={code.ln}>{contactRows.length + 2}</span>
+                <span className={code.text}>{"};"}</span>
+              </p>
+            </div>
           </div>
         </div>
       </section>

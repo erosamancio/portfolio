@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
-import { GitHubIcon, WhatsAppIcon } from "@/components/BrandIcons";
-import { contact, defaultMessage, projects, whatsappLink } from "@/content/site";
+import { ArrowUpRight, Mail } from "lucide-react";
+import { GitHubIcon } from "@/components/BrandIcons";
+import { contact, projects, skills } from "@/content/site";
 import styles from "./sobre.module.css";
 
 export const metadata: Metadata = {
@@ -28,14 +28,6 @@ const sociiz = [
   },
 ];
 
-const skills = [
-  { group: "Linguagens", items: "Python, JavaScript, Java, C, SQL" },
-  { group: "Frontend", items: "React, Vite, CSS responsivo" },
-  { group: "Backend", items: "FastAPI, Flask, Django, Spring Boot, APIs REST" },
-  { group: "Tempo real e dados", items: "LiveKit, WebRTC (integração), WebSockets, OpenCV, PaddleOCR" },
-  { group: "Ferramentas", items: "Git, GitHub, VS Code, IntelliJ IDEA" },
-];
-
 export default function SobrePage() {
   return (
     <div className={styles.page}>
@@ -48,8 +40,8 @@ export default function SobrePage() {
             Eros Amancio
           </h1>
           <p className={styles.lead}>
-            Estudante de Ciência da Computação na CESAR School, no 4º período, e estagiário na Sociiz, em Recife. Trabalho
-            com frontend em React, backend em Python e Java e com as integrações que ligam um ao outro.
+            Estudante de Ciência da Computação na CESAR School, no 4º período, e estagiário na Sociiz, em Recife.
+            Trabalho com frontend em React, backend em Python e Java e com as integrações que ligam um ao outro.
           </p>
           <ul className={styles.links}>
             <li>
@@ -83,8 +75,8 @@ export default function SobrePage() {
           <h3 className={styles.h3}>Sociiz</h3>
           <p className={styles.meta}>Estagiário de Banco de Dados · Recife, PE</p>
           <p>
-            Um estágio que foi além do banco de dados, com participação em backend, frontend, processamento de documentos
-            e comunicação em tempo real.
+            Um estágio que foi além do banco de dados, com participação em backend, frontend, processamento de
+            documentos e comunicação em tempo real.
           </p>
           <ul className={styles.items}>
             {sociiz.map((s) => (
@@ -142,8 +134,8 @@ export default function SobrePage() {
         <dl className={styles.skills}>
           {skills.map((s) => (
             <div key={s.group}>
-              <dt>{s.group}</dt>
-              <dd>{s.items}</dd>
+              <dt>{s.label}</dt>
+              <dd>{s.items.join(", ")}</dd>
             </div>
           ))}
           <div>
@@ -153,11 +145,24 @@ export default function SobrePage() {
         </dl>
       </section>
 
+      <section className={`wrap ${styles.section}`} aria-labelledby="int">
+        <h2 id="int" className={styles.h2}>
+          <span className="hash" aria-hidden="true">
+            ##
+          </span>
+          Interesses
+        </h2>
+        <p className={styles.plain}>
+          Backend, full stack, banco de dados e segurança da informação. A base que levo para segurança vem do que já
+          uso no dia a dia: redes, protocolos, autenticação por token, TLS/SSL e comunicação entre sistemas.
+        </p>
+      </section>
+
       <section className={styles.cta}>
         <div className={`wrap ${styles.ctaInner}`}>
-          <p className={styles.ctaText}>Quer conversar sobre um site ou sobre uma vaga?</p>
-          <a className={styles.whats} href={whatsappLink(defaultMessage)} target="_blank" rel="noopener">
-            <WhatsAppIcon /> Chamar no WhatsApp
+          <p className={styles.ctaText}>Quer conversar sobre uma vaga ou um projeto?</p>
+          <a className={styles.mailCta} href={`mailto:${contact.email}`}>
+            <Mail aria-hidden="true" /> Mandar um e-mail
           </a>
         </div>
       </section>

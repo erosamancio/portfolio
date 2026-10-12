@@ -10,214 +10,48 @@
 }
 
 .h2 {
-  max-width: 24ch;
   font-size: clamp(1.95rem, 4.2vw, 3.1rem);
 }
 
 .h3 {
-  font-size: clamp(1.45rem, 2.3vw, 1.9rem);
+  font-size: clamp(1.4rem, 2.2vw, 1.75rem);
 }
 
 .h4 {
-  font-size: 1.3rem;
+  font-size: 1.08rem;
+  letter-spacing: -0.01em;
 }
 
-.h3 a,
 .h4 a {
-  text-decoration: none;
+  color: var(--accent);
+  text-decoration-color: oklch(0.91 0.19 123 / 0.45);
 }
 
-.h3 a:hover,
 .h4 a:hover {
-  color: var(--accent);
-}
-
-.lead {
-  font-size: clamp(1.08rem, 1.5vw, 1.22rem);
-  line-height: 1.55;
-}
-
-.meta {
-  font-size: 0.95rem;
-  font-weight: 550;
-  color: var(--ink-soft);
-}
-
-/* ---------- stack ---------- */
-
-.stackBar {
-  border-top: 1px solid var(--line);
-  background: var(--bg-alt);
-}
-
-.stackInner {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 0.5rem 1.5rem;
-  padding-block: 1rem;
-}
-
-.stackLabel {
-  font-size: 0.9rem;
-  font-weight: 650;
-  color: var(--ink-muted);
-}
-
-.stackList {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.35rem 1.25rem;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  font-family: var(--mono);
-  font-size: 0.88rem;
-  color: var(--syn-ty);
-}
-
-/* ---------- serviços ---------- */
-
-.serviceList {
-  margin: clamp(2rem, 5vw, 3rem) 0 0;
-  padding: 0;
-  list-style: none;
-  border-top: 1px solid var(--line-strong);
-}
-
-.service {
-  display: grid;
-  gap: 0.75rem;
-  padding-block: clamp(1.4rem, 3.5vw, 2.1rem);
-  border-bottom: 1px solid var(--line);
-}
-
-.serviceName {
-  font-size: clamp(1.35rem, 2.1vw, 1.65rem);
-}
-
-.serviceSummary {
-  max-width: 34rem;
-  color: var(--ink-soft);
-}
-
-.includesLabel {
-  margin-bottom: 0.35rem;
-  font-size: 0.88rem;
-  font-weight: 700;
-  color: var(--ink-muted);
-}
-
-.includes {
-  display: grid;
-  gap: 0.3rem;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.includes li {
-  display: flex;
-  gap: 0.6rem;
-}
-
-.includes li::before {
-  content: "-";
-  flex: none;
-  font-family: var(--mono);
-  color: var(--accent);
-}
-
-.unsure {
-  max-width: 44rem;
-  margin-top: clamp(1.75rem, 4vw, 2.5rem);
-  color: var(--ink-soft);
-}
-
-.unsure a {
-  font-weight: 700;
-  color: var(--accent);
-  text-decoration-color: oklch(0.91 0.19 123 / 0.5);
-}
-
-.unsure a:hover {
   text-decoration-color: currentColor;
 }
 
-/* ---------- trabalhos ---------- */
-
-.webList {
-  display: grid;
-  gap: clamp(3rem, 7vw, 5rem);
-  margin-top: clamp(2rem, 5vw, 3.25rem);
-}
-
-.work {
-  display: grid;
-  gap: clamp(1.25rem, 3vw, 2.5rem);
-  align-items: center;
-}
-
-.shot {
-  display: block;
-  overflow: hidden;
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  background: var(--bg-alt);
-  transition: border-color 200ms;
-}
-
-.shot:hover {
-  border-color: var(--line-strong);
-}
-
-.shotBar {
-  display: block;
-  padding: 0.4rem 0.85rem;
-  border-bottom: 1px solid var(--line);
+.meta {
   font-family: var(--mono);
-  font-size: 0.75rem;
+  font-size: 0.85rem;
   color: var(--ink-muted);
 }
 
-.shot img {
-  width: 100%;
-}
-
-.workText {
-  display: grid;
-  gap: 0.75rem;
-  justify-items: start;
-  max-width: 34rem;
-}
-
-.workText > p:not(.meta) {
+.soft {
+  max-width: 38rem;
   color: var(--ink-soft);
 }
 
-.tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem;
-  margin: 0.25rem 0 0;
-  padding: 0;
-  list-style: none;
-}
-
-.tags li {
-  padding: 0.15rem 0.55rem;
-  border: 1px solid var(--line-strong);
-  border-radius: 4px;
-  font-family: var(--mono);
-  font-size: 0.8rem;
-  color: var(--syn-ty);
+.lead {
+  display: grid;
+  gap: 1.1rem;
+  align-content: start;
 }
 
 .more {
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
-  margin-top: 0.4rem;
   font-weight: 700;
   color: var(--accent);
   text-decoration: none;
@@ -237,54 +71,123 @@
   transform: translateX(3px);
 }
 
-.offWeb {
-  margin-top: clamp(3.5rem, 8vw, 5.5rem);
-  padding-top: clamp(2rem, 4vw, 2.75rem);
-  border-top: 1px solid var(--line);
-  font-size: clamp(1.45rem, 2.4vw, 1.9rem);
-}
-
-.gameList {
-  display: grid;
-  gap: 2.5rem;
-  margin-top: 1.75rem;
-}
-
-.game {
-  display: grid;
+.primary {
+  display: inline-flex;
+  align-items: center;
   gap: 0.5rem;
-  align-content: start;
+  min-height: 3rem;
+  padding: 0 1.25rem;
+  border-radius: 6px;
+  background: var(--accent);
+  color: var(--on-accent);
+  font-weight: 750;
+  text-decoration: none;
+  transition: background 160ms;
 }
 
-.game .shot {
-  margin-bottom: 0.6rem;
+.primary:hover {
+  background: var(--accent-hover);
 }
 
-.gameSummary {
+/* Heading column beside content on wide containers */
+.split {
+  display: grid;
+  gap: clamp(1.75rem, 4vw, 3rem);
+}
+
+/* ---------- experiência ---------- */
+
+.timeline {
+  display: grid;
+  gap: clamp(2.25rem, 5vw, 3rem);
+}
+
+.role {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.roleHead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.3rem 1rem;
+}
+
+.items {
+  display: grid;
+  gap: 1.1rem;
+  margin: 0.4rem 0 0;
+  padding: 0 0 0 1.1rem;
+  list-style: none;
+  border-left: 1px solid var(--line-strong);
+}
+
+.items li {
+  display: grid;
+  gap: 0.25rem;
+  max-width: 40rem;
+}
+
+.items p {
   color: var(--ink-soft);
+}
+
+/* ---------- tecnologias ---------- */
+
+.json {
+  margin: 0;
+  min-width: 0;
+}
+
+.skillList {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* ---------- sobre ---------- */
+
+.about {
+  display: grid;
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: center;
+}
+
+.portrait {
+  width: min(100%, 20rem);
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+.aboutText {
+  display: grid;
+  gap: 1.1rem;
+  justify-items: start;
+}
+
+.big {
+  max-width: 24ch;
+  font-size: clamp(1.5rem, 2.8vw, 2.1rem);
+  font-weight: 650;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
 }
 
 /* ---------- este site ---------- */
 
-.siteGrid {
+.site {
   display: grid;
   gap: clamp(2rem, 5vw, 3.5rem);
-  align-items: center;
-}
-
-.siteText {
-  display: grid;
-  gap: 1.25rem;
-}
-
-.siteText .lead {
-  color: var(--ink-soft);
+  align-items: start;
 }
 
 .proofs {
   display: grid;
   gap: 0.5rem;
-  margin: 0.25rem 0 0;
+  margin: 0;
   padding: 0;
   list-style: none;
 }
@@ -295,7 +198,7 @@
 }
 
 .proofs li::before {
-  content: "✓";
+  content: "-";
   flex: none;
   font-family: var(--mono);
   color: var(--accent);
@@ -315,141 +218,37 @@
 
 .snippet {
   margin: 0;
+  min-width: 0;
 }
 
-/* ---------- processo ---------- */
-
-.steps {
-  display: grid;
-  margin: clamp(2rem, 5vw, 3rem) 0 0;
-  padding: 0;
-  list-style: none;
-  border-top: 1px solid var(--line-strong);
+/* The code fades at the right edge while more of it is off to the side; with no overflow the timeline is inactive and nothing fades. */
+@property --edge {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 0px;
 }
 
-.step {
-  display: grid;
-  grid-template-columns: 3rem minmax(0, 1fr);
-  gap: 0.3rem 0.75rem;
-  padding-block: 1.25rem;
-  border-bottom: 1px solid var(--line);
+.scroll {
+  overflow-x: auto;
+  scrollbar-width: thin;
+  mask-image: linear-gradient(to left, transparent, #000 var(--edge));
 }
 
-.step p {
-  grid-column: 2;
-  color: var(--ink-soft);
-}
+@supports (animation-timeline: scroll()) {
+  .scroll {
+    animation: edge linear both;
+    animation-timeline: scroll(self inline);
+  }
 
-.stepNumber {
-  grid-row: span 2;
-  padding-top: 0.15rem;
-  font-family: var(--mono);
-  font-size: 0.9rem;
-  color: var(--accent);
-}
-
-.stepName {
-  font-size: 1.25rem;
-}
-
-/* ---------- quem faz ---------- */
-
-.aboutGrid {
-  display: grid;
-  gap: clamp(2rem, 5vw, 4rem);
-  align-items: center;
-}
-
-.portrait {
-  width: min(100%, 22rem);
-  overflow: hidden;
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-}
-
-.aboutText {
-  display: grid;
-  gap: 1.1rem;
-  max-width: 38rem;
-}
-
-.aboutText > p:not(.lead) {
-  color: var(--ink-soft);
-}
-
-.aboutLinks {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem 1.75rem;
-  margin: 0.5rem 0 0;
-  padding: 0;
-  list-style: none;
-}
-
-.aboutLinks a {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  font-weight: 700;
-}
-
-.aboutLinks svg {
-  width: 1.05em;
-  height: 1.05em;
-}
-
-/* ---------- perguntas ---------- */
-
-.faqGrid {
-  display: grid;
-  gap: clamp(1.75rem, 4vw, 3rem);
-}
-
-.faqList {
-  border-top: 1px solid var(--line-strong);
-}
-
-.faqItem {
-  border-bottom: 1px solid var(--line);
-}
-
-.faqItem summary {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  min-height: 3.75rem;
-  padding-block: 0.75rem;
-  font-weight: 650;
-  font-size: 1.08rem;
-  cursor: pointer;
-  list-style: none;
-}
-
-.faqItem summary::-webkit-details-marker {
-  display: none;
-}
-
-.faqItem summary:hover {
-  color: var(--accent);
-}
-
-.faqIcon {
-  flex: none;
-  width: 1.1rem;
-  height: 1.1rem;
-  color: var(--ink-muted);
-  transition: transform 200ms var(--ease-out);
-}
-
-.faqItem[open] .faqIcon {
-  transform: rotate(90deg);
-  color: var(--accent);
-}
-
-.faqItem p {
-  max-width: 40rem;
-  padding: 0 0 1.25rem 1.7rem;
-  color: var(--ink-soft);
+  @keyframes edge {
+    0%,
+    92% {
+      --edge: 3rem;
+    }
+    100% {
+      --edge: 0px;
+    }
+  }
 }
 
 /* ---------- contato ---------- */
@@ -457,144 +256,96 @@
 .contact {
   padding-block: clamp(4rem, 9vw, 7rem);
   border-top: 1px solid var(--line);
-  background:
-    radial-gradient(60rem 30rem at 0% 100%, oklch(0.91 0.19 123 / 0.09), transparent 70%),
-    var(--bg);
 }
 
 .contactInner {
   display: grid;
-  gap: 1.25rem;
-  justify-items: start;
+  gap: clamp(2rem, 5vw, 3.5rem);
+  align-items: center;
 }
 
 .contactTitle {
-  max-width: 16ch;
-  font-size: clamp(2.3rem, 6vw, 4.6rem);
+  font-size: clamp(2.4rem, 6vw, 4.4rem);
   line-height: 1;
   letter-spacing: -0.04em;
 }
 
-.contactLead {
-  max-width: 30rem;
-  font-size: clamp(1.08rem, 1.5vw, 1.22rem);
-  color: var(--ink-soft);
-}
-
 .contactActions {
-  display: grid;
-  gap: 1rem;
-  justify-items: start;
-  margin-top: 0.75rem;
-}
-
-.contactWhats {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-  min-height: 3.25rem;
-  padding: 0 1.5rem;
-  border-radius: 6px;
-  background: var(--accent);
-  color: var(--on-accent);
-  font-weight: 750;
-  font-size: 1.08rem;
-  text-decoration: none;
-  transition: background 160ms;
-}
-
-.contactWhats:hover {
-  background: var(--accent-hover);
-}
-
-.contactWhats svg {
-  font-size: 1.25em;
-}
-
-.contactAlt {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 0.25rem 0.5rem;
-  font-family: var(--mono);
-  font-size: 0.9rem;
-  color: var(--ink-soft);
+  gap: 0.75rem 1.25rem;
+  margin-top: 0.4rem;
 }
 
-.contactAlt a {
+.copy {
   display: inline-flex;
   align-items: center;
-  gap: 0.35rem;
+  gap: 0.5rem;
+  min-height: 3rem;
+  padding: 0 1rem;
+  border: 1px solid var(--line-strong);
+  border-radius: 6px;
+  background: transparent;
+  font-weight: 650;
+  color: var(--ink-soft);
+  cursor: pointer;
+  transition:
+    border-color 160ms,
+    color 160ms;
 }
 
-.contactAlt svg {
+.copy:hover {
+  border-color: var(--ink-muted);
+  color: var(--ink);
+}
+
+.copy[data-state="copied"] {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.copy svg {
   width: 1em;
   height: 1em;
 }
 
-.sep {
-  display: none;
+.contactPanel {
+  min-width: 0;
+}
+
+.contactList {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.contactLink {
+  color: var(--syn-str);
+  text-decoration-color: oklch(0.85 0.12 75 / 0.4);
+  overflow-wrap: anywhere;
+}
+
+.contactLink:hover {
+  color: var(--ink);
+  text-decoration-color: currentColor;
 }
 
 /* ---------- layouts ---------- */
 
-@container (min-width: 30rem) {
-  .sep {
-    display: inline;
-  }
-}
-
 @container (min-width: 44rem) {
-  .gameList {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .faqGrid {
-    grid-template-columns: minmax(0, 0.7fr) minmax(0, 1.3fr);
-  }
-
-  .aboutGrid {
-    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  .about {
+    grid-template-columns: minmax(0, 0.75fr) minmax(0, 1.25fr);
   }
 }
 
 @container (min-width: 56rem) {
-  .service {
-    grid-template-columns: minmax(0, 0.75fr) minmax(0, 1.1fr) minmax(0, 1fr);
-    gap: 2.5rem;
+  .split {
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.6fr);
     align-items: start;
   }
 
-  .work {
-    grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
-  }
-
-  .work:nth-child(even) .shot {
-    order: 2;
-  }
-
-  .siteGrid {
-    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
-  }
-
-  .steps {
-    grid-template-columns: repeat(5, minmax(0, 1fr));
-    border-top: 0;
-  }
-
-  .step {
-    grid-template-columns: 1fr;
-    align-content: start;
-    padding: 1.25rem 1.25rem 0 0;
-    border-bottom: 0;
-    border-top: 1px solid var(--line-strong);
-  }
-
-  .step p {
-    grid-column: 1;
-  }
-
-  .stepNumber {
-    grid-row: auto;
+  .contactInner {
+    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
   }
 }

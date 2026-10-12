@@ -107,10 +107,9 @@
 }
 
 .projectList li {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap: 0.25rem 1.5rem;
+  display: grid;
+  justify-items: start;
+  gap: 0.25rem;
   padding-block: 0.9rem;
   border-bottom: 1px solid var(--line);
 }
@@ -168,7 +167,7 @@
   font-size: clamp(1.3rem, 2.4vw, 1.75rem);
 }
 
-.whats {
+.mailCta {
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;
@@ -181,11 +180,17 @@
   text-decoration: none;
 }
 
-.whats svg {
-  font-size: 1.25em;
+.mailCta svg {
+  width: 1.1em;
+  height: 1.1em;
 }
 
-.whats:hover {
+.plain {
+  max-width: 40rem;
+  color: var(--ink-soft);
+}
+
+.mailCta:hover {
   background: var(--accent-hover);
 }
 

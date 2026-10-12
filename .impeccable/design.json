@@ -1,0 +1,512 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-12T19:32:52+00:00",
+  "title": "Design System: Eros Amancio · Portfólio",
+  "extensions": {
+    "colorMeta": {
+      "bg": {
+        "role": "neutral",
+        "displayName": "Área de Edição",
+        "canonical": "oklch(0.17 0.012 260)",
+        "tonalRamp": [
+          "oklch(0.15 0.012 260)",
+          "oklch(0.26 0.012 260)",
+          "oklch(0.37 0.012 260)",
+          "oklch(0.48 0.012 260)",
+          "oklch(0.60 0.012 260)",
+          "oklch(0.71 0.012 260)",
+          "oklch(0.83 0.012 260)",
+          "oklch(0.95 0.012 260)"
+        ]
+      },
+      "bg-alt": {
+        "role": "neutral",
+        "displayName": "Barra do Editor",
+        "canonical": "oklch(0.195 0.012 260)",
+        "tonalRamp": [
+          "oklch(0.15 0.012 260)",
+          "oklch(0.26 0.012 260)",
+          "oklch(0.37 0.012 260)",
+          "oklch(0.48 0.012 260)",
+          "oklch(0.60 0.012 260)",
+          "oklch(0.71 0.012 260)",
+          "oklch(0.83 0.012 260)",
+          "oklch(0.95 0.012 260)"
+        ]
+      },
+      "surface": {
+        "role": "neutral",
+        "displayName": "Painel",
+        "canonical": "oklch(0.215 0.012 260)",
+        "tonalRamp": [
+          "oklch(0.15 0.012 260)",
+          "oklch(0.26 0.012 260)",
+          "oklch(0.37 0.012 260)",
+          "oklch(0.48 0.012 260)",
+          "oklch(0.60 0.012 260)",
+          "oklch(0.71 0.012 260)",
+          "oklch(0.83 0.012 260)",
+          "oklch(0.95 0.012 260)"
+        ]
+      },
+      "surface-hover": {
+        "role": "neutral",
+        "displayName": "Item Ativo",
+        "canonical": "oklch(0.25 0.014 260)",
+        "tonalRamp": [
+          "oklch(0.15 0.014 260)",
+          "oklch(0.26 0.014 260)",
+          "oklch(0.37 0.014 260)",
+          "oklch(0.48 0.014 260)",
+          "oklch(0.60 0.014 260)",
+          "oklch(0.71 0.014 260)",
+          "oklch(0.83 0.014 260)",
+          "oklch(0.95 0.014 260)"
+        ]
+      },
+      "line": {
+        "role": "neutral",
+        "displayName": "Divisória",
+        "canonical": "oklch(0.29 0.012 260)",
+        "tonalRamp": [
+          "oklch(0.15 0.012 260)",
+          "oklch(0.26 0.012 260)",
+          "oklch(0.37 0.012 260)",
+          "oklch(0.48 0.012 260)",
+          "oklch(0.60 0.012 260)",
+          "oklch(0.71 0.012 260)",
+          "oklch(0.83 0.012 260)",
+          "oklch(0.95 0.012 260)"
+        ]
+      },
+      "line-strong": {
+        "role": "neutral",
+        "displayName": "Borda de Controle",
+        "canonical": "oklch(0.42 0.014 260)",
+        "tonalRamp": [
+          "oklch(0.15 0.014 260)",
+          "oklch(0.26 0.014 260)",
+          "oklch(0.37 0.014 260)",
+          "oklch(0.48 0.014 260)",
+          "oklch(0.60 0.014 260)",
+          "oklch(0.71 0.014 260)",
+          "oklch(0.83 0.014 260)",
+          "oklch(0.95 0.014 260)"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Texto",
+        "canonical": "oklch(0.94 0.005 250)",
+        "tonalRamp": [
+          "oklch(0.15 0.005 250)",
+          "oklch(0.26 0.005 250)",
+          "oklch(0.37 0.005 250)",
+          "oklch(0.48 0.005 250)",
+          "oklch(0.60 0.005 250)",
+          "oklch(0.71 0.005 250)",
+          "oklch(0.83 0.005 250)",
+          "oklch(0.95 0.005 250)"
+        ]
+      },
+      "ink-soft": {
+        "role": "neutral",
+        "displayName": "Texto Secundário",
+        "canonical": "oklch(0.78 0.012 250)",
+        "tonalRamp": [
+          "oklch(0.15 0.012 250)",
+          "oklch(0.26 0.012 250)",
+          "oklch(0.37 0.012 250)",
+          "oklch(0.48 0.012 250)",
+          "oklch(0.60 0.012 250)",
+          "oklch(0.71 0.012 250)",
+          "oklch(0.83 0.012 250)",
+          "oklch(0.95 0.012 250)"
+        ]
+      },
+      "ink-muted": {
+        "role": "neutral",
+        "displayName": "Comentário",
+        "canonical": "oklch(0.66 0.014 250)",
+        "tonalRamp": [
+          "oklch(0.15 0.014 250)",
+          "oklch(0.26 0.014 250)",
+          "oklch(0.37 0.014 250)",
+          "oklch(0.48 0.014 250)",
+          "oklch(0.60 0.014 250)",
+          "oklch(0.71 0.014 250)",
+          "oklch(0.83 0.014 250)",
+          "oklch(0.95 0.014 250)"
+        ],
+        "aliases": [
+          "--syn-cm"
+        ]
+      },
+      "accent": {
+        "role": "primary",
+        "displayName": "Chartreuse de Cursor",
+        "canonical": "oklch(0.91 0.19 123)",
+        "tonalRamp": [
+          "oklch(0.15 0.19 123)",
+          "oklch(0.26 0.19 123)",
+          "oklch(0.37 0.19 123)",
+          "oklch(0.48 0.19 123)",
+          "oklch(0.60 0.19 123)",
+          "oklch(0.71 0.19 123)",
+          "oklch(0.83 0.19 123)",
+          "oklch(0.95 0.19 123)"
+        ],
+        "aliases": [
+          "--syn-fn"
+        ]
+      },
+      "accent-hover": {
+        "role": "primary",
+        "displayName": "Chartreuse Claro",
+        "canonical": "oklch(0.95 0.15 123)",
+        "tonalRamp": [
+          "oklch(0.15 0.15 123)",
+          "oklch(0.26 0.15 123)",
+          "oklch(0.37 0.15 123)",
+          "oklch(0.48 0.15 123)",
+          "oklch(0.60 0.15 123)",
+          "oklch(0.71 0.15 123)",
+          "oklch(0.83 0.15 123)",
+          "oklch(0.95 0.15 123)"
+        ]
+      },
+      "on-accent": {
+        "role": "primary",
+        "displayName": "Grafite sobre Acento",
+        "canonical": "oklch(0.19 0.02 130)",
+        "tonalRamp": [
+          "oklch(0.15 0.02 130)",
+          "oklch(0.26 0.02 130)",
+          "oklch(0.37 0.02 130)",
+          "oklch(0.48 0.02 130)",
+          "oklch(0.60 0.02 130)",
+          "oklch(0.71 0.02 130)",
+          "oklch(0.83 0.02 130)",
+          "oklch(0.95 0.02 130)"
+        ]
+      },
+      "syn-kw": {
+        "role": "secondary",
+        "displayName": "Lilás de Palavra-chave",
+        "canonical": "oklch(0.79 0.13 300)",
+        "tonalRamp": [
+          "oklch(0.15 0.13 300)",
+          "oklch(0.26 0.13 300)",
+          "oklch(0.37 0.13 300)",
+          "oklch(0.48 0.13 300)",
+          "oklch(0.60 0.13 300)",
+          "oklch(0.71 0.13 300)",
+          "oklch(0.83 0.13 300)",
+          "oklch(0.95 0.13 300)"
+        ]
+      },
+      "syn-str": {
+        "role": "secondary",
+        "displayName": "Âmbar de String",
+        "canonical": "oklch(0.85 0.12 75)",
+        "tonalRamp": [
+          "oklch(0.15 0.12 75)",
+          "oklch(0.26 0.12 75)",
+          "oklch(0.37 0.12 75)",
+          "oklch(0.48 0.12 75)",
+          "oklch(0.60 0.12 75)",
+          "oklch(0.71 0.12 75)",
+          "oklch(0.83 0.12 75)",
+          "oklch(0.95 0.12 75)"
+        ]
+      },
+      "syn-ty": {
+        "role": "secondary",
+        "displayName": "Ciano de Tipo",
+        "canonical": "oklch(0.83 0.1 200)",
+        "tonalRamp": [
+          "oklch(0.15 0.1 200)",
+          "oklch(0.26 0.1 200)",
+          "oklch(0.37 0.1 200)",
+          "oklch(0.48 0.1 200)",
+          "oklch(0.60 0.1 200)",
+          "oklch(0.71 0.1 200)",
+          "oklch(0.83 0.1 200)",
+          "oklch(0.95 0.1 200)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Só o nome no hero, com o cursor chartreuse; títulos de página usam a mesma voz entre 2.4rem e 6rem."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Títulos de seção, precedidos do marcador Markdown #."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Nome do projeto, empresa e instituição, subtítulos ## do estudo de caso."
+      },
+      "lede": {
+        "displayName": "Lede",
+        "purpose": "Abertura do hero e resumo dos estudos de caso, em ink-soft."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Texto corrido; blocos de leitura de 34 a 42rem."
+      },
+      "code": {
+        "displayName": "Code",
+        "purpose": "Corpo dos painéis de código com números de linha."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Moldura do editor: abas, caminho, explorador, barra de status, filtros, tags, metadados."
+      }
+    },
+    "shadows": [
+      {
+        "name": "panel-ambient",
+        "value": "0 24px 48px -32px oklch(0 0 0 / 0.8)",
+        "purpose": "Só sob os painéis de código."
+      },
+      {
+        "name": "scroll-edge",
+        "value": "linear-gradient(to right, oklch(0 0 0 / 0.55), transparent) left / 1rem 100% no-repeat scroll",
+        "purpose": "Bordas do trecho de código real, só enquanto há mais para rolar (espelhada à direita)."
+      },
+      {
+        "name": "drawer-scrim",
+        "value": "oklch(0.1 0.01 260 / 0.6)",
+        "purpose": "Véu atrás do explorador aberto no celular."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-out",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "Curva padrão: gaveta, setas, entrada dos projetos, clique do botão."
+      },
+      {
+        "name": "state",
+        "value": "160ms",
+        "purpose": "Cor, fundo e borda em links, botões e chips."
+      },
+      {
+        "name": "nudge",
+        "value": "200ms",
+        "purpose": "Seta dos links Ler estudo de caso e borda da prévia."
+      },
+      {
+        "name": "drawer",
+        "value": "240ms",
+        "purpose": "Gaveta do explorador e véu no celular."
+      },
+      {
+        "name": "project-enter",
+        "value": "420ms",
+        "purpose": "Projetos entram de opacidade 0.4 e 6px abaixo ao filtrar."
+      },
+      {
+        "name": "caret-blink",
+        "value": "1.1s steps(1) × 8",
+        "purpose": "Cursor depois do nome no hero; para após oito piscadas."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "prefers-reduced-motion: reduce",
+        "purpose": "Transições e animações a 0.01ms, rolagem sem suavização."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "contact-icon-only",
+        "value": "26.5rem",
+        "purpose": "Abaixo disso o Contato da barra de título vira só ícone (viewport)."
+      },
+      {
+        "name": "status-row",
+        "value": "40rem",
+        "purpose": "Abaixo disso a barra de status é uma linha só e o caminho some (viewport)."
+      },
+      {
+        "name": "explorer-fixed",
+        "value": "64rem",
+        "purpose": "Explorador fixo de 16rem; abaixo disso, gaveta (viewport)."
+      },
+      {
+        "name": "chips-two-rows",
+        "value": "@container 30rem",
+        "purpose": "Chips do perfil.ts em duas linhas iguais abaixo disso."
+      },
+      {
+        "name": "about-split",
+        "value": "@container 44rem",
+        "purpose": "Retrato ao lado do texto em Sobre (home)."
+      },
+      {
+        "name": "sobre-split",
+        "value": "@container 50rem",
+        "purpose": "Página Sobre em duas colunas."
+      },
+      {
+        "name": "sections-split",
+        "value": "@container 56rem",
+        "purpose": "Zigue-zague de projetos, cabeçalhos ao lado do conteúdo, painéis lado a lado."
+      },
+      {
+        "name": "hero-split",
+        "value": "@container 60rem",
+        "purpose": "Hero em duas colunas com o perfil.ts à direita."
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Botão principal",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Ação principal: Ver projetos, Mandar um e-mail, Falar sobre este projeto.",
+      "html": "<a class=\"ds-btn-primary\" href=\"#\">Ver projetos <svg viewBox=\"0 0 24 24\" width=\"18\" height=\"18\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M12 5v14\"/><path d=\"m19 12-7 7-7-7\"/></svg></a>",
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; gap: 0.5rem; min-height: 3rem; padding: 0 1.25rem; border-radius: 6px; background: var(--accent, oklch(0.91 0.19 123)); color: var(--on-accent, oklch(0.19 0.02 130)); font-family: var(--font, Archivo, system-ui, sans-serif); font-weight: 750; text-decoration: none; transition: background 160ms, transform 160ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-btn-primary:hover { background: var(--accent-hover, oklch(0.95 0.15 123)); } .ds-btn-primary:active { transform: translateY(1px); } .ds-btn-primary:focus-visible { outline: 2px solid var(--accent, oklch(0.91 0.19 123)); outline-offset: 3px; }"
+    },
+    {
+      "name": "Botão de contorno",
+      "kind": "button",
+      "refersTo": "button-outline",
+      "description": "Ação ao lado do principal: Copiar e-mail.",
+      "html": "<button type=\"button\" class=\"ds-btn-outline\"><svg viewBox=\"0 0 24 24\" width=\"16\" height=\"16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><rect x=\"8\" y=\"8\" width=\"14\" height=\"14\" rx=\"2\"/><path d=\"M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2\"/></svg> Copiar e-mail</button>",
+      "css": ".ds-btn-outline { display: inline-flex; align-items: center; gap: 0.5rem; min-height: 3rem; padding: 0 1rem; border: 1px solid var(--line-strong, oklch(0.42 0.014 260)); border-radius: 6px; background: transparent; color: var(--ink-soft, oklch(0.78 0.012 250)); font-family: var(--font, Archivo, system-ui, sans-serif); font-size: 1.0625rem; font-weight: 650; cursor: pointer; transition: border-color 160ms, color 160ms; } .ds-btn-outline:hover { border-color: var(--ink-muted, oklch(0.66 0.014 250)); color: var(--ink, oklch(0.94 0.005 250)); } .ds-btn-outline:focus-visible { outline: 2px solid var(--accent, oklch(0.91 0.19 123)); outline-offset: 3px; }"
+    },
+    {
+      "name": "Chip de filtro",
+      "kind": "chip",
+      "refersTo": "chip-filter",
+      "description": "Barra de filtro de Projetos: todos e cada tecnologia com a contagem.",
+      "html": "<div class=\"ds-filter\"><span class=\"ds-filter-label\">filtro:</span><button type=\"button\" class=\"ds-chip-filter\" aria-pressed=\"false\">todos <span class=\"ds-count\">5</span></button><button type=\"button\" class=\"ds-chip-filter\" aria-pressed=\"true\">React <span class=\"ds-count\">3</span></button><button type=\"button\" class=\"ds-chip-filter\" aria-pressed=\"false\">C <span class=\"ds-count\">2</span></button></div>",
+      "css": ".ds-filter { display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem; font-family: var(--mono, 'JetBrains Mono', ui-monospace, monospace); font-size: 0.88rem; } .ds-filter-label { margin-right: 0.35rem; color: var(--syn-ty, oklch(0.83 0.1 200)); } .ds-chip-filter { display: inline-flex; align-items: center; gap: 0.45rem; min-height: 2.5rem; padding: 0 0.75rem; border: 1px solid var(--line-strong, oklch(0.42 0.014 260)); border-radius: 5px; background: transparent; font: inherit; color: var(--ink-soft, oklch(0.78 0.012 250)); cursor: pointer; transition: border-color 160ms, background 160ms, color 160ms; } .ds-chip-filter:hover { border-color: var(--ink-muted, oklch(0.66 0.014 250)); color: var(--ink, oklch(0.94 0.005 250)); } .ds-chip-filter[aria-pressed=\"true\"] { border-color: var(--accent, oklch(0.91 0.19 123)); background: oklch(0.91 0.19 123 / 0.1); color: var(--ink, oklch(0.94 0.005 250)); } .ds-count { font-variant-numeric: tabular-nums; color: var(--ink-muted, oklch(0.66 0.014 250)); } .ds-chip-filter[aria-pressed=\"true\"] .ds-count { color: var(--accent, oklch(0.91 0.19 123)); } .ds-chip-filter:focus-visible { outline: 2px solid var(--accent, oklch(0.91 0.19 123)); outline-offset: 3px; }"
+    },
+    {
+      "name": "Painel perfil.ts",
+      "kind": "custom",
+      "refersTo": "code-panel",
+      "description": "Painel de código com números de linha; as tecnologias são chips que filtram os projetos.",
+      "html": "<div class=\"ds-panel\"><p class=\"ds-panel-head\"><svg viewBox=\"0 0 24 24\" width=\"15\" height=\"15\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M10 12.5 8 15l2 2.5\"/><path d=\"m14 12.5 2 2.5-2 2.5\"/><path d=\"M14 2v4a2 2 0 0 0 2 2h4\"/><path d=\"M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7z\"/></svg> perfil.ts</p><div class=\"ds-panel-body\"><p class=\"ds-row\"><span class=\"ds-ln\">1</span><span><span class=\"ds-kw\">export const</span> eros = {</span></p><p class=\"ds-row\"><span class=\"ds-ln\">2</span><span>  <span class=\"ds-ty\">estagio</span>: <span class=\"ds-st\">“Sociiz: backend, OCR e videoconferência”</span>,</span></p><p class=\"ds-row\"><span class=\"ds-ln\">3</span><span class=\"ds-cm\">  // escolha uma tecnologia para filtrar os projetos</span></p><div class=\"ds-row\"><span class=\"ds-ln\">4</span><div class=\"ds-stack\"><button type=\"button\" class=\"ds-chip-profile\" aria-pressed=\"true\">“React”</button><button type=\"button\" class=\"ds-chip-profile\" aria-pressed=\"false\">“Python”</button><button type=\"button\" class=\"ds-chip-profile\" aria-pressed=\"false\">“Java”</button><button type=\"button\" class=\"ds-chip-profile\" aria-pressed=\"false\">“C”</button></div></div><p class=\"ds-row\"><span class=\"ds-ln\">5</span><span>};</span></p></div></div>",
+      "css": ".ds-panel { max-width: 38rem; overflow: hidden; background: var(--bg-alt, oklch(0.195 0.012 260)); border: 1px solid var(--line, oklch(0.29 0.012 260)); border-radius: 8px; box-shadow: 0 24px 48px -32px oklch(0 0 0 / 0.8); color: var(--ink, oklch(0.94 0.005 250)); } .ds-panel-head { display: flex; align-items: center; gap: 0.45rem; margin: 0; padding: 0.55rem 1rem; border-bottom: 1px solid var(--line, oklch(0.29 0.012 260)); font-family: var(--mono, 'JetBrains Mono', ui-monospace, monospace); font-size: 0.8rem; color: var(--ink-soft, oklch(0.78 0.012 250)); } .ds-panel-head svg { color: var(--syn-kw, oklch(0.79 0.13 300)); } .ds-panel-body { padding: 1rem 1rem 1.15rem 0; font-family: var(--mono, 'JetBrains Mono', ui-monospace, monospace); font-size: 0.9rem; line-height: 1.75; } .ds-row { display: grid; grid-template-columns: 2.75rem minmax(0, 1fr); margin: 0; white-space: pre-wrap; } .ds-ln { padding-right: 1rem; text-align: right; color: var(--ink-muted, oklch(0.66 0.014 250)); user-select: none; } .ds-kw { color: var(--syn-kw, oklch(0.79 0.13 300)); } .ds-ty { color: var(--syn-ty, oklch(0.83 0.1 200)); } .ds-st { color: var(--syn-str, oklch(0.85 0.12 75)); } .ds-cm { color: var(--ink-muted, oklch(0.66 0.014 250)); } .ds-stack { display: flex; flex-wrap: wrap; gap: 0.35rem; padding: 0.3rem 0.5rem 0.3rem 4ch; white-space: normal; } .ds-chip-profile { min-height: 2.25rem; padding: 0 0.45rem; border: 1px solid var(--line-strong, oklch(0.42 0.014 260)); border-radius: 5px; background: var(--bg, oklch(0.17 0.012 260)); font-family: inherit; font-size: inherit; color: var(--syn-str, oklch(0.85 0.12 75)); cursor: pointer; transition: border-color 160ms, background 160ms, color 160ms; } .ds-chip-profile:hover { border-color: var(--syn-str, oklch(0.85 0.12 75)); } .ds-chip-profile[aria-pressed=\"true\"] { border-color: var(--accent, oklch(0.91 0.19 123)); background: var(--accent, oklch(0.91 0.19 123)); color: var(--on-accent, oklch(0.19 0.02 130)); } .ds-chip-profile:focus-visible { outline: 2px solid var(--accent, oklch(0.91 0.19 123)); outline-offset: 3px; }"
+    },
+    {
+      "name": "Tag de tecnologia",
+      "kind": "chip",
+      "refersTo": "tag-tech",
+      "description": "Stack de cada projeto, só leitura.",
+      "html": "<ul class=\"ds-tags\"><li>React 19</li><li>LiveKit</li><li>Flask</li></ul>",
+      "css": ".ds-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0; padding: 0; list-style: none; } .ds-tags li { padding: 0.15rem 0.55rem; border: 1px solid var(--line-strong, oklch(0.42 0.014 260)); border-radius: 4px; font-family: var(--mono, 'JetBrains Mono', ui-monospace, monospace); font-size: 0.8rem; color: var(--syn-ty, oklch(0.83 0.1 200)); }"
+    },
+    {
+      "name": "Explorador",
+      "kind": "nav",
+      "refersTo": "explorer-item",
+      "description": "Navegação principal: páginas e seções como arquivos, com o arquivo atual destacado.",
+      "html": "<nav class=\"ds-explorer\" aria-label=\"Principal\"><p class=\"ds-explorer-title\">Explorador</p><a class=\"ds-file\" href=\"#\" aria-current=\"location\"><svg class=\"ds-ic-md\" viewBox=\"0 0 24 24\" width=\"16\" height=\"16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7z\"/><path d=\"M14 2v4a2 2 0 0 0 2 2h4\"/><path d=\"M16 13H8\"/><path d=\"M16 17H8\"/></svg>README.md</a><a class=\"ds-file\" href=\"#\" style=\"--depth:2\"><svg class=\"ds-ic-md\" viewBox=\"0 0 24 24\" width=\"16\" height=\"16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7z\"/><path d=\"M14 2v4a2 2 0 0 0 2 2h4\"/><path d=\"M16 13H8\"/><path d=\"M16 17H8\"/></svg>sociiz-meet.md</a><a class=\"ds-file\" href=\"#\"><svg class=\"ds-ic-ts\" viewBox=\"0 0 24 24\" width=\"16\" height=\"16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M10 12.5 8 15l2 2.5\"/><path d=\"m14 12.5 2 2.5-2 2.5\"/><path d=\"M14 2v4a2 2 0 0 0 2 2h4\"/><path d=\"M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7z\"/></svg>contato.ts</a></nav>",
+      "css": ".ds-explorer { width: 16rem; padding: 0.75rem 0 1.5rem; background: var(--bg-alt, oklch(0.195 0.012 260)); border-right: 1px solid var(--line, oklch(0.29 0.012 260)); font-family: var(--mono, 'JetBrains Mono', ui-monospace, monospace); font-size: 0.86rem; } .ds-explorer-title { margin: 0; padding: 0 1rem 0.5rem; font-family: var(--font, Archivo, system-ui, sans-serif); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-muted, oklch(0.66 0.014 250)); } .ds-file { --depth: 1; display: flex; align-items: center; gap: 0.4rem; min-height: 2.25rem; padding: 0 0.75rem 0 calc(0.75rem + var(--depth) * 1rem); color: var(--ink-soft, oklch(0.78 0.012 250)); text-decoration: none; } .ds-file:hover { background: var(--surface, oklch(0.215 0.012 260)); color: var(--ink, oklch(0.94 0.005 250)); } .ds-file[aria-current] { background: var(--surface-hover, oklch(0.25 0.014 260)); color: var(--ink, oklch(0.94 0.005 250)); } .ds-ic-md { color: var(--syn-ty, oklch(0.83 0.1 200)); } .ds-ic-ts { color: var(--syn-kw, oklch(0.79 0.13 300)); } .ds-file[aria-current] svg { color: var(--accent, oklch(0.91 0.19 123)); } .ds-file:focus-visible { outline: 2px solid var(--accent, oklch(0.91 0.19 123)); outline-offset: -2px; }"
+    },
+    {
+      "name": "Abas e caminho",
+      "kind": "nav",
+      "refersTo": "tab",
+      "description": "Barra de abas fixa com a aba atual marcada por um filete chartreuse e o caminho do arquivo.",
+      "html": "<div class=\"ds-tabbar\"><a class=\"ds-tab\" href=\"#\">README.md</a><a class=\"ds-tab\" href=\"#\" aria-current=\"page\">cicle.md</a><p class=\"ds-crumbs\"><span>portfolio</span><span>trabalhos</span><span>cicle.md</span></p></div>",
+      "css": ".ds-tabbar { display: flex; align-items: stretch; min-height: 2.5rem; background: var(--bg-alt, oklch(0.195 0.012 260)); border-bottom: 1px solid var(--line, oklch(0.29 0.012 260)); font-family: var(--mono, 'JetBrains Mono', ui-monospace, monospace); font-size: 0.82rem; } .ds-tab { position: relative; display: flex; align-items: center; padding: 0 1rem; border-right: 1px solid var(--line, oklch(0.29 0.012 260)); color: var(--ink-muted, oklch(0.66 0.014 250)); text-decoration: none; } .ds-tab:hover { color: var(--ink, oklch(0.94 0.005 250)); } .ds-tab[aria-current] { background: var(--bg, oklch(0.17 0.012 260)); color: var(--ink, oklch(0.94 0.005 250)); } .ds-tab[aria-current]::before { content: ''; position: absolute; inset: 0 0 auto; height: 2px; background: var(--accent, oklch(0.91 0.19 123)); } .ds-tab:focus-visible { outline: 2px solid var(--accent, oklch(0.91 0.19 123)); outline-offset: -2px; } .ds-crumbs { display: flex; align-items: center; margin: 0; padding-inline: 1rem; color: var(--ink-muted, oklch(0.66 0.014 250)); white-space: nowrap; } .ds-crumbs span + span::before { content: '›'; margin-inline: 0.5rem; color: var(--line-strong, oklch(0.42 0.014 260)); } .ds-crumbs span:last-child { color: var(--ink-soft, oklch(0.78 0.012 250)); }"
+    },
+    {
+      "name": "Barra de status",
+      "kind": "custom",
+      "refersTo": "status-bar",
+      "description": "Rodapé do editor em chartreuse; no celular, uma linha só sem os links.",
+      "html": "<footer class=\"ds-status\"><p class=\"ds-status-left\"><span>main</span><span>Eros Amancio · Recife, PE</span></p><ul class=\"ds-status-links\"><li><a href=\"#\">GitHub</a></li><li><a href=\"#\">LinkedIn</a></li><li><a href=\"#\">Sobre e experiência</a></li></ul></footer>",
+      "css": ".ds-status { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.5rem 1.5rem; padding: 0.6rem 1.25rem; background: var(--accent, oklch(0.91 0.19 123)); color: var(--on-accent, oklch(0.19 0.02 130)); font-family: var(--mono, 'JetBrains Mono', ui-monospace, monospace); font-size: 0.8rem; font-weight: 500; } .ds-status-left, .ds-status-links { display: flex; flex-wrap: wrap; gap: 0.25rem 1.25rem; margin: 0; padding: 0; list-style: none; } .ds-status a { color: inherit; text-underline-offset: 0.22em; text-decoration-color: oklch(0.19 0.02 130 / 0.45); } .ds-status a:hover { text-decoration-color: currentColor; } .ds-status a:focus-visible { outline: 2px solid var(--on-accent, oklch(0.19 0.02 130)); outline-offset: 3px; } @media (max-width: 39.99rem) { .ds-status-links { display: none; } }"
+    },
+    {
+      "name": "Prévia de imagem",
+      "kind": "card",
+      "refersTo": "code-panel",
+      "description": "Imagem de estudo de caso no máximo no tamanho nativo, centralizada sob a barra do nome do arquivo.",
+      "html": "<figure class=\"ds-preview\"><figcaption class=\"ds-preview-bar\">cicle.jpg</figcaption><div class=\"ds-preview-img\" role=\"img\" aria-label=\"Imagem do projeto\"></div></figure>",
+      "css": ".ds-preview { margin: 0; overflow: hidden; border: 1px solid var(--line, oklch(0.29 0.012 260)); border-radius: 8px; background: var(--bg-alt, oklch(0.195 0.012 260)); } .ds-preview-bar { padding: 0.45rem 0.9rem; border-bottom: 1px solid var(--line, oklch(0.29 0.012 260)); font-family: var(--mono, 'JetBrains Mono', ui-monospace, monospace); font-size: 0.78rem; color: var(--ink-muted, oklch(0.66 0.014 250)); } .ds-preview-img { width: 18rem; max-width: 100%; aspect-ratio: 915 / 650; margin-inline: auto; background: var(--surface, oklch(0.215 0.012 260)); } .ds-preview img { display: block; width: auto; max-width: 100%; height: auto; margin-inline: auto; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "O repositório aberto no editor",
+    "overview": "O site é o projeto do Eros aberto num editor: barra de título, explorador de arquivos, abas, caminho do arquivo e barra de status. `README.md` é a página inicial, cada projeto é um arquivo `.md`, experiência e tecnologias aparecem como dados (`perfil.ts`, `stack.json`, `contato.ts`). O editor é a moldura; o conteúdo continua em texto normal, legível para quem não é da área.\n\nA densidade é de ferramenta de trabalho: superfícies escuras em camadas tonais, divisórias finas, um único acento chartreuse para ação e estado, e cor de sintaxe só onde há código ou dado. A interação mais marcante é real, não decorativa: as tecnologias do painel `perfil.ts` filtram a lista de projetos, e o trecho de código mostrado em \"Este site\" é lido do código-fonte durante a build.\n\nTudo que aparece como código, dado ou arquivo existe de fato. Nada de terminal falso, commits inventados ou dados que não existem. Desde a v4 não há conteúdo de venda: o seletor de serviço do WhatsApp, os serviços e o FAQ saíram, e com eles as regras que só existiam para eles.",
+    "keyCharacteristics": [
+      "Moldura de editor completa: título, explorador, abas, caminho, barra de status.",
+      "Fundo escuro em camadas tonais, sem sombras estruturais.",
+      "Um acento chartreuse; texto sobre ele sempre na cor `on-accent`.",
+      "Archivo para o que se lê; JetBrains Mono para moldura, código e dados.",
+      "Painéis de código com números de linha como componente de conteúdo.",
+      "Layout interno por container query, não pela largura da janela."
+    ],
+    "rules": [
+      {
+        "name": "The One Chartreuse Rule",
+        "body": "Existe um acento só. Ele marca ação, estado atual e a moldura viva (cursor, aba ativa, barra de status); nada mais recebe cor de destaque, e texto sobre ele usa sempre `on-accent`.",
+        "section": "colors"
+      },
+      {
+        "name": "The Syntax Stays in Code Rule",
+        "body": "Lilás, âmbar e ciano aparecem só em código e dados: painéis com números de linha, front matter, tags de tecnologia, ícones de tipo de arquivo e rótulos em mono. Texto corrido e títulos nunca recebem cor de sintaxe.",
+        "section": "colors"
+      },
+      {
+        "name": "The Two Voices Rule",
+        "body": "Archivo para o que se lê, JetBrains Mono para o que é moldura, código ou dado. Um rótulo em mono é dado; um parágrafo em mono é erro.",
+        "section": "typography"
+      },
+      {
+        "name": "The Markdown Marker Rule",
+        "body": "Títulos de seção levam `#` (página e seções da home) ou `##` (subseções) em mono, `ink-muted`, a 0.7em, com `aria-hidden`. É o único ornamento de título.",
+        "section": "typography"
+      },
+      {
+        "name": "The Container, Not Viewport Rule",
+        "body": "A janela decide só a moldura (explorador fixo ou gaveta, linha única da barra de status). Tudo dentro da área de edição responde à largura do container.",
+        "section": "layout"
+      },
+      {
+        "name": "The Tonal Layering Rule",
+        "body": "Superfícies se separam por tom e filete, não por sombra. Sombra nova só se for ambiente e sob um painel de código.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Real Source Rule",
+        "body": "Código, dados e arquivos mostrados no site existem e rodam. Trechos de código são lidos do fonte na build, não copiados à mão.",
+        "section": "components"
+      },
+      {
+        "name": "The Native Size Rule",
+        "body": "Imagem de projeto nunca passa do tamanho nativo; o que sobra da moldura fica vazio dos lados, como numa prévia de imagem do editor.",
+        "section": "components"
+      }
+    ],
+    "dos": [
+      "**Do** apresentar página nova como arquivo: entrada no explorador, aba, caminho e título com marcador `#`.",
+      "**Do** usar o painel de código com números de linha para qualquer dado estruturado (perfil, tecnologias, contato, endpoint).",
+      "**Do** ler do código-fonte na build qualquer trecho de código mostrado como real.",
+      "**Do** manter texto sobre o acento em `on-accent` e foco visível com contorno de 2px em `accent`.",
+      "**Do** mostrar imagens de projeto no máximo no tamanho nativo, centralizadas na moldura com a barra do nome do arquivo.",
+      "**Do** mostrar Sociiz Meet só em texto: árvore de componentes, painel do serviço de tokens e a nota de cadeado.",
+      "**Do** responder com `@container` dentro da área de edição e manter a barra de status em uma linha no celular."
+    ],
+    "donts": [
+      "**Don't** usar terminal falso, commits inventados ou dados que não existem.",
+      "**Don't** colocar imagem, print ou captura do Sociiz Meet.",
+      "**Don't** esticar imagem além do tamanho nativo.",
+      "**Don't** usar cor de sintaxe em texto corrido ou títulos, nem criar um segundo acento.",
+      "**Don't** usar rótulo em maiúsculas espaçadas acima de títulos; esse estilo existe só no título do painel do explorador.",
+      "**Don't** separar superfícies com sombra; use tom e filete de 1px.",
+      "**Don't** usar metáfora de fora do mundo do software."
+    ]
+  }
+}

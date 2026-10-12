@@ -77,3 +77,11 @@
 .cm {
   color: var(--syn-cm);
 }
+
+/* Real source code keeps its own line breaks and scrolls sideways instead of wrapping. */
+.keep {
+  padding-left: 0;
+  text-indent: 0;
+  white-space: pre;
+  overflow-wrap: normal;
+}

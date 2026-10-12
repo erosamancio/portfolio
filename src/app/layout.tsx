@@ -1,6 +1,5 @@
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
-import { TileDefs } from "@/components/tiles/TileDefs";
 import { SiteNav } from "@/components/SiteNav";
 import { SiteFooter } from "@/components/SiteFooter";
 import { siteUrl } from "@/content/seo";
@@ -13,6 +12,14 @@ const archivo = localFont({
   declarations: [{ prop: "font-stretch", value: "62% 125%" }],
   variable: "--font-archivo",
   display: "swap",
+});
+
+const mono = localFont({
+  src: [{ path: "../fonts/jetbrains-mono-latin-wght-normal.woff2", style: "normal" }],
+  weight: "100 800",
+  variable: "--font-mono",
+  display: "swap",
+  preload: false,
 });
 
 const description =
@@ -36,17 +43,16 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#2443b8",
+  themeColor: "#fbfbfd",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="pt-BR" className={archivo.variable}>
+    <html lang="pt-BR" className={`${archivo.variable} ${mono.variable}`}>
       <body>
         <a className="skip" href="#conteudo">
           Pular para o conteúdo
         </a>
-        <TileDefs />
         <SiteNav />
         <main id="conteudo">{children}</main>
         <SiteFooter />

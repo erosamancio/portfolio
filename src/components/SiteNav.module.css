@@ -3,9 +3,9 @@
   top: 0;
   z-index: 50;
   height: var(--nav-h);
-  background: color-mix(in oklch, var(--esmalte) 92%, transparent);
-  backdrop-filter: blur(10px) saturate(1.4);
-  border-bottom: var(--grout) solid var(--rejunte);
+  background: color-mix(in oklch, var(--bg) 88%, transparent);
+  backdrop-filter: blur(12px) saturate(1.3);
+  border-bottom: 1px solid var(--line);
 }
 
 .inner {
@@ -13,28 +13,33 @@
   align-items: center;
   gap: 2rem;
   height: 100%;
-  padding-inline: var(--gutter);
+  width: min(100% - 2 * var(--gutter), var(--max));
+  margin-inline: auto;
 }
 
 .brand {
   display: inline-flex;
   align-items: center;
-  gap: 0.65rem;
-  font-stretch: 125%;
-  font-weight: 800;
-  font-size: 1.05rem;
-  letter-spacing: -0.01em;
+  gap: 0.6rem;
+  font-weight: 760;
+  font-size: 1.02rem;
+  letter-spacing: -0.02em;
   text-decoration: none;
   white-space: nowrap;
 }
 
 .mark {
-  width: 1.6rem;
-  outline: var(--grout) solid var(--rejunte);
-}
-
-.brand:hover .mark svg {
-  --r: 1;
+  display: grid;
+  place-items: center;
+  width: 1.9rem;
+  height: 1.9rem;
+  border-radius: 6px;
+  background: var(--ink);
+  color: var(--accent);
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
 }
 
 .links {
@@ -46,16 +51,15 @@
 }
 
 .links a {
-  font-weight: 600;
+  font-weight: 550;
   font-size: 0.95rem;
   text-decoration: none;
-  color: var(--tinta-suave);
-  transition: color 200ms;
+  color: var(--ink-soft);
+  transition: color 160ms;
 }
 
 .links a:hover {
-  color: var(--cobalto);
-  text-decoration: underline;
+  color: var(--ink);
 }
 
 .actions {
@@ -68,29 +72,40 @@
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  min-height: 2.75rem;
-  padding: 0 1.1rem;
-  background: var(--cobalto);
-  color: var(--esmalte);
-  font-weight: 700;
-  font-size: 0.95rem;
+  min-height: 2.5rem;
+  padding: 0 1rem;
+  background: var(--ink);
+  color: var(--on-dark);
+  border-radius: 8px;
+  font-weight: 650;
+  font-size: 0.93rem;
   text-decoration: none;
-  transition: background 200ms;
+  transition: background 160ms;
+}
+
+.whats svg {
+  color: var(--accent);
 }
 
 .whats:hover {
-  background: var(--cobalto-fundo);
+  background: var(--ink-hover);
 }
 
 .toggle {
   display: none;
   place-items: center;
-  width: 2.75rem;
-  height: 2.75rem;
+  width: 2.5rem;
+  height: 2.5rem;
   padding: 0;
-  border: var(--grout) solid var(--rejunte);
-  background: var(--esmalte);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
   cursor: pointer;
+}
+
+.toggle svg {
+  width: 1.2rem;
+  height: 1.2rem;
 }
 
 @media (max-width: 52rem) {
@@ -113,16 +128,16 @@
     gap: 0;
     margin: 0;
     padding: 0.5rem var(--gutter) 1.5rem;
-    background: var(--esmalte);
-    border-bottom: var(--grout) solid var(--rejunte);
-    box-shadow: 0 18px 30px -18px oklch(0.22 0.07 266 / 0.35);
+    background: var(--bg);
+    border-bottom: 1px solid var(--line);
+    box-shadow: 0 18px 30px -18px oklch(0.2 0.015 260 / 0.3);
     visibility: hidden;
     opacity: 0;
     transform: translateY(-0.5rem);
     transition:
-      opacity 250ms var(--ease-out),
-      transform 250ms var(--ease-out),
-      visibility 0s 250ms;
+      opacity 220ms var(--ease-out),
+      transform 220ms var(--ease-out),
+      visibility 0s 220ms;
   }
 
   .links[data-open="true"] {
@@ -130,18 +145,17 @@
     opacity: 1;
     transform: none;
     transition:
-      opacity 250ms var(--ease-out),
-      transform 250ms var(--ease-out);
+      opacity 220ms var(--ease-out),
+      transform 220ms var(--ease-out);
   }
 
   .links a {
     display: block;
     padding: 0.9rem 0;
-    font-size: 1.25rem;
-    font-stretch: 125%;
+    font-size: 1.2rem;
     font-weight: 700;
-    color: var(--tinta);
-    border-bottom: 1px solid var(--rejunte);
+    color: var(--ink);
+    border-bottom: 1px solid var(--line);
   }
 }
 
@@ -156,7 +170,7 @@
 
   .whats {
     padding: 0;
-    width: 2.75rem;
+    width: 2.5rem;
     justify-content: center;
   }
 }

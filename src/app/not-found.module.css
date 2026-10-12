@@ -1,32 +1,41 @@
 .page {
   display: grid;
-  justify-items: center;
-  gap: 1.25rem;
-  padding: clamp(4rem, 12vw, 8rem) var(--gutter);
-  text-align: center;
+  justify-items: start;
+  gap: 1.1rem;
+  width: min(100% - 2 * var(--gutter), var(--max));
+  margin-inline: auto;
+  padding-block: clamp(5rem, 14vw, 9rem);
 }
 
-.wall {
-  display: grid;
-  grid-template-columns: repeat(3, clamp(4.5rem, 14vw, 7rem));
-  gap: var(--grout);
-  background: var(--rejunte);
-  border: var(--grout) solid var(--rejunte);
-  margin-bottom: 1.5rem;
+.code {
+  font-family: var(--mono);
+  font-size: 0.9rem;
+  color: var(--ink-soft);
 }
 
-.gap {
-  aspect-ratio: 1;
-  background: repeating-linear-gradient(135deg, var(--esmalte-quebrado) 0 6px, var(--rejunte) 6px 7px);
+.status {
+  padding: 0.15rem 0.45rem;
+  border-radius: 4px;
+  background: var(--accent);
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.path {
+  color: var(--ink);
 }
 
 .title {
-  font-size: clamp(2.2rem, 6vw, 4rem);
-  color: var(--cobalto-noite);
+  font-size: clamp(2.4rem, 6vw, 4.5rem);
+  letter-spacing: -0.04em;
 }
 
 .home {
   margin-top: 0.5rem;
-  font-weight: 800;
-  color: var(--cobalto);
+  font-weight: 700;
+  text-decoration-color: var(--ink);
+}
+
+.home:hover {
+  background: var(--accent);
 }

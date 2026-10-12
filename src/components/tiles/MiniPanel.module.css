@@ -1,7 +1,0 @@
-.panel {
-  display: grid;
-  gap: var(--grout);
-  background: var(--grout-color);
-  border: var(--grout) solid var(--grout-color);
-  aspect-ratio: 1;
-}

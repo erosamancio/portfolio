@@ -4,7 +4,6 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { WhatsAppIcon } from "./BrandIcons";
-import { Tile } from "./tiles/Tile";
 import { defaultMessage, whatsappLink } from "@/content/site";
 import styles from "./SiteNav.module.css";
 
@@ -29,7 +28,7 @@ export function SiteNav() {
     <header className={styles.bar}>
       <nav className={styles.inner} aria-label="Principal">
         <Link href="/" className={styles.brand} onClick={() => setOpen(false)}>
-          <Tile turns={0} className={styles.mark} />
+          <span className={styles.mark} aria-hidden="true">EA</span>
           Eros Amancio
         </Link>
 

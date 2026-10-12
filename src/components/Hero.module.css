@@ -1,173 +1,190 @@
 .hero {
-  container-type: inline-size;
-  background: var(--rejunte);
-  border-bottom: var(--grout) solid var(--rejunte);
+  padding-block: clamp(3rem, 8vw, 6.5rem) clamp(3rem, 7vw, 5rem);
+  border-bottom: 1px solid var(--line);
 }
 
-.grid {
-  --n: 4;
-  --rows: 10;
-  --tile: calc((100cqw - (var(--n) - 1) * var(--grout)) / var(--n));
-  position: relative;
+.inner {
   display: grid;
-  grid-template-columns: repeat(var(--n), var(--tile));
-  grid-auto-rows: var(--tile);
-  gap: var(--grout);
-  height: calc(var(--rows) * var(--tile) + (var(--rows) - 1) * var(--grout));
-  overflow: hidden;
-}
-
-.grid[data-instant="true"] .tile svg {
-  transition: none;
-}
-
-.tile {
-  cursor: default;
-}
-
-.cartouche {
-  grid-column: 1 / -1;
-  grid-row: 2 / span 7;
-  z-index: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: calc(var(--tile) * 0.2);
-  padding: calc(var(--tile) * 0.3) calc(var(--tile) * 0.22);
-  background: var(--esmalte);
-  /* cercadura: the double frame that closes an azulejo panel */
-  box-shadow:
-    inset 0 0 0 calc(var(--tile) * 0.06) var(--esmalte),
-    inset 0 0 0 calc(var(--tile) * 0.06 + 3px) var(--cobalto),
-    inset 0 0 0 calc(var(--tile) * 0.06 + 7px) var(--esmalte),
-    inset 0 0 0 calc(var(--tile) * 0.06 + 8px) var(--cobalto);
+  gap: clamp(1.25rem, 2.5vw, 1.75rem);
 }
 
 .title {
-  font-size: min(calc(var(--tile) * 0.43), 6rem);
-  color: var(--cobalto-noite);
+  max-width: 14ch;
+  font-size: clamp(2.6rem, 7.4vw, 6rem);
+  line-height: 0.98;
+  letter-spacing: -0.04em;
+  font-weight: 780;
 }
 
 .lede {
-  max-width: 60ch;
-  font-size: max(calc(var(--tile) * 0.165), 1rem);
-  line-height: 1.5;
-  color: var(--tinta-suave);
+  max-width: 40rem;
+  font-size: clamp(1.1rem, 1.7vw, 1.3rem);
+  line-height: 1.55;
+  color: var(--ink-soft);
 }
 
-.picker {
+.composer {
   display: grid;
-  gap: calc(var(--tile) * 0.08);
+  margin-top: clamp(0.75rem, 2vw, 1.5rem);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow:
+    0 1px 2px oklch(0.2 0.015 260 / 0.04),
+    0 18px 40px -28px oklch(0.2 0.015 260 / 0.35);
+  max-width: 60rem;
 }
 
-.pickerLabel {
+.choices {
+  display: grid;
+  gap: 0.5rem;
+  margin: 0;
+  padding: clamp(1.1rem, 2.5vw, 1.75rem);
+  border: 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.legend {
+  float: left;
+  width: 100%;
+  margin-bottom: 0.4rem;
+  padding: 0;
   font-weight: 700;
-  font-size: max(calc(var(--tile) * 0.15), 0.95rem);
 }
 
-.options {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: calc(var(--tile) * 0.07);
-}
-
-.option {
+.choice {
+  position: relative;
   display: flex;
   align-items: center;
-  gap: 0.6em;
-  min-height: 2.75rem;
-  padding: 0.45em 0.7em 0.45em 0.45em;
-  border: var(--grout) solid var(--rejunte);
-  background: var(--esmalte);
-  font-weight: 700;
-  font-size: max(calc(var(--tile) * 0.14), 0.9rem);
-  line-height: 1.15;
-  text-align: left;
+  gap: 0.75rem;
+  min-height: 3rem;
+  padding: 0.6rem 0.9rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  font-weight: 600;
   cursor: pointer;
   transition:
-    background 220ms var(--ease-out),
-    border-color 220ms var(--ease-out),
-    color 220ms var(--ease-out);
+    border-color 160ms,
+    background 160ms;
 }
 
-.optionPanel {
+.choice:hover {
+  border-color: var(--line-strong);
+}
+
+.choice input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.radio {
+  display: grid;
+  place-items: center;
   flex: none;
-  width: 2.1em;
-  --tile-ink: var(--cobalto);
-  --tile-ground: var(--esmalte);
+  width: 1.25rem;
+  height: 1.25rem;
+  border: 1.5px solid var(--line-strong);
+  border-radius: 50%;
+  transition:
+    background 160ms,
+    border-color 160ms;
 }
 
-.option:hover {
-  border-color: var(--cobalto);
+.radio svg {
+  width: 0.8rem;
+  height: 0.8rem;
+  stroke-width: 3;
+  opacity: 0;
+  transition: opacity 160ms;
 }
 
-.option[aria-pressed="true"] {
-  background: var(--cobalto);
-  border-color: var(--cobalto);
-  color: var(--esmalte);
+.choice:has(input:checked) {
+  border-color: var(--ink);
+  background: var(--bg);
 }
 
-.option[aria-pressed="true"] .optionPanel {
-  --tile-ink: var(--esmalte);
-  --tile-ground: var(--cobalto);
-  --grout-color: var(--cobalto-fundo);
+.choice:has(input:checked) .radio {
+  background: var(--accent);
+  border-color: var(--ink);
 }
 
-.cta {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.5rem 1.25rem;
+.choice:has(input:checked) .radio svg {
+  opacity: 1;
 }
 
-.whats {
+.choice:has(input:focus-visible) {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+}
+
+.preview {
+  display: grid;
+  gap: 0.85rem;
+  align-content: start;
+  padding: clamp(1.1rem, 2.5vw, 1.75rem);
+  background: var(--bg-alt);
+  border-radius: 0 0 var(--radius) var(--radius);
+}
+
+.previewLabel {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--ink-soft);
+}
+
+.bubble {
+  position: relative;
+  justify-self: start;
+  max-width: 34rem;
+  padding: 0.85rem 1.1rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 14px 14px 14px 4px;
+  font-size: 1.05rem;
+  line-height: 1.45;
+}
+
+.send {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.6rem;
+  justify-self: start;
   min-height: 3.25rem;
-  padding: 0 1.5rem;
-  background: var(--cobalto);
-  color: var(--esmalte);
-  font-weight: 800;
-  font-stretch: 112%;
-  font-size: max(calc(var(--tile) * 0.17), 1.05rem);
+  padding: 0 1.4rem;
+  background: var(--ink);
+  color: var(--on-dark);
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 1.05rem;
   text-decoration: none;
-  box-shadow: 0 10px 24px -12px oklch(0.34 0.16 266 / 0.8);
   transition:
-    background 200ms,
-    transform 200ms var(--ease-out),
-    box-shadow 200ms var(--ease-out);
+    background 160ms,
+    transform 160ms var(--ease-out);
 }
 
-.whats:hover {
-  background: var(--cobalto-fundo);
-  transform: translateY(-1px);
-  box-shadow: 0 14px 28px -12px oklch(0.34 0.16 266 / 0.9);
+.send:hover {
+  background: var(--ink-hover);
 }
 
-.whats:active {
-  transform: translateY(0);
+.send:active {
+  transform: translateY(1px);
 }
 
-.whatsIcon {
+.sendIcon {
   font-size: 1.25em;
-}
-
-.ctaNote {
-  flex-basis: 100%;
-  font-size: 0.9rem;
-  color: var(--tinta-suave);
+  color: var(--accent);
 }
 
 .secondary {
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
-  align-self: flex-start;
-  font-weight: 700;
-  font-size: 0.95rem;
-  color: var(--cobalto);
+  justify-self: start;
+  margin-top: 0.25rem;
+  font-weight: 600;
+  color: var(--ink-soft);
 }
 
 .secondary svg {
@@ -176,82 +193,29 @@
 }
 
 @media (max-width: 39.99rem) {
-  .whats {
-    width: 100%;
+  .send {
+    justify-self: stretch;
   }
 }
 
 @media (min-width: 40rem) {
-  .grid {
-    --n: 8;
-    --rows: 8;
-  }
-
-  .cartouche {
-    grid-column: 2 / 8;
-    grid-row: 2 / span 6;
-    padding: calc(var(--tile) * 0.4);
-    gap: calc(var(--tile) * 0.18);
-  }
-
-  .title {
-    font-size: min(calc(var(--tile) * 0.62), 6rem);
-  }
-
-  .lede {
-    font-size: max(calc(var(--tile) * 0.19), 1rem);
+  .choices {
+    grid-template-columns: 1fr 1fr;
   }
 }
 
-@media (min-width: 64rem) {
-  .grid {
-    --n: 12;
-    --rows: 7;
+@media (min-width: 60rem) {
+  .composer {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
   }
 
-  .cartouche {
-    grid-column: 3 / 11;
-    grid-row: 2 / span 5;
-    padding: calc(var(--tile) * 0.42) calc(var(--tile) * 0.5);
-    gap: calc(var(--tile) * 0.16);
+  .choices {
+    grid-template-columns: 1fr;
+    border-bottom: 0;
+    border-right: 1px solid var(--line);
   }
 
-  .title {
-    font-size: min(calc(var(--tile) * 0.6), 6rem);
-  }
-
-  .lede {
-    font-size: max(calc(var(--tile) * 0.18), 1rem);
-  }
-
-  .options {
-    grid-template-columns: repeat(4, 1fr);
-  }
-
-  .option {
-    font-size: max(calc(var(--tile) * 0.135), 0.9rem);
-  }
-
-  .ctaNote {
-    flex-basis: auto;
-  }
-
-  .secondary {
-    display: none;
-  }
-}
-
-@media (min-width: 100rem) {
-  .grid {
-    --n: 16;
-    --rows: 7;
-  }
-
-  .cartouche {
-    grid-column: 4 / 14;
-  }
-
-  .title {
-    font-size: min(calc(var(--tile) * 0.62), 6rem);
+  .preview {
+    border-radius: 0 var(--radius) var(--radius) 0;
   }
 }

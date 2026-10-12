@@ -1,7 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
-import { SiteNav } from "@/components/SiteNav";
-import { SiteFooter } from "@/components/SiteFooter";
+import { Shell } from "@/components/Shell";
 import { siteUrl } from "@/content/seo";
 import "./globals.css";
 
@@ -19,7 +18,6 @@ const mono = localFont({
   weight: "100 800",
   variable: "--font-mono",
   display: "swap",
-  preload: false,
 });
 
 const description =
@@ -43,7 +41,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#fbfbfd",
+  themeColor: "#14161c",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -53,9 +51,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <a className="skip" href="#conteudo">
           Pular para o conteúdo
         </a>
-        <SiteNav />
-        <main id="conteudo">{children}</main>
-        <SiteFooter />
+        <Shell>{children}</Shell>
       </body>
     </html>
   );

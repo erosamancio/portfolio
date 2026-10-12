@@ -55,7 +55,7 @@ Eros faz o visual e também o que fica por trás dele: backend, APIs e integraç
 3. WhatsApp sempre a um toque de distância.
 4. Celular é a tela principal do cliente; desktop é a do entrevistador. Os dois precisam ser excelentes.
 5. Linguagem de cliente na frente, detalhe técnico um clique adiante.
-6. Visual de desenvolvedor de software, direto e sem metáfora temática (o Eros recusou a Azulejaria em 12/10/2026 por ser conceitual demais).
+6. Visual de desenvolvedor de software, sem metáfora de fora do mundo do software (o Eros recusou a Azulejaria em 12/10/2026 por ser conceitual demais e escolheu a direção Editor de código).
 
 ## Accessibility & Inclusion
 

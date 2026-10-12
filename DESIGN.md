@@ -1,46 +1,47 @@
 # Design
 
-Documentado a partir do site construído (12/10/2026). Direção: **Limpo e técnico**, que substituiu a Azulejaria a pedido do Eros (achou conceitual demais e pouco ligada a desenvolvimento de software). Contrato em `.impeccable/surfaces/src-app-page-tsx.md`.
+Documentado a partir do site construído (12/10/2026). Direção: **Editor de código**, escolhida pelo Eros entre três propostas depois de recusar a Azulejaria (conceitual demais) e substituir o "Limpo e técnico". Contrato em `.impeccable/surfaces/src-app-page-tsx.md`.
 
 ## Ideia
 
-Um site de desenvolvedor que um cliente sem vocabulário técnico entende. A base é clara, tipográfica e organizada como produto de software; os sinais de "dev" são concretos e verdadeiros, nunca enfeite:
+O site é um projeto aberto num editor: barra de título, explorador de arquivos, abas, caminho do arquivo e barra de status. O editor é a moldura; o conteúdo continua em texto normal, legível para quem não é da área.
 
-- O seletor da abertura é uma ferramenta de verdade: escolher o serviço monta a mensagem que vai para o WhatsApp.
-- A seção "Este site é a amostra" mostra o código real dessa função (`whatsappLink` em `src/content/site.ts`). Se a função mudar, atualize o `snippet` em `src/app/page.tsx`.
-- Mono só onde é código ou dado técnico: stack, tags de tecnologia, numeração dos passos, nome de arquivo, 404.
+- O explorador (`src/components/Shell.tsx`) é a navegação: cada seção da home e cada página aparece como um arquivo (`servicos.md`, `trabalhos/cicle.md`, `sobre.md`, `contato.ts`). Na home, o arquivo da seção visível fica destacado.
+- Títulos levam o marcador de Markdown (`#`, `##`) em mono, apagado, com `aria-hidden`.
+- O seletor da abertura é um painel `contato.ts` com números de linha: escolher o serviço reescreve a string `mensagem`, que é o texto enviado no WhatsApp.
+- "Este site é a amostra" mostra o código real de `whatsappLink` com os números de linha verdadeiros de `src/content/site.ts`. Se a função mudar, atualize o `snippet` em `src/app/page.tsx`.
+- Estudos de caso abrem com os fatos do projeto em formato de front matter (`contexto:`, `papel:`, `tecnologias:`).
+
+Nada de comandos de terminal falsos, commits inventados ou dados que não existem.
 
 ## Cor
 
-Estratégia Restrained: neutros frios quase brancos, tinta grafite e um único acento chartreuse usado como marca-texto e sinal. Tokens em `src/app/globals.css`.
+Tema escuro de editor, com um único acento chartreuse. Tokens em `src/app/globals.css`.
 
 | Token | Papel |
 |---|---|
-| `--bg` / `--bg-alt` | Fundo principal / seções alternadas |
-| `--surface` | Superfícies elevadas (compositor da abertura) |
-| `--line` / `--line-strong` | Divisórias / bordas de controle e hover |
-| `--ink` / `--ink-hover` / `--ink-soft` | Texto e botões principais / hover / texto secundário |
-| `--accent` / `--accent-strong` | Marca-texto (`.mark`), rádio marcado, marcadores, fundo do Contato, botões sobre escuro |
-| `--dark`, `--dark-line`, `--on-dark`, `--on-dark-soft` | Seção "Este site é a amostra", CTA dos estudos de caso e rodapé |
+| `--bg` / `--bg-alt` / `--surface` / `--surface-hover` | Área de edição / barras, explorador e seções alternadas / painéis / item ativo |
+| `--line` / `--line-strong` | Divisórias / bordas de controle |
+| `--ink` / `--ink-soft` / `--ink-muted` | Texto / texto secundário / comentários, números de linha e marcadores |
+| `--accent`, `--accent-hover`, `--on-accent` | Botões de WhatsApp, palavra "funcionam.", cursor, aba ativa, barra de status, links de destaque |
+| `--syn-kw`, `--syn-fn`, `--syn-str`, `--syn-ty`, `--syn-cm` | Realce de sintaxe; `--syn-ty` também nas tags de tecnologia |
 
-O acento nunca é cor de texto sobre fundo claro (contraste baixo); sobre ele, sempre `--ink`.
+Texto sobre o acento sempre em `--on-accent`. Números de linha usam `--ink-muted` para passar no contraste.
 
 ## Tipografia
 
-- Archivo variável (`src/fonts`, OFL), só latin. Títulos com largura 104%, peso 760–780, tracking -0.03 a -0.04em. Texto 1.0625rem, entrelinha 1.6.
-- JetBrains Mono (`src/fonts`, OFL), latin, sem preload (não está no primeiro viewport crítico).
+- Archivo variável (`src/fonts`, OFL), só latin: títulos e todo o texto corrido.
+- JetBrains Mono (`src/fonts`, OFL), latin, com preload porque aparece na primeira tela: moldura do editor, código, tags, números de passo, front matter.
 
-## Componentes
+## Layout
 
-- **Compositor** (`src/components/Hero.tsx`): rádios de serviço à esquerda, prévia da mensagem em balão à direita (`aria-live`), botão grafite com ícone no acento. Em telas estreitas empilha e o botão ocupa a largura.
-- **Bloco de código**: figura escura com nome do arquivo e realce mínimo; linhas quebram com recuo pendente em vez de rolar.
-- **Trabalhos**: print com moldura de borda + raio, texto ao lado, tags em mono. Jogos ficam em "Fora da web", menores.
-- **Passos** numerados `01`–`05` em mono; **FAQ** em `details` com ícone de mais.
-- Sem cards iguais de ícone + título, sem kicker acima de título, sem texto em gradiente, sem borda lateral colorida.
+- Desktop (≥ 64rem): explorador fixo de 16rem à esquerda, área de edição com abas fixas no topo.
+- Celular: o explorador vira gaveta aberta pelo botão de menu; o WhatsApp fica sempre na barra de título.
+- A área de edição é um container (`container-type: inline-size`); os layouts internos usam `@container`, não a largura da janela.
 
 ## Movimento
 
-Só transições de estado (160ms) em hover, foco e seleção. Com `prefers-reduced-motion`, nada anima.
+Transições de estado (160–240ms), gaveta do explorador e o cursor que pisca oito vezes depois do título. Com `prefers-reduced-motion`, nada anima.
 
 ## Imagens
 

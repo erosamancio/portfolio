@@ -2,7 +2,7 @@
 
 Site pessoal de [Eros Amancio](https://github.com/erosamancio): vitrine para quem quer contratar a criação de um site e portfólio para entrevistas.
 
-Visual limpo e técnico. Na abertura, escolher o tipo de site prepara a mensagem do WhatsApp, e a seção "Este site é a amostra" mostra o código que faz isso.
+O site imita um editor de código: explorador de arquivos, abas e barra de status. Na abertura, escolher o tipo de site reescreve a mensagem do WhatsApp, e a seção "Este site é a amostra" mostra o código que faz isso.
 
 ## Rodando
 
@@ -17,7 +17,7 @@ npm run typecheck
 ## Estrutura
 
 - `src/app`: páginas (home, `/trabalhos/[slug]`, `/sobre`, 404, sitemap, robots)
-- `src/components`: navegação, rodapé e a abertura com o seletor de serviço
+- `src/components`: a moldura do editor (`Shell`), a abertura com o seletor de serviço e os estilos de painel de código
 - `src/content/site.ts`: todos os textos, serviços, projetos e contatos
 - `public/images`: imagens dos projetos e retrato
 - `PRODUCT.md`, `DESIGN.md` e `.impeccable/`: contexto de produto e design

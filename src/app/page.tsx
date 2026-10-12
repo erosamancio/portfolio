@@ -1,20 +1,21 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, ArrowUpRight, Mail } from "lucide-react";
+import { ArrowRight, ArrowUpRight, ChevronRight, FileCode, Mail } from "lucide-react";
 import { Hero } from "@/components/Hero";
 import { WhatsAppIcon, GitHubIcon } from "@/components/BrandIcons";
 import { contact, faq, projects, services, steps, whatsappLink } from "@/content/site";
 import { personJsonLd } from "@/content/jsonld";
+import code from "@/components/code.module.css";
 import styles from "./page.module.css";
 
 // The real function behind the hero's WhatsApp button (src/content/site.ts), tokenized for display.
-const snippet: [string | null, string][][] = [
-  [["tk", "export function "], ["fn", "whatsappLink"], [null, "(message: "], ["ty", "string"], [null, ") {"]],
-  [[null, "  "], ["tk", "const "], [null, "phone = contact.whatsappNumber;"]],
-  [[null, "  "], ["tk", "const "], [null, "text = "], ["fn", "encodeURIComponent"], [null, "(message);"]],
+const snippet: [keyof typeof code | null, string][][] = [
+  [["kw", "export function "], ["fn", "whatsappLink"], [null, "(message: "], ["ty", "string"], [null, ") {"]],
+  [[null, "  "], ["kw", "const "], [null, "phone = contact.whatsappNumber;"]],
+  [[null, "  "], ["kw", "const "], [null, "text = "], ["fn", "encodeURIComponent"], [null, "(message);"]],
   [
     [null, "  "],
-    ["tk", "return "],
+    ["kw", "return "],
     ["st", "`https://wa.me/${"],
     [null, "phone"],
     ["st", "}?text=${"],
@@ -26,6 +27,17 @@ const snippet: [string | null, string][][] = [
 ];
 
 const stack = ["React", "JavaScript", "Python", "FastAPI", "Flask", "Django", "Java", "Spring Boot", "SQL"];
+
+function H2({ id, children }: { id: string; children: React.ReactNode }) {
+  return (
+    <h2 id={id} className={styles.h2}>
+      <span className="hash" aria-hidden="true">
+        #
+      </span>
+      {children}
+    </h2>
+  );
+}
 
 export default function Home() {
   const offered = services.filter((s) => s.summary);
@@ -51,9 +63,7 @@ export default function Home() {
 
       <section id="servicos" className={styles.section} aria-labelledby="servicos-title">
         <div className="wrap">
-          <h2 id="servicos-title" className={styles.h2}>
-            Três jeitos de colocar seu negócio na internet
-          </h2>
+          <H2 id="servicos-title">Três jeitos de colocar seu negócio na internet</H2>
           <ul className={styles.serviceList}>
             {offered.map((s) => (
               <li key={s.id} className={styles.service}>
@@ -80,22 +90,21 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="trabalhos" className={`${styles.section} ${styles.alt}`} aria-labelledby="trabalhos-title">
+      <section id="trabalhos" className={styles.section} aria-labelledby="trabalhos-title">
         <div className="wrap">
-          <h2 id="trabalhos-title" className={styles.h2}>
-            O que eu já construí
-          </h2>
+          <H2 id="trabalhos-title">O que eu já construí</H2>
 
           <div className={styles.webList}>
             {web.map((p) => (
               <article key={p.slug} className={styles.work}>
                 <Link href={`/trabalhos/${p.slug}`} className={styles.shot} tabIndex={-1} aria-hidden="true">
+                  <span className={styles.shotBar}>{p.image.src.split("/").pop()}</span>
                   <Image
                     src={p.image.src}
                     width={p.image.width}
                     height={p.image.height}
                     alt=""
-                    sizes="(min-width: 64rem) 56vw, 100vw"
+                    sizes="(min-width: 64rem) 46vw, 100vw"
                   />
                 </Link>
                 <div className={styles.workText}>
@@ -119,17 +128,23 @@ export default function Home() {
             ))}
           </div>
 
-          <h3 className={styles.offWeb}>Fora da web</h3>
+          <h3 className={styles.offWeb}>
+            <span className="hash" aria-hidden="true">
+              ##
+            </span>
+            Fora da web
+          </h3>
           <div className={styles.gameList}>
             {games.map((p) => (
               <article key={p.slug} className={styles.game}>
                 <Link href={`/trabalhos/${p.slug}`} className={styles.shot} tabIndex={-1} aria-hidden="true">
+                  <span className={styles.shotBar}>{p.image.src.split("/").pop()}</span>
                   <Image
                     src={p.image.src}
                     width={p.image.width}
                     height={p.image.height}
                     alt=""
-                    sizes="(min-width: 64rem) 36vw, 100vw"
+                    sizes="(min-width: 64rem) 34vw, 100vw"
                   />
                 </Link>
                 <h4 className={styles.h4}>
@@ -145,12 +160,10 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="este-site" className={styles.dark} aria-labelledby="este-site-title">
-        <div className={`wrap ${styles.darkGrid}`}>
-          <div className={styles.darkText}>
-            <h2 id="este-site-title" className={styles.h2}>
-              Este site é a amostra
-            </h2>
+      <section id="este-site" className={`${styles.section} ${styles.alt}`} aria-labelledby="este-site-title">
+        <div className={`wrap ${styles.siteGrid}`}>
+          <div className={styles.siteText}>
+            <H2 id="este-site-title">Este site é a amostra</H2>
             <p className={styles.lead}>
               Tudo aqui foi desenhado e programado por mim, do zero. O seletor no topo da página, por exemplo, é só isto:
               você escolhe o serviço e o link do WhatsApp já sai com a mensagem certa.
@@ -166,21 +179,28 @@ export default function Home() {
               </li>
             </ul>
           </div>
-          <figure className={styles.code}>
-            <figcaption className={styles.codeFile}>src/content/site.ts</figcaption>
-            <pre>
+          <figure className={`${code.panel} ${styles.snippet}`}>
+            <figcaption className={code.head}>
+              <FileCode aria-hidden="true" /> src/content/site.ts
+            </figcaption>
+            <pre className={code.body}>
               <code>
                 {snippet.map((line, i) => (
-                  <span key={i} className={styles.line}>
-                    {line.map(([kind, text], j) =>
-                      kind ? (
-                        <span key={j} className={styles[kind]}>
-                          {text}
-                        </span>
-                      ) : (
-                        text
-                      ),
-                    )}
+                  <span key={i} className={code.row}>
+                    <span className={code.ln} aria-hidden="true">
+                      {i + 9}
+                    </span>
+                    <span className={code.text}>
+                      {line.map(([kind, text], j) =>
+                        kind ? (
+                          <span key={j} className={code[kind]}>
+                            {text}
+                          </span>
+                        ) : (
+                          text
+                        ),
+                      )}
+                    </span>
                   </span>
                 ))}
               </code>
@@ -191,9 +211,7 @@ export default function Home() {
 
       <section id="processo" className={styles.section} aria-labelledby="processo-title">
         <div className="wrap">
-          <h2 id="processo-title" className={styles.h2}>
-            Do primeiro “oi” ao site no ar
-          </h2>
+          <H2 id="processo-title">Do primeiro “oi” ao site no ar</H2>
           <ol className={styles.steps}>
             {steps.map((s, i) => (
               <li key={s.name} className={styles.step}>
@@ -208,7 +226,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="sobre" className={`${styles.section} ${styles.alt}`} aria-labelledby="sobre-title">
+      <section id="quem-faz" className={`${styles.section} ${styles.alt}`} aria-labelledby="quem-faz-title">
         <div className={`wrap ${styles.aboutGrid}`}>
           <div className={styles.portrait}>
             <Image
@@ -216,13 +234,11 @@ export default function Home() {
               width={800}
               height={800}
               alt="Retrato de Eros Amancio, de barba e camiseta preta, à noite com luzes ao fundo"
-              sizes="(min-width: 64rem) 26rem, 80vw"
+              sizes="(min-width: 64rem) 22rem, 80vw"
             />
           </div>
           <div className={styles.aboutText}>
-            <h2 id="sobre-title" className={styles.h2}>
-              Quem faz o seu site
-            </h2>
+            <H2 id="quem-faz-title">Quem faz o seu site</H2>
             <p className={styles.lead}>
               Sou o Eros Amancio, estudante de Ciência da Computação na CESAR School, em Recife.
             </p>
@@ -254,15 +270,13 @@ export default function Home() {
 
       <section id="perguntas" className={styles.section} aria-labelledby="perguntas-title">
         <div className={`wrap ${styles.faqGrid}`}>
-          <h2 id="perguntas-title" className={styles.h2}>
-            Perguntas frequentes
-          </h2>
+          <H2 id="perguntas-title">Perguntas frequentes</H2>
           <div className={styles.faqList}>
             {faq.map((f) => (
               <details key={f.q} className={styles.faqItem}>
                 <summary>
+                  <ChevronRight className={styles.faqIcon} aria-hidden="true" />
                   {f.q}
-                  <span className={styles.faqIcon} aria-hidden="true" />
                 </summary>
                 <p>{f.a}</p>
               </details>
@@ -283,7 +297,9 @@ export default function Home() {
             </a>
             <p className={styles.contactAlt}>
               {contact.whatsappDisplay}
-              <span className={styles.sep} aria-hidden="true">·</span>
+              <span className={styles.sep} aria-hidden="true">
+                ·
+              </span>
               <a href={`mailto:${contact.email}`}>
                 <Mail aria-hidden="true" /> {contact.email}
               </a>

@@ -6,7 +6,7 @@
   display: grid;
   gap: 2.5rem;
   padding-bottom: clamp(3rem, 7vw, 5rem);
-  border-bottom: var(--grout) solid var(--rejunte);
+  border-bottom: 1px solid var(--line);
 }
 
 .introText {
@@ -17,7 +17,7 @@
 
 .title {
   font-size: clamp(2.75rem, 9vw, 6rem);
-  color: var(--cobalto-noite);
+  color: var(--ink);
 }
 
 .lead {
@@ -39,8 +39,8 @@
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
-  font-weight: 800;
-  color: var(--cobalto);
+  font-weight: 700;
+  color: var(--ink);
 }
 
 .links svg {
@@ -49,20 +49,17 @@
 }
 
 .portrait {
-  width: min(100%, 20rem);
-  padding: 0.6rem;
-  background: var(--esmalte);
-  border: var(--grout) solid var(--rejunte);
-  box-shadow:
-    inset 0 0 0 0.6rem var(--esmalte),
-    inset 0 0 0 calc(0.6rem + 2px) var(--cobalto);
+  width: min(100%, 18rem);
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
 }
 
 .section {
   display: grid;
   gap: 1.5rem;
   padding-block: clamp(2.5rem, 6vw, 4rem);
-  border-bottom: var(--grout) solid var(--rejunte);
+  border-bottom: 1px solid var(--line);
 }
 
 .h2 {
@@ -75,7 +72,7 @@
 
 .meta {
   font-weight: 600;
-  color: var(--tinta-suave);
+  color: var(--ink-soft);
 }
 
 .role {
@@ -94,12 +91,12 @@
 
 .items li {
   padding-left: 1.25rem;
-  border-left: 1px solid var(--cobalto);
-  color: var(--tinta-suave);
+  border-left: 1px solid var(--line-strong);
+  color: var(--ink-soft);
 }
 
 .items strong {
-  color: var(--tinta);
+  color: var(--ink);
 }
 
 .projectList {
@@ -115,18 +112,17 @@
   justify-content: space-between;
   gap: 0.25rem 1.5rem;
   padding-block: 0.9rem;
-  border-bottom: 1px solid var(--rejunte);
+  border-bottom: 1px solid var(--line);
 }
 
 .projectList a {
-  font-weight: 800;
-  font-stretch: 112%;
-  font-size: 1.15rem;
-  color: var(--cobalto);
+  font-weight: 700;
+    font-size: 1.15rem;
+  color: var(--ink);
 }
 
 .projectList span {
-  color: var(--tinta-suave);
+  color: var(--ink-soft);
 }
 
 .skills {
@@ -137,17 +133,18 @@
 }
 
 .skills dt {
-  font-weight: 800;
+  font-weight: 700;
 }
 
 .skills dd {
   margin: 0.2rem 0 0;
-  color: var(--tinta-suave);
+  color: var(--ink-soft);
 }
 
 .cta {
-  background: var(--cobalto);
-  color: var(--esmalte);
+  background: var(--accent);
+  color: var(--ink);
+  border-top: 1px solid var(--ink);
 }
 
 .ctaInner {
@@ -160,8 +157,7 @@
 }
 
 .ctaText {
-  font-weight: 800;
-  font-stretch: 112%;
+  font-weight: 700;
   font-size: clamp(1.3rem, 2.4vw, 1.75rem);
 }
 
@@ -171,25 +167,31 @@
   gap: 0.6rem;
   min-height: 3.25rem;
   padding: 0 1.5rem;
-  background: var(--esmalte);
-  color: var(--cobalto-noite);
-  font-weight: 800;
+  background: var(--ink);
+  color: var(--on-dark);
+  border-radius: 8px;
+  font-weight: 700;
   text-decoration: none;
 }
 
 .whats svg {
   font-size: 1.25em;
-  color: var(--cobalto);
+  color: var(--accent);
 }
 
 .whats:hover {
-  background: var(--cobalto-claro);
+  background: var(--ink-hover);
 }
 
 @media (min-width: 52rem) {
   .intro {
-    grid-template-columns: 1fr auto;
+    grid-template-columns: minmax(0, 1fr) clamp(15rem, 24vw, 20rem);
     align-items: center;
+    gap: 3rem;
+  }
+
+  .portrait {
+    width: 100%;
   }
 
   .section {

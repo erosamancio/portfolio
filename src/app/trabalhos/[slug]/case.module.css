@@ -13,7 +13,7 @@
   gap: 0.4rem;
   justify-self: start;
   font-weight: 700;
-  color: var(--cobalto);
+  color: var(--ink);
 }
 
 .back svg,
@@ -25,7 +25,7 @@
 
 .title {
   font-size: clamp(2.75rem, 9vw, 6rem);
-  color: var(--cobalto-noite);
+  color: var(--ink);
 }
 
 .summary {
@@ -40,28 +40,28 @@
   gap: 1rem 2rem;
   margin: 1rem 0 0;
   padding-block: 1.25rem;
-  border-block: var(--grout) solid var(--rejunte);
+  border-block: 1px solid var(--line);
 }
 
 .facts dt {
   font-weight: 600;
   font-size: 0.9rem;
-  color: var(--tinta-suave);
+  color: var(--ink-soft);
 }
 
 .facts dd {
   margin: 0.15rem 0 0;
-  font-weight: 800;
+  font-weight: 700;
 }
 
 .figure {
   margin-block: clamp(2.5rem, 6vw, 4rem);
-  padding: clamp(0.5rem, 1.2vw, 0.9rem);
-  background: var(--esmalte);
-  border: var(--grout) solid var(--rejunte);
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
   box-shadow:
-    inset 0 0 0 clamp(0.5rem, 1.2vw, 0.9rem) var(--esmalte),
-    inset 0 0 0 calc(clamp(0.5rem, 1.2vw, 0.9rem) + 2px) var(--cobalto);
+    0 1px 2px oklch(0.2 0.015 260 / 0.05),
+    0 24px 48px -32px oklch(0.2 0.015 260 / 0.45);
 }
 
 .figure img {
@@ -86,7 +86,7 @@
 
 .block p {
   font-size: 1.125rem;
-  color: var(--tinta-suave);
+  color: var(--ink-soft);
 }
 
 .repo {
@@ -94,13 +94,13 @@
   align-items: center;
   gap: 0.4rem;
   justify-self: start;
-  font-weight: 800;
-  color: var(--cobalto);
+  font-weight: 700;
+  color: var(--ink);
 }
 
 .footer {
-  background: var(--cobalto);
-  color: var(--esmalte);
+  background: var(--dark);
+  color: var(--on-dark);
 }
 
 .footerInner {
@@ -118,26 +118,25 @@
   gap: 0.6rem;
   min-height: 3.25rem;
   padding: 0 1.5rem;
-  background: var(--esmalte);
-  color: var(--cobalto-noite);
-  font-weight: 800;
+  background: var(--accent);
+  color: var(--ink);
+  border-radius: 8px;
+  font-weight: 700;
   text-decoration: none;
 }
 
 .whats svg {
   font-size: 1.25em;
-  color: var(--cobalto);
 }
 
 .whats:hover {
-  background: var(--cobalto-claro);
+  background: var(--accent-strong);
 }
 
 .next {
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
-  font-weight: 800;
-  font-stretch: 112%;
-  font-size: 1.15rem;
+  font-weight: 700;
+    font-size: 1.15rem;
 }

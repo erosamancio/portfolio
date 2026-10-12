@@ -1,5 +1,3 @@
-import type { Pattern } from "@/components/tiles/patterns";
-
 export const contact = {
   whatsappNumber: "5581998050865",
   whatsappDisplay: "(81) 99805-0865",
@@ -9,7 +7,9 @@ export const contact = {
 };
 
 export function whatsappLink(message: string) {
-  return `https://wa.me/${contact.whatsappNumber}?text=${encodeURIComponent(message)}`;
+  const phone = contact.whatsappNumber;
+  const text = encodeURIComponent(message);
+  return `https://wa.me/${phone}?text=${text}`;
 }
 
 export const defaultMessage = "Oi, Eros! Vi seu portfólio e quero conversar sobre um site.";
@@ -19,7 +19,6 @@ export type ServiceId = "landing" | "institucional" | "sistema" | "naosei";
 export type Service = {
   id: ServiceId;
   name: string;
-  pattern: Pattern;
   message: string;
   summary?: string;
   includes?: string[];
@@ -29,7 +28,6 @@ export const services: Service[] = [
   {
     id: "landing",
     name: "Landing page",
-    pattern: "escamas",
     message: "Oi, Eros! Vi seu portfólio e quero uma landing page para o meu negócio.",
     summary:
       "Uma página feita para uma coisa só: fazer a pessoa chamar você. Ideal para divulgar um serviço, um produto ou uma campanha.",
@@ -38,7 +36,6 @@ export const services: Service[] = [
   {
     id: "institucional",
     name: "Site institucional",
-    pattern: "ondas",
     message: "Oi, Eros! Vi seu portfólio e quero um site institucional para o meu negócio.",
     summary:
       "Algumas páginas para apresentar o seu negócio com calma: quem você é, o que faz, onde fica e como falar com você.",
@@ -51,7 +48,6 @@ export const services: Service[] = [
   {
     id: "sistema",
     name: "Site com sistema",
-    pattern: "rosetas",
     message: "Oi, Eros! Vi seu portfólio e preciso de um site com sistema. Posso te explicar a ideia?",
     summary:
       "Quando o site precisa fazer algo a mais: receber pedidos, mandar e-mails automáticos, conversar com outro sistema ou ter uma área para você atualizar as informações.",
@@ -60,7 +56,6 @@ export const services: Service[] = [
   {
     id: "naosei",
     name: "Ainda não sei",
-    pattern: "cata-vento",
     message: "Oi, Eros! Vi seu portfólio e quero um site, mas não sei bem qual tipo. Pode me ajudar?",
   },
 ];

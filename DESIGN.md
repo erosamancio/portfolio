@@ -17,10 +17,11 @@ colors:
   syn-kw: "oklch(0.79 0.13 300)"
   syn-str: "oklch(0.85 0.12 75)"
   syn-ty: "oklch(0.83 0.1 200)"
+  scrim: "oklch(0.1 0.01 260 / 0.6)"
 typography:
   display:
     fontFamily: "Archivo, system-ui, sans-serif"
-    fontSize: "clamp(3.1rem, 8.4vw, 6rem)"
+    fontSize: "clamp(3.1rem, 8cqi, 6rem)"
     fontWeight: 800
     lineHeight: 0.92
     letterSpacing: "-0.04em"
@@ -191,6 +192,7 @@ Tema escuro de editor, frio e quase neutro (matiz 250–260), com um único acen
 - **Painel** (`surface`): hover de item no explorador.
 - **Item Ativo** (`surface-hover`): arquivo atual no explorador.
 - **Divisória** (`line`) e **Borda de Controle** (`line-strong`): divisórias entre regiões; contornos de chips, tags e botões de contorno; galhos `├─` da árvore de componentes.
+- **Véu da Gaveta** (`scrim`): atrás do explorador aberto no celular; o único valor com transparência da paleta.
 - **Texto** (`ink`), **Texto Secundário** (`ink-soft`), **Comentário** (`ink-muted`): texto principal; texto corrido secundário e metadados; comentários, números de linha, marcadores `#` e contagens. `--syn-cm` aponta para `ink-muted`, que passa no contraste também nos números de linha.
 
 ### Named Rules
@@ -207,13 +209,15 @@ Tema escuro de editor, frio e quase neutro (matiz 250–260), com um único acen
 **Character:** Uma grotesca larga e pesada para nome e títulos, com eixo de largura aberto (`font-stretch` 104% nos títulos, 112% no nome do hero), contra uma mono de editor para tudo que é moldura ou dado. A pareação diz "desenvolvedor" sem precisar de ilustração.
 
 ### Hierarchy
-- **Display** (800, clamp(3.1rem, 8.4vw, 6rem), 0.92): só o nome no hero, seguido do cursor chartreuse. Títulos de página (estudo de caso, Sobre) e o "Vamos conversar?" usam a mesma voz entre 2.4rem e 6rem.
-- **Headline** (740, clamp(1.95rem, 4.2vw, 3.1rem), 1.08): títulos de seção, precedidos do marcador Markdown.
-- **Title** (740, 1.4–2rem, 1.08): nome do projeto na lista, empresa e instituição em Experiência, subtítulos `##` do estudo de caso.
+- **Display** (800, clamp(3.1rem, 8cqi, 6rem), 0.92): só o nome no hero, seguido do cursor chartreuse; a última palavra e o cursor quebram juntos. Títulos de página usam a mesma voz com o teto próprio de cada um: Sobre clamp(2.75rem, 9vw, 6rem), estudo de caso clamp(2.6rem, 7vw, 5rem), página não encontrada clamp(2.4rem, 6vw, 4.5rem) e "Vamos conversar?" clamp(2.4rem, 6vw, 4.4rem), que a partir de container 56rem passa a clamp(2.4rem, 6.5cqi, 4.4rem).
+- **Headline** (740, clamp(1.95rem, 4.2vw, 3.1rem), 1.08): títulos de seção, precedidos do marcador Markdown. Quando o título fica numa coluna estreita ao lado do conteúdo, ele escala com o container: `.split .h2` da home clamp(1.75rem, 3.5cqi, 3.1rem) a partir de 56rem e o `.h2` de Sobre clamp(1.75rem, 3.2cqi, 2.5rem) a partir de 50rem (em coluna única, clamp(1.9rem, 4vw, 2.75rem)).
+- **Title** (740, 1.08): nome do projeto na lista, empresa e instituição em Experiência, subtítulos `##` do estudo de caso. Passos em uso: clamp(1.5rem, 2.4vw, 2rem) na lista de projetos, clamp(1.5rem, 2.8vw, 2.1rem) e clamp(1.4rem, 2.2vw, 1.75rem) na home, clamp(1.3rem, 2.4vw, 1.75rem) em Sobre, clamp(1.4rem, 2.4vw, 1.8rem) no estudo de caso.
 - **Body** (400, 1.0625rem, 1.6): texto corrido; blocos de leitura limitados a 34–42rem.
-- **Lede** (400, até 1.2rem, 1.6): abertura do hero e resumo dos estudos de caso, em `ink-soft`.
+- **Lede** (400, 1.6): abertura do hero clamp(1.06rem, 1.5vw, 1.2rem), de Sobre clamp(1.15rem, 1.8vw, 1.35rem) e resumo dos estudos de caso clamp(1.1rem, 1.6vw, 1.25rem), em `ink-soft`. Textos de apoio (resumo dos projetos, linha do hero, resumo do caso) usam clamp(0.92rem, 1.4vw, 1.05rem) e clamp(0.9rem, 1.3vw, 1rem).
 - **Code** (mono 400, clamp(0.8rem, 1.05vw, 0.9rem), 1.75): corpo dos painéis com números de linha.
-- **Label** (mono 400, 0.78–0.88rem): abas, caminho, explorador, barra de status, filtros, tags, metadados, legenda de imagem.
+- **Label** (mono 400, 0.75–0.88rem): abas, caminho, explorador, barra de status, filtros, tags, metadados, legenda de imagem.
+
+Os passos fluidos acima são os que a build usa; cada título troca `vw` por `cqi` quando vive numa coluna do container. Não há outros.
 
 ### Named Rules
 **The Two Voices Rule.** Archivo para o que se lê, JetBrains Mono para o que é moldura, código ou dado. Um rótulo em mono é dado; um parágrafo em mono é erro.
@@ -222,10 +226,13 @@ Tema escuro de editor, frio e quase neutro (matiz 250–260), com um único acen
 
 ## Layout
 
-- **Moldura:** grade de aplicativo com barra de título (3.25rem) fixa no topo, área de edição com barra de abas (2.5rem) fixa logo abaixo, e barra de status no fim do documento. A partir de 64rem o explorador fica fixo à esquerda com 16rem.
+- **Moldura:** grade de aplicativo com barra de título (3.25rem) fixa no topo, área de edição com barra de abas (2.5rem; 2.75rem em ponteiro grosso) fixa logo abaixo, e barra de status no fim do documento. A partir de 64rem o explorador fica fixo à esquerda com 16rem e a barra de status fica `position: relative` com `z-index: 1`, acima do explorador fixo no fim da página. Em celular deitado (altura até 32rem e largura abaixo de 64rem) a barra de abas deixa de ser fixa e a rolagem de âncoras considera só a barra de título.
 - **Celular:** abaixo de 64rem o explorador vira gaveta (até 20rem) aberta pelo botão de menu, com véu escuro; Esc fecha. O botão Contato fica sempre na barra de título e vira só ícone abaixo de 26.5rem. Abaixo de 40rem a barra de status tem uma linha só (ramo e nome; os links ficam na seção de contato e na barra de título) e o caminho do arquivo some.
 - **Conteúdo:** coluna `wrap` com margem lateral fluida (gutter) e largura máxima de 70rem. A área de edição é um container (`container-type: inline-size`) e todos os layouts internos usam `@container`: hero em duas colunas a partir de 60rem; projetos em zigue-zague, cabeçalhos de seção ao lado do conteúdo e painéis lado a lado a partir de 56rem; Sobre a partir de 44–50rem.
 - **Projetos:** cabeçalho com título, barra de filtro e contagem; abaixo, um projeto por linha em zigue-zague (prévia 1.2fr, texto 1fr), alternando o lado entre os projetos visíveis. Ao filtrar, os ocultos saem com o atributo `hidden` e a alternância recomeça.
+- **Toque:** com `(pointer: coarse)`, controles da moldura (marca, Contato, botão de menu, itens do explorador, links da barra de status), chips, opções de filtro, tags do hero e links de texto fora de parágrafos chegam a 2.75rem (44px); links dentro de texto corrido mantêm ao menos 24px.
+- **Hero estreito:** com container até 22rem, o botão principal ocupa uma linha inteira e GitHub e LinkedIn dividem a seguinte. O retrato da home tem 15rem em coluna única e 20rem a partir de container 44rem.
+- **Imagens:** o `sizes` das prévias acompanha a largura real: coluna única com e sem explorador, e duas colunas.
 - **Ritmo:** seções com clamp(3.5rem, 8vw, 6rem) de respiro vertical e divisória `line` no topo; seções alternadas em `bg-alt`. A seção de contato respira mais (até 7rem).
 
 ### Named Rules
@@ -237,8 +244,8 @@ Profundidade vem de camadas tonais: área de edição (`bg`) abaixo das barras e
 
 ### Shadow Vocabulary
 - **Painel flutuante** (`box-shadow: 0 24px 48px -32px oklch(0 0 0 / 0.8)`): só nos painéis de código (`perfil.ts`, `stack.json`, trecho do hook, `contato.ts`, painéis do Sociiz Meet).
-- **Borda de rolagem** (gradientes `oklch(0 0 0 / 0.55)` de 1rem nas laterais): aparece no trecho de código real só enquanto há mais código para rolar.
-- **Véu da gaveta** (`oklch(0.1 0.01 260 / 0.6)`): atrás do explorador aberto no celular.
+- **Borda de rolagem** (máscara `linear-gradient(to left, transparent, #000 var(--edge))` com `@property --edge`: 3rem até 92% da rolagem horizontal e 0 no fim, via `animation-timeline: scroll(self inline)`): o trecho de código real esmaece na borda direita só enquanto há mais código para rolar; sem overflow a linha do tempo fica inativa e nada esmaece. É máscara, não sombra, e `#000` só dá opacidade.
+- **Véu da gaveta** (`scrim`): atrás do explorador aberto no celular.
 
 ### Named Rules
 **The Tonal Layering Rule.** Superfícies se separam por tom e filete, não por sombra. Sombra nova só se for ambiente e sob um painel de código.
@@ -271,7 +278,7 @@ Cabeçalho com ícone em `syn-kw` e nome do arquivo em mono, corpo `bg-alt` com 
 - **`contato.ts`**: e-mail, LinkedIn, GitHub e WhatsApp como links em `syn-str`, ao lado de "Vamos conversar?", Mandar um e-mail e Copiar e-mail.
 
 ### Explorer
-- Painel `bg-alt` em mono 0.86rem, título de painel "Explorador" (Archivo 0.72rem, maiúsculas espaçadas, `ink-muted`), pasta `portfolio` com `README.md`, a pasta `trabalhos` (um `.md` por projeto) e `experiencia.md`, `stack.json`, `sobre.md`, `este-site.ts`, `contato.ts`.
+- Painel `bg-alt` em mono 0.86rem, título de painel "Explorador" (Archivo 0.75rem, maiúsculas espaçadas, `ink-muted`), pasta `portfolio` com `README.md`, a pasta `trabalhos` (um `.md` por projeto) e `experiencia.md`, `stack.json`, `sobre.md`, `este-site.ts`, `contato.ts`.
 - Ícone por tipo: `.md` em `syn-ty`, `.ts` em `syn-kw`, `.json` em `syn-str`; no arquivo atual o ícone fica `accent` e o fundo `surface-hover`.
 - Na home, o arquivo da seção visível fica destacado (`aria-current="location"`); fora dela, o da página.
 
@@ -317,6 +324,8 @@ Transições de estado em 160ms (cor, fundo, borda), 200ms em setas e bordas de 
 - **Do** mostrar imagens de projeto no máximo no tamanho nativo, centralizadas na moldura com a barra do nome do arquivo.
 - **Do** mostrar Sociiz Meet só em texto: árvore de componentes, painel do serviço de tokens e a nota de cadeado.
 - **Do** responder com `@container` dentro da área de edição e manter a barra de status em uma linha no celular.
+- **Do** deixar o container decidir o tamanho de título em coluna estreita (`cqi`), nunca a janela.
+- **Do** zerar `text-indent` em link `inline-block` dentro de linha de código, para o recuo pendente não deslocar o alvo.
 
 ### Don't:
 - **Don't** usar terminal falso, commits inventados ou dados que não existem.

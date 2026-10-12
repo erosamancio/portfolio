@@ -45,7 +45,7 @@
   background: var(--accent);
   color: var(--on-accent);
   font-family: var(--mono);
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.02em;
 }
@@ -152,7 +152,7 @@
 .sideTitle {
   padding: 0 1rem 0.5rem;
   font-family: var(--font);
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -419,6 +419,12 @@
     display: none;
   }
 
+  /* Browsers constrain a sticky grid item by the whole grid, so the status bar sits above the explorer at the end of the page. */
+  .status {
+    position: relative;
+    z-index: 1;
+  }
+
   .side {
     grid-area: side;
     position: sticky;
@@ -429,5 +435,43 @@
     transform: none;
     visibility: visible;
     transition: none;
+  }
+}
+
+/* Touch: every control in the frame reaches a 44px target. */
+@media (pointer: coarse) {
+  .brand {
+    min-height: 2.75rem;
+  }
+
+  .cta {
+    height: 2.75rem;
+  }
+
+  .toggle {
+    width: 2.75rem;
+    height: 2.75rem;
+  }
+
+  .folder,
+  .file {
+    min-height: 2.75rem;
+  }
+
+  .statusLinks a {
+    padding-block: 0.65rem;
+  }
+}
+
+@media (pointer: coarse) and (max-width: 26.5rem) {
+  .cta {
+    width: 2.75rem;
+  }
+}
+
+/* Landscape phones: the tab bar scrolls with the page instead of taking a tenth of the screen. */
+@media (max-height: 32rem) and (max-width: 63.99rem) {
+  .tabbar {
+    position: static;
   }
 }

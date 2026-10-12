@@ -233,3 +233,11 @@
   width: 1em;
   height: 1em;
 }
+
+@media (pointer: coarse) {
+  .back,
+  .repo,
+  .next {
+    min-height: 2.75rem;
+  }
+}

@@ -48,8 +48,11 @@ export function Hero({ filter, onFilter }: Props) {
       <div className={`wrap ${styles.inner}`}>
         <div className={styles.intro}>
           <h1 id="hero-title" className={styles.title}>
-            Eros Amancio
-            <span className={styles.caret} aria-hidden="true" />
+            Eros{" "}
+            <span className={styles.last}>
+              Amancio
+              <span className={styles.caret} aria-hidden="true" />
+            </span>
           </h1>
           <p className={styles.role}>Desenvolvedor · Recife, PE</p>
           <p className={styles.lede}>

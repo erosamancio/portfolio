@@ -15,11 +15,16 @@
 }
 
 .title {
-  font-size: clamp(3.1rem, 8.4vw, 6rem);
+  font-size: clamp(3.1rem, 8cqi, 6rem);
   font-stretch: 112%;
   font-weight: 800;
   line-height: 0.92;
   letter-spacing: -0.04em;
+}
+
+/* The last word and the cursor wrap together, so the cursor never ends up alone on a line. */
+.last {
+  white-space: nowrap;
 }
 
 .caret {
@@ -147,6 +152,25 @@
   border-color: var(--accent);
   background: var(--accent);
   color: var(--on-accent);
+}
+
+/* Very narrow screens: the main action takes its own row, GitHub and LinkedIn share the next one. */
+@container (max-width: 22rem) {
+  .actions {
+    column-gap: 1.5rem;
+  }
+
+  .primary {
+    flex-basis: 100%;
+    justify-content: center;
+  }
+}
+
+@media (pointer: coarse) {
+  .tag {
+    min-height: 2.75rem;
+    padding: 0 0.6rem;
+  }
 }
 
 /* On narrow panels the four chips sit in two even rows instead of leaving one alone. */

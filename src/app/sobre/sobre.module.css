@@ -117,12 +117,18 @@
 
 .projectList a {
   font-weight: 700;
-    font-size: 1.15rem;
+  font-size: 1.15rem;
   color: var(--ink);
 }
 
+.projectList a:hover {
+  color: var(--accent);
+}
+
 .projectList span {
-  color: var(--ink-soft);
+  font-family: var(--mono);
+  font-size: 0.85rem;
+  color: var(--ink-muted);
 }
 
 .skills {
@@ -133,7 +139,9 @@
 }
 
 .skills dt {
-  font-weight: 700;
+  font-family: var(--mono);
+  font-size: 0.88rem;
+  color: var(--syn-ty);
 }
 
 .skills dd {
@@ -142,9 +150,8 @@
 }
 
 .cta {
-  background: var(--accent);
-  color: var(--ink);
-  border-top: 1px solid var(--ink);
+  border-top: 1px solid var(--line);
+  background: var(--bg-alt);
 }
 
 .ctaInner {
@@ -167,23 +174,22 @@
   gap: 0.6rem;
   min-height: 3.25rem;
   padding: 0 1.5rem;
-  background: var(--ink);
-  color: var(--on-dark);
-  border-radius: 8px;
-  font-weight: 700;
+  background: var(--accent);
+  color: var(--on-accent);
+  border-radius: 6px;
+  font-weight: 750;
   text-decoration: none;
 }
 
 .whats svg {
   font-size: 1.25em;
-  color: var(--accent);
 }
 
 .whats:hover {
-  background: var(--ink-hover);
+  background: var(--accent-hover);
 }
 
-@media (min-width: 52rem) {
+@container (min-width: 50rem) {
   .intro {
     grid-template-columns: minmax(0, 1fr) clamp(15rem, 24vw, 20rem);
     align-items: center;

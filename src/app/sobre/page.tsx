@@ -41,7 +41,12 @@ export default function SobrePage() {
     <div className={styles.page}>
       <header className={`wrap ${styles.intro}`}>
         <div className={styles.introText}>
-          <h1 className={styles.title}>Eros Amancio</h1>
+          <h1 className={styles.title}>
+            <span className="hash" aria-hidden="true">
+              #
+            </span>
+            Eros Amancio
+          </h1>
           <p className={styles.lead}>
             Estudante de Ciência da Computação na CESAR School, no 4º período, e estagiário na Sociiz, em Recife. Trabalho
             com frontend em React, backend em Python e Java e com as integrações que ligam um ao outro.
@@ -69,6 +74,9 @@ export default function SobrePage() {
 
       <section className={`wrap ${styles.section}`} aria-labelledby="exp">
         <h2 id="exp" className={styles.h2}>
+          <span className="hash" aria-hidden="true">
+            ##
+          </span>
           Experiência
         </h2>
         <div className={styles.role}>
@@ -90,6 +98,9 @@ export default function SobrePage() {
 
       <section className={`wrap ${styles.section}`} aria-labelledby="form">
         <h2 id="form" className={styles.h2}>
+          <span className="hash" aria-hidden="true">
+            ##
+          </span>
           Formação
         </h2>
         <div className={styles.role}>
@@ -104,6 +115,9 @@ export default function SobrePage() {
 
       <section className={`wrap ${styles.section}`} aria-labelledby="proj">
         <h2 id="proj" className={styles.h2}>
+          <span className="hash" aria-hidden="true">
+            ##
+          </span>
           Projetos
         </h2>
         <ul className={styles.projectList}>
@@ -120,6 +134,9 @@ export default function SobrePage() {
 
       <section className={`wrap ${styles.section}`} aria-labelledby="tec">
         <h2 id="tec" className={styles.h2}>
+          <span className="hash" aria-hidden="true">
+            ##
+          </span>
           Tecnologias
         </h2>
         <dl className={styles.skills}>

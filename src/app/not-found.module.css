@@ -17,7 +17,7 @@
   padding: 0.15rem 0.45rem;
   border-radius: 4px;
   background: var(--accent);
-  color: var(--ink);
+  color: var(--on-accent);
   font-weight: 700;
 }
 
@@ -33,9 +33,10 @@
 .home {
   margin-top: 0.5rem;
   font-weight: 700;
-  text-decoration-color: var(--ink);
+  color: var(--accent);
+  text-decoration-color: oklch(0.91 0.19 123 / 0.5);
 }
 
 .home:hover {
-  background: var(--accent);
+  text-decoration-color: currentColor;
 }

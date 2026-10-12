@@ -1,0 +1,79 @@
+/* Shared look for code panels: the hero composer and the real snippet. */
+
+.panel {
+  min-width: 0;
+  overflow: hidden;
+  background: var(--bg-alt);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: 0 24px 48px -32px oklch(0 0 0 / 0.8);
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.55rem 1rem;
+  border-bottom: 1px solid var(--line);
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  color: var(--ink-soft);
+}
+
+.head svg {
+  width: 0.95rem;
+  height: 0.95rem;
+  color: var(--syn-kw);
+}
+
+.body {
+  margin: 0;
+  padding: 1rem 1rem 1.15rem 0;
+  font-family: var(--mono);
+  font-size: clamp(0.8rem, 1.05vw, 0.9rem);
+  line-height: 1.75;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 2.75rem minmax(0, 1fr);
+  margin: 0;
+  padding: 0;
+  border: 0;
+  min-inline-size: 0;
+}
+
+.ln {
+  padding-right: 1rem;
+  text-align: right;
+  color: var(--ink-muted);
+  user-select: none;
+}
+
+.text {
+  min-width: 0;
+  padding-left: 2ch;
+  text-indent: -2ch;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+}
+
+.kw {
+  color: var(--syn-kw);
+}
+
+.fn {
+  color: var(--syn-fn);
+}
+
+.st {
+  color: var(--syn-str);
+}
+
+.ty {
+  color: var(--syn-ty);
+}
+
+.cm {
+  color: var(--syn-cm);
+}

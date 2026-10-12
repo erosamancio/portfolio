@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
-import { WhatsAppIcon } from "@/components/BrandIcons";
+import { GitHubIcon, WhatsAppIcon } from "@/components/BrandIcons";
 import { defaultMessage, projects, whatsappLink } from "@/content/site";
 import styles from "./case.module.css";
 
@@ -40,45 +40,58 @@ export default async function CasePage({ params }: { params: Promise<Params> }) 
         <Link href="/#trabalhos" className={styles.back}>
           <ArrowLeft aria-hidden="true" /> Todos os trabalhos
         </Link>
-        <h1 className={styles.title}>{project.name}</h1>
+        <h1 className={styles.title}>
+          <span className="hash" aria-hidden="true">
+            #
+          </span>
+          {project.name}
+        </h1>
         <p className={styles.summary}>{project.summary}</p>
         <dl className={styles.facts}>
           <div>
-            <dt>Contexto</dt>
+            <dt>contexto:</dt>
             <dd>{project.context}</dd>
           </div>
           <div>
-            <dt>Meu papel</dt>
+            <dt>papel:</dt>
             <dd>{project.role}</dd>
           </div>
           <div>
-            <dt>Tecnologias</dt>
+            <dt>tecnologias:</dt>
             <dd>{project.stack.join(", ")}</dd>
           </div>
         </dl>
       </header>
 
-      <div className={`wrap ${styles.figure}`} style={{ maxWidth: `calc(${project.image.width}px + 2rem)` }}>
+      <figure className={`wrap ${styles.figure}`}>
+        <figcaption className={styles.figureBar} aria-hidden="true">
+          {project.image.src.split("/").pop()}
+        </figcaption>
         <Image
           src={project.image.src}
           width={project.image.width}
           height={project.image.height}
           alt={project.image.alt}
-          sizes="(min-width: 80rem) 78rem, 100vw"
+          sizes="(min-width: 80rem) 70rem, 100vw"
           priority
         />
-      </div>
+      </figure>
 
       <div className={`wrap ${styles.body}`}>
         {project.body.map((b) => (
           <section key={b.heading} className={styles.block}>
-            <h2 className={styles.blockTitle}>{b.heading}</h2>
+            <h2 className={styles.blockTitle}>
+              <span className="hash" aria-hidden="true">
+                ##
+              </span>
+              {b.heading}
+            </h2>
             <p>{b.text}</p>
           </section>
         ))}
         {project.repo && (
           <a className={styles.repo} href={project.repo} target="_blank" rel="noopener">
-            Ver o código no GitHub <ArrowUpRight aria-hidden="true" />
+            <GitHubIcon /> Ver o código no GitHub <ArrowUpRight aria-hidden="true" />
           </a>
         )}
       </div>

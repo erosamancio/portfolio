@@ -18,7 +18,7 @@ function Preview({ project }: { project: Project }) {
           width={project.image.width}
           height={project.image.height}
           alt=""
-          sizes="(min-width: 64rem) 40vw, 100vw"
+          sizes="(min-width: 90rem) 37rem, (min-width: 72rem) 40vw, (min-width: 64rem) calc(100vw - 22rem), (min-width: 56rem) 50vw, 92vw"
         />
       </Link>
     );

@@ -234,20 +234,35 @@
           "oklch(0.83 0.1 200)",
           "oklch(0.95 0.1 200)"
         ]
+      },
+      "scrim": {
+        "role": "neutral",
+        "displayName": "Véu da Gaveta",
+        "canonical": "oklch(0.1 0.01 260 / 0.6)",
+        "tonalRamp": [
+          "oklch(0.1 0.01 260 / 0.6)",
+          "oklch(0.1 0.01 260 / 0.6)",
+          "oklch(0.1 0.01 260 / 0.6)",
+          "oklch(0.1 0.01 260 / 0.6)",
+          "oklch(0.1 0.01 260 / 0.6)",
+          "oklch(0.1 0.01 260 / 0.6)",
+          "oklch(0.1 0.01 260 / 0.6)",
+          "oklch(0.1 0.01 260 / 0.6)"
+        ]
       }
     },
     "typographyMeta": {
       "display": {
         "displayName": "Display",
-        "purpose": "Só o nome no hero, com o cursor chartreuse; títulos de página usam a mesma voz entre 2.4rem e 6rem."
+        "purpose": "Só o nome no hero (8cqi), com o cursor chartreuse; títulos de página usam a mesma voz com teto próprio, entre 2.4rem e 6rem."
       },
       "headline": {
         "displayName": "Headline",
-        "purpose": "Títulos de seção, precedidos do marcador Markdown #."
+        "purpose": "Títulos de seção, precedidos do marcador Markdown #; em coluna estreita escalam com o container (3.5cqi na home, 3.2cqi em Sobre)."
       },
       "title": {
         "displayName": "Title",
-        "purpose": "Nome do projeto, empresa e instituição, subtítulos ## do estudo de caso."
+        "purpose": "Nome do projeto, empresa e instituição, subtítulos ## do estudo de caso; passos fluidos de 1.3 a 2.1rem."
       },
       "lede": {
         "displayName": "Lede",
@@ -274,8 +289,8 @@
       },
       {
         "name": "scroll-edge",
-        "value": "linear-gradient(to right, oklch(0 0 0 / 0.55), transparent) left / 1rem 100% no-repeat scroll",
-        "purpose": "Bordas do trecho de código real, só enquanto há mais para rolar (espelhada à direita)."
+        "value": "mask-image: linear-gradient(to left, transparent, #000 var(--edge)); --edge: 3rem até 92% da rolagem, 0 no fim (animation-timeline: scroll(self inline))",
+        "purpose": "Máscara, não sombra: o trecho de código real esmaece na borda direita só enquanto há mais para rolar."
       },
       {
         "name": "drawer-scrim",
@@ -360,6 +375,26 @@
         "name": "hero-split",
         "value": "@container 60rem",
         "purpose": "Hero em duas colunas com o perfil.ts à direita."
+      },
+      {
+        "name": "landscape-phone",
+        "value": "max-height 32rem and max-width 63.99rem",
+        "purpose": "Barra de abas deixa de ser fixa (viewport)."
+      },
+      {
+        "name": "hero-narrow",
+        "value": "@container 22rem",
+        "purpose": "Botão principal em linha própria; GitHub e LinkedIn dividem a seguinte."
+      },
+      {
+        "name": "coarse-pointer",
+        "value": "(pointer: coarse)",
+        "purpose": "Alvos de toque de 2.75rem; --tabs-h passa a 2.75rem."
+      },
+      {
+        "name": "title-scale",
+        "value": "@container 50rem (Sobre) / 56rem (home, contato)",
+        "purpose": "Títulos em coluna estreita escalam em cqi."
       }
     ]
   },
@@ -424,7 +459,7 @@
       "name": "Barra de status",
       "kind": "custom",
       "refersTo": "status-bar",
-      "description": "Rodapé do editor em chartreuse; no celular, uma linha só sem os links.",
+      "description": "Rodapé do editor em chartreuse; no celular, uma linha só sem os links. A partir de 64rem fica acima do explorador fixo (z-index 1).",
       "html": "<footer class=\"ds-status\"><p class=\"ds-status-left\"><span>main</span><span>Eros Amancio · Recife, PE</span></p><ul class=\"ds-status-links\"><li><a href=\"#\">GitHub</a></li><li><a href=\"#\">LinkedIn</a></li><li><a href=\"#\">Sobre e experiência</a></li></ul></footer>",
       "css": ".ds-status { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.5rem 1.5rem; padding: 0.6rem 1.25rem; background: var(--accent, oklch(0.91 0.19 123)); color: var(--on-accent, oklch(0.19 0.02 130)); font-family: var(--mono, 'JetBrains Mono', ui-monospace, monospace); font-size: 0.8rem; font-weight: 500; } .ds-status-left, .ds-status-links { display: flex; flex-wrap: wrap; gap: 0.25rem 1.25rem; margin: 0; padding: 0; list-style: none; } .ds-status a { color: inherit; text-underline-offset: 0.22em; text-decoration-color: oklch(0.19 0.02 130 / 0.45); } .ds-status a:hover { text-decoration-color: currentColor; } .ds-status a:focus-visible { outline: 2px solid var(--on-accent, oklch(0.19 0.02 130)); outline-offset: 3px; } @media (max-width: 39.99rem) { .ds-status-links { display: none; } }"
     },
@@ -497,7 +532,9 @@
       "**Do** manter texto sobre o acento em `on-accent` e foco visível com contorno de 2px em `accent`.",
       "**Do** mostrar imagens de projeto no máximo no tamanho nativo, centralizadas na moldura com a barra do nome do arquivo.",
       "**Do** mostrar Sociiz Meet só em texto: árvore de componentes, painel do serviço de tokens e a nota de cadeado.",
-      "**Do** responder com `@container` dentro da área de edição e manter a barra de status em uma linha no celular."
+      "**Do** responder com `@container` dentro da área de edição e manter a barra de status em uma linha no celular.",
+      "**Do** deixar o container decidir o tamanho de título em coluna estreita (`cqi`), nunca a janela.",
+      "**Do** zerar `text-indent` em link `inline-block` dentro de linha de código, para o recuo pendente não deslocar o alvo."
     ],
     "donts": [
       "**Don't** usar terminal falso, commits inventados ou dados que não existem.",

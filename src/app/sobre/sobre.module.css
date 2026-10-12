@@ -66,6 +66,13 @@
   font-size: clamp(1.9rem, 4vw, 2.75rem);
 }
 
+@container (min-width: 50rem) {
+  /* The heading sits in a 0.6fr column; scale it with the row so long words like "Tecnologias" never overflow. */
+  .h2 {
+    font-size: clamp(1.75rem, 3.2cqi, 2.5rem);
+  }
+}
+
 .h3 {
   font-size: 1.5rem;
 }
@@ -208,5 +215,11 @@
   .section {
     grid-template-columns: minmax(0, 0.6fr) minmax(0, 1.4fr);
     gap: 3rem;
+  }
+}
+
+@media (pointer: coarse) {
+  .links a {
+    min-height: 2.75rem;
   }
 }

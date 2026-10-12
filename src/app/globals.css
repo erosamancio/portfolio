@@ -45,8 +45,21 @@
 html {
   -webkit-text-size-adjust: 100%;
   scroll-behavior: smooth;
-  scroll-padding-top: calc(var(--nav-h) + var(--tabs-h) + 1rem);
+  scroll-padding-top: calc(var(--nav-h) + var(--tabs-sticky, var(--tabs-h)) + 1rem);
   scrollbar-color: var(--line-strong) var(--bg);
+}
+
+@media (pointer: coarse) {
+  :root {
+    --tabs-h: 2.75rem;
+  }
+}
+
+/* Landscape phones: the tab bar scrolls away, so anchors only need to clear the title bar. */
+@media (max-height: 32rem) and (max-width: 63.99rem) {
+  :root {
+    --tabs-sticky: 0rem;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

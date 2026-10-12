@@ -14,19 +14,24 @@ const archivo = localFont({
 });
 
 const mono = localFont({
-  src: [{ path: "../fonts/jetbrains-mono-latin-wght-normal.woff2", style: "normal" }],
+  src: [
+    {
+      path: "../fonts/jetbrains-mono-latin-wght-normal.woff2",
+      style: "normal",
+    },
+  ],
   weight: "100 800",
   variable: "--font-mono",
   display: "swap",
 });
 
 const description =
-  "Eros Amancio, desenvolvedor em Recife. Crio sites para pequenos negócios e profissionais liberais, do visual ao que roda por trás.";
+  "Portfólio de Eros Amancio, estudante de Ciência da Computação na CESAR School e estagiário na Sociiz: projetos em React, Python, Java e C, do frontend ao backend.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Eros Amancio · Sites que além de bonitos, funcionam",
+    default: "Eros Amancio · Desenvolvedor",
     template: "%s · Eros Amancio",
   },
   description,
@@ -34,14 +39,14 @@ export const metadata: Metadata = {
     type: "website",
     locale: "pt_BR",
     siteName: "Eros Amancio",
-    title: "Sites que além de bonitos, funcionam",
+    title: "Eros Amancio · Desenvolvedor",
     description,
   },
   alternates: { canonical: "/" },
 };
 
 export const viewport: Viewport = {
-  themeColor: "#14161c",
+  themeColor: "#0c1015",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

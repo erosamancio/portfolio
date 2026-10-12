@@ -86,8 +86,71 @@
   color: var(--ink-muted);
 }
 
+/* Shown at most at its native size, centred like an editor image preview. */
 .figure img {
-  width: 100%;
+  display: block;
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  margin-inline: auto;
+}
+
+.panels {
+  display: grid;
+  gap: 1.25rem;
+  margin-top: clamp(2rem, 5vw, 3.5rem);
+}
+
+.panels figure {
+  margin: 0;
+  min-width: 0;
+}
+
+.components {
+  display: grid;
+  gap: 0.15rem;
+  margin: 0;
+  padding: 1.1rem 1.25rem;
+  list-style: none;
+  font-family: var(--mono);
+  font-size: clamp(0.92rem, 1.4vw, 1.05rem);
+}
+
+.components li {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.components li::before {
+  content: "├─";
+  color: var(--line-strong);
+}
+
+.components li:last-child::before {
+  content: "└─";
+}
+
+.closed {
+  display: flex;
+  gap: 0.55rem;
+  align-items: baseline;
+  max-width: 42rem;
+  color: var(--ink-soft);
+}
+
+.closed svg {
+  flex: none;
+  width: 0.95rem;
+  height: 0.95rem;
+  translate: 0 0.12rem;
+  color: var(--ink-muted);
+}
+
+@container (min-width: 56rem) {
+  .panels {
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+    align-items: start;
+  }
 }
 
 .body {
@@ -137,7 +200,7 @@
   padding-block: 1.75rem;
 }
 
-.whats {
+.mailCta {
   display: inline-flex;
   align-items: center;
   gap: 0.55rem;
@@ -150,12 +213,13 @@
   text-decoration: none;
 }
 
-.whats:hover {
+.mailCta:hover {
   background: var(--accent-hover);
 }
 
-.whats svg {
-  font-size: 1.2em;
+.mailCta svg {
+  width: 1.1em;
+  height: 1.1em;
 }
 
 .next {

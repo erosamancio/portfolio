@@ -1,100 +1,116 @@
-"use client";
-
-import { useState } from "react";
-import { ArrowDown, Check, FileCode } from "lucide-react";
-import { WhatsAppIcon } from "./BrandIcons";
-import { defaultMessage, services, whatsappLink, type ServiceId } from "@/content/site";
+import { ArrowDown, FileCode } from "lucide-react";
+import { GitHubIcon } from "./BrandIcons";
+import { contact, tags, type Tag } from "@/content/site";
 import code from "./code.module.css";
 import styles from "./Hero.module.css";
 
-export function Hero() {
-  const [selected, setSelected] = useState<ServiceId | null>(null);
-  const service = services.find((s) => s.id === selected);
-  const message = service?.message ?? defaultMessage;
+type Props = { filter: Tag | null; onFilter: (tag: Tag) => void };
+
+function Str({ children }: { children: React.ReactNode }) {
+  return <span className={code.st}>“{children}”</span>;
+}
+
+export function Hero({ filter, onFilter }: Props) {
+  // The profile panel's rows; the stack row is interactive and rendered on its own.
+  const before: [string, React.ReactNode][] = [
+    ["formacao", <Str key="f">Ciência da Computação, CESAR School, 4º período</Str>],
+    ["estagio", <Str key="e">Sociiz: backend, OCR e videoconferência</Str>],
+  ];
+  const after: [string, React.ReactNode][] = [
+    [
+      "idiomas",
+      <span key="i">
+        [<Str>português</Str>, <Str>inglês fluente</Str>]
+      </span>,
+    ],
+    ["cidade", <Str key="c">Recife, PE</Str>],
+  ];
+  let line = 1;
+  const row = (content: React.ReactNode, key: string, extra?: string) => (
+    <p key={key} className={`${code.row} ${extra ?? ""}`}>
+      <span className={code.ln} aria-hidden="true">
+        {line++}
+      </span>
+      <span className={code.text}>{content}</span>
+    </p>
+  );
+  const prop = ([k, v]: [string, React.ReactNode]) =>
+    row(
+      <>
+        {"  "}
+        <span className={code.ty}>{k}</span>: {v},
+      </>,
+      k,
+    );
 
   return (
     <section className={styles.hero} aria-labelledby="hero-title">
       <div className={`wrap ${styles.inner}`}>
         <div className={styles.intro}>
           <h1 id="hero-title" className={styles.title}>
-            Sites que além de bonitos, <span className={styles.word}>funcionam.</span>
+            Eros Amancio
             <span className={styles.caret} aria-hidden="true" />
           </h1>
+          <p className={styles.role}>Desenvolvedor · Recife, PE</p>
           <p className={styles.lede}>
-            Eu sou o Eros, desenvolvedor em Recife. Crio o site do seu negócio do visual ao que roda por trás:
-            formulário que chega no seu e-mail, integração com o que você já usa, sistema quando precisa.
+            Estudo Ciência da Computação na CESAR School e estagio na Sociiz, onde trabalho do frontend ao backend: a
+            interface de videoconferência da empresa em React, o serviço de tokens em Flask e um pipeline de OCR em
+            Python.
           </p>
-          <a className={styles.secondary} href="#trabalhos">
-            Ver trabalhos e experiência <ArrowDown aria-hidden="true" />
-          </a>
+          <div className={styles.actions}>
+            <a className={styles.primary} href="#trabalhos">
+              Ver projetos <ArrowDown aria-hidden="true" />
+            </a>
+            <a className={styles.secondary} href={contact.github} target="_blank" rel="noopener">
+              <GitHubIcon /> GitHub
+            </a>
+            <a className={styles.secondary} href={contact.linkedin} target="_blank" rel="noopener">
+              LinkedIn
+            </a>
+          </div>
         </div>
 
-        <div className={`${code.panel} ${styles.composer}`}>
+        <div className={`${code.panel} ${styles.profile}`}>
           <p className={code.head} aria-hidden="true">
-            <FileCode /> contato.ts
+            <FileCode /> perfil.ts
           </p>
           <div className={code.body}>
-            <p className={code.row} aria-hidden="true">
-              <span className={code.ln}>1</span>
-              <span className={`${code.text} ${code.cm}`}>{"// O que você precisa?"}</span>
-            </p>
-            <fieldset className={code.row}>
-              <legend className="sr-only">O que você precisa?</legend>
+            {row(
+              <>
+                <span className={code.kw}>export const</span> eros = {"{"}
+              </>,
+              "open",
+            )}
+            {before.map(prop)}
+            {row(<span className={code.cm}>{"  // escolha uma tecnologia para filtrar os projetos"}</span>, "hint")}
+            {row(
+              <>
+                {"  "}
+                <span className={code.ty}>tecnologias</span>: [
+              </>,
+              "stack-open",
+            )}
+            <div className={code.row} role="group" aria-label="Filtrar projetos por tecnologia">
               <span className={code.ln} aria-hidden="true">
-                2
+                {line++}
               </span>
-              <div className={styles.choices}>
-                <span className={styles.decl} aria-hidden="true">
-                  <span className={code.kw}>const</span> servico =
-                </span>
-                {services.map((s) => (
-                  <label key={s.id} className={styles.choice}>
-                    <input
-                      type="radio"
-                      name="servico"
-                      value={s.id}
-                      checked={selected === s.id}
-                      onChange={() => setSelected(s.id)}
-                    />
-                    <span className={styles.radio} aria-hidden="true">
-                      <Check />
-                    </span>
-                    {s.name}
-                  </label>
+              <div className={styles.stack}>
+                {tags.map((t) => (
+                  <button
+                    key={t}
+                    type="button"
+                    className={styles.tag}
+                    aria-pressed={filter === t}
+                    onClick={() => onFilter(t)}
+                  >
+                    “{t}”
+                  </button>
                 ))}
               </div>
-            </fieldset>
-            <p className={code.row} aria-hidden="true">
-              <span className={code.ln}>3</span>
-            </p>
-            <p className={code.row}>
-              <span className={code.ln} aria-hidden="true">
-                4
-              </span>
-              <span className={`${code.text} ${code.cm}`}>
-                {"// Mensagem que você vai me enviar:"}
-              </span>
-            </p>
-            <p className={code.row}>
-              <span className={code.ln} aria-hidden="true">
-                5
-              </span>
-              <span className={code.text}>
-                <span aria-hidden="true">
-                  <span className={code.kw}>const</span> mensagem ={" "}
-                </span>
-                <span className={code.st} aria-live="polite">
-                  “{message}”
-                </span>
-                <span aria-hidden="true">;</span>
-              </span>
-            </p>
-          </div>
-          <div className={styles.run}>
-            <a className={styles.send} href={whatsappLink(message)} target="_blank" rel="noopener">
-              <WhatsAppIcon className={styles.sendIcon} />
-              Enviar no WhatsApp
-            </a>
+            </div>
+            {row("  ],", "stack-close")}
+            {after.map(prop)}
+            {row("};", "close")}
           </div>
         </div>
       </div>

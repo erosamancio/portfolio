@@ -1,8 +1,8 @@
 # Portfólio · Eros Amancio
 
-Site pessoal de [Eros Amancio](https://github.com/erosamancio): vitrine para quem quer contratar a criação de um site e portfólio para entrevistas.
+Portfólio de desenvolvedor de [Eros Amancio](https://github.com/erosamancio), estudante de Ciência da Computação na CESAR School e estagiário na Sociiz. Feito para recrutadores, entrevistadores e outros devs.
 
-O site imita um editor de código: explorador de arquivos, abas e barra de status. Na abertura, escolher o tipo de site reescreve a mensagem do WhatsApp, e a seção "Este site é a amostra" mostra o código que faz isso.
+O site imita um editor de código: explorador de arquivos, abas e barra de status. Na abertura, o painel `perfil.ts` tem as tecnologias como botões, e escolher uma filtra a lista de projetos. A seção "Este site" mostra um trecho do próprio código, lido do arquivo no build.
 
 ## Rodando
 
@@ -17,8 +17,9 @@ npm run typecheck
 ## Estrutura
 
 - `src/app`: páginas (home, `/trabalhos/[slug]`, `/sobre`, 404, sitemap, robots)
-- `src/components`: a moldura do editor (`Shell`), a abertura com o seletor de serviço e os estilos de painel de código
-- `src/content/site.ts`: todos os textos, serviços, projetos e contatos
+- `src/components`: a moldura do editor (`Shell`), a abertura com o `perfil.ts`, a lista de projetos com filtro e os estilos de painel de código
+- `src/content/site.ts`: todos os textos, projetos, experiência, tecnologias e contatos
+- `src/content/source.ts`: lê no build o trecho de código mostrado na home
 - `public/images`: imagens dos projetos e retrato
 - `PRODUCT.md`, `DESIGN.md` e `.impeccable/`: contexto de produto e design
 

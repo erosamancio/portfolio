@@ -1,26 +1,26 @@
 ---
-version: 3
+version: 4
 slug: "src-app-page-tsx"
 primary_target: "src/app/page.tsx"
-related_targets: []
+related_targets: ["src/components/Shell.tsx", "src/components/Hero.tsx", "src/app/trabalhos/[slug]/page.tsx", "src/app/sobre/page.tsx"]
 ---
 
-- Escopo: `/` (home). Modo do visitante: Persuade. Estudos de caso `/trabalhos/[slug]`: Experience.
+- Escopo: `/` (home). Modo do visitante: Experience (portfólio: o trabalho conduz desde a primeira tela). Estudos de caso `/trabalhos/[slug]` e `/sobre`: Read.
 - Público, trabalho, provas e restrições: ver PRODUCT.md.
-- Histórico: v1 Azulejaria, recusada pelo Eros em 12/10/2026 ("não tem muito a ver com um desenvolvedor de software" e "viajado demais"). v2 Limpo e técnico. v3 Editor de código, escolhida pelo Eros no mesmo dia. O editor é moldura; o conteúdo fica em linguagem de cliente.
-- Momento memorável: o painel contato.ts, em que escolher o serviço reescreve a string da mensagem do WhatsApp; mais abaixo, o código real que monta o link.
-- Em aberto: formulário de contato (precisa de chave de serviço de e-mail), números de performance medidos em produção, confirmação do Ciclê (acadêmico? Edenred).
+- Histórico: v1 Azulejaria, recusada pelo Eros em 12/10/2026 ("não tem muito a ver com um desenvolvedor de software" e "viajado demais"). v2 Limpo e técnico. v3 Editor de código, escolhida pelo Eros no mesmo dia, ainda dividida entre vender sites e portfólio. v4 (12/10/2026): o Eros decidiu que o site é só portfólio de desenvolvedor e manteve o Editor de código; toda a parte de venda de sites saiu.
+- Momento memorável: o painel `perfil.ts` na abertura; cada tecnologia dele é um botão que filtra os projetos lá embaixo. Mais abaixo, o código real do hook que destaca o arquivo da seção visível no explorador.
+- Em aberto: confirmação do Ciclê (acadêmico? Edenred), currículo em PDF (não existe ainda), inglês.
 
 ## Direction contract
 
-THESIS: O site é o projeto aberto no editor. Quem visita navega pelos arquivos de um desenvolvedor de verdade e lê tudo em português claro; recusa o portfólio de terminal falso e o template de hero com cards iguais.
+THESIS: O portfólio é o repositório do Eros aberto no editor: README.md é a página inicial, cada projeto é um arquivo, experiência e tecnologias são dados reais. Fala direto com recrutadores, entrevistadores e outros devs; recusa o terminal falso, os commits inventados e a grade de cards genérica.
 
-OWN-WORLD: Tema escuro de editor (área de edição, barras, painéis), um acento chartreuse para ação, cursor e barra de status, realce de sintaxe só em código. Archivo no texto, JetBrains Mono na moldura e no código. Explorador, abas, caminho do arquivo, números de linha e front matter como componentes.
+OWN-WORLD: Tema escuro de editor (área de edição, barras, painéis), um acento chartreuse para ação, cursor e barra de status, realce de sintaxe só em código e dados. Archivo no texto, JetBrains Mono na moldura, no código e nos dados. Explorador, abas, caminho do arquivo, números de linha e front matter como componentes.
 
-STORY: O cliente entende que o Eros faz sites bonitos que funcionam, acredita porque o próprio site prova isso e os trabalhos são reais, e chama no WhatsApp. O entrevistador acha projetos, papel, stack e código em um clique.
+STORY: O visitante entende em segundos quem é o Eros (estudante de Ciência da Computação na CESAR School, estagiário na Sociiz) e o que ele sabe fazer; acredita porque vê projetos reais com papel, contexto e código; chega ao contato (e-mail, LinkedIn, GitHub) sem procurar.
 
-FIRST VIEWPORT: Explorador à esquerda, aba inicio.tsx; título "Sites que além de bonitos, funcionam." com "funcionam." no acento e um cursor; ao lado, o painel contato.ts com a escolha do serviço, a mensagem como string e "Enviar no WhatsApp". Celular: explorador na gaveta, WhatsApp sempre na barra de título.
+FIRST VIEWPORT: Explorador à esquerda com README.md ativo; "Eros Amancio" em display grande com o cursor, uma linha de papel e as ações Ver projetos, GitHub e LinkedIn (o e-mail fica no botão Contato da barra de título); ao lado, o painel `perfil.ts` com formação, estágio, tecnologias (botões que filtram os projetos) e idiomas. Celular: explorador na gaveta, contato sempre na barra de título.
 
-FORM: Editor de código, escolhida pelo Eros em 12/10/2026 entre três propostas (as outras: Limpo e técnico, Produto de software).
+FORM: Editor de código, escolhida pelo Eros em 12/10/2026 e mantida na v4.
 
 FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance

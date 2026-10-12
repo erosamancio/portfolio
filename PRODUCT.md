@@ -2,7 +2,7 @@
 
 <!-- impeccable:product-schema 1 -->
 
-> Confirmado com o Eros em 08/10/2026.
+> Confirmado com o Eros em 08/10/2026. Público e propósito revistos em 12/10/2026, quando ele decidiu que o site é só portfólio.
 
 ## Platform
 
@@ -14,29 +14,27 @@ Delegated: Next.js (App Router, geração estática) + TypeScript + CSS Modules.
 
 ## Users
 
-1. **Pequenos negócios e profissionais liberais** (principalmente Recife e região) avaliando contratar a criação de um site. Chegam por link (WhatsApp, Instagram, indicação, LinkedIn), quase sempre pelo celular, sem vocabulário técnico. Querem saber se ele é confiável, o que vão receber e como falar com ele.
-2. **Entrevistadores e recrutadores** de vagas de estágio/júnior, que usam o site como portfólio durante e antes de entrevistas. Querem ver projetos, papel exato, stack e qualidade de código.
+1. **Recrutadores e entrevistadores** de vagas de estágio e júnior (backend, frontend, full stack, engenharia de software), que abrem o site antes ou durante uma entrevista, quase sempre no computador. Querem ver projetos, papel exato, contexto (acadêmico, equipe, estágio), stack e código.
+2. **Outros desenvolvedores** (colegas, professores, comunidade) que chegam pelo GitHub ou LinkedIn.
 
-Os dois públicos convivem no mesmo site; nenhum é escondido do outro.
+Desde 12/10/2026 o site é só portfólio: o Eros decidiu que misturar com a venda de sites para pequenos negócios não valia a pena.
 
 ## Product Purpose
 
-Portfólio pessoal de Eros Amancio Nascimento que (a) convence pequenos negócios e profissionais liberais a contratarem a criação de um site e (b) serve de portfólio técnico em entrevistas. O próprio site é a principal prova de qualidade. Sucesso: o cliente entende o serviço, confia vendo o site e chama no WhatsApp; o entrevistador encontra projetos, papel e stack sem esforço.
+Portfólio pessoal de desenvolvedor de Eros Amancio Nascimento. Sucesso: em segundos o visitante sabe quem ele é e o que faz; em um clique acha cada projeto com papel, stack e código; e chega ao contato sem procurar. O próprio site é uma amostra do cuidado dele com código e interface.
 
 ## Positioning
 
-Eros faz o visual e também o que fica por trás dele: backend, APIs e integrações (experiência de estágio na Sociiz com FastAPI, Flask, Django, e-mail SMTP/IMAP e a plataforma de videoconferência Sociiz Meet em React + LiveKit). Mensagem: sites que além de bonitos, funcionam.
+Estudante de Ciência da Computação que já trabalha do frontend ao backend: no estágio na Sociiz, backend em Python (FastAPI, Flask, Django), pipeline de OCR e a interface de videoconferência Sociiz Meet (React 19 + LiveKit, com o serviço de tokens em Flask); na faculdade, projetos full stack em React, Python, Java e Spring Boot e jogos em C.
 
 ## Operating Context
 
-- Contato principal: WhatsApp público (81) 99805-0865, com mensagem pré-preenchida. Também e-mail erosamancio06@gmail.com e formulário.
-- Links: GitHub erosamancio, LinkedIn /in/erosamancio.
-- Visitantes-cliente comparam com perfis de Instagram e sites de outros freelancers locais.
+- Contato principal: e-mail erosamancio06@gmail.com, LinkedIn /in/erosamancio, GitHub erosamancio. WhatsApp (81) 99805-0865 também aparece, sem mensagem de venda.
+- Visitantes comparam com outros portfólios de estudantes e devs júnior e com o próprio GitHub dele.
 
 ## Capabilities and Constraints
 
 - Estudante de Ciência da Computação na CESAR School (4º período), estagiário na Sociiz, Recife-PE. Português nativo, inglês fluente.
-- Serviços: landing page, site institucional, site com sistema/integrações.
 - Português no lançamento; inglês depois.
 - Sociiz Meet: pode ser descrito em texto; **nenhuma imagem ou captura do produto** pode ser usada. Código é privado.
 
@@ -50,12 +48,12 @@ Eros faz o visual e também o que fica por trás dele: backend, APIs e integraç
 
 ## Product Principles
 
-1. O site é a prova: cada detalhe precisa sustentar a promessa de qualidade.
-2. Honestidade acima de impressão: nada inventado, acadêmico rotulado como acadêmico, conceito rotulado como conceito.
-3. WhatsApp sempre a um toque de distância.
-4. Celular é a tela principal do cliente; desktop é a do entrevistador. Os dois precisam ser excelentes.
-5. Linguagem de cliente na frente, detalhe técnico um clique adiante.
-6. Visual de desenvolvedor de software, sem metáfora de fora do mundo do software (o Eros recusou a Azulejaria em 12/10/2026 por ser conceitual demais e escolheu a direção Editor de código).
+1. O site é a amostra: cada detalhe precisa sustentar o cuidado que ele diz ter com código e interface.
+2. Honestidade acima de impressão: nada inventado, acadêmico rotulado como acadêmico, equipe rotulada como equipe, conceito rotulado como conceito.
+3. Projetos primeiro: papel, contexto, stack e código a um clique de qualquer lugar.
+4. Desktop é a tela principal do recrutador; o celular precisa ser igualmente bom.
+5. Linguagem de desenvolvedor, clara e direta, sem jargão de marketing.
+6. Visual de desenvolvedor de software, sem metáfora de fora do mundo do software (o Eros recusou a Azulejaria em 12/10/2026 e escolheu e manteve a direção Editor de código).
 
 ## Accessibility & Inclusion
 

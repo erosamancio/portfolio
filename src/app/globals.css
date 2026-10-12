@@ -134,6 +134,11 @@ button {
   border-radius: 4px;
 }
 
+/* The filter hides projects with the hidden attribute; component display rules must not override it. */
+[hidden] {
+  display: none !important;
+}
+
 .wrap {
   width: min(100% - 2 * var(--gutter), var(--max));
   margin-inline: auto;

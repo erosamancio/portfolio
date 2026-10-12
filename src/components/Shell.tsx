@@ -3,29 +3,26 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { ChevronDown, FileCode, FileText, FolderOpen, GitBranch, Menu, X } from "lucide-react";
-import { WhatsAppIcon } from "./BrandIcons";
-import { contact, defaultMessage, projects, whatsappLink } from "@/content/site";
+import { Braces, ChevronDown, FileCode, FileText, FolderOpen, GitBranch, Mail, Menu, X } from "lucide-react";
+import { contact, projects } from "@/content/site";
 import styles from "./Shell.module.css";
 
 type Entry = { file: string; href: string; section?: string };
 
 // The site's pages and home sections, presented as the files of a project.
-const top: Entry[] = [
-  { file: "inicio.tsx", href: "/" },
-  { file: "servicos.md", href: "/#servicos", section: "servicos" },
-];
+const top: Entry[] = [{ file: "README.md", href: "/" }];
 const works: Entry[] = projects.map((p) => ({ file: `${p.slug}.md`, href: `/trabalhos/${p.slug}` }));
 const rest: Entry[] = [
+  { file: "experiencia.md", href: "/#experiencia", section: "experiencia" },
+  { file: "stack.json", href: "/#stack", section: "stack" },
+  { file: "sobre.md", href: "/sobre", section: "sobre" },
   { file: "este-site.ts", href: "/#este-site", section: "este-site" },
-  { file: "processo.md", href: "/#processo", section: "processo" },
-  { file: "perguntas.md", href: "/#perguntas", section: "perguntas" },
-  { file: "sobre.md", href: "/sobre", section: "quem-faz" },
   { file: "contato.ts", href: "/#contato", section: "contato" },
 ];
 const sections = [...top, ...rest].flatMap((e) => (e.section ? [e.section] : [])).concat("trabalhos");
 
 function FileIcon({ file }: { file: string }) {
+  if (file.endsWith(".json")) return <Braces className={styles.iconJson} aria-hidden="true" />;
   const Icon = file.endsWith(".md") ? FileText : FileCode;
   return <Icon className={file.endsWith(".md") ? styles.iconMd : styles.iconTs} aria-hidden="true" />;
 }
@@ -66,7 +63,7 @@ export function Shell({ children }: { children: React.ReactNode }) {
   }, [open]);
 
   const project = projects.find((p) => pathname === `/trabalhos/${p.slug}`);
-  const pageFile = isHome ? "inicio.tsx" : pathname === "/sobre" ? "sobre.md" : project ? `${project.slug}.md` : "404";
+  const pageFile = isHome ? "README.md" : pathname === "/sobre" ? "sobre.md" : project ? `${project.slug}.md` : "404";
   const sectionFile =
     section === "trabalhos" ? "trabalhos" : [...top, ...rest].find((e) => e.section === section)?.file;
   const crumbs = ["portfolio", ...(project ? ["trabalhos"] : []), sectionFile ?? pageFile];
@@ -74,7 +71,7 @@ export function Shell({ children }: { children: React.ReactNode }) {
   const isCurrent = (e: Entry) =>
     isHome ? (e.section ? e.section === section : e.href === "/" && !section) : e.href === pathname;
 
-  const tabs: Entry[] = [{ file: "inicio.tsx", href: "/" }];
+  const tabs: Entry[] = [{ file: "README.md", href: "/" }];
   if (!isHome) tabs.push({ file: pageFile, href: pathname });
 
   const item = (e: Entry, depth = 1) => (
@@ -105,10 +102,10 @@ export function Shell({ children }: { children: React.ReactNode }) {
           </span>
         </Link>
         <div className={styles.actions}>
-          <a className={styles.whats} href={whatsappLink(defaultMessage)} target="_blank" rel="noopener">
-            <WhatsAppIcon />
-            <span>WhatsApp</span>
-          </a>
+          <Link className={styles.cta} href="/#contato" onClick={() => setOpen(false)}>
+            <Mail aria-hidden="true" />
+            <span>Contato</span>
+          </Link>
           <button
             type="button"
             className={styles.toggle}
@@ -173,11 +170,7 @@ export function Shell({ children }: { children: React.ReactNode }) {
                     {t.file}
                   </span>
                 ) : (
-                  <Link
-                    href={t.href}
-                    className={styles.tab}
-                    aria-current={t.file === pageFile ? "page" : undefined}
-                  >
+                  <Link href={t.href} className={styles.tab} aria-current={t.file === pageFile ? "page" : undefined}>
                     <FileIcon file={t.file} />
                     {t.file}
                   </Link>

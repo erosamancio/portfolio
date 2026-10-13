@@ -133,6 +133,11 @@
   font-size: 0.92rem;
   font-weight: 700;
   text-decoration: none;
+  transition: scale 120ms var(--ease-out);
+}
+
+.cta:active {
+  scale: 0.97;
 }
 
 .cta:hover {
@@ -154,6 +159,11 @@
   border-radius: 6px;
   background: transparent;
   cursor: pointer;
+  transition: scale 120ms var(--ease-out);
+}
+
+.toggle:active {
+  scale: 0.97;
 }
 
 .toggle svg {
@@ -343,6 +353,7 @@
 }
 
 .tabs {
+  position: relative;
   display: flex;
   flex: 0 1 auto;
   min-width: 0;

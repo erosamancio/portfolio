@@ -85,7 +85,13 @@
   color: var(--on-accent);
   font-weight: 750;
   text-decoration: none;
-  transition: background 160ms;
+  transition:
+    background 160ms,
+    scale 120ms var(--ease-out);
+}
+
+.primary:active {
+  scale: 0.97;
 }
 
 .primary:hover {
@@ -110,7 +116,12 @@
   text-decoration: none;
   transition:
     background 160ms,
-    border-color 160ms;
+    border-color 160ms,
+    scale 120ms var(--ease-out);
+}
+
+.whatsapp:active {
+  scale: 0.97;
 }
 
 .whatsapp svg {
@@ -370,7 +381,12 @@
   cursor: pointer;
   transition:
     border-color 160ms,
-    color 160ms;
+    color 160ms,
+    scale 120ms var(--ease-out);
+}
+
+.copy:active {
+  scale: 0.97;
 }
 
 .copy:hover {

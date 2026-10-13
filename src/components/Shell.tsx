@@ -267,27 +267,36 @@ export function Shell({ children }: { children: React.ReactNode }) {
         <div className={styles.editor}>
           <div className={styles.tabbar}>
             <ul className={styles.tabs} aria-label="Abas abertas">
-              {tabs.map((t) => (
-                <li key={t.file}>
-                  {t.file === "404" ? (
-                    // No link: prefetching a missing page never settles.
-                    <span className={styles.tab} aria-current="page">
-                      <FileIcon file={t.file} />
-                      {t.file}
-                    </span>
-                  ) : (
-                    <Link
-                      href={t.href}
-                      className={styles.tab}
-                      data-i="tab"
-                      aria-current={t.file === pageFile ? "page" : undefined}
-                    >
-                      <FileIcon file={t.file} />
-                      {t.file}
-                    </Link>
-                  )}
-                </li>
-              ))}
+              <AnimatePresence initial={false} mode="popLayout">
+                {tabs.map((t) => (
+                  <motion.li
+                    key={t.file}
+                    layout="position"
+                    initial={{ opacity: 0, x: -12 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -12 }}
+                    transition={{ duration: duration.short, ease: ease.out }}
+                  >
+                    {t.file === "404" ? (
+                      // No link: prefetching a missing page never settles.
+                      <span className={styles.tab} aria-current="page">
+                        <FileIcon file={t.file} />
+                        {t.file}
+                      </span>
+                    ) : (
+                      <Link
+                        href={t.href}
+                        className={styles.tab}
+                        data-i="tab"
+                        aria-current={t.file === pageFile ? "page" : undefined}
+                      >
+                        <FileIcon file={t.file} />
+                        {t.file}
+                      </Link>
+                    )}
+                  </motion.li>
+                ))}
+              </AnimatePresence>
             </ul>
             <p className={styles.crumbs} aria-hidden="true">
               {crumbs.map((c, i) => (

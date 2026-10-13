@@ -216,6 +216,11 @@
   border-radius: 6px;
   font-weight: 700;
   text-decoration: none;
+  transition: scale 120ms var(--ease-out);
+}
+
+.whatsapp:active {
+  scale: 0.97;
 }
 
 .whatsapp svg {
@@ -240,6 +245,11 @@
   color: var(--on-accent);
   font-weight: 750;
   text-decoration: none;
+  transition: scale 120ms var(--ease-out);
+}
+
+.mailCta:active {
+  scale: 0.97;
 }
 
 .mailCta:hover {

@@ -41,7 +41,12 @@
   transition:
     border-color 160ms,
     background 160ms,
-    color 160ms;
+    color 160ms,
+    scale 120ms var(--ease-out);
+}
+
+.option:active {
+  scale: 0.97;
 }
 
 .option::before {

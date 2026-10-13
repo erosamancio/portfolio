@@ -77,15 +77,16 @@
   text-decoration: none;
   transition:
     background 160ms,
-    transform 160ms var(--ease-out);
+    transform 160ms var(--ease-out),
+    scale 120ms var(--ease-out);
+}
+
+.primary:active {
+  scale: 0.97;
 }
 
 .primary:hover {
   background: var(--accent-hover);
-}
-
-.primary:active {
-  transform: translateY(1px);
 }
 
 .primary svg {
@@ -153,7 +154,12 @@
   transition:
     border-color 160ms,
     background 160ms,
-    color 160ms;
+    color 160ms,
+    scale 120ms var(--ease-out);
+}
+
+.tag:active {
+  scale: 0.97;
 }
 
 .tag:hover {

@@ -9,7 +9,7 @@ import { duration, ease, MOBILE_QUERY } from "@/motion/tokens";
 import { useGsap } from "@/motion/gsap";
 import styles from "./Projects.module.css";
 
-type Props = { filter: Tag | null; onFilter: (tag: Tag | null) => void };
+type Props = { filter: Tag | null; onFilter: (tag: Tag | null) => void; animate: boolean };
 
 function Preview({ project }: { project: Project }) {
   const href = `/trabalhos/${project.slug}`;

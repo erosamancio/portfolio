@@ -3,8 +3,8 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useId, useRef, useState } from "react";
-import { AnimatePresence, motion } from "motion/react";
-import { Braces, ChevronDown, FileCode, FileText, FolderOpen, GitBranch, Mail, Menu, X } from "lucide-react";
+import { AnimatePresence, MotionConfig, motion } from "motion/react";
+import { Braces, Check, ChevronDown, FileCode, FileText, FolderOpen, GitBranch, Mail, Menu, X } from "lucide-react";
 import { contact, projects, whatsappUrl } from "@/content/site";
 import { WhatsAppIcon } from "./BrandIcons";
 import { duration, ease } from "@/motion/tokens";
@@ -133,6 +133,29 @@ export function Shell({ children }: { children: React.ReactNode }) {
     return () => window.removeEventListener("keydown", onKey);
   }, [open]);
 
+  // The status bar's cursor follows the scroll, like a caret moving down a file. It writes to the DOM directly,
+  // so scrolling never re-renders the page.
+  const pos = useRef<HTMLSpanElement>(null);
+  useEffect(() => {
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      const max = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+      const ln = 1 + Math.floor(window.scrollY / 24);
+      const col = 1 + Math.round((window.scrollY / max) * 79);
+      if (pos.current) pos.current.textContent = `Ln ${ln}, Col ${col}`;
+    };
+    const onScroll = () => {
+      if (!frame) frame = requestAnimationFrame(update);
+    };
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      cancelAnimationFrame(frame);
+    };
+  }, [pathname]);
+
   const project = projects.find((p) => pathname === `/trabalhos/${p.slug}`);
   const pageFile = isHome ? "README.md" : pathname === "/sobre" ? "sobre.md" : project ? `${project.slug}.md` : "404";
   const sectionFile =
@@ -145,6 +168,15 @@ export function Shell({ children }: { children: React.ReactNode }) {
   const tabs: Entry[] = [{ file: "README.md", href: "/" }];
   if (!isHome) tabs.push({ file: pageFile, href: pathname });
 
+  const activeBar = (
+    <motion.span
+      layoutId="explorer-active"
+      className={styles.activeBar}
+      transition={{ duration: duration.base, ease: ease.out }}
+      aria-hidden="true"
+    />
+  );
+
   const item = (e: Entry, depth = 1) => (
     <li key={e.file}>
       <Link
@@ -155,6 +187,7 @@ export function Shell({ children }: { children: React.ReactNode }) {
         aria-current={isCurrent(e) ? "location" : undefined}
         onClick={() => setOpen(false)}
       >
+        {isCurrent(e) && activeBar}
         <FileIcon file={e.file} />
         {e.file}
       </Link>
@@ -162,135 +195,144 @@ export function Shell({ children }: { children: React.ReactNode }) {
   );
 
   return (
-    <div className={styles.app}>
-      <Opening />
-      <header className={styles.title}>
-        <Link href="/" className={styles.brand} onClick={() => setOpen(false)}>
-          <span className={styles.mark} aria-hidden="true">
-            EA
-          </span>
-          Eros Amancio
-          <span className={styles.repo} aria-hidden="true">
-            ~/portfolio
-          </span>
-        </Link>
-        <div className={styles.actions}>
-          <ContactMenu onNavigate={() => setOpen(false)} />
-          <button
-            type="button"
-            className={styles.toggle}
-            aria-expanded={open}
-            aria-controls="explorador"
-            onClick={() => setOpen((v) => !v)}
-          >
-            {open ? <X aria-hidden="true" /> : <Menu aria-hidden="true" />}
-            <span className="sr-only">{open ? "Fechar menu" : "Abrir menu"}</span>
-          </button>
-        </div>
-      </header>
-
-      <nav id="explorador" className={styles.side} data-open={open} aria-label="Principal">
-        <p className={styles.sideTitle}>Explorador</p>
-        <ul className={styles.tree}>
-          <li>
-            <span className={styles.folder} data-i="tree">
-              <ChevronDown aria-hidden="true" />
-              <FolderOpen aria-hidden="true" />
-              portfolio
+    <MotionConfig reducedMotion="user">
+      <div className={styles.app}>
+        <Opening />
+        <header className={styles.title}>
+          <Link href="/" className={styles.brand} onClick={() => setOpen(false)}>
+            <span className={styles.mark} aria-hidden="true">
+              EA
             </span>
-            <ul>
-              {top.map((e) => item(e))}
-              <li>
-                <Link
-                  href="/#trabalhos"
-                  className={`${styles.file} ${styles.folder}`}
-                  data-i="tree"
-                  style={{ "--depth": 1 } as React.CSSProperties}
-                  aria-current={isHome && section === "trabalhos" ? "location" : undefined}
-                  onClick={() => setOpen(false)}
-                >
-                  <ChevronDown aria-hidden="true" />
-                  <FolderOpen aria-hidden="true" />
-                  trabalhos
-                </Link>
-                <ul>{works.map((e) => item(e, 2))}</ul>
-              </li>
-              {rest.map((e) => item(e))}
-            </ul>
-          </li>
-        </ul>
-      </nav>
-      <button
-        type="button"
-        className={styles.scrim}
-        data-open={open}
-        tabIndex={-1}
-        aria-hidden="true"
-        onClick={() => setOpen(false)}
-      />
+            Eros Amancio
+            <span className={styles.repo} aria-hidden="true">
+              ~/portfolio
+            </span>
+          </Link>
+          <div className={styles.actions}>
+            <ContactMenu onNavigate={() => setOpen(false)} />
+            <button
+              type="button"
+              className={styles.toggle}
+              aria-expanded={open}
+              aria-controls="explorador"
+              onClick={() => setOpen((v) => !v)}
+            >
+              {open ? <X aria-hidden="true" /> : <Menu aria-hidden="true" />}
+              <span className="sr-only">{open ? "Fechar menu" : "Abrir menu"}</span>
+            </button>
+          </div>
+        </header>
 
-      <div className={styles.editor}>
-        <div className={styles.tabbar}>
-          <ul className={styles.tabs} aria-label="Abas abertas">
-            {tabs.map((t) => (
-              <li key={t.file}>
-                {t.file === "404" ? (
-                  // No link: prefetching a missing page never settles.
-                  <span className={styles.tab} aria-current="page">
-                    <FileIcon file={t.file} />
-                    {t.file}
-                  </span>
-                ) : (
+        <nav id="explorador" className={styles.side} data-open={open} aria-label="Principal">
+          <p className={styles.sideTitle}>Explorador</p>
+          <ul className={styles.tree}>
+            <li>
+              <span className={styles.folder} data-i="tree">
+                <ChevronDown aria-hidden="true" />
+                <FolderOpen aria-hidden="true" />
+                portfolio
+              </span>
+              <ul>
+                {top.map((e) => item(e))}
+                <li>
                   <Link
-                    href={t.href}
-                    className={styles.tab}
-                    data-i="tab"
-                    aria-current={t.file === pageFile ? "page" : undefined}
+                    href="/#trabalhos"
+                    className={`${styles.file} ${styles.folder}`}
+                    data-i="tree"
+                    style={{ "--depth": 1 } as React.CSSProperties}
+                    aria-current={isHome && section === "trabalhos" ? "location" : undefined}
+                    onClick={() => setOpen(false)}
                   >
-                    <FileIcon file={t.file} />
-                    {t.file}
+                    {isHome && section === "trabalhos" && activeBar}
+                    <ChevronDown aria-hidden="true" />
+                    <FolderOpen aria-hidden="true" />
+                    trabalhos
                   </Link>
-                )}
-              </li>
-            ))}
+                  <ul>{works.map((e) => item(e, 2))}</ul>
+                </li>
+                {rest.map((e) => item(e))}
+              </ul>
+            </li>
           </ul>
-          <p className={styles.crumbs} aria-hidden="true">
-            {crumbs.map((c, i) => (
-              <span key={i}>{c}</span>
-            ))}
-          </p>
-        </div>
-        <main id="conteudo" className={styles.main}>
-          {children}
-        </main>
-      </div>
+        </nav>
+        <button
+          type="button"
+          className={styles.scrim}
+          data-open={open}
+          tabIndex={-1}
+          aria-hidden="true"
+          onClick={() => setOpen(false)}
+        />
 
-      <footer className={styles.status}>
-        <p className={styles.statusLeft}>
-          <span className={styles.branch}>
-            <GitBranch aria-hidden="true" /> main
-          </span>
-          <span>Eros Amancio · Recife, PE</span>
-        </p>
-        <ul className={styles.statusLinks}>
-          <li>
-            <a href={contact.github} target="_blank" rel="noopener">
-              GitHub
-            </a>
-          </li>
-          <li>
-            <a href={contact.linkedin} target="_blank" rel="noopener">
-              LinkedIn
-            </a>
-          </li>
-          <li>
-            <a href={`mailto:${contact.email}`}>{contact.email}</a>
-          </li>
-          <li>
-            <Link href="/sobre">Sobre e experiência</Link>
-          </li>
-        </ul>
-      </footer>
-    </div>
+        <div className={styles.editor}>
+          <div className={styles.tabbar}>
+            <ul className={styles.tabs} aria-label="Abas abertas">
+              {tabs.map((t) => (
+                <li key={t.file}>
+                  {t.file === "404" ? (
+                    // No link: prefetching a missing page never settles.
+                    <span className={styles.tab} aria-current="page">
+                      <FileIcon file={t.file} />
+                      {t.file}
+                    </span>
+                  ) : (
+                    <Link
+                      href={t.href}
+                      className={styles.tab}
+                      data-i="tab"
+                      aria-current={t.file === pageFile ? "page" : undefined}
+                    >
+                      <FileIcon file={t.file} />
+                      {t.file}
+                    </Link>
+                  )}
+                </li>
+              ))}
+            </ul>
+            <p className={styles.crumbs} aria-hidden="true">
+              {crumbs.map((c, i) => (
+                <span key={i}>{c}</span>
+              ))}
+            </p>
+          </div>
+          <main id="conteudo" className={styles.main}>
+            {children}
+          </main>
+        </div>
+
+        <footer className={styles.status}>
+          <p className={styles.statusLeft}>
+            <span className={styles.branch}>
+              <GitBranch aria-hidden="true" /> main
+            </span>
+            <span ref={pos} className={styles.pos} aria-hidden="true">
+              Ln 1, Col 1
+            </span>
+            <span data-build="" className={styles.build}>
+              <Check aria-hidden="true" /> pronto
+            </span>
+            <span>Eros Amancio · Recife, PE</span>
+          </p>
+          <ul className={styles.statusLinks}>
+            <li>
+              <a href={contact.github} target="_blank" rel="noopener">
+                GitHub
+              </a>
+            </li>
+            <li>
+              <a href={contact.linkedin} target="_blank" rel="noopener">
+                LinkedIn
+              </a>
+            </li>
+            <li>
+              <a href={`mailto:${contact.email}`}>{contact.email}</a>
+            </li>
+            <li>
+              <Link href="/sobre">Sobre e experiência</Link>
+            </li>
+          </ul>
+        </footer>
+      </div>
+    </MotionConfig>
   );
 }

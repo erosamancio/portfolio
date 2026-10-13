@@ -84,6 +84,15 @@ export function Opening() {
       );
       tl.fromTo(all('[data-i="actions"]'), { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.5 }, 0.95);
 
+      // The status bar compiles along with the opening and settles on "pronto".
+      const label = document.querySelector("[data-build]")?.lastChild;
+      if (label) {
+        const text = label.textContent;
+        label.textContent = " compilando…";
+        tl.call(() => (label.textContent = " compilado em 0,8s"), undefined, 0.9);
+        tl.call(() => (label.textContent = text), undefined, 2.0);
+      }
+
       events.forEach((e) => window.addEventListener(e, skip, { once: true, passive: true }));
     });
 

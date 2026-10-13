@@ -214,3 +214,17 @@ button {
 .skip:focus {
   top: 1rem;
 }
+
+/* ---------- opening sequence ----------
+   The server HTML is the finished page. While the sequence is about to play, the pieces it animates start hidden;
+   if the script never runs, the fail-safe reveals them after 3s. */
+html[data-intro="play"] [data-i] {
+  opacity: 0;
+  animation: intro-failsafe 0.01s 3s forwards;
+}
+
+@keyframes intro-failsafe {
+  to {
+    opacity: 1;
+  }
+}

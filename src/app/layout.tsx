@@ -46,12 +46,18 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0c1015",
+  themeColor: "#141417",
 };
+
+const introScript = `try{var d=document.documentElement,p=location.pathname==="/"&&!sessionStorage.getItem("intro")&&!matchMedia("(prefers-reduced-motion: reduce)").matches;d.dataset.intro=p?"play":"done"}catch(e){document.documentElement.dataset.intro="done"}`;
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="pt-BR" className={`${archivo.variable} ${mono.variable}`}>
+    <html lang="pt-BR" className={`${archivo.variable} ${mono.variable}`} suppressHydrationWarning>
+      <head>
+        {/* Decides before first paint whether the opening sequence plays: home page, once per session, no reduced motion. */}
+        <script dangerouslySetInnerHTML={{ __html: introScript }} />
+      </head>
       <body>
         <a className="skip" href="#conteudo">
           Pular para o conteúdo

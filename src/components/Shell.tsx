@@ -8,6 +8,7 @@ import { Braces, ChevronDown, FileCode, FileText, FolderOpen, GitBranch, Mail, M
 import { contact, projects, whatsappUrl } from "@/content/site";
 import { WhatsAppIcon } from "./BrandIcons";
 import { duration, ease } from "@/motion/tokens";
+import { Opening } from "@/motion/Opening";
 import styles from "./Shell.module.css";
 
 type Entry = { file: string; href: string; section?: string };
@@ -149,6 +150,7 @@ export function Shell({ children }: { children: React.ReactNode }) {
       <Link
         href={e.href}
         className={styles.file}
+        data-i="tree"
         style={{ "--depth": depth } as React.CSSProperties}
         aria-current={isCurrent(e) ? "location" : undefined}
         onClick={() => setOpen(false)}
@@ -161,6 +163,7 @@ export function Shell({ children }: { children: React.ReactNode }) {
 
   return (
     <div className={styles.app}>
+      <Opening />
       <header className={styles.title}>
         <Link href="/" className={styles.brand} onClick={() => setOpen(false)}>
           <span className={styles.mark} aria-hidden="true">
@@ -190,7 +193,7 @@ export function Shell({ children }: { children: React.ReactNode }) {
         <p className={styles.sideTitle}>Explorador</p>
         <ul className={styles.tree}>
           <li>
-            <span className={styles.folder}>
+            <span className={styles.folder} data-i="tree">
               <ChevronDown aria-hidden="true" />
               <FolderOpen aria-hidden="true" />
               portfolio
@@ -201,6 +204,7 @@ export function Shell({ children }: { children: React.ReactNode }) {
                 <Link
                   href="/#trabalhos"
                   className={`${styles.file} ${styles.folder}`}
+                  data-i="tree"
                   style={{ "--depth": 1 } as React.CSSProperties}
                   aria-current={isHome && section === "trabalhos" ? "location" : undefined}
                   onClick={() => setOpen(false)}
@@ -237,7 +241,12 @@ export function Shell({ children }: { children: React.ReactNode }) {
                     {t.file}
                   </span>
                 ) : (
-                  <Link href={t.href} className={styles.tab} aria-current={t.file === pageFile ? "page" : undefined}>
+                  <Link
+                    href={t.href}
+                    className={styles.tab}
+                    data-i="tab"
+                    aria-current={t.file === pageFile ? "page" : undefined}
+                  >
                     <FileIcon file={t.file} />
                     {t.file}
                   </Link>

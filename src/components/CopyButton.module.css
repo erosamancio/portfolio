@@ -1,0 +1,23 @@
+.icon {
+  position: relative;
+  display: inline-grid;
+  flex: none;
+}
+
+.icon > svg {
+  grid-area: 1 / 1;
+  transition:
+    opacity 300ms cubic-bezier(0.2, 0, 0, 1),
+    scale 300ms cubic-bezier(0.2, 0, 0, 1);
+}
+
+.icon > svg:last-child,
+.icon[data-copied] > svg:first-child {
+  opacity: 0;
+  scale: 0.25;
+}
+
+.icon[data-copied] > svg:last-child {
+  opacity: 1;
+  scale: 1;
+}

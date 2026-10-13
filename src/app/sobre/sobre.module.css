@@ -273,4 +273,17 @@
   .links a {
     min-height: 2.75rem;
   }
+
+  .projectList a {
+    display: inline-block;
+    padding-block: 0.7rem;
+    margin-block: -0.7rem;
+  }
+}
+
+/* On a phone the portrait is a small avatar-sized card, so the introduction comes first. */
+@media (max-width: 39.99rem) {
+  .portrait {
+    width: min(100%, 12rem);
+  }
 }

@@ -1,15 +1,14 @@
 import { useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { AnimatePresence, m } from "motion/react";
 import { ArrowRight, Component, Lock } from "lucide-react";
 import { projects, tags, techColor, type Project, type Tag } from "@/content/site";
 import code from "./code.module.css";
-import { duration, ease, MOBILE_QUERY } from "@/motion/tokens";
+import { MOBILE_QUERY } from "@/motion/tokens";
 import { useGsap } from "@/motion/gsap";
 import styles from "./Projects.module.css";
 
-type Props = { filter: Tag | null; onFilter: (tag: Tag | null) => void };
+type Props = { filter: Tag | null; onFilter: (tag: Tag | null) => void; animate: boolean };
 
 function Preview({ project }: { project: Project }) {
   const href = `/trabalhos/${project.slug}`;
@@ -102,7 +101,7 @@ function useDiffReveal(root: React.RefObject<HTMLElement | null>) {
   });
 }
 
-export function Projects({ filter, onFilter }: Props) {
+export function Projects({ filter, onFilter, animate }: Props) {
   const section = useRef<HTMLElement>(null);
   useDiffReveal(section);
   const count = (t: Tag) => projects.filter((p) => p.tags.includes(t)).length;
@@ -144,67 +143,57 @@ export function Projects({ filter, onFilter }: Props) {
               </button>
             ))}
           </div>
-          <div className={styles.status} aria-live="polite">
-            <AnimatePresence mode="wait" initial={false}>
-              <m.p
-                key={filter ?? "todos"}
-                initial={{ opacity: 0, y: 6 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -6 }}
-                transition={{ duration: duration.short, ease: ease.out }}
-              >
-                {filter ? `${shown} de ${projects.length} projetos usam ${filter}` : `${projects.length} projetos`}
-              </m.p>
-            </AnimatePresence>
-          </div>
+          <p
+            key={filter ?? "todos"}
+            className={styles.status}
+            data-animate={animate ? "" : undefined}
+            aria-live="polite"
+          >
+            {filter ? `${shown} de ${projects.length} projetos usam ${filter}` : `${projects.length} projetos`}
+          </p>
         </div>
 
-        <div className={styles.list}>
-          <AnimatePresence mode="popLayout" initial={false}>
-            {projects.map((p) => {
-              if (filter && !p.tags.includes(filter)) return null;
-              order++;
-              return (
-                <m.article
-                  key={p.slug}
-                  layout="position"
-                  className={styles.work}
-                  data-diff=""
-                  data-flip={order % 2 === 0 ? "" : undefined}
-                  initial={{ opacity: 0, y: 12 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -8 }}
-                  transition={{ duration: duration.base, ease: ease.out }}
-                >
-                  <Preview project={p} />
-                  <div className={styles.text}>
-                    <p className={styles.hunk} data-reveal="" aria-hidden="true">
-                      <span>+</span> trabalhos/{p.slug}.md
-                    </p>
-                    <h3 className={styles.h3} data-reveal="">
-                      <Link href={`/trabalhos/${p.slug}`}>{p.name}</Link>
-                    </h3>
-                    <p className={styles.meta} data-reveal="">
-                      {p.context} · {p.role}
-                    </p>
-                    <p className={styles.summary} data-reveal="">
-                      {p.summary}
-                    </p>
-                    <ul className={styles.tags} aria-label="Tecnologias" data-reveal="">
-                      {p.stack.map((t) => (
-                        <li key={t} style={{ "--tech": techColor(t) } as React.CSSProperties}>
-                          {t}
-                        </li>
-                      ))}
-                    </ul>
-                    <Link href={`/trabalhos/${p.slug}`} className={styles.more} data-reveal="">
-                      Ler estudo de caso <ArrowRight aria-hidden="true" />
-                    </Link>
-                  </div>
-                </m.article>
-              );
-            })}
-          </AnimatePresence>
+        <div className={styles.list} data-animate={animate ? "" : undefined}>
+          {projects.map((p) => {
+            const visible = !filter || p.tags.includes(filter);
+            if (visible) order++;
+            return (
+              <article
+                key={p.slug}
+                className={styles.work}
+                hidden={!visible}
+                data-diff=""
+                data-flip={visible && order % 2 === 0 ? "" : undefined}
+                style={{ "--i": Math.min(Math.max(order - 1, 0), 3) } as React.CSSProperties}
+              >
+                <Preview project={p} />
+                <div className={styles.text}>
+                  <p className={styles.hunk} data-reveal="" aria-hidden="true">
+                    <span>+</span> trabalhos/{p.slug}.md
+                  </p>
+                  <h3 className={styles.h3} data-reveal="">
+                    <Link href={`/trabalhos/${p.slug}`}>{p.name}</Link>
+                  </h3>
+                  <p className={styles.meta} data-reveal="">
+                    {p.context} · {p.role}
+                  </p>
+                  <p className={styles.summary} data-reveal="">
+                    {p.summary}
+                  </p>
+                  <ul className={styles.tags} aria-label="Tecnologias" data-reveal="">
+                    {p.stack.map((t) => (
+                      <li key={t} style={{ "--tech": techColor(t) } as React.CSSProperties}>
+                        {t}
+                      </li>
+                    ))}
+                  </ul>
+                  <Link href={`/trabalhos/${p.slug}`} className={styles.more} data-reveal="">
+                    Ler estudo de caso <ArrowRight aria-hidden="true" />
+                  </Link>
+                </div>
+              </article>
+            );
+          })}
         </div>
       </div>
     </section>

@@ -1,9 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { AnimatePresence, m } from "motion/react";
 import { Check, Copy } from "lucide-react";
-import { duration, ease } from "@/motion/tokens";
+import styles from "./CopyButton.module.css";
 
 type State = "idle" | "copied" | "failed";
 
@@ -27,20 +26,10 @@ export function CopyButton({ value, className }: { value: string; className?: st
 
   return (
     <button type="button" className={className} onClick={copy} data-state={state}>
-      {/* The icon swaps with a quick scale and fade, so "copied" registers without the layout moving. */}
-      <span style={{ display: "inline-grid", width: "1em", height: "1em" }} aria-hidden="true">
-        <AnimatePresence mode="popLayout" initial={false}>
-          <m.span
-            key={state === "copied" ? "check" : "copy"}
-            style={{ display: "grid", placeItems: "center", gridArea: "1 / 1" }}
-            initial={{ opacity: 0, scale: 0.6 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.6 }}
-            transition={{ duration: duration.short, ease: ease.out }}
-          >
-            {state === "copied" ? <Check /> : <Copy />}
-          </m.span>
-        </AnimatePresence>
+      {/* Both icons stay mounted so the swap cross-fades both ways instead of popping. */}
+      <span className={styles.icon} data-copied={state === "copied" ? "" : undefined} aria-hidden="true">
+        <Copy />
+        <Check />
       </span>
       <span aria-live="polite">
         {state === "copied"

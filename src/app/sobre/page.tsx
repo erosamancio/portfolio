@@ -16,15 +16,27 @@ export const metadata: Metadata = {
 const sociiz = [
   {
     name: "Sociiz Meet",
-    text: "Interface de videoconferência em React 19 e Vite com LiveKit: lobby com prévia de câmera e microfone, sala com chat em tempo real, compartilhamento de tela, painel de participantes, mão levantada, indicador de sinal, convite por link, estados de conexão e tela de pós-reunião, tudo com a identidade visual da Sociiz. No backend, um serviço em Flask gera os tokens de acesso às salas com as permissões de cada participante.",
+    text: "Construí a interface de videoconferência em React 19 e Vite com LiveKit: lobby com prévia de câmera e microfone, sala com chat em tempo real, compartilhamento de tela, painel de participantes, mão levantada, indicador de sinal, convite por link, estados de conexão e tela de pós-reunião, com a identidade visual da Sociiz. No backend, um serviço em Flask emite os tokens de acesso às salas com as permissões de cada participante.",
   },
   {
     name: "Pipeline de OCR",
-    text: "Rotinas em Python para extrair dados de documentos e PDFs com PaddleOCR, OpenCV, NumPy e PDF2Image, expostas por FastAPI, com uso de Label Studio para anotação e integração com armazenamento em nuvem.",
+    text: "Desenvolvi e mantenho as rotinas em Python que extraem dados de documentos e PDFs, com PaddleOCR, OpenCV, NumPy e PDF2Image. Elas são expostas por FastAPI, usam o Label Studio para anotação e se integram a um armazenamento em nuvem.",
+  },
+  {
+    name: "API principal e fluxos financeiros",
+    text: "Criei vários endpoints na API principal da empresa e trabalhei em diversos fluxos financeiros do sistema.",
+  },
+  {
+    name: "AWS e automações",
+    text: "Trabalhei com serviços da AWS e escrevi automações em Python.",
+  },
+  {
+    name: "Câmeras Intelbras",
+    text: "Trabalhei com serviços de câmeras da Intelbras.",
   },
   {
     name: "Backend e integrações",
-    text: "Manutenção de aplicações em Django e configuração de e-mail corporativo com SMTP, IMAP e POP3, incluindo TLS/SSL e diagnóstico de falhas de autenticação.",
+    text: "Mantive aplicações em Django e configurei o e-mail corporativo com SMTP, IMAP e POP3, com TLS/SSL e diagnóstico de falhas de autenticação.",
   },
 ];
 
@@ -40,8 +52,8 @@ export default function SobrePage() {
             Eros Amancio
           </h1>
           <p className={styles.lead}>
-            Estudante de Ciência da Computação na CESAR School, no 4º período, e estagiário na Sociiz, em Recife.
-            Trabalho com frontend em React, backend em Python e Java e com as integrações que ligam um ao outro.
+            Estudo Ciência da Computação na CESAR School, no 4º período, e faço estágio na Sociiz, em Recife. Trabalho
+            com backend em Python e Java, frontend em React e as integrações entre os dois.
           </p>
           <ul className={styles.links}>
             <li>
@@ -80,8 +92,8 @@ export default function SobrePage() {
           <h3 className={styles.h3}>Sociiz</h3>
           <p className={styles.meta}>Estagiário de Banco de Dados · Recife, PE</p>
           <p>
-            Um estágio que foi além do banco de dados, com participação em backend, frontend, processamento de
-            documentos e comunicação em tempo real.
+            Entrei como estagiário de banco de dados e hoje trabalho em várias frentes da empresa, do backend à
+            interface.
           </p>
           <ul className={styles.items}>
             {sociiz.map((s) => (
@@ -158,8 +170,8 @@ export default function SobrePage() {
           Interesses
         </h2>
         <p className={styles.plain}>
-          Backend, full stack, banco de dados e segurança da informação. A base que levo para segurança vem do que já
-          uso no dia a dia: redes, protocolos, autenticação por token, TLS/SSL e comunicação entre sistemas.
+          Quero seguir em backend, full stack, banco de dados e segurança da informação. Minha base para segurança é o
+          que já uso no dia a dia: redes, protocolos, autenticação por token, TLS/SSL e comunicação entre sistemas.
         </p>
       </section>
 

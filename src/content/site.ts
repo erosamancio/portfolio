@@ -147,7 +147,7 @@ export const projects: Project[] = [
       },
       {
         heading: "O que eu fiz",
-        text: "Atuei no full stack: construí telas e comportamento no frontend, integrei a interface com o backend em Django e Python e participei da identidade visual, inspirada no universo arcade, em joysticks e em sistemas de pontuação. O projeto tem testes de ponta a ponta com Selenium e build e deploy automatizados com GitHub Actions.",
+        text: "Atuei no full stack: construí telas e comportamento no frontend, integrei a interface com o backend em Django e Python e participei da identidade visual, inspirada em fliperamas e sistemas de pontuação. O projeto tem testes de ponta a ponta com Selenium e build e deploy automatizados com GitHub Actions.",
       },
     ],
   },
@@ -237,15 +237,27 @@ export const experience = [
   {
     name: "Sociiz Meet",
     slug: "sociiz-meet",
-    text: "Interface de videoconferência em React 19 e Vite sobre o LiveKit, e o serviço em Flask que gera os tokens de acesso às salas.",
+    text: "Construí a interface de videoconferência em React 19 e Vite sobre o LiveKit e o serviço em Flask que emite os tokens de acesso às salas.",
   },
   {
     name: "Pipeline de OCR",
-    text: "Rotinas em Python para extrair dados de documentos e PDFs com PaddleOCR, OpenCV, NumPy e PDF2Image, expostas por FastAPI, com Label Studio para anotação e integração com armazenamento em nuvem.",
+    text: "Desenvolvi e mantenho as rotinas em Python que extraem dados de documentos e PDFs, com PaddleOCR, OpenCV, NumPy e PDF2Image. Elas são expostas por FastAPI, usam o Label Studio para anotação e se integram a um armazenamento em nuvem.",
+  },
+  {
+    name: "API principal e fluxos financeiros",
+    text: "Criei vários endpoints na API principal da empresa e trabalhei em diversos fluxos financeiros do sistema.",
+  },
+  {
+    name: "AWS e automações",
+    text: "Trabalhei com serviços da AWS e escrevi automações em Python.",
+  },
+  {
+    name: "Câmeras Intelbras",
+    text: "Trabalhei com serviços de câmeras da Intelbras.",
   },
   {
     name: "Backend e integrações",
-    text: "Manutenção de aplicações em Django e configuração de e-mail corporativo com SMTP, IMAP e POP3, incluindo TLS/SSL e diagnóstico de falhas de autenticação.",
+    text: "Mantive aplicações em Django e configurei o e-mail corporativo com SMTP, IMAP e POP3, com TLS/SSL e diagnóstico de falhas de autenticação.",
   },
 ];
 
@@ -259,6 +271,7 @@ export const skills = [
   },
   { group: "tempoReal", label: "Tempo real", items: ["LiveKit", "WebRTC (integração)", "WebSockets"] },
   { group: "documentos", label: "Documentos e OCR", items: ["PaddleOCR", "OpenCV", "PDF2Image"] },
+  { group: "nuvem", label: "Nuvem e automação", items: ["AWS (Boto3)", "Automações em Python"] },
   { group: "testes", label: "Testes e entrega", items: ["Selenium", "GitHub Actions (CI/CD)", "Docker", "Maven"] },
   { group: "jogos", label: "Jogos", items: ["Raylib"] },
   { group: "ferramentas", label: "Ferramentas", items: ["Git", "GitHub", "VS Code", "IntelliJ IDEA"] },

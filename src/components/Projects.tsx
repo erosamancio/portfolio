@@ -11,7 +11,13 @@ function Preview({ project }: { project: Project }) {
   const href = `/trabalhos/${project.slug}`;
   if (project.image) {
     return (
-      <Link href={href} className={styles.shot} tabIndex={-1} aria-hidden="true">
+      <Link
+        href={href}
+        className={styles.shot}
+        data-tall={project.image.height > project.image.width ? "" : undefined}
+        tabIndex={-1}
+        aria-hidden="true"
+      >
         <span className={styles.shotBar}>{project.image.src.split("/").pop()}</span>
         <Image
           src={project.image.src}

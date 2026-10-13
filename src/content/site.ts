@@ -68,8 +68,8 @@ export const projects: Project[] = [
   {
     slug: "cicle",
     name: "Ciclê",
-    context: "Projeto em equipe",
-    stack: ["Java", "Spring Boot", "React", "JavaScript"],
+    context: "Projeto acadêmico para a Edenred",
+    stack: ["Java", "Spring Boot", "Spring Data JPA", "React", "JavaScript", "Docker"],
     tags: ["Java", "React"],
     role: "Full stack",
     summary:
@@ -84,11 +84,11 @@ export const projects: Project[] = [
     body: [
       {
         heading: "O que é",
-        text: "Uma ferramenta web que calcula a emissão de carbono de uma empresa a partir das transações que ela processa. A tela de memória de cálculo mostra de onde vem cada número: volume de transações do mês, a divisão entre pagamentos por aproximação e cartões físicos e a composição da frota de cartões.",
+        text: "Uma ferramenta web desenvolvida no CESAR School para a Edenred, que calcula a emissão de carbono de uma empresa a partir das transações que ela processa. A tela de memória de cálculo mostra de onde vem cada número: volume de transações do mês, a divisão entre pagamentos por aproximação e cartões físicos e a composição da frota de cartões.",
       },
       {
         heading: "O que eu fiz",
-        text: "Trabalhei no full stack: o backend em Java com Spring Boot e a interface em React e JavaScript, que apresenta o cálculo de forma legível para quem não é especialista.",
+        text: "Trabalhei no full stack: o backend em Java com Spring Boot, Spring Data JPA e H2, empacotado com Maven e Docker, e a interface em React e JavaScript, que apresenta o cálculo de forma legível para quem não é especialista.",
       },
     ],
   },
@@ -96,11 +96,11 @@ export const projects: Project[] = [
     slug: "joyscore",
     name: "Joyscore",
     context: "Projeto acadêmico",
-    stack: ["React", "Python"],
-    tags: ["React", "Python"],
+    stack: ["Django", "Python", "JavaScript", "Selenium", "GitHub Actions"],
+    tags: ["Python"],
     role: "Full stack",
     summary:
-      "Plataforma web para descobrir e avaliar jogos, com busca, filtro por gênero e destaques. Trabalhei da interface em React ao backend em Python.",
+      "Plataforma web para descobrir e avaliar jogos, com busca, filtro por gênero e destaques. Trabalhei da interface ao backend em Django, com testes E2E e CI/CD.",
     image: {
       src: "/images/joyscore.jpg",
       width: 1900,
@@ -115,7 +115,7 @@ export const projects: Project[] = [
       },
       {
         heading: "O que eu fiz",
-        text: "Atuei no full stack: construí componentes e telas em React, integrei a interface com o backend em Python e participei da identidade visual, inspirada no universo arcade, em joysticks e em sistemas de pontuação.",
+        text: "Atuei no full stack: construí telas e comportamento no frontend, integrei a interface com o backend em Django e Python e participei da identidade visual, inspirada no universo arcade, em joysticks e em sistemas de pontuação. O projeto tem testes de ponta a ponta com Selenium e build e deploy automatizados com GitHub Actions.",
       },
     ],
   },
@@ -172,6 +172,33 @@ export const projects: Project[] = [
       },
     ],
   },
+  {
+    slug: "kivo",
+    name: "KIVO",
+    context: "Projeto acadêmico para o Jornal do Commercio",
+    stack: ["Django", "Python", "Selenium", "Pillow", "Bootstrap Icons"],
+    tags: ["Python"],
+    role: "Full stack",
+    summary:
+      "Repaginação do portal do Jornal do Commercio em mobile first, pensada para aumentar a fidelidade dos leitores e levá-los ao segundo clique. Trabalhei no full stack com Django e Python.",
+    image: {
+      src: "/images/kivo.jpg",
+      width: 950,
+      height: 1266,
+      alt: "Página inicial do KIVO no celular, com o cabeçalho do JC PE, a notícia em destaque sobre a greve no Metrô do Recife e o carrossel Estamos de olho",
+    },
+    repo: "https://github.com/Lucascbayma/KIVO",
+    body: [
+      {
+        heading: "O que é",
+        text: "Uma nova implementação do visual do portal do Jornal do Commercio, feita em um projeto do CESAR School com estudantes de Ciência da Computação e de Design. O desafio do jornal era aumentar a fidelidade dos leitores: fazer quem chega pelas buscas ficar mais tempo e dar o segundo clique.",
+      },
+      {
+        heading: "O que eu fiz",
+        text: "Atuei como full stack. O site foi pensado primeiro para o celular e construído em Django e Python, com testes de ponta a ponta em Selenium.",
+      },
+    ],
+  },
 ];
 
 export const experience = [
@@ -193,8 +220,14 @@ export const experience = [
 export const skills = [
   { group: "linguagens", label: "Linguagens", items: ["Python", "JavaScript", "Java", "C", "SQL"] },
   { group: "frontend", label: "Frontend", items: ["React", "Vite", "CSS responsivo"] },
-  { group: "backend", label: "Backend", items: ["FastAPI", "Flask", "Django", "Spring Boot", "APIs REST"] },
+  {
+    group: "backend",
+    label: "Backend",
+    items: ["FastAPI", "Flask", "Django", "Spring Boot", "Spring Data JPA", "APIs REST"],
+  },
   { group: "tempoReal", label: "Tempo real", items: ["LiveKit", "WebRTC (integração)", "WebSockets"] },
   { group: "documentos", label: "Documentos e OCR", items: ["PaddleOCR", "OpenCV", "PDF2Image"] },
+  { group: "testes", label: "Testes e entrega", items: ["Selenium", "GitHub Actions (CI/CD)", "Docker", "Maven"] },
+  { group: "jogos", label: "Jogos", items: ["Raylib"] },
   { group: "ferramentas", label: "Ferramentas", items: ["Git", "GitHub", "VS Code", "IntelliJ IDEA"] },
 ];

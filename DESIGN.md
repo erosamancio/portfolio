@@ -302,7 +302,7 @@ Cabeçalho com ícone em `syn-kw` e nome do arquivo em mono, corpo `bg-alt` com 
 |---|---|
 | `public/images/eros.jpg` | Foto enviada pelo Eros, recorte quadrado (800×800) |
 | `public/images/cicle.jpg` | Print enviado pelo Eros (915×650); painel direito cortado e a descrição do painel esquerdo borrada até confirmar a menção a um terceiro |
-| `public/images/joyscore.jpg`, `recife-beat.jpg`, `the-draft.jpg` | Prints e arte enviados pelo Eros, só redimensionados |
+| `public/images/joyscore.jpg`, `recife-beat.jpg`, `the-draft.jpg`, `kivo.jpg` | Prints e arte enviados pelo Eros, só redimensionados |
 
 Sociiz Meet não tem e não pode ter imagens.
 

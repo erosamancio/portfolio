@@ -64,11 +64,14 @@ export default function Home() {
             </div>
             <div className={styles.aboutText} data-about="">
               <H2 id="sobre-title">Sobre</H2>
-              <p className={styles.big}>Do banco de dados à interface, passando pela API que liga os dois.</p>
+              <p className={styles.big}>
+                Entrei para cuidar de banco de dados e acabei no backend, nas integrações e na interface.
+              </p>
               <p className={styles.soft}>
-                Entrei na Sociiz como estagiário de banco de dados e fui parar na interface da Sociiz Meet, no serviço
-                que autentica cada participante e no pipeline de OCR. Meus interesses estão em backend, full stack e
-                segurança da informação, que conversa com o que já faço em redes, autenticação por token e TLS.
+                Na Sociiz, criei endpoints na API principal, trabalhei em fluxos financeiros e com serviços da AWS,
+                escrevi automações em Python, desenvolvi o pipeline de OCR e fiz a interface do Sociiz Meet. Quero
+                seguir em backend, full stack e segurança da informação, que tem a ver com o que já uso em redes,
+                autenticação por token e TLS.
               </p>
               <Link href="/sobre" className={styles.more}>
                 Experiência e formação completas <ArrowRight aria-hidden="true" />
@@ -88,8 +91,8 @@ export default function Home() {
                 <p className={styles.meta}>Estagiário de Banco de Dados · Recife, PE</p>
               </header>
               <p className={styles.soft}>
-                Um estágio que foi além do banco de dados, com backend, frontend, processamento de documentos e
-                comunicação em tempo real.
+                Entrei como estagiário de banco de dados e hoje trabalho em várias frentes da empresa, do backend à
+                interface.
               </p>
               <ul className={styles.items} data-m="timeline">
                 {experience.map((e) => (
@@ -178,9 +181,9 @@ export default function Home() {
           <div className={styles.lead}>
             <H2 id="este-site-title">Este site</H2>
             <p className={styles.soft}>
-              Desenhei e programei este portfólio do zero, em Next.js e TypeScript, sem template. O arquivo destacado no
-              explorador acompanha a seção que você está lendo. É este hook, lido do código-fonte durante a build, então
-              o que aparece aqui é o que roda.
+              Fiz este portfólio do zero, em Next.js e TypeScript, sem template. O arquivo destacado no explorador muda
+              conforme a seção que você está lendo, e o trecho ao lado é o hook que faz isso, lido do código-fonte na
+              build.
             </p>
             <ul className={styles.proofs}>
               <li>Páginas estáticas, geradas antes do acesso.</li>
@@ -228,7 +231,9 @@ export default function Home() {
             <h2 id="contato-title" className={styles.contactTitle} data-m="title">
               <span data-title-text="">Vamos conversar?</span>
             </h2>
-            <p className={styles.soft}>Para vagas, projetos ou uma troca de ideia. Respondo por qualquer um destes.</p>
+            <p className={styles.soft}>
+              Se for sobre uma vaga ou um projeto, ou só para trocar ideia, escreva por onde preferir. Eu respondo.
+            </p>
             <div className={styles.contactActions}>
               <a className={styles.primary} href={`mailto:${contact.email}`}>
                 <Mail aria-hidden="true" /> Enviar e-mail

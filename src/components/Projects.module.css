@@ -80,13 +80,23 @@
   display: grid;
   gap: clamp(1.25rem, 3vw, 2.5rem);
   align-items: center;
-  animation: enter 420ms var(--ease-out);
+}
+
+/* After a filter change, each card that reappears comes in as two pieces, preview then text, staggered down the list. */
+.list[data-animate] .work > * {
+  animation: enter 300ms var(--ease-out) backwards;
+  animation-delay: calc(var(--i, 0) * 100ms);
+}
+
+.list[data-animate] .work > :last-child {
+  animation-delay: calc(var(--i, 0) * 100ms + 80ms);
 }
 
 @keyframes enter {
   from {
-    opacity: 0.4;
-    transform: translateY(6px);
+    opacity: 0;
+    transform: translateY(12px);
+    filter: blur(4px);
   }
 }
 

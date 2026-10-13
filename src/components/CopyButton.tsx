@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { Check, Copy } from "lucide-react";
+import styles from "./CopyButton.module.css";
 
 type State = "idle" | "copied" | "failed";
 
@@ -25,7 +26,11 @@ export function CopyButton({ value, className }: { value: string; className?: st
 
   return (
     <button type="button" className={className} onClick={copy} data-state={state}>
-      {state === "copied" ? <Check aria-hidden="true" /> : <Copy aria-hidden="true" />}
+      {/* Both icons stay mounted so the swap cross-fades both ways instead of popping. */}
+      <span className={styles.icon} data-copied={state === "copied" ? "" : undefined} aria-hidden="true">
+        <Copy />
+        <Check />
+      </span>
       <span aria-live="polite">
         {state === "copied"
           ? "E-mail copiado"

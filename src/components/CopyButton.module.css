@@ -1,0 +1,26 @@
+.icon {
+  position: relative;
+  display: inline-grid;
+  flex: none;
+}
+
+.icon > svg {
+  grid-area: 1 / 1;
+  transition:
+    opacity 300ms var(--ease-swap),
+    scale 300ms var(--ease-swap),
+    filter 300ms var(--ease-swap);
+}
+
+.icon > svg:last-child,
+.icon[data-copied] > svg:first-child {
+  opacity: 0;
+  scale: 0.25;
+  filter: blur(4px);
+}
+
+.icon[data-copied] > svg:last-child {
+  opacity: 1;
+  scale: 1;
+  filter: none;
+}

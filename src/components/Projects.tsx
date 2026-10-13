@@ -5,7 +5,7 @@ import { projects, tags, type Project, type Tag } from "@/content/site";
 import code from "./code.module.css";
 import styles from "./Projects.module.css";
 
-type Props = { filter: Tag | null; onFilter: (tag: Tag | null) => void };
+type Props = { filter: Tag | null; onFilter: (tag: Tag | null) => void; animate: boolean };
 
 function Preview({ project }: { project: Project }) {
   const href = `/trabalhos/${project.slug}`;
@@ -51,7 +51,7 @@ function Preview({ project }: { project: Project }) {
   );
 }
 
-export function Projects({ filter, onFilter }: Props) {
+export function Projects({ filter, onFilter, animate }: Props) {
   const count = (t: Tag) => projects.filter((p) => p.tags.includes(t)).length;
   let order = 0;
   const shown = filter ? projects.filter((p) => p.tags.includes(filter)).length : projects.length;
@@ -95,7 +95,7 @@ export function Projects({ filter, onFilter }: Props) {
           </p>
         </div>
 
-        <div className={styles.list}>
+        <div className={styles.list} data-animate={animate ? "" : undefined}>
           {projects.map((p) => {
             const visible = !filter || p.tags.includes(filter);
             if (visible) order++;
@@ -105,6 +105,7 @@ export function Projects({ filter, onFilter }: Props) {
                 className={styles.work}
                 hidden={!visible}
                 data-flip={visible && order % 2 === 0 ? "" : undefined}
+                style={{ "--i": Math.min(order - 1, 3) } as React.CSSProperties}
               >
                 <Preview project={p} />
                 <div className={styles.text}>

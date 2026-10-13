@@ -308,6 +308,36 @@
     opacity 160ms;
 }
 
+.file svg.iconMd,
+.tab svg.iconMd {
+  color: var(--vivid-blue);
+}
+
+.file svg.iconTs,
+.tab svg.iconTs {
+  color: var(--vivid-turquoise);
+}
+
+.file svg.iconJson,
+.tab svg.iconJson {
+  color: var(--vivid-yellow);
+}
+
+.folder svg:last-child,
+.file.folder svg:last-child {
+  color: var(--vivid-orange);
+}
+
+.folder svg:first-child {
+  color: var(--ink-muted);
+}
+
+.file[aria-current] svg.iconMd,
+.file[aria-current] svg.iconTs,
+.file[aria-current] svg.iconJson {
+  filter: brightness(1.15);
+}
+
 /* Once the highlight is running, the file itself drops its own background. */
 .side[data-slide] .file[aria-current] {
   background: transparent;

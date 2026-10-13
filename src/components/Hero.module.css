@@ -15,7 +15,7 @@
 }
 
 .title {
-  font-size: clamp(3.1rem, 8cqi, 6rem);
+  font-size: clamp(min(3.1rem, 14cqi), 8cqi, 6rem);
   font-stretch: 112%;
   font-weight: 800;
   line-height: 0.92;
@@ -188,5 +188,13 @@
 
   .profile {
     justify-self: end;
+  }
+}
+
+/* Folded phones (about 280px): the chips lose the code indent so both columns fit. */
+@container (max-width: 18rem) {
+  .stack {
+    grid-template-columns: repeat(2, minmax(0, max-content));
+    padding-left: 1ch;
   }
 }

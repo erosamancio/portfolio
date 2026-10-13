@@ -97,11 +97,17 @@ h4 {
   line-height: 1.08;
   letter-spacing: -0.03em;
   text-wrap: balance;
+  overflow-wrap: break-word;
 }
 
 p {
   margin: 0;
   text-wrap: pretty;
+}
+
+/* At large text sizes a long address or component name breaks instead of widening the page. */
+main {
+  overflow-wrap: anywhere;
 }
 
 a {

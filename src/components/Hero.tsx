@@ -1,8 +1,12 @@
+import { useEffect, useState } from "react";
 import { ArrowDown, FileCode } from "lucide-react";
 import { GitHubIcon } from "./BrandIcons";
 import { contact, tags, type Tag } from "@/content/site";
 import code from "./code.module.css";
 import styles from "./Hero.module.css";
+
+/** The profile panel types itself once per visit; coming back to the home page shows it at rest. */
+let played = false;
 
 type Props = { filter: Tag | null; onFilter: (tag: Tag) => void };
 
@@ -11,6 +15,10 @@ function Str({ children }: { children: React.ReactNode }) {
 }
 
 export function Hero({ filter, onFilter }: Props) {
+  const [typing] = useState(() => !played);
+  useEffect(() => {
+    played = true;
+  }, []);
   // The profile panel's rows; the stack row is interactive and rendered on its own.
   const before: [string, React.ReactNode][] = [
     ["formacao", <Str key="f">Ciência da Computação, CESAR School, 4º período</Str>],
@@ -26,8 +34,9 @@ export function Hero({ filter, onFilter }: Props) {
     ["cidade", <Str key="c">Recife, PE</Str>],
   ];
   let line = 1;
+  const lineStyle = (n: number) => (typing ? ({ "--i": n } as React.CSSProperties) : undefined);
   const row = (content: React.ReactNode, key: string, extra?: string) => (
-    <p key={key} className={`${code.row} ${extra ?? ""}`}>
+    <p key={key} className={`${code.row} ${typing ? styles.line : ""} ${extra ?? ""}`} style={lineStyle(line)}>
       <span className={code.ln} aria-hidden="true">
         {line++}
       </span>
@@ -93,7 +102,12 @@ export function Hero({ filter, onFilter }: Props) {
               </>,
               "stack-open",
             )}
-            <div className={code.row} role="group" aria-label="Filtrar projetos por tecnologia">
+            <div
+              className={`${code.row} ${typing ? styles.line : ""}`}
+              style={lineStyle(line)}
+              role="group"
+              aria-label="Filtrar projetos por tecnologia"
+            >
               <span className={code.ln} aria-hidden="true">
                 {line++}
               </span>

@@ -307,7 +307,7 @@ Cabeçalho com ícone em `syn-kw` e nome do arquivo em mono, corpo `bg-alt` com 
 Sociiz Meet não tem e não pode ter imagens.
 
 ### Motion
-Transições de estado em 160ms (cor, fundo, borda), 200ms em setas e bordas de prévia, 240ms na gaveta do explorador, entrada dos projetos ao filtrar em 420ms (opacidade 0.4 e 6px), e o cursor que pisca oito vezes depois do nome. Curva padrão `cubic-bezier(0.16, 1, 0.3, 1)`. Com `prefers-reduced-motion`, nada anima e a rolagem deixa de ser suave.
+Transições de estado em 160ms (cor, fundo, borda), 200ms em setas e bordas de prévia, 240ms na gaveta do explorador, entrada dos projetos ao filtrar em 420ms (opacidade 0.4 e 6px), e o cursor que pisca oito vezes depois do nome. Curva padrão `cubic-bezier(0.16, 1, 0.3, 1)`. O momento autoral é o `perfil.ts` se digitando: cada linha entra em 460ms com revelação da esquerda para a direita (`clip-path`), a 55ms da anterior, uma vez por visita; ao voltar para a home ele já aparece pronto. Ao abrir um arquivo no explorador o conteúdo sobe 8px e aparece em 260ms (`template.tsx`). Uma linha de 2px em `accent` sob as abas se enche conforme a rolagem (linha de posição do editor, só onde há `animation-timeline`). As prévias dos projetos aproximam 2,5% no hover de mouse. Só `transform`, `opacity` e `clip-path` animam. Com `prefers-reduced-motion`, o perfil.ts aparece pronto, as entradas viram só opacidade e a rolagem deixa de ser suave; a linha de posição continua, porque mostra estado.
 
 ### Named Rules
 **The Real Source Rule.** Código, dados e arquivos mostrados no site existem e rodam. Trechos de código são lidos do fonte na build, não copiados à mão.

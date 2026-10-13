@@ -23,7 +23,7 @@
 }
 
 .title {
-  font-size: clamp(2.6rem, 7vw, 5rem);
+  font-size: clamp(min(2.6rem, 13vw), 7vw, 5rem);
   letter-spacing: -0.04em;
 }
 

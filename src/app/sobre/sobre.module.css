@@ -16,7 +16,7 @@
 }
 
 .title {
-  font-size: clamp(2.75rem, 9vw, 6rem);
+  font-size: clamp(min(2.75rem, 13vw), 9vw, 6rem);
   color: var(--ink);
 }
 

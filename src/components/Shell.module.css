@@ -19,8 +19,9 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1rem;
-  height: var(--nav-h);
+  flex-wrap: wrap;
+  gap: 0.25rem 1rem;
+  min-height: var(--nav-h);
   padding-inline: clamp(0.75rem, 2vw, 1.25rem);
   background: var(--bg-alt);
   border-bottom: 1px solid var(--line);
@@ -240,7 +241,10 @@
 
 .tabs {
   display: flex;
-  flex: none;
+  flex: 0 1 auto;
+  min-width: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -248,7 +252,9 @@
 
 .tab {
   display: flex;
+  flex: none;
   align-items: center;
+  white-space: nowrap;
   gap: 0.45rem;
   height: 100%;
   padding: 0 1rem;
@@ -385,6 +391,22 @@
     width: 2.25rem;
     padding: 0;
     justify-content: center;
+  }
+}
+
+/* Folded phones (about 280px): name, contact and menu stay on one row. */
+@media (max-width: 18rem) {
+  .title {
+    column-gap: 0.5rem;
+  }
+
+  .brand {
+    gap: 0.4rem;
+    font-size: 0.875rem;
+  }
+
+  .actions {
+    gap: 0.35rem;
   }
 }
 

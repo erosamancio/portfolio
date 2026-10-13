@@ -74,6 +74,14 @@
   color: var(--syn-ty);
 }
 
+.nu {
+  color: var(--syn-num);
+}
+
+.tg {
+  color: var(--syn-tag);
+}
+
 .cm {
   color: var(--syn-cm);
 }

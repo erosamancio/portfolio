@@ -1,12 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useState, type ReactNode } from "react";
 import type { Tag } from "@/content/site";
 import { Hero } from "./Hero";
 import { Projects } from "./Projects";
 
 // The opening profile and the project list share one filter: picking a technology in perfil.ts narrows the list.
-export function Showcase() {
+export function Showcase({ children }: { children?: ReactNode }) {
   const [filter, setFilter] = useState<Tag | null>(null);
 
   const pickFromProfile = (tag: Tag) => {
@@ -18,6 +18,7 @@ export function Showcase() {
   return (
     <>
       <Hero filter={filter} onFilter={pickFromProfile} />
+      {children}
       <Projects filter={filter} onFilter={setFilter} />
     </>
   );

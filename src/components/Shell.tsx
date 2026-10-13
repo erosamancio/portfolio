@@ -2,20 +2,25 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
+import { AnimatePresence, motion } from "motion/react";
 import { Braces, ChevronDown, FileCode, FileText, FolderOpen, GitBranch, Mail, Menu, X } from "lucide-react";
-import { contact, projects } from "@/content/site";
+import { contact, projects, whatsappUrl } from "@/content/site";
+import { WhatsAppIcon } from "./BrandIcons";
+import { duration, ease } from "@/motion/tokens";
 import styles from "./Shell.module.css";
 
 type Entry = { file: string; href: string; section?: string };
 
 // The site's pages and home sections, presented as the files of a project.
-const top: Entry[] = [{ file: "README.md", href: "/" }];
+const top: Entry[] = [
+  { file: "README.md", href: "/" },
+  { file: "sobre.md", href: "/sobre", section: "sobre" },
+];
 const works: Entry[] = projects.map((p) => ({ file: `${p.slug}.md`, href: `/trabalhos/${p.slug}` }));
 const rest: Entry[] = [
   { file: "experiencia.md", href: "/#experiencia", section: "experiencia" },
   { file: "stack.json", href: "/#stack", section: "stack" },
-  { file: "sobre.md", href: "/sobre", section: "sobre" },
   { file: "este-site.ts", href: "/#este-site", section: "este-site" },
   { file: "contato.ts", href: "/#contato", section: "contato" },
 ];
@@ -25,6 +30,71 @@ function FileIcon({ file }: { file: string }) {
   if (file.endsWith(".json")) return <Braces className={styles.iconJson} aria-hidden="true" />;
   const Icon = file.endsWith(".md") ? FileText : FileCode;
   return <Icon className={file.endsWith(".md") ? styles.iconMd : styles.iconTs} aria-hidden="true" />;
+}
+
+// "Contato" opens a small menu with the two ways to reach Eros, instead of jumping straight to one of them.
+function ContactMenu({ onNavigate }: { onNavigate: () => void }) {
+  const [open, setOpen] = useState(false);
+  const id = useId();
+  const root = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
+    const onDown = (e: PointerEvent) => !root.current?.contains(e.target as Node) && setOpen(false);
+    window.addEventListener("keydown", onKey);
+    window.addEventListener("pointerdown", onDown);
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      window.removeEventListener("pointerdown", onDown);
+    };
+  }, [open]);
+
+  return (
+    <div className={styles.contactMenu} ref={root}>
+      <button
+        type="button"
+        className={styles.cta}
+        aria-expanded={open}
+        aria-controls={id}
+        onClick={() => {
+          onNavigate();
+          setOpen((v) => !v);
+        }}
+      >
+        <Mail aria-hidden="true" />
+        <span>Contato</span>
+      </button>
+      <AnimatePresence>
+        {open && (
+          <motion.ul
+            id={id}
+            className={styles.menu}
+            initial={{ opacity: 0, y: -6, scale: 0.98 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -4, scale: 0.98 }}
+            transition={{ duration: duration.short, ease: ease.out }}
+          >
+            <li>
+              <a href={`mailto:${contact.email}`} onClick={() => setOpen(false)}>
+                <Mail aria-hidden="true" className={styles.menuMail} /> Enviar e-mail
+              </a>
+            </li>
+            <li>
+              <a href={whatsappUrl} target="_blank" rel="noopener" onClick={() => setOpen(false)}>
+                <WhatsAppIcon className={styles.menuWhats} /> Chamar no WhatsApp
+              </a>
+            </li>
+            <li>
+              <Link href="/#contato" onClick={() => setOpen(false)}>
+                <FileCode aria-hidden="true" className={styles.menuCode} /> Ver contato.ts
+              </Link>
+            </li>
+          </motion.ul>
+        )}
+      </AnimatePresence>
+    </div>
+  );
 }
 
 function useActiveSection(enabled: boolean) {
@@ -102,10 +172,7 @@ export function Shell({ children }: { children: React.ReactNode }) {
           </span>
         </Link>
         <div className={styles.actions}>
-          <Link className={styles.cta} href="/#contato" onClick={() => setOpen(false)}>
-            <Mail aria-hidden="true" />
-            <span>Contato</span>
-          </Link>
+          <ContactMenu onNavigate={() => setOpen(false)} />
           <button
             type="button"
             className={styles.toggle}

@@ -44,14 +44,22 @@
     color 160ms;
 }
 
+.option::before {
+  content: "";
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: var(--tech, var(--ink-muted));
+}
+
 .option:hover {
-  border-color: var(--ink-muted);
+  border-color: var(--tech, var(--ink-muted));
   color: var(--ink);
 }
 
 .option[aria-pressed="true"] {
-  border-color: var(--accent);
-  background: oklch(0.91 0.19 123 / 0.1);
+  border-color: var(--tech, var(--accent));
+  background: color-mix(in oklab, var(--tech, var(--accent)) 14%, transparent);
   color: var(--ink);
 }
 
@@ -221,7 +229,8 @@
   border-radius: 4px;
   font-family: var(--mono);
   font-size: 0.8rem;
-  color: var(--syn-ty);
+  color: var(--tech, var(--syn-ty));
+  border-color: color-mix(in oklab, var(--tech, var(--syn-ty)) 45%, transparent);
 }
 
 .more {

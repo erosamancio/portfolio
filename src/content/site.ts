@@ -6,11 +6,43 @@ export const contact = {
   linkedin: "https://www.linkedin.com/in/erosamancio/",
 };
 
-export const whatsappUrl = `https://wa.me/${contact.whatsappNumber}`;
+export const whatsappMessage = "Olá, Eros! Vi seu portfólio e gostaria de conversar.";
+
+// Opens the chat with the greeting already typed. Case studies mention the project being read.
+export const whatsappLink = (project?: string) => {
+  const text = project
+    ? `Olá, Eros! Vi seu portfólio e o projeto ${project} e gostaria de conversar.`
+    : whatsappMessage;
+  return `https://wa.me/${contact.whatsappNumber}?text=${encodeURIComponent(text)}`;
+};
+
+export const whatsappUrl = whatsappLink();
 
 export type Tag = "React" | "Python" | "Java" | "C";
 
 export const tags: Tag[] = ["React", "Python", "Java", "C"];
+
+// Language colors, taken from the Vivid palette in globals.css.
+const techColors: Record<string, string> = {
+  React: "var(--vivid-turquoise)",
+  "React 19": "var(--vivid-turquoise)",
+  Vite: "var(--vivid-purple)",
+  Python: "var(--vivid-blue)",
+  Flask: "var(--vivid-blue)",
+  Django: "var(--vivid-green)",
+  Java: "var(--vivid-orange)",
+  "Spring Boot": "var(--vivid-green)",
+  "Spring Data JPA": "var(--vivid-green)",
+  JavaScript: "var(--vivid-yellow)",
+  C: "var(--vivid-blue)",
+  Raylib: "var(--vivid-salmon)",
+  Docker: "var(--vivid-blue)",
+  Selenium: "var(--vivid-green)",
+  LiveKit: "var(--vivid-pink)",
+  "GitHub Actions": "var(--vivid-purple)",
+};
+
+export const techColor = (name: string) => techColors[name] ?? "var(--vivid-turquoise)";
 
 export type Project = {
   slug: string;

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { ArrowDown, FileCode } from "lucide-react";
-import { GitHubIcon } from "./BrandIcons";
-import { contact, tags, type Tag } from "@/content/site";
+import { GitHubIcon, LinkedInIcon, WhatsAppIcon } from "./BrandIcons";
+import { contact, tags, techColor, whatsappUrl, type Tag } from "@/content/site";
 import code from "./code.module.css";
 import styles from "./Hero.module.css";
 
@@ -74,10 +74,13 @@ export function Hero({ filter, onFilter }: Props) {
               Ver projetos <ArrowDown aria-hidden="true" />
             </a>
             <a className={styles.secondary} href={contact.github} target="_blank" rel="noopener">
-              <GitHubIcon /> GitHub
+              <GitHubIcon className={styles.iconGithub} /> GitHub
             </a>
             <a className={styles.secondary} href={contact.linkedin} target="_blank" rel="noopener">
-              LinkedIn
+              <LinkedInIcon className={styles.iconLinkedin} /> LinkedIn
+            </a>
+            <a className={styles.secondary} href={whatsappUrl} target="_blank" rel="noopener">
+              <WhatsAppIcon className={styles.iconWhatsapp} /> WhatsApp
             </a>
           </div>
         </div>
@@ -117,6 +120,7 @@ export function Hero({ filter, onFilter }: Props) {
                     key={t}
                     type="button"
                     className={styles.tag}
+                    style={{ "--tech": techColor(t) } as React.CSSProperties}
                     aria-pressed={filter === t}
                     onClick={() => onFilter(t)}
                   >

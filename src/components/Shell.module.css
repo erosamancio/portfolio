@@ -65,8 +65,64 @@
   gap: 0.5rem;
 }
 
+.contactMenu {
+  position: relative;
+}
+
+.menu {
+  position: absolute;
+  z-index: 60;
+  top: calc(100% + 0.5rem);
+  right: 0;
+  min-width: 15rem;
+  margin: 0;
+  padding: 0.35rem;
+  list-style: none;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: 0 18px 40px -12px oklch(0 0 0 / 0.7);
+  transform-origin: top right;
+}
+
+.menu a {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  min-height: 2.5rem;
+  padding: 0 0.75rem;
+  border-radius: 5px;
+  color: var(--ink);
+  font-size: 0.92rem;
+  text-decoration: none;
+}
+
+.menu a:hover {
+  background: var(--surface-hover);
+}
+
+.menu svg {
+  flex: none;
+  width: 1.05rem;
+  height: 1.05rem;
+}
+
+.menuMail {
+  color: var(--vivid-salmon);
+}
+
+.menuWhats {
+  color: var(--whatsapp);
+}
+
+.menuCode {
+  color: var(--vivid-turquoise);
+}
+
 .cta {
   display: inline-flex;
+  border: 0;
+  cursor: pointer;
   align-items: center;
   gap: 0.5rem;
   height: 2.25rem;
@@ -202,21 +258,30 @@
 }
 
 .iconMd {
-  color: var(--syn-ty);
+  color: var(--vivid-blue);
 }
 
 .iconTs {
-  color: var(--syn-kw);
+  color: var(--vivid-turquoise);
 }
 
 .iconJson {
-  color: var(--syn-str);
+  color: var(--vivid-yellow);
+}
+
+.folder svg:last-child,
+.file.folder svg:last-child {
+  color: var(--vivid-orange);
+}
+
+.folder svg:first-child {
+  color: var(--ink-muted);
 }
 
 .file[aria-current] .iconMd,
 .file[aria-current] .iconTs,
 .file[aria-current] .iconJson {
-  color: var(--accent);
+  filter: brightness(1.15);
 }
 
 /* ---------- editor ---------- */
@@ -288,6 +353,12 @@
 .tab svg {
   width: 0.95rem;
   height: 0.95rem;
+}
+
+.tab svg.iconMd,
+.tab svg.iconTs,
+.tab svg.iconJson {
+  flex: none;
 }
 
 .tab:hover {
@@ -373,6 +444,7 @@
 .branch svg {
   width: 0.9rem;
   height: 0.9rem;
+  color: var(--vivid-green);
 }
 
 .statusLinks {
@@ -387,7 +459,7 @@
 .statusLinks a {
   display: inline-block;
   padding-block: 0.3rem;
-  text-decoration-color: oklch(0.19 0.02 130 / 0.45);
+  text-decoration-color: rgb(8 23 13 / 0.45);
 }
 
 .statusLinks a:hover {
@@ -517,5 +589,20 @@
 @media (max-height: 32rem) and (max-width: 63.99rem) {
   .tabbar {
     position: relative;
+  }
+}
+
+/* Phones: the contact menu spans the title bar instead of hanging off a small button. */
+@media (max-width: 30rem) {
+  .contactMenu {
+    position: static;
+  }
+
+  .menu {
+    top: calc(100% + 0.25rem);
+    right: var(--gutter);
+    left: var(--gutter);
+    min-width: 0;
+    transform-origin: top center;
   }
 }

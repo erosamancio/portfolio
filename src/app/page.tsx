@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, ArrowUpRight, Braces, FileCode } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Braces, FileCode, Mail } from "lucide-react";
+import { WhatsAppIcon } from "@/components/BrandIcons";
 import { Showcase } from "@/components/Showcase";
 import { CopyButton } from "@/components/CopyButton";
 import { contact, experience, skills, whatsappUrl } from "@/content/site";
@@ -37,7 +38,37 @@ export default function Home() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }} />
-      <Showcase />
+      <Showcase>
+        <section
+          id="sobre"
+          className={`${styles.section} ${styles.alt} ${styles.aboutSection}`}
+          aria-labelledby="sobre-title"
+        >
+          <div className={`wrap ${styles.about}`}>
+            <div className={styles.portrait}>
+              <Image
+                src="/images/eros.jpg"
+                width={800}
+                height={800}
+                alt="Retrato de Eros Amancio, de barba e camiseta preta, à noite com luzes ao fundo"
+                sizes="(min-width: 64rem) 20rem, 70vw"
+              />
+            </div>
+            <div className={styles.aboutText}>
+              <H2 id="sobre-title">Sobre</H2>
+              <p className={styles.big}>Do banco de dados à interface, passando pela API que liga os dois.</p>
+              <p className={styles.soft}>
+                Entrei na Sociiz como estagiário de banco de dados e fui parar na interface da Sociiz Meet, no serviço
+                que autentica cada participante e no pipeline de OCR. Meus interesses estão em backend, full stack e
+                segurança da informação, que conversa com o que já faço em redes, autenticação por token e TLS.
+              </p>
+              <Link href="/sobre" className={styles.more}>
+                Experiência e formação completas <ArrowRight aria-hidden="true" />
+              </Link>
+            </div>
+          </div>
+        </section>
+      </Showcase>
 
       <section id="experiencia" className={`${styles.section} ${styles.alt}`} aria-labelledby="experiencia-title">
         <div className={`wrap ${styles.split}`}>
@@ -132,32 +163,6 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="sobre" className={`${styles.section} ${styles.alt}`} aria-labelledby="sobre-title">
-        <div className={`wrap ${styles.about}`}>
-          <div className={styles.portrait}>
-            <Image
-              src="/images/eros.jpg"
-              width={800}
-              height={800}
-              alt="Retrato de Eros Amancio, de barba e camiseta preta, à noite com luzes ao fundo"
-              sizes="(min-width: 64rem) 20rem, 70vw"
-            />
-          </div>
-          <div className={styles.aboutText}>
-            <H2 id="sobre-title">Sobre</H2>
-            <p className={styles.big}>Do banco de dados à interface, passando pela API que liga os dois.</p>
-            <p className={styles.soft}>
-              Entrei na Sociiz como estagiário de banco de dados e fui parar na interface da Sociiz Meet, no serviço que
-              autentica cada participante e no pipeline de OCR. Meus interesses estão em backend, full stack e segurança
-              da informação, que conversa com o que já faço em redes, autenticação por token e TLS.
-            </p>
-            <Link href="/sobre" className={styles.more}>
-              Experiência e formação completas <ArrowRight aria-hidden="true" />
-            </Link>
-          </div>
-        </div>
-      </section>
-
       <section id="este-site" className={styles.section} aria-labelledby="este-site-title">
         <div className={`wrap ${styles.site}`}>
           <div className={styles.lead}>
@@ -216,7 +221,10 @@ export default function Home() {
             <p className={styles.soft}>Para vagas, projetos ou uma troca de ideia. Respondo por qualquer um destes.</p>
             <div className={styles.contactActions}>
               <a className={styles.primary} href={`mailto:${contact.email}`}>
-                Mandar um e-mail
+                <Mail aria-hidden="true" /> Enviar e-mail
+              </a>
+              <a className={styles.whatsapp} href={whatsappUrl} target="_blank" rel="noopener">
+                <WhatsAppIcon /> Chamar no WhatsApp
               </a>
               <CopyButton value={contact.email} className={styles.copy} />
             </div>

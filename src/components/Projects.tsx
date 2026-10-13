@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Component, Lock } from "lucide-react";
-import { projects, tags, type Project, type Tag } from "@/content/site";
+import { projects, tags, techColor, type Project, type Tag } from "@/content/site";
 import code from "./code.module.css";
 import styles from "./Projects.module.css";
 
@@ -83,6 +83,7 @@ export function Projects({ filter, onFilter }: Props) {
                 key={t}
                 type="button"
                 className={styles.option}
+                style={{ "--tech": techColor(t) } as React.CSSProperties}
                 aria-pressed={filter === t}
                 onClick={() => onFilter(filter === t ? null : t)}
               >
@@ -117,7 +118,9 @@ export function Projects({ filter, onFilter }: Props) {
                   <p className={styles.summary}>{p.summary}</p>
                   <ul className={styles.tags} aria-label="Tecnologias">
                     {p.stack.map((t) => (
-                      <li key={t}>{t}</li>
+                      <li key={t} style={{ "--tech": techColor(t) } as React.CSSProperties}>
+                        {t}
+                      </li>
                     ))}
                   </ul>
                   <Link href={`/trabalhos/${p.slug}`} className={styles.more}>

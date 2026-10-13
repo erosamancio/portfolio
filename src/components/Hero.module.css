@@ -112,6 +112,18 @@
   height: 1.1em;
 }
 
+.iconGithub {
+  color: var(--ink);
+}
+
+.iconLinkedin {
+  color: var(--vivid-blue);
+}
+
+.iconWhatsapp {
+  color: var(--whatsapp);
+}
+
 /* ---------- perfil.ts ---------- */
 
 .profile {
@@ -136,7 +148,7 @@
   background: var(--bg);
   font-family: var(--mono);
   font-size: inherit;
-  color: var(--syn-str);
+  color: var(--tech, var(--syn-str));
   cursor: pointer;
   transition:
     border-color 160ms,
@@ -145,12 +157,12 @@
 }
 
 .tag:hover {
-  border-color: var(--syn-str);
+  border-color: var(--tech, var(--syn-str));
 }
 
 .tag[aria-pressed="true"] {
-  border-color: var(--accent);
-  background: var(--accent);
+  border-color: var(--tech, var(--accent));
+  background: var(--tech, var(--accent));
   color: var(--on-accent);
 }
 

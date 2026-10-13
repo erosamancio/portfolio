@@ -27,7 +27,7 @@
   padding-block: 0.2rem;
   margin-block: -0.2rem;
   color: var(--accent);
-  text-decoration-color: oklch(0.91 0.19 123 / 0.45);
+  text-decoration-color: rgb(var(--accent-rgb) / 0.45);
 }
 
 .h4 a:hover {
@@ -92,6 +92,38 @@
   background: var(--accent-hover);
 }
 
+.primary svg {
+  width: 1.1em;
+  height: 1.1em;
+}
+
+.whatsapp {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 3rem;
+  padding: 0 1.1rem;
+  border: 1px solid color-mix(in oklab, var(--whatsapp) 55%, transparent);
+  border-radius: 6px;
+  font-weight: 700;
+  color: var(--ink);
+  text-decoration: none;
+  transition:
+    background 160ms,
+    border-color 160ms;
+}
+
+.whatsapp svg {
+  width: 1.15em;
+  height: 1.15em;
+  color: var(--whatsapp);
+}
+
+.whatsapp:hover {
+  border-color: var(--whatsapp);
+  background: color-mix(in oklab, var(--whatsapp) 12%, transparent);
+}
+
 /* Heading column beside content on wide containers */
 .split {
   display: grid;
@@ -151,14 +183,19 @@
 
 /* ---------- sobre ---------- */
 
+/* Sobre sits right under the hero, so it stays compact: a small portrait beside a short text. */
+.aboutSection {
+  padding-block: clamp(2.5rem, 5vw, 4rem);
+}
+
 .about {
   display: grid;
-  gap: clamp(2rem, 5vw, 4rem);
+  gap: clamp(1.5rem, 4vw, 3rem);
   align-items: center;
 }
 
 .portrait {
-  width: min(100%, 15rem);
+  width: min(100%, 11rem);
   overflow: hidden;
   border: 1px solid var(--line);
   border-radius: var(--radius);
@@ -328,7 +365,7 @@
   text-indent: 0;
   padding-block: 0.15rem;
   color: var(--syn-str);
-  text-decoration-color: oklch(0.85 0.12 75 / 0.4);
+  text-decoration-color: rgb(255 182 56 / 0.4);
   overflow-wrap: anywhere;
 }
 
@@ -339,13 +376,19 @@
 
 /* ---------- layouts ---------- */
 
-@container (min-width: 44rem) {
+@container (min-width: 36rem) {
   .portrait {
-    width: min(100%, 20rem);
+    width: 12rem;
   }
 
   .about {
-    grid-template-columns: minmax(0, 0.75fr) minmax(0, 1.25fr);
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+}
+
+@container (min-width: 56rem) {
+  .portrait {
+    width: 14rem;
   }
 }
 

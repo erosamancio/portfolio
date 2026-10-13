@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { AnimatePresence, motion } from "motion/react";
+import { AnimatePresence, m } from "motion/react";
 import { Check, Copy } from "lucide-react";
 import { duration, ease } from "@/motion/tokens";
 
@@ -30,7 +30,7 @@ export function CopyButton({ value, className }: { value: string; className?: st
       {/* The icon swaps with a quick scale and fade, so "copied" registers without the layout moving. */}
       <span style={{ display: "inline-grid", width: "1em", height: "1em" }} aria-hidden="true">
         <AnimatePresence mode="popLayout" initial={false}>
-          <motion.span
+          <m.span
             key={state === "copied" ? "check" : "copy"}
             style={{ display: "grid", placeItems: "center", gridArea: "1 / 1" }}
             initial={{ opacity: 0, scale: 0.6 }}
@@ -39,7 +39,7 @@ export function CopyButton({ value, className }: { value: string; className?: st
             transition={{ duration: duration.short, ease: ease.out }}
           >
             {state === "copied" ? <Check /> : <Copy />}
-          </motion.span>
+          </m.span>
         </AnimatePresence>
       </span>
       <span aria-live="polite">

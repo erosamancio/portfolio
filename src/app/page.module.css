@@ -222,6 +222,8 @@
   top: clamp(0.6rem, 1.6vw, 1.1rem);
   left: max(var(--gutter), calc((100% - var(--max)) / 2));
   font-family: var(--mono);
+  max-width: calc(100% - 2 * var(--gutter));
+  overflow: hidden;
   font-size: 0.78rem;
   color: var(--ink-muted);
   white-space: nowrap;

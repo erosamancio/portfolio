@@ -49,13 +49,13 @@ export const viewport: Viewport = {
   themeColor: "#141417",
 };
 
-const introScript = `try{var d=document.documentElement,p=location.pathname==="/"&&!sessionStorage.getItem("intro")&&!matchMedia("(prefers-reduced-motion: reduce)").matches;d.dataset.intro=p?"play":"done"}catch(e){document.documentElement.dataset.intro="done"}`;
+const introScript = `try{var d=document.documentElement,p=location.pathname==="/"&&matchMedia("(min-width: 64rem)").matches&&!sessionStorage.getItem("intro")&&!matchMedia("(prefers-reduced-motion: reduce)").matches;d.dataset.intro=p?"play":"done"}catch(e){document.documentElement.dataset.intro="done"}`;
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="pt-BR" className={`${archivo.variable} ${mono.variable}`} suppressHydrationWarning>
       <head>
-        {/* Decides before first paint whether the opening sequence plays: home page, once per session, no reduced motion. */}
+        {/* Decides before first paint whether the opening sequence plays: home page, desktop width, once per session, no reduced motion. */}
         <script dangerouslySetInnerHTML={{ __html: introScript }} />
       </head>
       <body>

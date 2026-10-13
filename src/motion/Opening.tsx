@@ -1,9 +1,8 @@
 "use client";
 
 import { MOBILE_QUERY } from "./tokens";
-import { afterFonts, gsap, SplitText, useGSAP } from "./gsap";
-
-const all = <T extends Element>(selector: string) => gsap.utils.toArray<T>(selector);
+import type { SplitText as SplitTextType } from "gsap/SplitText";
+import { afterFonts, useGsap } from "./gsap";
 
 /**
  * "O editor abre o projeto": the explorer unfolds, the tab opens, the name is typed and perfil.ts writes itself.
@@ -11,7 +10,8 @@ const all = <T extends Element>(selector: string) => gsap.utils.toArray<T>(selec
  * (html[data-intro]). The server HTML is already the finished page, so skipping this changes nothing visible.
  */
 export function Opening() {
-  useGSAP(() => {
+  useGsap(({ gsap, SplitText }) => {
+    const all = <T extends Element>(selector: string) => gsap.utils.toArray<T>(selector);
     const root = document.documentElement;
     if (root.dataset.intro !== "play") return;
 
@@ -23,11 +23,16 @@ export function Opening() {
     };
 
     let tl: gsap.core.Timeline | undefined;
-    let split: SplitText | undefined;
+    let split: SplitTextType | undefined;
     const skip = () => tl?.progress(1);
     const events = ["pointerdown", "wheel", "keydown", "touchstart"] as const;
 
     const stop = afterFonts(() => {
+      // Arriving late (slow network or device): the fail-safe already showed the page, so do not hide it again.
+      if (performance.now() > 900) {
+        finish();
+        return;
+      }
       const mobile = window.matchMedia(MOBILE_QUERY).matches;
       const name = document.querySelector<HTMLElement>('[data-i="name"]');
 
@@ -93,6 +98,8 @@ export function Opening() {
         tl.call(() => (label.textContent = text), undefined, 2.0);
       }
 
+      // Inline styles hold every piece in place from here, so the stylesheet's fail-safe steps aside.
+      root.dataset.intro = "running";
       events.forEach((e) => window.addEventListener(e, skip, { once: true, passive: true }));
     });
 

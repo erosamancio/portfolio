@@ -111,7 +111,7 @@ h4 {
   line-height: 1.08;
   letter-spacing: -0.03em;
   text-wrap: balance;
-  overflow-wrap: break-word;
+  overflow-wrap: anywhere;
 }
 
 p {
@@ -217,10 +217,11 @@ button {
 
 /* ---------- opening sequence ----------
    The server HTML is the finished page. While the sequence is about to play, the pieces it animates start hidden;
-   if the script never runs, the fail-safe reveals them after 3s. */
+   if the sequence has not started within 0.9s the fail-safe reveals them, so a slow device never waits on it.
+   Once the timeline exists (data-intro="running") its own inline styles take over. */
 html[data-intro="play"] [data-i] {
   opacity: 0;
-  animation: intro-failsafe 0.01s 3s forwards;
+  animation: intro-failsafe 0.01s 0.9s forwards;
 }
 
 @keyframes intro-failsafe {

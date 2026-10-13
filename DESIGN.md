@@ -1,22 +1,33 @@
 ---
 name: Eros Amancio · Portfólio
-description: O repositório do Eros aberto num editor de código escuro, com um único acento chartreuse.
+description: O repositório do Eros aberto num editor de código escuro, com a paleta Vivid Black e um único acento verde.
 colors:
-  bg: "oklch(0.17 0.012 260)"
-  bg-alt: "oklch(0.195 0.012 260)"
-  surface: "oklch(0.215 0.012 260)"
-  surface-hover: "oklch(0.25 0.014 260)"
-  line: "oklch(0.29 0.012 260)"
-  line-strong: "oklch(0.42 0.014 260)"
+  bg: "#141417"
+  bg-alt: "#18181c"
+  surface: "#1d1d22"
+  surface-hover: "#26262c"
+  line: "#2b2b32"
+  line-strong: "#4b4b56"
   ink: "oklch(0.94 0.005 250)"
   ink-soft: "oklch(0.78 0.012 250)"
-  ink-muted: "oklch(0.66 0.014 250)"
-  accent: "oklch(0.91 0.19 123)"
-  accent-hover: "oklch(0.95 0.15 123)"
-  on-accent: "oklch(0.19 0.02 130)"
-  syn-kw: "oklch(0.79 0.13 300)"
-  syn-str: "oklch(0.85 0.12 75)"
-  syn-ty: "oklch(0.83 0.1 200)"
+  ink-muted: "oklch(0.68 0.014 250)"
+  accent: "#42dd76"
+  accent-hover: "#6bea96"
+  on-accent: "#08170d"
+  vivid-blue: "#28a9ff"
+  vivid-green: "#42dd76"
+  vivid-orange: "#ff7135"
+  vivid-pink: "#e66dff"
+  vivid-purple: "#a95eff"
+  vivid-salmon: "#ff478d"
+  vivid-turquoise: "#14e5d4"
+  vivid-yellow: "#ffb638"
+  syn-kw: "#a95eff"
+  syn-fn: "#28a9ff"
+  syn-str: "#ffb638"
+  syn-ty: "#14e5d4"
+  syn-num: "#ff7135"
+  syn-tag: "#ff478d"
   scrim: "oklch(0.1 0.01 260 / 0.6)"
 typography:
   display:
@@ -152,7 +163,7 @@ components:
 
 # Design System: Eros Amancio · Portfólio
 
-Documentado a partir do site construído (v4, 12/10/2026). Direção: **Editor de código**, escolhida pelo Eros entre três propostas depois de recusar a Azulejaria (conceitual demais) e substituir o "Limpo e técnico", e mantida na v4, quando o site passou a ser só portfólio. Contrato em `.impeccable/surfaces/src-app-page-tsx.md`. Tokens em `src/app/globals.css`; os valores do frontmatter acima são normativos.
+Documentado a partir do site construído (v5, 13/10/2026: paleta Vivid, ícones coloridos, Sobre no topo, WhatsApp e movimento com GSAP e Motion). Direção: **Editor de código**, escolhida pelo Eros entre três propostas depois de recusar a Azulejaria (conceitual demais) e substituir o "Limpo e técnico", e mantida na v4, quando o site passou a ser só portfólio. Contrato em `.impeccable/surfaces/src-app-page-tsx.md`. Tokens em `src/app/globals.css`; os valores do frontmatter acima são normativos.
 
 ## Overview
 
@@ -160,31 +171,35 @@ Documentado a partir do site construído (v4, 12/10/2026). Direção: **Editor d
 
 O site é o projeto do Eros aberto num editor: barra de título, explorador de arquivos, abas, caminho do arquivo e barra de status. `README.md` é a página inicial, cada projeto é um arquivo `.md`, experiência e tecnologias aparecem como dados (`perfil.ts`, `stack.json`, `contato.ts`). O editor é a moldura; o conteúdo continua em texto normal, legível para quem não é da área.
 
-A densidade é de ferramenta de trabalho: superfícies escuras em camadas tonais, divisórias finas, um único acento chartreuse para ação e estado, e cor de sintaxe só onde há código ou dado. A interação mais marcante é real, não decorativa: as tecnologias do painel `perfil.ts` filtram a lista de projetos, e o trecho de código mostrado em "Este site" é lido do código-fonte durante a build.
+A densidade é de ferramenta de trabalho: superfícies escuras em camadas tonais, divisórias finas, um único acento verde para ação e estado, e a paleta Vivid (inspirada no tema Bearded Vivid Black) para sintaxe, ícones e tecnologias. A interação mais marcante é real, não decorativa: as tecnologias do painel `perfil.ts` filtram a lista de projetos, e o trecho de código mostrado em "Este site" é lido do código-fonte durante a build.
 
-Tudo que aparece como código, dado ou arquivo existe de fato. Nada de terminal falso, commits inventados ou dados que não existem. Desde a v4 não há conteúdo de venda: o seletor de serviço do WhatsApp, os serviços e o FAQ saíram, e com eles as regras que só existiam para eles.
+Tudo que aparece como código, dado ou arquivo existe de fato. Nada de commits inventados ou dados que não existem; a linha `$ npm run contato` e o "compilado em 0,8s" da barra de status são moldura assumida, não dados. Desde a v4 não há conteúdo de venda: o seletor de serviço do WhatsApp, os serviços e o FAQ saíram, e com eles as regras que só existiam para eles.
 
 **Key Characteristics:**
 - Moldura de editor completa: título, explorador, abas, caminho, barra de status.
 - Fundo escuro em camadas tonais, sem sombras estruturais.
-- Um acento chartreuse; texto sobre ele sempre na cor `on-accent`.
+- Um acento verde (`#42DD76`); texto sobre ele sempre na cor `on-accent`.
+- Cor de sintaxe e de ícone vem da paleta Vivid; o verde de ação não é usado como cor de sintaxe.
 - Archivo para o que se lê; JetBrains Mono para moldura, código e dados.
 - Painéis de código com números de linha como componente de conteúdo.
 - Layout interno por container query, não pela largura da janela.
 
 ## Colors
 
-Tema escuro de editor, frio e quase neutro (matiz 250–260), com um único acento chartreuse e uma paleta curta de sintaxe.
+Tema escuro de editor, base `#141417` do Bearded Vivid Black, com um único acento verde e a paleta Vivid para sintaxe, ícones e tecnologias. Contraste medido sobre `bg`: azul 7,2, verde 10,4, laranja 6,7, rosa 7,0, roxo 5,0, salmão 5,7, turquesa 11,5, amarelo 10,5; `on-accent` sobre o verde 10,4.
 
 ### Primary
-- **Chartreuse de Cursor** (`accent`): botões principais (Ver projetos, Contato, Mandar um e-mail), cursor do título, linha de papel do hero, filete da aba ativa, ícone do arquivo ativo no explorador, barra de status, links "Ler estudo de caso", chip pressionado do `perfil.ts`, contorno de foco e seleção de texto. Também é a cor de função no realce de sintaxe (`--syn-fn` aponta para ele).
-- **Chartreuse Claro** (`accent-hover`): hover dos botões preenchidos.
+- **Verde Vivid** (`accent`, `#42DD76`): botões principais (Ver projetos, Contato, Enviar e-mail), cursor do título, linha de papel do hero, filete da aba ativa e do destaque do explorador, barra de status, links "Ler estudo de caso", marcador `+` dos projetos, contorno de foco e seleção de texto. É também a cor do WhatsApp.
+- **Verde Claro** (`accent-hover`): hover dos botões preenchidos.
 - **Grafite sobre Acento** (`on-accent`): todo texto e ícone sobre o acento, inclusive a barra de status e o selo "EA".
 
 ### Secondary
-- **Lilás de Palavra-chave** (`syn-kw`): palavras-chave em código, ícone de arquivos `.ts` e ícone do cabeçalho dos painéis.
-- **Âmbar de String** (`syn-str`): strings em código e dados, chips do `perfil.ts`, links do `contato.ts`, valores do front matter, ícone de arquivos `.json`.
-- **Ciano de Tipo** (`syn-ty`): chaves de objeto e tipos, tags de tecnologia dos projetos, rótulo "filtro:", chaves do front matter, ícone de arquivos `.md`, nomes de componente (`<App />`).
+- **Roxo de Palavra-chave** (`syn-kw`, `#A95EFF`): palavras-chave em código.
+- **Azul de Função** (`syn-fn`, `#28A9FF`): funções e métodos no trecho real; ícone dos arquivos `.md`, LinkedIn, Python e C.
+- **Turquesa de Tipo** (`syn-ty`, `#14E5D4`): chaves de objeto, tipos e nomes de componente; ícone dos arquivos `.ts`; React.
+- **Amarelo de String** (`syn-str`, `#FFB638`): strings, links do `contato.ts`, valores do front matter; ícone `.json`; JavaScript.
+- **Laranja** (`syn-num`, `#FF7135`): números e valores quentes; pastas do explorador; Java.
+- **Salmão** (`syn-tag`, `#FF478D`): tags e colchetes de JSX; ícone de e-mail. **Rosa** (`#E66DFF`) fica reservado a destaques raros (LiveKit).
 
 ### Neutral
 - **Área de Edição** (`bg`): fundo do documento e da aba ativa.
@@ -196,9 +211,9 @@ Tema escuro de editor, frio e quase neutro (matiz 250–260), com um único acen
 - **Texto** (`ink`), **Texto Secundário** (`ink-soft`), **Comentário** (`ink-muted`): texto principal; texto corrido secundário e metadados; comentários, números de linha, marcadores `#` e contagens. `--syn-cm` aponta para `ink-muted`, que passa no contraste também nos números de linha.
 
 ### Named Rules
-**The One Chartreuse Rule.** Existe um acento só. Ele marca ação, estado atual e a moldura viva (cursor, aba ativa, barra de status); nada mais recebe cor de destaque, e texto sobre ele usa sempre `on-accent`.
+**The One Green Rule.** Existe um acento de ação só, o verde. Ele marca ação, estado atual e a moldura viva (cursor, aba ativa, barra de status); texto sobre ele usa sempre `on-accent`.
 
-**The Syntax Stays in Code Rule.** Lilás, âmbar e ciano aparecem só em código e dados: painéis com números de linha, front matter, tags de tecnologia, ícones de tipo de arquivo e rótulos em mono. Texto corrido e títulos nunca recebem cor de sintaxe.
+**The Color Lives in Code and Icons Rule.** As cores Vivid aparecem em código e dados, ícones de arquivo e de contato, e nos chips e tags de tecnologia (cada tecnologia tem sua cor, definida em `techColor`). Texto corrido e títulos nunca recebem cor.
 
 ## Typography
 
@@ -209,7 +224,7 @@ Tema escuro de editor, frio e quase neutro (matiz 250–260), com um único acen
 **Character:** Uma grotesca larga e pesada para nome e títulos, com eixo de largura aberto (`font-stretch` 104% nos títulos, 112% no nome do hero), contra uma mono de editor para tudo que é moldura ou dado. A pareação diz "desenvolvedor" sem precisar de ilustração.
 
 ### Hierarchy
-- **Display** (800, clamp(3.1rem, 8cqi, 6rem), 0.92): só o nome no hero, seguido do cursor chartreuse; a última palavra e o cursor quebram juntos. Títulos de página usam a mesma voz com o teto próprio de cada um: Sobre clamp(2.75rem, 9vw, 6rem), estudo de caso clamp(2.6rem, 7vw, 5rem), página não encontrada clamp(2.4rem, 6vw, 4.5rem) e "Vamos conversar?" clamp(2.4rem, 6vw, 4.4rem), que a partir de container 56rem passa a clamp(2.4rem, 6.5cqi, 4.4rem).
+- **Display** (800, clamp(3.1rem, 8cqi, 6rem), 0.92): só o nome no hero, seguido do cursor verde; a última palavra e o cursor quebram juntos. Títulos de página usam a mesma voz com o teto próprio de cada um: Sobre clamp(2.75rem, 9vw, 6rem), estudo de caso clamp(2.6rem, 7vw, 5rem), página não encontrada clamp(2.4rem, 6vw, 4.5rem) e "Vamos conversar?" clamp(2.4rem, 6vw, 4.4rem), que a partir de container 56rem passa a clamp(2.4rem, 6.5cqi, 4.4rem).
 - **Headline** (740, clamp(1.95rem, 4.2vw, 3.1rem), 1.08): títulos de seção, precedidos do marcador Markdown. Quando o título fica numa coluna estreita ao lado do conteúdo, ele escala com o container: `.split .h2` da home clamp(1.75rem, 3.5cqi, 3.1rem) a partir de 56rem e o `.h2` de Sobre clamp(1.75rem, 3.2cqi, 2.5rem) a partir de 50rem (em coluna única, clamp(1.9rem, 4vw, 2.75rem)).
 - **Title** (740, 1.08): nome do projeto na lista, empresa e instituição em Experiência, subtítulos `##` do estudo de caso. Passos em uso: clamp(1.5rem, 2.4vw, 2rem) na lista de projetos, clamp(1.5rem, 2.8vw, 2.1rem) e clamp(1.4rem, 2.2vw, 1.75rem) na home, clamp(1.3rem, 2.4vw, 1.75rem) em Sobre, clamp(1.4rem, 2.4vw, 1.8rem) no estudo de caso.
 - **Body** (400, 1.0625rem, 1.6): texto corrido; blocos de leitura limitados a 34–42rem.
@@ -252,40 +267,43 @@ Profundidade vem de camadas tonais: área de edição (`bg`) abaixo das barras e
 
 ## Shapes
 
-Cantos pouco arredondados e em quatro passos, do maior (moldura) ao menor (dado): 8px em painéis, imagens, retrato e front matter; 6px em botões, botão de menu e selo "EA"; 5px em chips clicáveis (perfil e filtro); 4px nas tags de tecnologia e no contorno de foco. As barras do editor e as abas são retas. Bordas sempre de 1px; o único traço mais grosso é o filete de 2px em chartreuse no topo da aba ativa. A árvore de componentes usa os galhos de texto `├─` e `└─` em `line-strong`.
+Cantos pouco arredondados e em quatro passos, do maior (moldura) ao menor (dado): 8px em painéis, imagens, retrato e front matter; 6px em botões, botão de menu e selo "EA"; 5px em chips clicáveis (perfil e filtro); 4px nas tags de tecnologia e no contorno de foco. As barras do editor e as abas são retas. Bordas sempre de 1px; o único traço mais grosso é o filete de 2px em verde no topo da aba ativa. A árvore de componentes usa os galhos de texto `├─` e `└─` em `line-strong`.
 
 ## Components
 
 ### Buttons
 Preenchidos e diretos, sem gradiente nem sombra.
 - **Shape:** cantos discretos (6px).
-- **Primary:** fundo `accent`, texto `on-accent`, Archivo 750, altura mínima de 3rem, 0 1.25rem. Usado em Ver projetos, Mandar um e-mail e Falar sobre este projeto.
+- **Primary:** fundo `accent`, texto `on-accent`, Archivo 750, altura mínima de 3rem, 0 1.25rem. Usado em Ver projetos, Enviar e-mail e Falar sobre este projeto.
 - **Hover / Focus:** fundo `accent-hover` em 160ms; no hero, um afundamento de 1px no clique. Foco: contorno de 2px em `accent` com 3px de afastamento em todo elemento.
 - **Contorno:** transparente, borda `line-strong`, texto `ink-soft`; hover clareia borda e texto. É o botão Copiar e-mail, que mostra "E-mail copiado" em `accent` por 2.2s.
-- **Secundário:** texto `ink-soft` sem caixa (GitHub, LinkedIn no hero); hover para `ink`.
-- **Contato da barra de título:** versão compacta do primário (2.25rem), com ícone de envelope; leva à seção de contato.
+- **Secundário:** texto `ink-soft` sem caixa (GitHub, LinkedIn, WhatsApp no hero, cada um com o ícone na própria cor); hover para `ink`.
+- **WhatsApp:** contorno de 1px em verde a 55%, ícone verde, texto `ink`; hover enche de verde a 12%. Fica ao lado de Enviar e-mail no contato, nos estudos de caso e na página Sobre, e a mensagem já vem escrita ("Olá, Eros! Vi seu portfólio e gostaria de conversar."; nos estudos de caso cita o projeto).
+- **Contato da barra de título:** versão compacta do primário (2.25rem) que abre um menu (Motion) com Enviar e-mail, Chamar no WhatsApp e Ver contato.ts; fecha com Esc ou clique fora. No celular o menu ocupa a largura da barra.
+- **Clique:** todo botão afunda a 97% (`scale`) enquanto pressionado.
 
 ### Chips
-- **Perfil (`perfil.ts`):** strings entre aspas em mono, `syn-str` sobre `bg`, borda `line-strong`, 2.25rem de altura. Pressionado: fundo `accent`, texto `on-accent`. Escolher um chip filtra a lista e rola até Projetos; escolher de novo desfaz. Em painéis estreitos (container abaixo de 30rem) os quatro chips ficam em duas linhas iguais.
-- **Filtro de Projetos:** "filtro:" em `syn-ty`, depois "todos" e cada tecnologia com a contagem em números tabulares. Transparente, borda `line-strong`, 2.5rem; pressionado ganha borda `accent`, fundo de acento a 10% e contagem em `accent`. Uma linha `aria-live` diz quantos projetos usam a tecnologia.
-- **Tag de tecnologia:** só leitura, mono 0.8rem em `syn-ty`, borda `line-strong`, 4px.
+- **Perfil (`perfil.ts`):** strings entre aspas em mono, na cor da tecnologia, sobre `bg`, borda `line-strong`, 2.25rem de altura. Pressionado: fundo na cor da tecnologia, texto `on-accent`. Escolher um chip filtra a lista e rola até Projetos; escolher de novo desfaz. Em painéis estreitos (container abaixo de 30rem) os quatro chips ficam em duas linhas iguais.
+- **Filtro de Projetos:** "filtro:" em `syn-ty`, depois "todos" e cada tecnologia com a contagem em números tabulares. Transparente, borda `line-strong`, 2.5rem; cada tecnologia leva um ponto da própria cor; pressionado ganha borda na cor dela e fundo a 14%. Uma linha `aria-live` diz quantos projetos usam a tecnologia.
+- **Tag de tecnologia:** só leitura, mono 0.8rem na cor da tecnologia, borda da mesma cor a 45%, 4px.
 
 ### Code Panel (componente de assinatura)
 Cabeçalho com ícone em `syn-kw` e nome do arquivo em mono, corpo `bg-alt` com números de linha alinhados à direita em `ink-muted` numa coluna de 2.75rem. Texto quebra com recuo pendente; código real não quebra e rola na horizontal. Variantes em uso:
 - **`perfil.ts`** no hero: objeto `eros` com formação, estágio, tecnologias (os chips) e idiomas.
 - **`stack.json`** em Tecnologias: grupos e itens como dados.
 - **Trecho real** em Este site: a função `useActiveSection` de `src/components/Shell.tsx`, lida na build por `src/content/source.ts` e realçada com as cores de sintaxe, com os números de linha verdadeiros. O leitor exige que a função comece no início da linha (`function nome` ou `export function nome`) e termina na primeira linha que seja só `}`.
-- **`contato.ts`**: e-mail, LinkedIn, GitHub e WhatsApp como links em `syn-str`, ao lado de "Vamos conversar?", Mandar um e-mail e Copiar e-mail.
+- **`contato.ts`**: precedido da linha `~/portfolio $ npm run contato`; e-mail, LinkedIn, GitHub e WhatsApp como links em `syn-str`, ao lado de "Vamos conversar?", Enviar e-mail, Chamar no WhatsApp e Copiar e-mail.
 
 ### Explorer
 - Painel `bg-alt` em mono 0.86rem, título de painel "Explorador" (Archivo 0.75rem, maiúsculas espaçadas, `ink-muted`), pasta `portfolio` com `README.md`, a pasta `trabalhos` (um `.md` por projeto) e `experiencia.md`, `stack.json`, `sobre.md`, `este-site.ts`, `contato.ts`.
-- Ícone por tipo: `.md` em `syn-ty`, `.ts` em `syn-kw`, `.json` em `syn-str`; no arquivo atual o ícone fica `accent` e o fundo `surface-hover`.
+- Ícone por tipo: `.md` azul, `.ts` turquesa, `.json` amarelo, pastas laranja. O arquivo atual ganha um destaque único (`surface-hover` com filete verde) que desliza entre arquivos (Motion `layoutId`).
+- Ordem: README.md, sobre.md, trabalhos/, experiencia.md, stack.json, este-site.ts, contato.ts.
 - Na home, o arquivo da seção visível fica destacado (`aria-current="location"`); fora dela, o da página.
 
 ### Tabs, Path and Status Bar
-- **Abas:** `README.md` sempre aberta; fora da home, uma segunda aba com o arquivo da página. Aba atual em `bg` com filete chartreuse de 2px no topo, emendada na área de edição.
+- **Abas:** `README.md` sempre aberta; fora da home, uma segunda aba com o arquivo da página, que abre e fecha com deslize (Motion). Aba atual em `bg` com filete verde de 2px no topo, emendada na área de edição.
 - **Caminho:** `portfolio › trabalhos › arquivo` em `ink-muted`, último trecho em `ink-soft`; só a partir de 40rem.
-- **Barra de status:** faixa `accent` com ramo `main` e "Eros Amancio · Recife, PE"; a partir de 40rem, GitHub, LinkedIn, e-mail e Sobre. No celular, uma linha só.
+- **Barra de status:** faixa `accent` com ramo `main`, `Ln, Col` que acompanham a rolagem, "pronto" (na abertura mostra "compilando…" e "compilado em 0,8s") e "Eros Amancio · Recife, PE"; a partir de 40rem, GitHub, LinkedIn, e-mail e Sobre. No celular, uma linha só.
 
 ### Project Preview
 - **Com imagem:** prévia com barra de nome do arquivo em mono e a imagem em largura total da coluna, borda `line` que escurece no hover. O link da prévia sai da ordem de tabulação (o título já leva ao estudo).
@@ -307,7 +325,13 @@ Cabeçalho com ícone em `syn-kw` e nome do arquivo em mono, corpo `bg-alt` com 
 Sociiz Meet não tem e não pode ter imagens.
 
 ### Motion
-Transições de estado em 160ms (cor, fundo, borda), 200ms em setas e bordas de prévia, 240ms na gaveta do explorador, entrada dos projetos ao filtrar em 420ms (opacidade 0.4 e 6px), e o cursor que pisca oito vezes depois do nome. Curva padrão `cubic-bezier(0.16, 1, 0.3, 1)`. O momento autoral é o `perfil.ts` se digitando: cada linha entra em 460ms com revelação da esquerda para a direita (`clip-path`), a 55ms da anterior, uma vez por visita; ao voltar para a home ele já aparece pronto. Ao abrir um arquivo no explorador o conteúdo sobe 8px e aparece em 260ms (`template.tsx`). Uma linha de 2px em `accent` sob as abas se enche conforme a rolagem (linha de posição do editor, só onde há `animation-timeline`). As prévias dos projetos aproximam 2,5% no hover de mouse. Só `transform`, `opacity` e `clip-path` animam. Com `prefers-reduced-motion`, o perfil.ts aparece pronto, as entradas viram só opacidade e a rolagem deixa de ser suave; a linha de posição continua, porque mostra estado.
+Ideia: **o editor ganha vida**. GSAP (ScrollTrigger, SplitText) cuida de sequências e rolagem; Motion para React cuida de layout e entrada/saída de componentes. Curva padrão `cubic-bezier(0.16, 1, 0.3, 1)` (`expo.out` no GSAP); constantes em `src/motion/tokens.ts`. Só `transform`, `opacity` e `clip-path` animam. As bibliotecas carregam depois da hidratação, em chunks próprios, e o HTML do servidor já é a página final.
+- **Abertura do projeto** (`src/motion/Opening.tsx`, só na home, em tela de 64rem ou mais, uma vez por sessão): o explorador se desdobra, a aba abre da esquerda, o nome é digitado letra a letra, as linhas do `perfil.ts` se escrevem e acendem as cores de cada token, depois entram o texto e os botões; a barra de status mostra "compilando…" e termina em "pronto". Dura cerca de 1,4s e qualquer clique, tecla ou rolagem a completa. Nada fica escondido por mais de 0,9s: se a sequência atrasa, ela é descartada.
+- **Barra de status e explorador:** `Ln, Col` seguem a rolagem (escrita direta no DOM, sem re-render); o destaque do arquivo atual desliza entre arquivos.
+- **Títulos** (`#` entra, depois o texto sobe de uma máscara por linha), **projetos como diff** (cada projeto traz `+ trabalhos/nome.md` e entra com revelação de `clip-path` por `ScrollTrigger.batch`), **filtro** (a lista se reorganiza com animação de layout e o contador troca com fade).
+- **Experiência:** a linha da timeline se desenha com a rolagem. **Sobre:** uma linha de JSX (`<Sobre foto="eros.jpg" />`) é digitada acima da seção e some quando o retrato e o texto chegam. **stack.json** e **contato.ts** se escrevem linha a linha; **este-site.ts** tem uma linha de leitura que desce pelo código conforme a rolagem (só desktop).
+- **Transições:** conteúdo da página sobe 8px em 260ms (`template.tsx`); abas abrem e fecham com deslize; menu de contato com fade e escala; ícone de copiar com cross-fade. Linha de 2px em `accent` sob as abas se enche com a rolagem. As prévias aproximam 2,5% no hover de mouse.
+- **Movimento reduzido:** nada da abertura nem das revelações roda; a página já nasce completa. Transições viram só opacidade (`MotionConfig reducedMotion="user"`, regra global de CSS) e a linha de posição continua, porque mostra estado. No celular só a revelação dos projetos e dos blocos de código (versão curta); abertura e linha de leitura não existem.
 
 ### Named Rules
 **The Real Source Rule.** Código, dados e arquivos mostrados no site existem e rodam. Trechos de código são lidos do fonte na build, não copiados à mão.
@@ -320,6 +344,7 @@ Transições de estado em 160ms (cor, fundo, borda), 200ms em setas e bordas de 
 - **Do** apresentar página nova como arquivo: entrada no explorador, aba, caminho e título com marcador `#`.
 - **Do** usar o painel de código com números de linha para qualquer dado estruturado (perfil, tecnologias, contato, endpoint).
 - **Do** ler do código-fonte na build qualquer trecho de código mostrado como real.
+- **Do** dar a cada tecnologia a mesma cor em todo o site (`techColor`).
 - **Do** manter texto sobre o acento em `on-accent` e foco visível com contorno de 2px em `accent`.
 - **Do** mostrar imagens de projeto no máximo no tamanho nativo, centralizadas na moldura com a barra do nome do arquivo.
 - **Do** mostrar Sociiz Meet só em texto: árvore de componentes, painel do serviço de tokens e a nota de cadeado.
@@ -328,10 +353,11 @@ Transições de estado em 160ms (cor, fundo, borda), 200ms em setas e bordas de 
 - **Do** zerar `text-indent` em link `inline-block` dentro de linha de código, para o recuo pendente não deslocar o alvo.
 
 ### Don't:
-- **Don't** usar terminal falso, commits inventados ou dados que não existem.
+- **Don't** usar commits inventados, saída de terminal que finja dados ou números que não existem.
 - **Don't** colocar imagem, print ou captura do Sociiz Meet.
 - **Don't** esticar imagem além do tamanho nativo.
-- **Don't** usar cor de sintaxe em texto corrido ou títulos, nem criar um segundo acento.
+- **Don't** usar cor Vivid em texto corrido ou títulos, nem criar um segundo acento de ação.
+- **Don't** esconder conteúdo por mais de 0,9s esperando uma animação, nem animar o que já estava na tela.
 - **Don't** usar rótulo em maiúsculas espaçadas acima de títulos; esse estilo existe só no título do painel do explorador.
 - **Don't** separar superfícies com sombra; use tom e filete de 1px.
 - **Don't** usar metáfora de fora do mundo do software.

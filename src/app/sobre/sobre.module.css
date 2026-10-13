@@ -20,6 +20,12 @@
   color: var(--ink);
 }
 
+/* The markdown "#" marks are the structure of the file, so they carry the accent. */
+.title :global(.hash),
+.h2 :global(.hash) {
+  color: var(--accent);
+}
+
 .lead {
   max-width: 40rem;
   font-size: clamp(1.15rem, 1.8vw, 1.35rem);
@@ -63,7 +69,7 @@
 .portrait {
   width: min(100%, 18rem);
   overflow: hidden;
-  border: 1px solid var(--line);
+  border: 1px solid rgb(var(--accent-rgb) / 0.45);
   border-radius: var(--radius);
 }
 
@@ -110,12 +116,24 @@
 
 .items li {
   padding-left: 1.25rem;
-  border-left: 1px solid var(--line-strong);
+  border-left: 2px solid rgb(var(--accent-rgb) / 0.5);
   color: var(--ink-soft);
 }
 
 .items strong {
   color: var(--ink);
+}
+
+.items strong a {
+  display: inline-block;
+  padding-block: 0.3rem;
+  margin-block: -0.3rem;
+  color: var(--accent);
+  text-decoration-color: rgb(var(--accent-rgb) / 0.5);
+}
+
+.items strong a:hover {
+  color: var(--accent-hover);
 }
 
 .projectList {
@@ -143,10 +161,19 @@
   color: var(--accent);
 }
 
-.projectList span {
+.projectMeta {
+  display: grid;
+  gap: 0.2rem;
   font-family: var(--mono);
   font-size: 0.85rem;
   color: var(--ink-muted);
+}
+
+/* Each technology keeps the color it has in the profile filter and on the case-study pages. */
+.stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 0.9rem;
 }
 
 .skills {

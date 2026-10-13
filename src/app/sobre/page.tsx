@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight, Mail } from "lucide-react";
 import { GitHubIcon, LinkedInIcon, WhatsAppIcon } from "@/components/BrandIcons";
-import { contact, projects, skills, whatsappUrl } from "@/content/site";
+import { contact, knownTechColor, projects, skills, techColor, whatsappUrl } from "@/content/site";
 import styles from "./sobre.module.css";
 
 export const metadata: Metadata = {
@@ -16,6 +16,7 @@ export const metadata: Metadata = {
 const sociiz = [
   {
     name: "Sociiz Meet",
+    slug: "sociiz-meet",
     text: "Construí a interface de videoconferência em React 19 e Vite com LiveKit: lobby com prévia de câmera e microfone, sala com chat em tempo real, compartilhamento de tela, painel de participantes, mão levantada, indicador de sinal, convite por link, estados de conexão e tela de pós-reunião, com a identidade visual da Sociiz. No backend, um serviço em Flask emite os tokens de acesso às salas com as permissões de cada participante.",
   },
   {
@@ -98,7 +99,7 @@ export default function SobrePage() {
           <ul className={styles.items}>
             {sociiz.map((s) => (
               <li key={s.name}>
-                <strong>{s.name}.</strong> {s.text}
+                <strong>{s.slug ? <Link href={`/trabalhos/${s.slug}`}>{s.name}</Link> : s.name}.</strong> {s.text}
               </li>
             ))}
           </ul>
@@ -133,8 +134,17 @@ export default function SobrePage() {
           {projects.map((p) => (
             <li key={p.slug}>
               <Link href={`/trabalhos/${p.slug}`}>{p.name}</Link>
-              <span>
-                {p.context} · {p.role} · {p.stack.join(", ")}
+              <span className={styles.projectMeta}>
+                <span>
+                  {p.context} · {p.role}
+                </span>
+                <span className={styles.stack}>
+                  {p.stack.map((t) => (
+                    <span key={t} style={{ color: techColor(t) }}>
+                      {t}
+                    </span>
+                  ))}
+                </span>
               </span>
             </li>
           ))}
@@ -152,7 +162,14 @@ export default function SobrePage() {
           {skills.map((s) => (
             <div key={s.group}>
               <dt>{s.label}</dt>
-              <dd>{s.items.join(", ")}</dd>
+              <dd>
+                {s.items.map((item, i) => (
+                  <span key={item}>
+                    <span style={{ color: knownTechColor(item) }}>{item}</span>
+                    {i < s.items.length - 1 && ", "}
+                  </span>
+                ))}
+              </dd>
             </div>
           ))}
           <div>

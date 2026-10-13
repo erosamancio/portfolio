@@ -40,9 +40,21 @@ const techColors: Record<string, string> = {
   Selenium: "var(--vivid-green)",
   LiveKit: "var(--vivid-pink)",
   "GitHub Actions": "var(--vivid-purple)",
+  "GitHub Actions (CI/CD)": "var(--vivid-purple)",
+  FastAPI: "var(--vivid-turquoise)",
+  SQL: "var(--vivid-pink)",
+  Maven: "var(--vivid-salmon)",
+  PaddleOCR: "var(--vivid-purple)",
+  OpenCV: "var(--vivid-green)",
+  PDF2Image: "var(--vivid-yellow)",
+  "AWS (Boto3)": "var(--vivid-orange)",
+  "Automações em Python": "var(--vivid-blue)",
 };
 
 export const techColor = (name: string) => techColors[name] ?? "var(--vivid-turquoise)";
+
+/** The technology's color, or undefined for names that have none (tools, concepts). */
+export const knownTechColor = (name: string) => techColors[name];
 
 export type Project = {
   slug: string;

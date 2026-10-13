@@ -116,6 +116,14 @@
   width: 100%;
 }
 
+/* Phone screenshots are cropped to their top so the card keeps the height of its neighbours. */
+.shot[data-tall] img {
+  aspect-ratio: 16 / 11;
+  height: auto;
+  object-fit: cover;
+  object-position: top;
+}
+
 .structure {
   display: grid;
 }

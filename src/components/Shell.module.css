@@ -239,6 +239,28 @@
   font-size: 0.82rem;
 }
 
+/* A thin line under the tab bar fills as the page scrolls, like the position bar of an editor. */
+@supports (animation-timeline: scroll()) {
+  .tabbar::after {
+    content: "";
+    position: absolute;
+    inset: auto 0 -1px;
+    height: 2px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    animation: progress linear both;
+    animation-timeline: scroll(root block);
+    pointer-events: none;
+  }
+
+  @keyframes progress {
+    to {
+      transform: scaleX(1);
+    }
+  }
+}
+
 .tabs {
   display: flex;
   flex: 0 1 auto;
@@ -494,6 +516,6 @@
 /* Landscape phones: the tab bar scrolls with the page instead of taking a tenth of the screen. */
 @media (max-height: 32rem) and (max-width: 63.99rem) {
   .tabbar {
-    position: static;
+    position: relative;
   }
 }

@@ -198,3 +198,26 @@
     padding-left: 1ch;
   }
 }
+
+/* The profile panel types itself line by line. Rows are visible by default; the animation only starts them hidden. */
+.line {
+  animation: type 460ms var(--ease-out) backwards;
+  animation-delay: calc(180ms + var(--i, 0) * 55ms);
+}
+
+@keyframes type {
+  from {
+    opacity: 0;
+    clip-path: inset(0 100% 0 0);
+  }
+  to {
+    opacity: 1;
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .line {
+    animation: none;
+  }
+}

@@ -150,12 +150,25 @@
 }
 
 .items {
+  --draw: 1;
+  position: relative;
   display: grid;
   gap: 1.1rem;
   margin: 0.4rem 0 0;
   padding: 0 0 0 1.1rem;
   list-style: none;
-  border-left: 1px solid var(--line-strong);
+}
+
+/* The line beside the entries draws itself as the section scrolls into view. */
+.items::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 2px;
+  background: linear-gradient(var(--vivid-green), var(--vivid-turquoise));
+  opacity: 0.7;
+  transform: scaleY(var(--draw));
+  transform-origin: top;
 }
 
 .items li {
@@ -186,6 +199,31 @@
 /* Sobre sits right under the hero, so it stays compact: a small portrait beside a short text. */
 .aboutSection {
   padding-block: clamp(2.5rem, 5vw, 4rem);
+}
+
+.aboutSection {
+  position: relative;
+}
+
+/* A line of JSX that types itself above the section, then gives way to the real content. */
+.signature {
+  position: absolute;
+  top: clamp(0.6rem, 1.6vw, 1.1rem);
+  left: max(var(--gutter), calc((100% - var(--max)) / 2));
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  color: var(--ink-muted);
+  white-space: nowrap;
+}
+
+.prompt {
+  margin: 0 0 0.35rem 1rem;
+  font-family: var(--mono);
+  color: var(--ink-soft);
+}
+
+.prompt span {
+  color: var(--vivid-green);
 }
 
 .about {

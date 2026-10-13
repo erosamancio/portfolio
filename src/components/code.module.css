@@ -23,7 +23,7 @@
 .head svg {
   width: 0.95rem;
   height: 0.95rem;
-  color: var(--syn-kw);
+  color: var(--syn-ty);
 }
 
 .body {
@@ -41,6 +41,12 @@
   padding: 0;
   border: 0;
   min-inline-size: 0;
+}
+
+/* The line the scroll is "reading" in the long snippet. */
+.row[data-reading] {
+  background: rgb(var(--accent-rgb) / 0.09);
+  box-shadow: inset 2px 0 0 var(--accent);
 }
 
 .ln {

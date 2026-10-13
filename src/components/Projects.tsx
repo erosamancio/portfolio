@@ -121,11 +121,11 @@ export function Projects({ filter, onFilter }: Props) {
     <section id="trabalhos" ref={section} className={styles.section} aria-labelledby="trabalhos-title">
       <div className="wrap">
         <div className={styles.head}>
-          <h2 id="trabalhos-title" className={styles.h2}>
-            <span className="hash" aria-hidden="true">
+          <h2 id="trabalhos-title" className={styles.h2} data-m="title">
+            <span className="hash" aria-hidden="true" data-hash="">
               #
             </span>
-            Projetos
+            <span data-title-text="">Projetos</span>
           </h2>
           <div className={styles.filter} role="group" aria-label="Filtrar por tecnologia">
             <span className={styles.filterLabel} aria-hidden="true">

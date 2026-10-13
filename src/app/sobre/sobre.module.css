@@ -48,6 +48,18 @@
   height: 1.05em;
 }
 
+.links li:nth-child(1) svg {
+  color: var(--ink);
+}
+
+.links li:nth-child(2) svg {
+  color: var(--vivid-blue);
+}
+
+.links li:nth-child(3) svg {
+  color: var(--whatsapp);
+}
+
 .portrait {
   width: min(100%, 18rem);
   overflow: hidden;
@@ -139,7 +151,7 @@
 
 .skills {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(15rem, 100%), 1fr));
   gap: 1.25rem 2rem;
   margin: 0;
 }
@@ -174,6 +186,40 @@
   font-size: clamp(1.3rem, 2.4vw, 1.75rem);
 }
 
+.ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.whatsapp {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  min-height: 3.25rem;
+  padding: 0 1.25rem;
+  border: 1px solid color-mix(in oklab, var(--whatsapp) 55%, transparent);
+  border-radius: 6px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: scale 120ms var(--ease-out);
+}
+
+.whatsapp:active {
+  scale: 0.97;
+}
+
+.whatsapp svg {
+  width: 1.15em;
+  height: 1.15em;
+  color: var(--whatsapp);
+}
+
+.whatsapp:hover {
+  border-color: var(--whatsapp);
+  background: color-mix(in oklab, var(--whatsapp) 12%, transparent);
+}
+
 .mailCta {
   display: inline-flex;
   align-items: center;
@@ -185,6 +231,11 @@
   border-radius: 6px;
   font-weight: 750;
   text-decoration: none;
+  transition: scale 120ms var(--ease-out);
+}
+
+.mailCta:active {
+  scale: 0.97;
 }
 
 .mailCta svg {

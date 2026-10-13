@@ -41,17 +41,30 @@
   transition:
     border-color 160ms,
     background 160ms,
-    color 160ms;
+    color 160ms,
+    scale 120ms var(--ease-out);
+}
+
+.option:active {
+  scale: 0.97;
+}
+
+.option::before {
+  content: "";
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: var(--tech, var(--ink-muted));
 }
 
 .option:hover {
-  border-color: var(--ink-muted);
+  border-color: var(--tech, var(--ink-muted));
   color: var(--ink);
 }
 
 .option[aria-pressed="true"] {
-  border-color: var(--accent);
-  background: oklch(0.91 0.19 123 / 0.1);
+  border-color: var(--tech, var(--accent));
+  background: color-mix(in oklab, var(--tech, var(--accent)) 14%, transparent);
   color: var(--ink);
 }
 
@@ -71,6 +84,7 @@
 }
 
 .list {
+  position: relative;
   display: grid;
   gap: clamp(3rem, 7vw, 4.75rem);
   margin-top: clamp(2.25rem, 5vw, 3.25rem);
@@ -82,22 +96,19 @@
   align-items: center;
 }
 
-/* After a filter change, each card that reappears comes in as two pieces, preview then text, staggered down the list. */
-.list[data-animate] .work > * {
-  animation: enter 300ms var(--ease-out) backwards;
-  animation-delay: calc(var(--i, 0) * 100ms);
+/* A line of diff output above each project: "+ trabalhos/cicle.md". */
+.hunk {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  color: var(--ink-muted);
 }
 
-.list[data-animate] .work > :last-child {
-  animation-delay: calc(var(--i, 0) * 100ms + 80ms);
-}
-
-@keyframes enter {
-  from {
-    opacity: 0;
-    transform: translateY(12px);
-    filter: blur(4px);
-  }
+.hunk span {
+  margin-right: 0.35em;
+  padding: 0 0.3em;
+  border-radius: 3px;
+  background: rgb(var(--accent-rgb) / 0.16);
+  color: var(--vivid-green);
 }
 
 .shot {
@@ -231,7 +242,8 @@
   border-radius: 4px;
   font-family: var(--mono);
   font-size: 0.8rem;
-  color: var(--syn-ty);
+  color: var(--tech, var(--syn-ty));
+  border-color: color-mix(in oklab, var(--tech, var(--syn-ty)) 45%, transparent);
 }
 
 .more {

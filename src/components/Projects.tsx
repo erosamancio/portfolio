@@ -1,11 +1,15 @@
+import { useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { AnimatePresence, m } from "motion/react";
 import { ArrowRight, Component, Lock } from "lucide-react";
-import { projects, tags, type Project, type Tag } from "@/content/site";
+import { projects, tags, techColor, type Project, type Tag } from "@/content/site";
 import code from "./code.module.css";
+import { duration, ease, MOBILE_QUERY } from "@/motion/tokens";
+import { useGsap } from "@/motion/gsap";
 import styles from "./Projects.module.css";
 
-type Props = { filter: Tag | null; onFilter: (tag: Tag | null) => void; animate: boolean };
+type Props = { filter: Tag | null; onFilter: (tag: Tag | null) => void };
 
 function Preview({ project }: { project: Project }) {
   const href = `/trabalhos/${project.slug}`;
@@ -14,6 +18,7 @@ function Preview({ project }: { project: Project }) {
       <Link
         href={href}
         className={styles.shot}
+        data-reveal=""
         data-tall={project.image.height > project.image.width ? "" : undefined}
         tabIndex={-1}
         aria-hidden="true"
@@ -31,7 +36,7 @@ function Preview({ project }: { project: Project }) {
   }
   // No screenshots exist for this project by agreement, so it shows its structure instead.
   return (
-    <div className={`${code.panel} ${styles.structure}`}>
+    <div className={`${code.panel} ${styles.structure}`} data-reveal="">
       <p className={code.head}>
         <Component aria-hidden="true" /> componentes
       </p>
@@ -51,20 +56,68 @@ function Preview({ project }: { project: Project }) {
   );
 }
 
-export function Projects({ filter, onFilter, animate }: Props) {
+/** Each project reads like a hunk of a diff: it is "added" as it scrolls into view. */
+function useDiffReveal(root: React.RefObject<HTMLElement | null>) {
+  useGsap(({ gsap, ScrollTrigger }) => {
+    const mm = gsap.matchMedia();
+    mm.add(
+      { motion: "(prefers-reduced-motion: no-preference)", mobile: MOBILE_QUERY },
+      (ctx) => {
+        const { motion, mobile } = ctx.conditions as { motion: boolean; mobile: boolean };
+        if (!motion || !root.current) return;
+        const items = gsap.utils.toArray<HTMLElement>("[data-diff]", root.current);
+        const parts = (el: Element) => el.querySelectorAll("[data-reveal]");
+
+        // Only what is still below the fold starts hidden, so nothing flashes on load.
+        items.forEach((el) => {
+          if (el.getBoundingClientRect().top > window.innerHeight * 0.9) gsap.set(parts(el), { opacity: 0 });
+        });
+
+        ScrollTrigger.batch(items, {
+          start: "top 88%",
+          once: true,
+          onEnter: (batch) => {
+            batch.forEach((el, i) => {
+              const [media, ...text] = parts(el);
+              const tl = gsap.timeline({ delay: i * 0.1, defaults: { ease: "expo.out" } });
+              if (media)
+                tl.fromTo(
+                  media,
+                  mobile ? { opacity: 0, y: 14 } : { opacity: 0, clipPath: "inset(0 0 100% 0)" },
+                  mobile
+                    ? { opacity: 1, y: 0, duration: 0.5 }
+                    : { opacity: 1, clipPath: "inset(0 0 0% 0)", duration: 0.8 },
+                  0,
+                );
+              if (text.length)
+                tl.fromTo(text, { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.55, stagger: 0.07 }, 0.15);
+              tl.set([media, ...text].filter(Boolean), { clearProps: "all" });
+            });
+          },
+        });
+      },
+      root.current ?? undefined,
+    );
+    return () => mm.revert();
+  });
+}
+
+export function Projects({ filter, onFilter }: Props) {
+  const section = useRef<HTMLElement>(null);
+  useDiffReveal(section);
   const count = (t: Tag) => projects.filter((p) => p.tags.includes(t)).length;
   let order = 0;
   const shown = filter ? projects.filter((p) => p.tags.includes(filter)).length : projects.length;
 
   return (
-    <section id="trabalhos" className={styles.section} aria-labelledby="trabalhos-title">
+    <section id="trabalhos" ref={section} className={styles.section} aria-labelledby="trabalhos-title">
       <div className="wrap">
         <div className={styles.head}>
-          <h2 id="trabalhos-title" className={styles.h2}>
-            <span className="hash" aria-hidden="true">
+          <h2 id="trabalhos-title" className={styles.h2} data-m="title">
+            <span className="hash" aria-hidden="true" data-hash="">
               #
             </span>
-            Projetos
+            <span data-title-text="">Projetos</span>
           </h2>
           <div className={styles.filter} role="group" aria-label="Filtrar por tecnologia">
             <span className={styles.filterLabel} aria-hidden="true">
@@ -83,6 +136,7 @@ export function Projects({ filter, onFilter, animate }: Props) {
                 key={t}
                 type="button"
                 className={styles.option}
+                style={{ "--tech": techColor(t) } as React.CSSProperties}
                 aria-pressed={filter === t}
                 onClick={() => onFilter(filter === t ? null : t)}
               >
@@ -90,44 +144,67 @@ export function Projects({ filter, onFilter, animate }: Props) {
               </button>
             ))}
           </div>
-          <p className={styles.status} aria-live="polite">
-            {filter ? `${shown} de ${projects.length} projetos usam ${filter}` : `${projects.length} projetos`}
-          </p>
+          <div className={styles.status} aria-live="polite">
+            <AnimatePresence mode="wait" initial={false}>
+              <m.p
+                key={filter ?? "todos"}
+                initial={{ opacity: 0, y: 6 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -6 }}
+                transition={{ duration: duration.short, ease: ease.out }}
+              >
+                {filter ? `${shown} de ${projects.length} projetos usam ${filter}` : `${projects.length} projetos`}
+              </m.p>
+            </AnimatePresence>
+          </div>
         </div>
 
-        <div className={styles.list} data-animate={animate ? "" : undefined}>
-          {projects.map((p) => {
-            const visible = !filter || p.tags.includes(filter);
-            if (visible) order++;
-            return (
-              <article
-                key={p.slug}
-                className={styles.work}
-                hidden={!visible}
-                data-flip={visible && order % 2 === 0 ? "" : undefined}
-                style={{ "--i": Math.min(order - 1, 3) } as React.CSSProperties}
-              >
-                <Preview project={p} />
-                <div className={styles.text}>
-                  <h3 className={styles.h3}>
-                    <Link href={`/trabalhos/${p.slug}`}>{p.name}</Link>
-                  </h3>
-                  <p className={styles.meta}>
-                    {p.context} · {p.role}
-                  </p>
-                  <p className={styles.summary}>{p.summary}</p>
-                  <ul className={styles.tags} aria-label="Tecnologias">
-                    {p.stack.map((t) => (
-                      <li key={t}>{t}</li>
-                    ))}
-                  </ul>
-                  <Link href={`/trabalhos/${p.slug}`} className={styles.more}>
-                    Ler estudo de caso <ArrowRight aria-hidden="true" />
-                  </Link>
-                </div>
-              </article>
-            );
-          })}
+        <div className={styles.list}>
+          <AnimatePresence mode="popLayout" initial={false}>
+            {projects.map((p) => {
+              if (filter && !p.tags.includes(filter)) return null;
+              order++;
+              return (
+                <m.article
+                  key={p.slug}
+                  layout="position"
+                  className={styles.work}
+                  data-diff=""
+                  data-flip={order % 2 === 0 ? "" : undefined}
+                  initial={{ opacity: 0, y: 12 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -8 }}
+                  transition={{ duration: duration.base, ease: ease.out }}
+                >
+                  <Preview project={p} />
+                  <div className={styles.text}>
+                    <p className={styles.hunk} data-reveal="" aria-hidden="true">
+                      <span>+</span> trabalhos/{p.slug}.md
+                    </p>
+                    <h3 className={styles.h3} data-reveal="">
+                      <Link href={`/trabalhos/${p.slug}`}>{p.name}</Link>
+                    </h3>
+                    <p className={styles.meta} data-reveal="">
+                      {p.context} · {p.role}
+                    </p>
+                    <p className={styles.summary} data-reveal="">
+                      {p.summary}
+                    </p>
+                    <ul className={styles.tags} aria-label="Tecnologias" data-reveal="">
+                      {p.stack.map((t) => (
+                        <li key={t} style={{ "--tech": techColor(t) } as React.CSSProperties}>
+                          {t}
+                        </li>
+                      ))}
+                    </ul>
+                    <Link href={`/trabalhos/${p.slug}`} className={styles.more} data-reveal="">
+                      Ler estudo de caso <ArrowRight aria-hidden="true" />
+                    </Link>
+                  </div>
+                </m.article>
+              );
+            })}
+          </AnimatePresence>
         </div>
       </div>
     </section>

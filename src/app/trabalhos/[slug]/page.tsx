@@ -3,8 +3,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowRight, ArrowUpRight, Component, Lock, Mail, Send } from "lucide-react";
-import { GitHubIcon } from "@/components/BrandIcons";
-import { contact, projects } from "@/content/site";
+import { GitHubIcon, WhatsAppIcon } from "@/components/BrandIcons";
+import { contact, projects, whatsappLink } from "@/content/site";
 import code from "@/components/code.module.css";
 import styles from "./case.module.css";
 
@@ -167,9 +167,14 @@ export default async function CasePage({ params }: { params: Promise<Params> }) 
 
       <footer className={styles.footer}>
         <div className={`wrap ${styles.footerInner}`}>
-          <a className={styles.mailCta} href={`mailto:${contact.email}`}>
-            <Mail aria-hidden="true" /> Falar sobre este projeto
-          </a>
+          <div className={styles.ctas}>
+            <a className={styles.mailCta} href={`mailto:${contact.email}`}>
+              <Mail aria-hidden="true" /> Falar sobre este projeto
+            </a>
+            <a className={styles.whatsapp} href={whatsappLink(project.name)} target="_blank" rel="noopener">
+              <WhatsAppIcon /> Chamar no WhatsApp
+            </a>
+          </div>
           <Link href={`/trabalhos/${next.slug}`} className={styles.next}>
             Próximo: {next.name} <ArrowRight aria-hidden="true" />
           </Link>

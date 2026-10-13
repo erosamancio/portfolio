@@ -200,6 +200,40 @@
   padding-block: 1.75rem;
 }
 
+.ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.whatsapp {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  min-height: 3rem;
+  padding: 0 1.1rem;
+  border: 1px solid color-mix(in oklab, var(--whatsapp) 55%, transparent);
+  border-radius: 6px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: scale 120ms var(--ease-out);
+}
+
+.whatsapp:active {
+  scale: 0.97;
+}
+
+.whatsapp svg {
+  width: 1.15em;
+  height: 1.15em;
+  color: var(--whatsapp);
+}
+
+.whatsapp:hover {
+  border-color: var(--whatsapp);
+  background: color-mix(in oklab, var(--whatsapp) 12%, transparent);
+}
+
 .mailCta {
   display: inline-flex;
   align-items: center;
@@ -211,6 +245,11 @@
   color: var(--on-accent);
   font-weight: 750;
   text-decoration: none;
+  transition: scale 120ms var(--ease-out);
+}
+
+.mailCta:active {
+  scale: 0.97;
 }
 
 .mailCta:hover {

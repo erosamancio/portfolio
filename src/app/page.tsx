@@ -1,6 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, ArrowUpRight, Braces, FileCode } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Braces, FileCode, Mail } from "lucide-react";
+import { WhatsAppIcon } from "@/components/BrandIcons";
+import { SectionMotion } from "@/motion/SectionMotion";
 import { Showcase } from "@/components/Showcase";
 import { CopyButton } from "@/components/CopyButton";
 import { contact, experience, skills, whatsappUrl } from "@/content/site";
@@ -11,11 +13,11 @@ import styles from "./page.module.css";
 
 function H2({ id, children }: { id: string; children: React.ReactNode }) {
   return (
-    <h2 id={id} className={styles.h2}>
-      <span className="hash" aria-hidden="true">
+    <h2 id={id} className={styles.h2} data-m="title">
+      <span className="hash" aria-hidden="true" data-hash="">
         #
       </span>
-      {children}
+      <span data-title-text="">{children}</span>
     </h2>
   );
 }
@@ -37,7 +39,44 @@ export default function Home() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }} />
-      <Showcase />
+      <SectionMotion />
+      <Showcase>
+        <section
+          id="sobre"
+          className={`${styles.section} ${styles.alt} ${styles.aboutSection}`}
+          aria-labelledby="sobre-title"
+          data-m="about"
+        >
+          <p className={styles.signature} aria-hidden="true" data-sig="">
+            <span className={code.tg}>{"<"}</span>
+            <span className={code.ty}>Sobre</span> <span className={code.nu}>foto</span>=
+            <span className={code.st}>“eros.jpg”</span> <span className={code.tg}>{"/>"}</span>
+          </p>
+          <div className={`wrap ${styles.about}`}>
+            <div className={styles.portrait} data-about="">
+              <Image
+                src="/images/eros.jpg"
+                width={800}
+                height={800}
+                alt="Retrato de Eros Amancio, de barba e camiseta preta, à noite com luzes ao fundo"
+                sizes="(min-width: 64rem) 20rem, 70vw"
+              />
+            </div>
+            <div className={styles.aboutText} data-about="">
+              <H2 id="sobre-title">Sobre</H2>
+              <p className={styles.big}>Do banco de dados à interface, passando pela API que liga os dois.</p>
+              <p className={styles.soft}>
+                Entrei na Sociiz como estagiário de banco de dados e fui parar na interface da Sociiz Meet, no serviço
+                que autentica cada participante e no pipeline de OCR. Meus interesses estão em backend, full stack e
+                segurança da informação, que conversa com o que já faço em redes, autenticação por token e TLS.
+              </p>
+              <Link href="/sobre" className={styles.more}>
+                Experiência e formação completas <ArrowRight aria-hidden="true" />
+              </Link>
+            </div>
+          </div>
+        </section>
+      </Showcase>
 
       <section id="experiencia" className={`${styles.section} ${styles.alt}`} aria-labelledby="experiencia-title">
         <div className={`wrap ${styles.split}`}>
@@ -52,7 +91,7 @@ export default function Home() {
                 Um estágio que foi além do banco de dados, com backend, frontend, processamento de documentos e
                 comunicação em tempo real.
               </p>
-              <ul className={styles.items}>
+              <ul className={styles.items} data-m="timeline">
                 {experience.map((e) => (
                   <li key={e.name}>
                     <h4 className={styles.h4}>
@@ -95,7 +134,7 @@ export default function Home() {
                 <span className={code.ln}>1</span>
                 <span className={code.text}>{"{"}</span>
               </p>
-              <ul className={styles.skillList}>
+              <ul className={styles.skillList} data-m="rows">
                 {skills.map((s, i) => (
                   <li key={s.group} className={code.row}>
                     <span className={code.ln} aria-hidden="true">
@@ -103,7 +142,7 @@ export default function Home() {
                     </span>
                     <span className={code.text}>
                       {"  "}
-                      <span className={code.ty}>
+                      <span className={code.ty} data-tok="">
                         <span aria-hidden="true">“</span>
                         {s.group}
                         <span aria-hidden="true">”</span>
@@ -113,7 +152,9 @@ export default function Home() {
                       <span>
                         {s.items.map((item, j) => (
                           <span key={item}>
-                            <span className={code.st}>“{item}”</span>
+                            <span className={code.st} data-tok="">
+                              “{item}”
+                            </span>
                             {j < s.items.length - 1 && <span aria-hidden="true">, </span>}
                           </span>
                         ))}
@@ -129,32 +170,6 @@ export default function Home() {
               </p>
             </div>
           </figure>
-        </div>
-      </section>
-
-      <section id="sobre" className={`${styles.section} ${styles.alt}`} aria-labelledby="sobre-title">
-        <div className={`wrap ${styles.about}`}>
-          <div className={styles.portrait}>
-            <Image
-              src="/images/eros.jpg"
-              width={800}
-              height={800}
-              alt="Retrato de Eros Amancio, de barba e camiseta preta, à noite com luzes ao fundo"
-              sizes="(min-width: 64rem) 20rem, 70vw"
-            />
-          </div>
-          <div className={styles.aboutText}>
-            <H2 id="sobre-title">Sobre</H2>
-            <p className={styles.big}>Do banco de dados à interface, passando pela API que liga os dois.</p>
-            <p className={styles.soft}>
-              Entrei na Sociiz como estagiário de banco de dados e fui parar na interface da Sociiz Meet, no serviço que
-              autentica cada participante e no pipeline de OCR. Meus interesses estão em backend, full stack e segurança
-              da informação, que conversa com o que já faço em redes, autenticação por token e TLS.
-            </p>
-            <Link href="/sobre" className={styles.more}>
-              Experiência e formação completas <ArrowRight aria-hidden="true" />
-            </Link>
-          </div>
         </div>
       </section>
 
@@ -182,7 +197,7 @@ export default function Home() {
               <FileCode aria-hidden="true" /> {hook.file}
             </figcaption>
             <pre className={`${code.body} ${styles.scroll}`} tabIndex={0} aria-label={`Trecho de ${hook.file}`}>
-              <code>
+              <code data-m="reading">
                 {hook.lines.map((line, i) => (
                   <span key={i} className={code.row}>
                     <span className={code.ln} aria-hidden="true">
@@ -210,13 +225,16 @@ export default function Home() {
       <section id="contato" className={styles.contact} aria-labelledby="contato-title">
         <div className={`wrap ${styles.contactInner}`}>
           <div className={styles.lead}>
-            <h2 id="contato-title" className={styles.contactTitle}>
-              Vamos conversar?
+            <h2 id="contato-title" className={styles.contactTitle} data-m="title">
+              <span data-title-text="">Vamos conversar?</span>
             </h2>
             <p className={styles.soft}>Para vagas, projetos ou uma troca de ideia. Respondo por qualquer um destes.</p>
             <div className={styles.contactActions}>
               <a className={styles.primary} href={`mailto:${contact.email}`}>
-                Mandar um e-mail
+                <Mail aria-hidden="true" /> Enviar e-mail
+              </a>
+              <a className={styles.whatsapp} href={whatsappUrl} target="_blank" rel="noopener">
+                <WhatsAppIcon /> Chamar no WhatsApp
               </a>
               <CopyButton value={contact.email} className={styles.copy} />
             </div>
@@ -225,7 +243,10 @@ export default function Home() {
             <p className={code.head} aria-hidden="true">
               <FileCode /> contato.ts
             </p>
-            <div className={code.body}>
+            <div className={code.body} data-m="terminal">
+              <p className={styles.prompt} aria-hidden="true" data-prompt="">
+                <span>~/portfolio</span> $ npm run contato
+              </p>
               <p className={code.row} aria-hidden="true">
                 <span className={code.ln}>1</span>
                 <span className={code.text}>

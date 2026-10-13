@@ -1,31 +1,44 @@
 :root {
-  /* Editor surfaces, darkest to lightest */
-  --bg: oklch(0.17 0.012 260);
-  --bg-alt: oklch(0.195 0.012 260);
-  --surface: oklch(0.215 0.012 260);
-  --surface-hover: oklch(0.25 0.014 260);
-  --line: oklch(0.29 0.012 260);
-  --line-strong: oklch(0.42 0.014 260);
+  /* Editor surfaces, darkest to lightest (Vivid Black base, #141417) */
+  --bg: #141417;
+  --bg-alt: #18181c;
+  --surface: #1d1d22;
+  --surface-hover: #26262c;
+  --line: #2b2b32;
+  --line-strong: #4b4b56;
 
   --ink: oklch(0.94 0.005 250);
   --ink-soft: oklch(0.78 0.012 250);
-  --ink-muted: oklch(0.66 0.014 250);
+  --ink-muted: oklch(0.68 0.014 250);
 
-  --accent: oklch(0.91 0.19 123);
-  --accent-hover: oklch(0.95 0.15 123);
-  --on-accent: oklch(0.19 0.02 130);
+  /* Vivid palette */
+  --vivid-blue: #28a9ff;
+  --vivid-green: #42dd76;
+  --vivid-orange: #ff7135;
+  --vivid-pink: #e66dff;
+  --vivid-purple: #a95eff;
+  --vivid-salmon: #ff478d;
+  --vivid-turquoise: #14e5d4;
+  --vivid-yellow: #ffb638;
+
+  --accent: var(--vivid-green);
+  --accent-hover: #6bea96;
+  --accent-rgb: 66 221 118;
+  --on-accent: #08170d;
+  --whatsapp: var(--vivid-green);
 
   /* Syntax */
-  --syn-kw: oklch(0.79 0.13 300);
-  --syn-fn: var(--accent);
-  --syn-str: oklch(0.85 0.12 75);
-  --syn-ty: oklch(0.83 0.1 200);
+  --syn-kw: var(--vivid-purple);
+  --syn-fn: var(--vivid-blue);
+  --syn-str: var(--vivid-yellow);
+  --syn-ty: var(--vivid-turquoise);
+  --syn-num: var(--vivid-orange);
+  --syn-tag: var(--vivid-salmon);
   --syn-cm: var(--ink-muted);
 
   --font: var(--font-archivo), system-ui, sans-serif;
   --mono: var(--font-mono), ui-monospace, monospace;
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
-  --ease-swap: cubic-bezier(0.2, 0, 0, 1);
   --radius: 8px;
 
   --gutter: clamp(1rem, 4vw, 3rem);
@@ -98,7 +111,7 @@ h4 {
   line-height: 1.08;
   letter-spacing: -0.03em;
   text-wrap: balance;
-  overflow-wrap: break-word;
+  overflow-wrap: anywhere;
 }
 
 p {
@@ -144,7 +157,7 @@ button {
 }
 
 ::selection {
-  background: oklch(0.91 0.19 123 / 0.35);
+  background: rgb(var(--accent-rgb) / 0.3);
   color: var(--ink);
 }
 
@@ -200,4 +213,19 @@ button {
 
 .skip:focus {
   top: 1rem;
+}
+
+/* ---------- opening sequence ----------
+   The server HTML is the finished page. While the sequence is about to play, the pieces it animates start hidden;
+   if the sequence has not started within 0.9s the fail-safe reveals them, so a slow device never waits on it.
+   Once the timeline exists (data-intro="running") its own inline styles take over. */
+html[data-intro="play"] [data-i] {
+  opacity: 0;
+  animation: intro-failsafe 0.01s 0.9s forwards;
+}
+
+@keyframes intro-failsafe {
+  to {
+    opacity: 1;
+  }
 }

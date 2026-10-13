@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight, Mail } from "lucide-react";
-import { GitHubIcon } from "@/components/BrandIcons";
-import { contact, projects, skills } from "@/content/site";
+import { GitHubIcon, LinkedInIcon, WhatsAppIcon } from "@/components/BrandIcons";
+import { contact, projects, skills, whatsappUrl } from "@/content/site";
 import styles from "./sobre.module.css";
 
 export const metadata: Metadata = {
@@ -51,7 +51,12 @@ export default function SobrePage() {
             </li>
             <li>
               <a href={contact.linkedin} target="_blank" rel="noopener">
-                LinkedIn <ArrowUpRight aria-hidden="true" />
+                <LinkedInIcon /> LinkedIn <ArrowUpRight aria-hidden="true" />
+              </a>
+            </li>
+            <li>
+              <a href={whatsappUrl} target="_blank" rel="noopener">
+                <WhatsAppIcon /> WhatsApp
               </a>
             </li>
             <li>
@@ -161,9 +166,14 @@ export default function SobrePage() {
       <section className={styles.cta}>
         <div className={`wrap ${styles.ctaInner}`}>
           <p className={styles.ctaText}>Quer conversar sobre uma vaga ou um projeto?</p>
-          <a className={styles.mailCta} href={`mailto:${contact.email}`}>
-            <Mail aria-hidden="true" /> Mandar um e-mail
-          </a>
+          <div className={styles.ctas}>
+            <a className={styles.mailCta} href={`mailto:${contact.email}`}>
+              <Mail aria-hidden="true" /> Enviar e-mail
+            </a>
+            <a className={styles.whatsapp} href={whatsappUrl} target="_blank" rel="noopener">
+              <WhatsAppIcon /> Chamar no WhatsApp
+            </a>
+          </div>
         </div>
       </section>
     </div>

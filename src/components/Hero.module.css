@@ -77,15 +77,16 @@
   text-decoration: none;
   transition:
     background 160ms,
-    transform 160ms var(--ease-out);
+    transform 160ms var(--ease-out),
+    scale 120ms var(--ease-out);
+}
+
+.primary:active {
+  scale: 0.97;
 }
 
 .primary:hover {
   background: var(--accent-hover);
-}
-
-.primary:active {
-  transform: translateY(1px);
 }
 
 .primary svg {
@@ -112,6 +113,18 @@
   height: 1.1em;
 }
 
+.iconGithub {
+  color: var(--ink);
+}
+
+.iconLinkedin {
+  color: var(--vivid-blue);
+}
+
+.iconWhatsapp {
+  color: var(--whatsapp);
+}
+
 /* ---------- perfil.ts ---------- */
 
 .profile {
@@ -136,21 +149,26 @@
   background: var(--bg);
   font-family: var(--mono);
   font-size: inherit;
-  color: var(--syn-str);
+  color: var(--tech, var(--syn-str));
   cursor: pointer;
   transition:
     border-color 160ms,
     background 160ms,
-    color 160ms;
+    color 160ms,
+    scale 120ms var(--ease-out);
+}
+
+.tag:active {
+  scale: 0.97;
 }
 
 .tag:hover {
-  border-color: var(--syn-str);
+  border-color: var(--tech, var(--syn-str));
 }
 
 .tag[aria-pressed="true"] {
-  border-color: var(--accent);
-  background: var(--accent);
+  border-color: var(--tech, var(--accent));
+  background: var(--tech, var(--accent));
   color: var(--on-accent);
 }
 
@@ -196,28 +214,5 @@
   .stack {
     grid-template-columns: repeat(2, minmax(0, max-content));
     padding-left: 1ch;
-  }
-}
-
-/* The profile panel types itself line by line. Rows are visible by default; the animation only starts them hidden. */
-.line {
-  animation: type 460ms var(--ease-out) backwards;
-  animation-delay: calc(180ms + var(--i, 0) * 55ms);
-}
-
-@keyframes type {
-  from {
-    opacity: 0;
-    clip-path: inset(0 100% 0 0);
-  }
-  to {
-    opacity: 1;
-    clip-path: inset(0 0 0 0);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .line {
-    animation: none;
   }
 }

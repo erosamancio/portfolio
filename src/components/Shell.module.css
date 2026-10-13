@@ -83,6 +83,22 @@
   background: var(--surface);
   box-shadow: 0 18px 40px -12px oklch(0 0 0 / 0.7);
   transform-origin: top right;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-6px) scale(0.98);
+  transition:
+    opacity 160ms var(--ease-out),
+    transform 160ms var(--ease-out),
+    visibility 0s 160ms;
+}
+
+.menu[data-open="true"] {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  transition:
+    opacity 220ms var(--ease-out),
+    transform 220ms var(--ease-out);
 }
 
 .menu a {
@@ -263,51 +279,39 @@
 }
 
 .file[aria-current] {
+  background: var(--surface-hover);
+  box-shadow: inset 2px 0 0 var(--accent);
   color: var(--ink);
 }
 
-/* One highlight shared by the whole tree: it slides to whichever file is current. */
+/* One highlight shared by the whole tree: it slides to whichever file is current (see Shell.tsx). */
 .file {
   position: relative;
-  isolation: isolate;
 }
 
-.activeBar {
+.highlight {
   position: absolute;
-  z-index: -1;
-  inset: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 0;
+  opacity: 0;
   background: var(--surface-hover);
   border-left: 2px solid var(--accent);
+  pointer-events: none;
 }
 
-.file svg.iconMd,
-.tab svg.iconMd {
-  color: var(--vivid-blue);
+.side[data-ready] .highlight {
+  transition:
+    transform 320ms var(--ease-out),
+    height 320ms var(--ease-out),
+    opacity 160ms;
 }
 
-.file svg.iconTs,
-.tab svg.iconTs {
-  color: var(--vivid-turquoise);
-}
-
-.file svg.iconJson,
-.tab svg.iconJson {
-  color: var(--vivid-yellow);
-}
-
-.folder svg:last-child,
-.file.folder svg:last-child {
-  color: var(--vivid-orange);
-}
-
-.folder svg:first-child {
-  color: var(--ink-muted);
-}
-
-.file[aria-current] svg.iconMd,
-.file[aria-current] svg.iconTs,
-.file[aria-current] svg.iconJson {
-  filter: brightness(1.15);
+/* Once the highlight is running, the file itself drops its own background. */
+.side[data-slide] .file[aria-current] {
+  background: transparent;
+  box-shadow: none;
 }
 
 /* ---------- editor ---------- */
@@ -364,6 +368,18 @@
   list-style: none;
 }
 
+/* A tab that opens later (a case study or Sobre) slides in from the left. */
+.tabItem:not(:first-child) {
+  animation: tab-in 280ms var(--ease-out);
+}
+
+@keyframes tab-in {
+  from {
+    opacity: 0;
+    transform: translateX(-12px);
+  }
+}
+
 .tab {
   display: flex;
   flex: none;
@@ -415,7 +431,7 @@
 }
 
 .crumbs {
-  display: none;
+  display: flex;
   align-items: center;
   min-width: 0;
   padding-inline: 1rem;
@@ -556,9 +572,23 @@
   .repo {
     display: inline;
   }
+}
 
-  .crumbs {
-    display: flex;
+/* Phones show only the current file in the tab bar, so it still says where you are while the sections scroll by. */
+@media (max-width: 39.99rem) {
+  .crumbs span:not(:last-child),
+  .crumbs span + span::before {
+    display: none;
+  }
+
+  /* The open file already has a tab; the crumb only appears when it names a section the tabs do not. */
+  .crumbs[data-dup] {
+    display: none;
+  }
+
+  .pos,
+  .build {
+    display: none;
   }
 }
 

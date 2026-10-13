@@ -65,7 +65,7 @@ export function Hero({ filter, onFilter }: Props) {
             Desenvolvedor · Recife, PE
           </p>
           <p className={styles.lede} data-i="text">
-            Estudo Ciência da Computação na CESAR School e estagio na Sociiz, onde trabalho do frontend ao backend: a
+            Estudo Ciência da Computação na CESAR School e estágio na Sociiz, onde trabalho do frontend ao backend: a
             interface de videoconferência da empresa em React, o serviço de tokens em Flask e um pipeline de OCR em
             Python.
           </p>

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import { MOBILE_QUERY } from "./tokens";
 import type { gsap as Gsap } from "gsap";
 import type { ScrollTrigger as ScrollTriggerType } from "gsap/ScrollTrigger";
 import type { SplitText as SplitTextType } from "gsap/SplitText";
@@ -26,9 +27,13 @@ const importKit = () =>
 
 export const loadGsap = () => (kit ??= whenIdle().then(importKit));
 
-/** Runs `setup` once on mount, as soon as GSAP has loaded, inside a gsap.context that is reverted on unmount. */
+/**
+ * Runs `setup` once on mount, as soon as GSAP has loaded, inside a gsap.context that is reverted on unmount.
+ * Phones skip it entirely: the scroll choreography is a desktop flourish, and not downloading GSAP there is faster.
+ */
 export function useGsap(setup: (kit: GsapKit) => void | (() => void)) {
   useEffect(() => {
+    if (window.matchMedia(MOBILE_QUERY).matches) return;
     let cancelled = false;
     let cleanup: (() => void) | void;
     let ctx: ReturnType<GsapKit["gsap"]["context"]> | undefined;

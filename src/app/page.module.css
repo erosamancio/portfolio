@@ -262,7 +262,7 @@
   max-width: 24ch;
   font-size: clamp(1.5rem, 2.8vw, 2.1rem);
   font-weight: 650;
-  line-height: 1.2;
+  line-height: 1.26;
   letter-spacing: -0.02em;
   text-wrap: balance;
 }
@@ -471,13 +471,13 @@
 /* Touch: text links outside running text get a 44px target without changing the layout. */
 @media (pointer: coarse) {
   .h4 a {
-    padding-block: 0.65rem;
-    margin-block: -0.65rem;
+    padding-block: 0.75rem;
+    margin-block: -0.75rem;
   }
 
   /* The rows grow instead, so neighbouring links never share a tap area. */
   .contactLink {
-    padding-block: 0.5rem;
+    padding-block: 0.7rem;
   }
 
   .more,

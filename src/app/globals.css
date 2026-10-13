@@ -65,7 +65,7 @@ html {
 
 @media (pointer: coarse) {
   :root {
-    --tabs-h: 2.75rem;
+    --tabs-h: 2.8rem;
   }
 }
 

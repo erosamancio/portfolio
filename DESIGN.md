@@ -163,7 +163,7 @@ components:
 
 # Design System: Eros Amancio · Portfólio
 
-Documentado a partir do site construído (v5, 13/10/2026: paleta Vivid, ícones coloridos, Sobre no topo, WhatsApp e movimento com GSAP e Motion). Direção: **Editor de código**, escolhida pelo Eros entre três propostas depois de recusar a Azulejaria (conceitual demais) e substituir o "Limpo e técnico", e mantida na v4, quando o site passou a ser só portfólio. Contrato em `.impeccable/surfaces/src-app-page-tsx.md`. Tokens em `src/app/globals.css`; os valores do frontmatter acima são normativos.
+Documentado a partir do site construído (v5, 13/10/2026: paleta Vivid, ícones coloridos, Sobre no topo, WhatsApp e movimento com GSAP; 13/10/2026: sem Motion, mais leve no celular). Direção: **Editor de código**, escolhida pelo Eros entre três propostas depois de recusar a Azulejaria (conceitual demais) e substituir o "Limpo e técnico", e mantida na v4, quando o site passou a ser só portfólio. Contrato em `.impeccable/surfaces/src-app-page-tsx.md`. Tokens em `src/app/globals.css`; os valores do frontmatter acima são normativos.
 
 ## Overview
 
@@ -279,7 +279,7 @@ Preenchidos e diretos, sem gradiente nem sombra.
 - **Contorno:** transparente, borda `line-strong`, texto `ink-soft`; hover clareia borda e texto. É o botão Copiar e-mail, que mostra "E-mail copiado" em `accent` por 2.2s.
 - **Secundário:** texto `ink-soft` sem caixa (GitHub, LinkedIn, WhatsApp no hero, cada um com o ícone na própria cor); hover para `ink`.
 - **WhatsApp:** contorno de 1px em verde a 55%, ícone verde, texto `ink`; hover enche de verde a 12%. Fica ao lado de Enviar e-mail no contato, nos estudos de caso e na página Sobre, e a mensagem já vem escrita ("Olá, Eros! Vi seu portfólio e gostaria de conversar."; nos estudos de caso cita o projeto).
-- **Contato da barra de título:** versão compacta do primário (2.25rem) que abre um menu (Motion) com Enviar e-mail, Chamar no WhatsApp e Ver contato.ts; fecha com Esc ou clique fora. No celular o menu ocupa a largura da barra.
+- **Contato da barra de título:** versão compacta do primário (2.25rem) que abre um menu com Enviar e-mail, Chamar no WhatsApp e Ver contato.ts; fecha com Esc ou clique fora. No celular o menu ocupa a largura da barra.
 - **Clique:** todo botão afunda a 97% (`scale`) enquanto pressionado.
 
 ### Chips
@@ -296,12 +296,12 @@ Cabeçalho com ícone em `syn-kw` e nome do arquivo em mono, corpo `bg-alt` com 
 
 ### Explorer
 - Painel `bg-alt` em mono 0.86rem, título de painel "Explorador" (Archivo 0.75rem, maiúsculas espaçadas, `ink-muted`), pasta `portfolio` com `README.md`, a pasta `trabalhos` (um `.md` por projeto) e `experiencia.md`, `stack.json`, `sobre.md`, `este-site.ts`, `contato.ts`.
-- Ícone por tipo: `.md` azul, `.ts` turquesa, `.json` amarelo, pastas laranja. O arquivo atual ganha um destaque único (`surface-hover` com filete verde) que desliza entre arquivos (Motion `layoutId`).
+- Ícone por tipo: `.md` azul, `.ts` turquesa, `.json` amarelo, pastas laranja. O arquivo atual ganha um destaque único (`surface-hover` com filete verde) que desliza entre arquivos (elemento deslizante em CSS).
 - Ordem: README.md, sobre.md, trabalhos/, experiencia.md, stack.json, este-site.ts, contato.ts.
 - Na home, o arquivo da seção visível fica destacado (`aria-current="location"`); fora dela, o da página.
 
 ### Tabs, Path and Status Bar
-- **Abas:** `README.md` sempre aberta; fora da home, uma segunda aba com o arquivo da página, que abre e fecha com deslize (Motion). Aba atual em `bg` com filete verde de 2px no topo, emendada na área de edição.
+- **Abas:** `README.md` sempre aberta; fora da home, uma segunda aba com o arquivo da página, que abre com deslize. Aba atual em `bg` com filete verde de 2px no topo, emendada na área de edição.
 - **Caminho:** `portfolio › trabalhos › arquivo` em `ink-muted`, último trecho em `ink-soft`; só a partir de 40rem.
 - **Barra de status:** faixa `accent` com ramo `main`, `Ln, Col` que acompanham a rolagem, "pronto" (na abertura mostra "compilando…" e "compilado em 0,8s") e "Eros Amancio · Recife, PE"; a partir de 40rem, GitHub, LinkedIn, e-mail e Sobre. No celular, uma linha só.
 
@@ -325,13 +325,13 @@ Cabeçalho com ícone em `syn-kw` e nome do arquivo em mono, corpo `bg-alt` com 
 Sociiz Meet não tem e não pode ter imagens.
 
 ### Motion
-Ideia: **o editor ganha vida**. GSAP (ScrollTrigger, SplitText) cuida de sequências e rolagem; Motion para React cuida de layout e entrada/saída de componentes. Curva padrão `cubic-bezier(0.16, 1, 0.3, 1)` (`expo.out` no GSAP); constantes em `src/motion/tokens.ts`. Só `transform`, `opacity` e `clip-path` animam. As bibliotecas carregam depois da hidratação, em chunks próprios, e o HTML do servidor já é a página final.
+Ideia: **o editor ganha vida**. GSAP (ScrollTrigger, SplitText) cuida de sequências e rolagem; o resto (menu, abas, filtro, ícone de copiar, destaque do explorador) é CSS puro, sem biblioteca. O pacote `motion` saiu do código (13/10/2026) porque custava cerca de 50KB de JS na primeira carga. Curva padrão `cubic-bezier(0.16, 1, 0.3, 1)` (`expo.out` no GSAP); constantes em `src/motion/tokens.ts`. Só `transform`, `opacity` e `clip-path` animam. O GSAP carrega depois da hidratação, em chunk próprio, e não carrega no celular; o HTML do servidor já é a página final. Os links do explorador só pré-carregam a página quando o ponteiro chega neles (`IntentLink`), em vez de baixar todos os estudos de caso na primeira visita.
 - **Abertura do projeto** (`src/motion/Opening.tsx`, só na home, em tela de 64rem ou mais, uma vez por sessão): o explorador se desdobra, a aba abre da esquerda, o nome é digitado letra a letra, as linhas do `perfil.ts` se escrevem e acendem as cores de cada token, depois entram o texto e os botões; a barra de status mostra "compilando…" e termina em "pronto". Dura cerca de 1,4s e qualquer clique, tecla ou rolagem a completa. Nada fica escondido por mais de 0,9s: se a sequência atrasa, ela é descartada.
-- **Barra de status e explorador:** `Ln, Col` seguem a rolagem (escrita direta no DOM, sem re-render); o destaque do arquivo atual desliza entre arquivos.
-- **Títulos** (`#` entra, depois o texto sobe de uma máscara por linha), **projetos como diff** (cada projeto traz `+ trabalhos/nome.md` e entra com revelação de `clip-path` por `ScrollTrigger.batch`), **filtro** (a lista se reorganiza com animação de layout e o contador troca com fade).
+- **Barra de status e explorador:** `Ln, Col` seguem a rolagem (escrita direta no DOM, sem re-render); o destaque do arquivo atual desliza entre arquivos (um elemento posicionado por `transform`, com transição em CSS).
+- **Títulos** (`#` entra, depois o texto sobe de uma máscara por linha), **projetos como diff** (cada projeto traz `+ trabalhos/nome.md` e entra com revelação de `clip-path` por `ScrollTrigger.batch`), **filtro** (os projetos que ficam entram em sequência por CSS e o contador troca com fade).
 - **Experiência:** a linha da timeline se desenha com a rolagem. **Sobre:** uma linha de JSX (`<Sobre foto="eros.jpg" />`) é digitada acima da seção e some quando o retrato e o texto chegam. **stack.json** e **contato.ts** se escrevem linha a linha; **este-site.ts** tem uma linha de leitura que desce pelo código conforme a rolagem (só desktop).
-- **Transições:** conteúdo da página sobe 8px em 260ms (`template.tsx`); abas abrem e fecham com deslize; menu de contato com fade e escala; ícone de copiar com cross-fade. Linha de 2px em `accent` sob as abas se enche com a rolagem. As prévias aproximam 2,5% no hover de mouse.
-- **Movimento reduzido:** nada da abertura nem das revelações roda; a página já nasce completa. Transições viram só opacidade (`MotionConfig reducedMotion="user"`, regra global de CSS) e a linha de posição continua, porque mostra estado. No celular só a revelação dos projetos e dos blocos de código (versão curta); abertura e linha de leitura não existem.
+- **Transições:** conteúdo da página sobe 8px em 260ms (`template.tsx`); a aba do arquivo abre com deslize; menu de contato com fade e escala; ícone de copiar com cross-fade. Linha de 2px em `accent` sob as abas se enche com a rolagem. As prévias aproximam 2,5% no hover de mouse.
+- **Movimento reduzido:** nada da abertura nem das revelações roda; a página já nasce completa. Transições viram só opacidade (regra global de CSS) e a linha de posição continua, porque mostra estado. No celular não roda GSAP: abertura, revelações e linha de leitura não existem, a página aparece pronta e só ficam as transições de CSS (menu, filtro, copiar).
 
 ### Named Rules
 **The Real Source Rule.** Código, dados e arquivos mostrados no site existem e rodam. Trechos de código são lidos do fonte na build, não copiados à mão.

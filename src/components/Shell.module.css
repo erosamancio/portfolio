@@ -32,7 +32,7 @@
   align-items: center;
   gap: 0.6rem;
   font-weight: 700;
-  font-size: 1rem;
+  font-size: var(--text-body);
   text-decoration: none;
   white-space: nowrap;
 }
@@ -46,7 +46,7 @@
   background: var(--accent);
   color: var(--on-accent);
   font-family: var(--mono);
-  font-size: 0.75rem;
+  font-size: var(--text-label);
   font-weight: 700;
   letter-spacing: 0.02em;
 }
@@ -54,7 +54,7 @@
 .repo {
   display: none;
   font-family: var(--mono);
-  font-size: 0.82rem;
+  font-size: var(--text-label);
   font-weight: 400;
   color: var(--ink-muted);
 }
@@ -109,7 +109,7 @@
   padding: 0 0.75rem;
   border-radius: 5px;
   color: var(--ink);
-  font-size: 0.92rem;
+  font-size: var(--text-body);
   text-decoration: none;
 }
 
@@ -146,7 +146,7 @@
   border-radius: 6px;
   background: var(--accent);
   color: var(--on-accent);
-  font-size: 0.92rem;
+  font-size: var(--text-label);
   font-weight: 700;
   text-decoration: none;
   transition: scale 120ms var(--ease-out);
@@ -201,7 +201,7 @@
   background: var(--bg-alt);
   border-right: 1px solid var(--line);
   font-family: var(--mono);
-  font-size: 0.86rem;
+  font-size: var(--text-label);
   transform: translateX(-100%);
   visibility: hidden;
   transition:
@@ -235,7 +235,7 @@
 .sideTitle {
   padding: 0 1rem 0.5rem;
   font-family: var(--font);
-  font-size: 0.75rem;
+  font-size: var(--text-label);
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -277,7 +277,7 @@
 /* The plain-reading view lists the four headings in the page's own font. */
 .outline .file {
   font-family: var(--font);
-  font-size: 0.95rem;
+  font-size: var(--text-body);
   font-weight: 550;
 }
 
@@ -369,7 +369,7 @@
   background: var(--bg-alt);
   border-bottom: 1px solid var(--line);
   font-family: var(--mono);
-  font-size: 0.82rem;
+  font-size: var(--text-label);
 }
 
 /* A thin line under the tab bar fills as the page scrolls, like the position bar of an editor. */
@@ -506,7 +506,7 @@
   background: var(--accent);
   color: var(--on-accent);
   font-family: var(--mono);
-  font-size: 0.8rem;
+  font-size: var(--text-label);
   font-weight: 500;
 }
 
@@ -591,7 +591,7 @@
 
   .brand {
     gap: 0.4rem;
-    font-size: 0.875rem;
+    font-size: var(--text-label);
   }
 
   .actions {

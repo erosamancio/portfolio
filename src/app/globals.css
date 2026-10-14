@@ -1,9 +1,24 @@
 :root {
+  /* Type scale: seven steps. Nothing else sets a font size; the -col variants are the same step inside a narrow column. */
+  --text-display: clamp(min(3.1rem, 14cqi), 8cqi, 6rem);
+  --text-page: clamp(min(2.4rem, 12vw), 6vw, 4.4rem);
+  --text-page-col: clamp(2.4rem, 6.5cqi, 4.4rem);
+  --text-display-narrow: clamp(2rem, 10cqi, 3.1rem);
+  --text-section: clamp(1.75rem, 4vw, 2.75rem);
+  --text-section-col: clamp(1.75rem, 3.5cqi, 2.75rem);
+  --text-item: clamp(1.35rem, 2.2vw, 1.75rem);
+  --text-lede: clamp(1.1rem, 1.6vw, 1.25rem);
+  --text-body: 1.0625rem;
+  --text-label: 0.875rem;
+  --text-code: clamp(0.8rem, 1.05vw, 0.9rem);
+
   /* Editor surfaces, darkest to lightest (Vivid Black base, #141417) */
   --bg: #141417;
   --bg-alt: #18181c;
   --surface: #1d1d22;
   --surface-hover: #26262c;
+  --image-edge: rgb(255 255 255 / 0.1);
+  --image-edge-hover: rgb(255 255 255 / 0.22);
   --line: #2b2b32;
   --line-strong: #4b4b56;
 
@@ -95,7 +110,7 @@ body {
   background: var(--bg);
   color: var(--ink);
   font-family: var(--font);
-  font-size: 1.0625rem;
+  font-size: var(--text-body);
   line-height: 1.6;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;

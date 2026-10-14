@@ -12,7 +12,9 @@
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
-  font-size: 0.95rem;
+  padding-block: 0.3rem;
+  margin-block: -0.3rem;
+  font-size: var(--text-label);
   font-weight: 600;
   color: var(--ink-soft);
 }
@@ -23,13 +25,13 @@
 }
 
 .title {
-  font-size: clamp(min(2.6rem, 13vw), 7vw, 5rem);
+  font-size: var(--text-page);
   letter-spacing: -0.04em;
 }
 
 .summary {
   max-width: 40rem;
-  font-size: clamp(1.1rem, 1.6vw, 1.25rem);
+  font-size: var(--text-lede);
   line-height: 1.55;
   color: var(--ink-soft);
 }
@@ -46,7 +48,7 @@
   border-radius: var(--radius);
   background: var(--bg-alt);
   font-family: var(--mono);
-  font-size: 0.88rem;
+  font-size: var(--text-label);
 }
 
 .facts::before,
@@ -82,7 +84,7 @@
   padding: 0.45rem 0.9rem;
   border-bottom: 1px solid var(--line);
   font-family: var(--mono);
-  font-size: 0.78rem;
+  font-size: var(--text-label);
   color: var(--ink-muted);
 }
 
@@ -113,7 +115,7 @@
   padding: 1.1rem 1.25rem;
   list-style: none;
   font-family: var(--mono);
-  font-size: clamp(0.92rem, 1.4vw, 1.05rem);
+  font-size: var(--text-body);
 }
 
 .components li {
@@ -170,7 +172,7 @@
 }
 
 .blockTitle {
-  font-size: clamp(1.4rem, 2.4vw, 1.8rem);
+  font-size: var(--text-item);
 }
 
 .repo {

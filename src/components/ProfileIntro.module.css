@@ -15,9 +15,10 @@
 }
 
 .portrait {
-  width: 5rem;
+  width: 4.5rem;
   overflow: hidden;
-  border: 1px solid var(--line);
+  outline: 1px solid var(--image-edge);
+  outline-offset: -1px;
   border-radius: var(--radius);
 }
 
@@ -52,7 +53,7 @@
 }
 
 .title {
-  font-size: clamp(min(3.1rem, 14cqi), 8cqi, 6rem);
+  font-size: var(--text-display);
   font-stretch: 112%;
   font-weight: 800;
   line-height: 0.92;
@@ -81,14 +82,14 @@
 }
 
 .role {
-  font-family: var(--mono);
-  font-size: clamp(0.9rem, 1.3vw, 1rem);
+  font-weight: 650;
+  font-size: var(--text-label);
   color: var(--accent);
 }
 
 .lede {
   max-width: 36rem;
-  font-size: clamp(1.06rem, 1.5vw, 1.2rem);
+  font-size: var(--text-lede);
   line-height: 1.6;
   color: var(--ink-soft);
 }
@@ -160,6 +161,52 @@
 
 .iconWhatsapp {
   color: var(--whatsapp);
+}
+
+/* Phones: the portrait sits beside the name (not when the screen or the text zoom leaves too little room), and the rest of the text spans the full width below. */
+@container (min-width: 20rem) and (max-width: 55.99rem) {
+  .inner {
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .text {
+    display: contents;
+  }
+
+  .portrait {
+    grid-row: 1 / span 2;
+  }
+
+  .title,
+  .role {
+    grid-column: 2;
+  }
+
+  :global(html:not([data-view="code"])) .title {
+    font-size: var(--text-display-narrow);
+  }
+
+  /* The code view has no portrait, so the name takes the full row. */
+  :global(html[data-view="code"]) .inner {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  :global(html[data-view="code"]) :is(.title, .role) {
+    grid-column: 1;
+  }
+
+  .inner > :last-child {
+    grid-column: 1 / -1;
+  }
+
+  .lede,
+  .body,
+  .actions,
+  .more {
+    grid-column: 1 / -1;
+  }
 }
 
 /* Very narrow screens: the main action takes its own row, the other links share the next ones. */

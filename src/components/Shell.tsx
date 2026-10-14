@@ -15,13 +15,11 @@ type Entry = { file: string; href: string; section?: string };
 // The site's pages and home sections, presented as the files of a project.
 const top: Entry[] = [
   { file: "README.md", href: "/" },
-  { file: "sobre.md", href: "/sobre", section: "sobre" },
+  { file: "sobre.md", href: "/sobre" },
 ];
 const works: Entry[] = projects.map((p) => ({ file: `${p.slug}.md`, href: `/trabalhos/${p.slug}` }));
 const rest: Entry[] = [
   { file: "experiencia.md", href: "/#experiencia", section: "experiencia" },
-  { file: "stack.json", href: "/#stack", section: "stack" },
-  { file: "este-site.ts", href: "/#este-site", section: "este-site" },
   { file: "contato.ts", href: "/#contato", section: "contato" },
 ];
 const sections = [...top, ...rest].flatMap((e) => (e.section ? [e.section] : [])).concat("trabalhos");
@@ -78,7 +76,7 @@ function ContactMenu({ onNavigate }: { onNavigate: () => void }) {
         </li>
         <li>
           <Link href="/#contato" onClick={() => setOpen(false)}>
-            <FileCode aria-hidden="true" className={styles.menuCode} /> Ver contato.ts
+            <FileCode aria-hidden="true" className={styles.menuCode} /> Ver todos os contatos
           </Link>
         </li>
       </ul>

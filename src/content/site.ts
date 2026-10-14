@@ -65,6 +65,8 @@ export type Project = {
   tags: Tag[];
   role: string;
   summary: string;
+  /** The few technologies shown on the home page; the full stack lives in the case study. */
+  mainStack: string[];
   /** Sociiz Meet has none on purpose: no screenshots of the product may be published. */
   image?: { src: string; width: number; height: number; alt: string };
   repo?: string;
@@ -85,6 +87,7 @@ export const projects: Project[] = [
     stack: ["React 19", "Vite", "LiveKit", "Flask"],
     tags: ["React", "Python"],
     role: "Frontend e serviço de tokens",
+    mainStack: ["React", "Flask"],
     summary:
       "A plataforma de reuniões por vídeo da Sociiz. Construí a interface em React e o serviço que libera a entrada de cada pessoa nas salas.",
     closedSource: "Código e telas são da Sociiz, por isso este projeto aparece só em texto.",
@@ -116,6 +119,7 @@ export const projects: Project[] = [
     stack: ["Java", "Spring Boot", "Spring Data JPA", "React", "JavaScript", "Docker"],
     tags: ["Java", "React"],
     role: "Full stack",
+    mainStack: ["Java", "Spring Boot", "React"],
     summary:
       "Uma calculadora que mostra a uma empresa quanto carbono ela deixou de emitir, a partir das transações que processa e dos meios de pagamento usados. A tela explica de onde vem cada número. Trabalhei nas duas partes: o servidor em Java com Spring Boot e a interface em React.",
     image: {
@@ -143,6 +147,7 @@ export const projects: Project[] = [
     stack: ["Django", "Python", "JavaScript", "Selenium", "GitHub Actions"],
     tags: ["Python"],
     role: "Full stack",
+    mainStack: ["Django", "Python", "JavaScript"],
     summary:
       "Site para descobrir e avaliar jogos, com busca, filtro por gênero e destaques. Trabalhei da interface ao servidor, com testes automáticos que simulam o uso do site e publicação automática.",
     image: {
@@ -170,6 +175,7 @@ export const projects: Project[] = [
     stack: ["C", "Raylib"],
     tags: ["C"],
     role: "Desenvolvimento",
+    mainStack: ["C", "Raylib"],
     summary:
       "Jogo de ritmo ambientado em Recife: você acerta as notas no tempo da música. Tem editor de fases e ranking de pontuação.",
     image: {
@@ -197,6 +203,7 @@ export const projects: Project[] = [
     stack: ["C", "Raylib"],
     tags: ["C"],
     role: "Desenvolvimento",
+    mainStack: ["C", "Raylib"],
     summary:
       "Jogo de ação visto de cima, com visual de desenho em papel. Você enfrenta inimigos e chefes em salas, compra melhorias na loja e tenta ir o mais longe possível.",
     image: {
@@ -224,6 +231,7 @@ export const projects: Project[] = [
     stack: ["Django", "Python", "Selenium", "Pillow", "Bootstrap Icons"],
     tags: ["Python"],
     role: "Full stack",
+    mainStack: ["Django", "Python"],
     summary:
       "Nova versão do visual do portal do Jornal do Commercio, pensada primeiro para o celular, para fazer o leitor ficar mais tempo e abrir uma segunda notícia. Trabalhei nas telas e no servidor.",
     image: {
@@ -245,6 +253,10 @@ export const projects: Project[] = [
     ],
   },
 ];
+
+/** What the home page shows, in order: three projects in full, two as short entries. Sociiz Meet is under Experiência. */
+export const featuredSlugs = ["cicle", "kivo", "joyscore"];
+export const compactSlugs = ["recife-beat", "the-draft"];
 
 export const experience = [
   {

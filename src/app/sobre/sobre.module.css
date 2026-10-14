@@ -314,3 +314,16 @@
     width: min(100%, 12rem);
   }
 }
+
+.siteLink a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  min-height: 2.75rem;
+  font-weight: 650;
+}
+
+.siteLink svg {
+  width: 1em;
+  height: 1em;
+}

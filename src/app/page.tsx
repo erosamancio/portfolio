@@ -1,14 +1,12 @@
-import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, ArrowUpRight, Braces, FileCode, Mail } from "lucide-react";
-import { WhatsAppIcon } from "@/components/BrandIcons";
+import { ArrowUpRight, Mail } from "lucide-react";
+import { GitHubIcon, LinkedInIcon, WhatsAppIcon } from "@/components/BrandIcons";
 import { SectionMotion } from "@/motion/SectionMotion";
-import { Showcase } from "@/components/Showcase";
+import { ProfileIntro } from "@/components/ProfileIntro";
+import { Projects } from "@/components/Projects";
 import { CopyButton } from "@/components/CopyButton";
-import { contact, experience, skills, whatsappUrl } from "@/content/site";
-import { excerpt } from "@/content/source";
+import { contact, experience, whatsappUrl } from "@/content/site";
 import { personJsonLd } from "@/content/jsonld";
-import code from "@/components/code.module.css";
 import styles from "./page.module.css";
 
 function H2({ id, children }: { id: string; children: React.ReactNode }) {
@@ -23,62 +21,34 @@ function H2({ id, children }: { id: string; children: React.ReactNode }) {
 }
 
 const contactRows = [
-  { key: "email", label: contact.email, href: `mailto:${contact.email}` },
+  { key: "E-mail", label: contact.email, href: `mailto:${contact.email}`, icon: <Mail aria-hidden="true" /> },
   {
-    key: "linkedin",
+    key: "LinkedIn",
     label: "linkedin.com/in/erosamancio",
     href: contact.linkedin,
+    icon: <LinkedInIcon className={styles.iconLinkedin} />,
   },
-  { key: "github", label: "github.com/erosamancio", href: contact.github },
-  { key: "whatsapp", label: contact.whatsappDisplay, href: whatsappUrl },
+  {
+    key: "GitHub",
+    label: "github.com/erosamancio",
+    href: contact.github,
+    icon: <GitHubIcon className={styles.iconGithub} />,
+  },
+  {
+    key: "WhatsApp",
+    label: contact.whatsappDisplay,
+    href: whatsappUrl,
+    icon: <WhatsAppIcon className={styles.iconWhatsapp} />,
+  },
 ];
 
 export default function Home() {
-  const hook = excerpt("components/Shell.tsx", "useActiveSection");
-
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }} />
       <SectionMotion />
-      <Showcase>
-        <section
-          id="sobre"
-          className={`${styles.section} ${styles.alt} ${styles.aboutSection}`}
-          aria-labelledby="sobre-title"
-          data-m="about"
-        >
-          <p className={styles.signature} aria-hidden="true" data-sig="">
-            <span className={code.tg}>{"<"}</span>
-            <span className={code.ty}>Sobre</span> <span className={code.nu}>foto</span>=
-            <span className={code.st}>“eros.jpg”</span> <span className={code.tg}>{"/>"}</span>
-          </p>
-          <div className={`wrap ${styles.about}`}>
-            <div className={styles.portrait} data-about="">
-              <Image
-                src="/images/eros.jpg"
-                width={800}
-                height={800}
-                alt="Retrato de Eros Amancio, de barba e camiseta preta, à noite com luzes ao fundo"
-                sizes="(min-width: 64rem) 20rem, 70vw"
-              />
-            </div>
-            <div className={styles.aboutText} data-about="">
-              <H2 id="sobre-title">Sobre</H2>
-              <p className={styles.big}>
-                Entrei para cuidar de banco de dados e acabei no backend, nas integrações e na interface.
-              </p>
-              <p className={styles.soft}>
-                Na Sociiz construí a interface de videoconferência, desenvolvi as rotinas que leem documentos e PDFs
-                automaticamente e criei vários endpoints da API principal. Quero seguir em backend, full stack e
-                segurança da informação.
-              </p>
-              <Link href="/sobre" className={styles.more}>
-                Experiência e formação completas <ArrowRight aria-hidden="true" />
-              </Link>
-            </div>
-          </div>
-        </section>
-      </Showcase>
+      <ProfileIntro />
+      <Projects />
 
       <section id="experiencia" className={`${styles.section} ${styles.alt}`} aria-labelledby="experiencia-title">
         <div className={`wrap ${styles.split}`}>
@@ -105,117 +75,8 @@ export default function Home() {
                 <h3 className={styles.h3}>CESAR School</h3>
                 <p className={styles.meta}>Ciência da Computação · em andamento, 4º período</p>
               </header>
-              <p className={styles.soft}>
-                Algoritmos, estruturas de dados, orientação a objetos, banco de dados, redes, infraestrutura de software
-                e hardware, sistemas distribuídos e concorrência.
-              </p>
             </article>
           </div>
-        </div>
-      </section>
-
-      <section id="stack" className={styles.section} aria-labelledby="stack-title">
-        <div className={`wrap ${styles.split}`}>
-          <div className={styles.lead}>
-            <H2 id="stack-title">Tecnologias</H2>
-            <p className={styles.soft}>
-              O que já usei em projeto, no estágio ou na faculdade. Falo português nativo e inglês fluente, inclusive
-              para ler documentação e conversar sobre trabalho.
-            </p>
-          </div>
-          <figure className={`${code.panel} ${styles.json}`}>
-            <figcaption className={code.head}>
-              <Braces aria-hidden="true" /> stack.json
-            </figcaption>
-            <div className={code.body}>
-              <p className={code.row} aria-hidden="true">
-                <span className={code.ln}>1</span>
-                <span className={code.text}>{"{"}</span>
-              </p>
-              <ul className={styles.skillList} data-m="rows">
-                {skills.map((s, i) => (
-                  <li key={s.group} className={code.row}>
-                    <span className={code.ln} aria-hidden="true">
-                      {i + 2}
-                    </span>
-                    <span className={code.text}>
-                      {"  "}
-                      <span className={code.ty} data-tok="">
-                        <span aria-hidden="true">“</span>
-                        {s.group}
-                        <span aria-hidden="true">”</span>
-                      </span>
-                      <span aria-hidden="true">: [</span>
-                      <span className="sr-only">: </span>
-                      <span>
-                        {s.items.map((item, j) => (
-                          <span key={item}>
-                            <span className={code.st} data-tok="">
-                              “{item}”
-                            </span>
-                            {j < s.items.length - 1 && <span aria-hidden="true">, </span>}
-                          </span>
-                        ))}
-                      </span>
-                      <span aria-hidden="true">]{i < skills.length - 1 ? "," : ""}</span>
-                    </span>
-                  </li>
-                ))}
-              </ul>
-              <p className={code.row} aria-hidden="true">
-                <span className={code.ln}>{skills.length + 2}</span>
-                <span className={code.text}>{"}"}</span>
-              </p>
-            </div>
-          </figure>
-        </div>
-      </section>
-
-      <section id="este-site" className={styles.section} aria-labelledby="este-site-title">
-        <div className={`wrap ${styles.site}`}>
-          <div className={styles.lead}>
-            <H2 id="este-site-title">Este site</H2>
-            <p className={styles.soft}>
-              Fiz este portfólio do zero, sem template. O arquivo destacado no explorador muda conforme a seção que você
-              está lendo, e o trecho ao lado é o código que faz isso, lido do próprio projeto.
-            </p>
-            <ul className={styles.proofs}>
-              <li>Carrega rápido: as páginas já saem prontas.</li>
-              <li>Navegação completa pelo teclado.</li>
-              <li>
-                <a href={`${contact.github}/portfolio`} target="_blank" rel="noopener">
-                  Código aberto no GitHub <ArrowUpRight aria-hidden="true" />
-                </a>
-              </li>
-            </ul>
-          </div>
-          <figure className={`${code.panel} ${styles.snippet}`}>
-            <figcaption className={code.head}>
-              <FileCode aria-hidden="true" /> {hook.file}
-            </figcaption>
-            <pre className={`${code.body} ${styles.scroll}`} tabIndex={0} aria-label={`Trecho de ${hook.file}`}>
-              <code data-m="reading">
-                {hook.lines.map((line, i) => (
-                  <span key={i} className={code.row}>
-                    <span className={code.ln} aria-hidden="true">
-                      {hook.start + i}
-                    </span>
-                    <span className={`${code.text} ${code.keep}`}>
-                      {line.map(([kind, text], j) =>
-                        kind ? (
-                          <span key={j} className={code[kind]}>
-                            {text}
-                          </span>
-                        ) : (
-                          text
-                        ),
-                      )}
-                    </span>
-                  </span>
-                ))}
-              </code>
-            </pre>
-          </figure>
         </div>
       </section>
 
@@ -238,51 +99,29 @@ export default function Home() {
               <CopyButton value={contact.email} className={styles.copy} />
             </div>
           </div>
-          <div className={`${code.panel} ${styles.contactPanel}`}>
-            <p className={code.head} aria-hidden="true">
-              <FileCode /> contato.ts
-            </p>
-            <div className={code.body} data-m="terminal">
-              <p className={styles.prompt} aria-hidden="true" data-prompt="">
-                <span>~/portfolio</span> $ npm run contato
-              </p>
-              <p className={code.row} aria-hidden="true">
-                <span className={code.ln}>1</span>
-                <span className={code.text}>
-                  <span className={code.kw}>export const</span> contato = {"{"}
+          <ul className={styles.contactList}>
+            {contactRows.map((r) => (
+              <li key={r.key}>
+                <span className={styles.contactKey}>
+                  {r.icon} {r.key}
                 </span>
-              </p>
-              <ul className={styles.contactList}>
-                {contactRows.map((r, i) => (
-                  <li key={r.key} className={code.row}>
-                    <span className={code.ln} aria-hidden="true">
-                      {i + 2}
-                    </span>
-                    <span className={code.text}>
-                      {"  "}
-                      <span className={code.ty}>{r.key}</span>
-                      <span aria-hidden="true">: </span>
-                      <a
-                        className={styles.contactLink}
-                        href={r.href}
-                        {...(r.href.startsWith("http") ? { target: "_blank", rel: "noopener" } : {})}
-                      >
-                        <span aria-hidden="true">“</span>
-                        {r.label}
-                        <span aria-hidden="true">”</span>
-                      </a>
-                      <span aria-hidden="true">,</span>
-                    </span>
-                  </li>
-                ))}
-              </ul>
-              <p className={code.row} aria-hidden="true">
-                <span className={code.ln}>{contactRows.length + 2}</span>
-                <span className={code.text}>{"};"}</span>
-              </p>
-            </div>
-          </div>
+                <a
+                  className={styles.contactLink}
+                  href={r.href}
+                  {...(r.href.startsWith("http") ? { target: "_blank", rel: "noopener" } : {})}
+                >
+                  {r.label}
+                </a>
+              </li>
+            ))}
+          </ul>
         </div>
+        <p className={`wrap ${styles.colophon}`}>
+          Fiz este site do zero, sem template.{" "}
+          <a href={`${contact.github}/portfolio`} target="_blank" rel="noopener">
+            O código está aberto no GitHub <ArrowUpRight aria-hidden="true" />
+          </a>
+        </p>
       </section>
     </>
   );

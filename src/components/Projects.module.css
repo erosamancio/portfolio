@@ -3,85 +3,8 @@
   border-top: 1px solid var(--line);
 }
 
-.head {
-  display: grid;
-  gap: 1rem;
-}
-
 .h2 {
   font-size: clamp(1.95rem, 4.2vw, 3.1rem);
-}
-
-.filter {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.4rem;
-  font-family: var(--mono);
-  font-size: 0.88rem;
-}
-
-.filterLabel {
-  margin-right: 0.35rem;
-  color: var(--syn-ty);
-}
-
-.option {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.45rem;
-  min-height: 2.5rem;
-  padding: 0 0.75rem;
-  border: 1px solid var(--line-strong);
-  border-radius: 5px;
-  background: transparent;
-  font: inherit;
-  color: var(--ink-soft);
-  cursor: pointer;
-  transition:
-    border-color 160ms,
-    background 160ms,
-    color 160ms,
-    scale 120ms var(--ease-out);
-}
-
-.option:active {
-  scale: 0.97;
-}
-
-.option::before {
-  content: "";
-  width: 0.5rem;
-  height: 0.5rem;
-  border-radius: 50%;
-  background: var(--tech, var(--ink-muted));
-}
-
-.option:hover {
-  border-color: var(--tech, var(--ink-muted));
-  color: var(--ink);
-}
-
-.option[aria-pressed="true"] {
-  border-color: var(--tech, var(--accent));
-  background: color-mix(in oklab, var(--tech, var(--accent)) 14%, transparent);
-  color: var(--ink);
-}
-
-.count {
-  font-variant-numeric: tabular-nums;
-  color: var(--ink-muted);
-}
-
-.option[aria-pressed="true"] .count {
-  color: var(--accent);
-}
-
-.status {
-  margin: 0;
-  font-family: var(--mono);
-  font-size: 0.82rem;
-  color: var(--ink-muted);
 }
 
 .list {
@@ -97,42 +20,6 @@
   align-items: center;
 }
 
-/* After a filter change, each card that reappears comes in as two pieces, preview then text, staggered down the list. */
-.list[data-animate] .work > * {
-  animation: enter 300ms var(--ease-out) backwards;
-  animation-delay: calc(var(--i, 0) * 90ms);
-}
-
-.list[data-animate] .work > :last-child {
-  animation-delay: calc(var(--i, 0) * 90ms + 70ms);
-}
-
-@keyframes enter {
-  from {
-    opacity: 0;
-    transform: translateY(12px);
-  }
-}
-
-.status[data-animate] {
-  animation: enter 240ms var(--ease-out);
-}
-
-/* A line of diff output above each project: "+ trabalhos/cicle.md". */
-.hunk {
-  font-family: var(--mono);
-  font-size: 0.78rem;
-  color: var(--ink-muted);
-}
-
-.hunk span {
-  margin-right: 0.35em;
-  padding: 0 0.3em;
-  border-radius: 4px;
-  background: rgb(var(--accent-rgb) / 0.16);
-  color: var(--vivid-green);
-}
-
 .shot {
   display: block;
   overflow: hidden;
@@ -144,15 +31,6 @@
 
 .shot:hover {
   border-color: var(--line-strong);
-}
-
-.shotBar {
-  display: block;
-  padding: 0.4rem 0.85rem;
-  border-bottom: 1px solid var(--line);
-  font-family: var(--mono);
-  font-size: 0.75rem;
-  color: var(--ink-muted);
 }
 
 .shot img {
@@ -181,52 +59,6 @@
   height: auto;
   object-fit: cover;
   object-position: top;
-}
-
-.structure {
-  display: grid;
-}
-
-.components {
-  display: grid;
-  gap: 0.15rem;
-  margin: 0;
-  padding: 1.1rem 1.25rem;
-  list-style: none;
-  font-family: var(--mono);
-  font-size: clamp(0.92rem, 1.4vw, 1.05rem);
-}
-
-.components li {
-  display: flex;
-  gap: 0.75rem;
-}
-
-.components li::before {
-  content: "├─";
-  color: var(--line-strong);
-}
-
-.components li:last-child::before {
-  content: "└─";
-}
-
-.closed {
-  display: flex;
-  gap: 0.55rem;
-  align-items: baseline;
-  padding: 0.8rem 1.25rem 0.95rem;
-  border-top: 1px solid var(--line);
-  font-size: 0.92rem;
-  color: var(--ink-soft);
-}
-
-.closed svg {
-  flex: none;
-  width: 0.95rem;
-  height: 0.95rem;
-  translate: 0 0.12rem;
-  color: var(--ink-muted);
 }
 
 .text {
@@ -258,25 +90,6 @@
   color: var(--ink-soft);
 }
 
-.tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem;
-  margin: 0.25rem 0 0;
-  padding: 0;
-  list-style: none;
-}
-
-.tags li {
-  padding: 0.15rem 0.55rem;
-  border: 1px solid var(--line-strong);
-  border-radius: 4px;
-  font-family: var(--mono);
-  font-size: 0.8rem;
-  color: var(--tech, var(--syn-ty));
-  border-color: color-mix(in oklab, var(--tech, var(--syn-ty)) 45%, transparent);
-}
-
 .more {
   display: inline-flex;
   align-items: center;
@@ -302,22 +115,76 @@
   transform: translateX(3px);
 }
 
+.tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.1rem;
+  margin: 0.25rem 0 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.92rem;
+  color: var(--ink-soft);
+}
+
+.tech li {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.tech li::before {
+  content: "";
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: var(--tech, var(--ink-muted));
+}
+
+/* Shorter entries below the three main projects. */
+.compact {
+  display: grid;
+  gap: clamp(2.25rem, 5vw, 3rem) clamp(1.5rem, 3vw, 2.5rem);
+  margin: clamp(3rem, 7vw, 4.75rem) 0 0;
+  padding: clamp(2.25rem, 5vw, 3rem) 0 0;
+  border-top: 1px solid var(--line);
+  list-style: none;
+}
+
+.small {
+  display: grid;
+  gap: 0.6rem;
+  align-content: start;
+  justify-items: start;
+}
+
+.small .shot {
+  width: 100%;
+  margin-bottom: 0.4rem;
+}
+
+.small .shot img {
+  aspect-ratio: 16 / 9;
+  height: auto;
+  object-fit: cover;
+  object-position: top;
+}
+
+.h4 {
+  font-size: clamp(1.25rem, 1.8vw, 1.45rem);
+}
+
+.h4 a {
+  display: inline-block;
+  padding-block: 0.2rem;
+  margin-block: -0.2rem;
+  text-decoration: none;
+}
+
+.h4 a:hover {
+  color: var(--accent);
+}
+
 @container (min-width: 56rem) {
-  .head {
-    grid-template-columns: auto minmax(0, 1fr);
-    align-items: end;
-    column-gap: 2rem;
-  }
-
-  .filter {
-    justify-content: flex-end;
-  }
-
-  .status {
-    grid-column: 2;
-    text-align: right;
-  }
-
   .work {
     grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
   }
@@ -325,19 +192,20 @@
   .work[data-flip] > :first-child {
     order: 2;
   }
+
+  .compact {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 @media (pointer: coarse) {
-  .option {
-    min-height: 2.75rem;
-  }
-
   .more {
     min-height: 2.75rem;
     margin-top: 0;
   }
 
-  .h3 a {
+  .h3 a,
+  .h4 a {
     display: inline-block;
     padding-block: 0.5rem;
     margin-block: -0.5rem;

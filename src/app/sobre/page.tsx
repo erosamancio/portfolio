@@ -192,6 +192,24 @@ export default function SobrePage() {
         </p>
       </section>
 
+      <section className={`wrap ${styles.section}`} aria-labelledby="site">
+        <h2 id="site" className={styles.h2}>
+          <span className="hash" aria-hidden="true">
+            ##
+          </span>
+          Este site
+        </h2>
+        <p className={styles.plain}>
+          Fiz este portfólio do zero, sem template. O arquivo destacado no explorador muda conforme a seção que você
+          está lendo. As páginas já saem prontas, então o site carrega rápido, e dá para navegar tudo pelo teclado.
+        </p>
+        <p className={styles.siteLink}>
+          <a href={`${contact.github}/portfolio`} target="_blank" rel="noopener">
+            O código está aberto no GitHub <ArrowUpRight aria-hidden="true" />
+          </a>
+        </p>
+      </section>
+
       <section className={styles.cta}>
         <div className={`wrap ${styles.ctaInner}`}>
           <p className={styles.ctaText}>Quer conversar sobre uma vaga ou um projeto?</p>

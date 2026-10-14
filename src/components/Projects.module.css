@@ -1,17 +1,21 @@
 .section {
-  padding-block: clamp(3.5rem, 8vw, 6rem);
+  padding-block: clamp(3rem, 8vw, 6rem);
   border-top: 1px solid var(--line);
 }
 
+:global(html:not([data-view="code"])) .section {
+  border-top: 0;
+}
+
 .h2 {
-  font-size: clamp(1.95rem, 4.2vw, 3.1rem);
+  font-size: var(--text-section);
 }
 
 .list {
   position: relative;
   display: grid;
-  gap: clamp(3rem, 7vw, 4.75rem);
-  margin-top: clamp(2.25rem, 5vw, 3.25rem);
+  gap: clamp(2.25rem, 7vw, 4.75rem);
+  margin-top: clamp(1.5rem, 5vw, 3.25rem);
 }
 
 .work {
@@ -23,14 +27,15 @@
 .shot {
   display: block;
   overflow: hidden;
-  border: 1px solid var(--line);
   border-radius: var(--radius);
   background: var(--bg-alt);
-  transition: border-color 200ms;
+  outline: 1px solid var(--image-edge);
+  outline-offset: -1px;
+  transition: outline-color 200ms;
 }
 
 .shot:hover {
-  border-color: var(--line-strong);
+  outline-color: var(--image-edge-hover);
 }
 
 .shot img {
@@ -41,7 +46,7 @@
 /* On a phone a tall screenshot would push the text far down; cap it and show the top. */
 @media (max-width: 39.99rem) {
   .shot img {
-    max-height: 14rem;
+    max-height: 12rem;
     object-fit: cover;
     object-position: top;
   }
@@ -69,7 +74,7 @@
 }
 
 .h3 {
-  font-size: clamp(1.5rem, 2.4vw, 2rem);
+  font-size: var(--text-item);
 }
 
 .h3 a {
@@ -81,7 +86,7 @@
 }
 
 .meta {
-  font-size: 0.95rem;
+  font-size: var(--text-label);
   font-weight: 550;
   color: var(--ink-soft);
 }
@@ -122,7 +127,7 @@
   margin: 0.25rem 0 0;
   padding: 0;
   list-style: none;
-  font-size: 0.92rem;
+  font-size: var(--text-label);
   color: var(--ink-soft);
 }
 
@@ -144,8 +149,8 @@
 .compact {
   display: grid;
   gap: clamp(2.25rem, 5vw, 3rem) clamp(1.5rem, 3vw, 2.5rem);
-  margin: clamp(3rem, 7vw, 4.75rem) 0 0;
-  padding: clamp(2.25rem, 5vw, 3rem) 0 0;
+  margin: clamp(2.25rem, 7vw, 4.75rem) 0 0;
+  padding: clamp(1.75rem, 5vw, 3rem) 0 0;
   border-top: 1px solid var(--line);
   list-style: none;
 }
@@ -170,7 +175,7 @@
 }
 
 .h4 {
-  font-size: clamp(1.25rem, 1.8vw, 1.45rem);
+  font-size: var(--text-item);
 }
 
 .h4 a {
@@ -207,15 +212,15 @@
   .h3 a,
   .h4 a {
     display: inline-block;
-    padding-block: 0.5rem;
-    margin-block: -0.5rem;
+    padding-block: 0.7rem;
+    margin-block: -0.7rem;
   }
 }
 
 /* A line of diff output above each project: "+ trabalhos/cicle.md". */
 .hunk {
   font-family: var(--mono);
-  font-size: 0.78rem;
+  font-size: var(--text-label);
   color: var(--ink-muted);
 }
 
@@ -232,7 +237,7 @@
   padding: 0.4rem 0.85rem;
   border-bottom: 1px solid var(--line);
   font-family: var(--mono);
-  font-size: 0.75rem;
+  font-size: var(--text-label);
   color: var(--ink-muted);
 }
 
@@ -252,7 +257,7 @@
   padding: 1.1rem 1.25rem;
   list-style: none;
   font-family: var(--mono);
-  font-size: clamp(0.92rem, 1.4vw, 1.05rem);
+  font-size: var(--text-code);
 }
 
 .components li {
@@ -275,7 +280,7 @@
   align-items: baseline;
   padding: 0.8rem 1.25rem 0.95rem;
   border-top: 1px solid var(--line);
-  font-size: 0.92rem;
+  font-size: var(--text-label);
   color: var(--ink-soft);
 }
 
@@ -301,7 +306,14 @@
   border: 1px solid var(--line-strong);
   border-radius: 4px;
   font-family: var(--mono);
-  font-size: 0.8rem;
+  font-size: var(--text-label);
   color: var(--tech, var(--syn-ty));
   border-color: color-mix(in oklab, var(--tech, var(--syn-ty)) 45%, transparent);
+}
+
+/* On a phone the short entries are text only; the screenshots stay on the three main projects. */
+@container (max-width: 39.99rem) {
+  .small .shot {
+    display: none;
+  }
 }

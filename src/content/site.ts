@@ -86,7 +86,7 @@ export const projects: Project[] = [
     tags: ["React", "Python"],
     role: "Frontend e serviço de tokens",
     summary:
-      "A plataforma de videoconferência da Sociiz: interface própria em React 19 sobre o LiveKit, com lobby, chat, compartilhamento de tela e pós-reunião, e um serviço em Flask que emite os tokens de acesso às salas.",
+      "A plataforma de reuniões por vídeo da Sociiz. Construí a interface em React e o serviço que libera a entrada de cada pessoa nas salas.",
     closedSource: "Código e telas são da Sociiz, por isso este projeto aparece só em texto.",
     structure: ["App", "JoinScreen", "MeetingRoom", "PostMeetingScreen"],
     endpoint: {
@@ -117,7 +117,7 @@ export const projects: Project[] = [
     tags: ["Java", "React"],
     role: "Full stack",
     summary:
-      "Calculadora de emissão de carbono para empresas. Transforma o volume de transações e os meios de pagamento em uma memória de cálculo clara e no total de emissão evitada.",
+      "Uma calculadora que mostra a uma empresa quanto carbono ela deixou de emitir, a partir das transações que processa e dos meios de pagamento usados. A tela explica de onde vem cada número. Trabalhei nas duas partes: o servidor em Java com Spring Boot e a interface em React.",
     image: {
       src: "/images/cicle.jpg",
       width: 915,
@@ -144,7 +144,7 @@ export const projects: Project[] = [
     tags: ["Python"],
     role: "Full stack",
     summary:
-      "Plataforma web para descobrir e avaliar jogos, com busca, filtro por gênero e destaques. Trabalhei da interface ao backend em Django, com testes E2E e CI/CD.",
+      "Site para descobrir e avaliar jogos, com busca, filtro por gênero e destaques. Trabalhei da interface ao servidor, com testes automáticos que simulam o uso do site e publicação automática.",
     image: {
       src: "/images/joyscore.jpg",
       width: 1900,
@@ -171,7 +171,7 @@ export const projects: Project[] = [
     tags: ["C"],
     role: "Desenvolvimento",
     summary:
-      "Jogo de ritmo ambientado em Recife, com notas numa lista encadeada, entrada baseada em tempo, editor de beatmap e ranking.",
+      "Jogo de ritmo ambientado em Recife: você acerta as notas no tempo da música. Tem editor de fases e ranking de pontuação.",
     image: {
       src: "/images/recife-beat.jpg",
       width: 2000,
@@ -197,7 +197,8 @@ export const projects: Project[] = [
     stack: ["C", "Raylib"],
     tags: ["C"],
     role: "Desenvolvimento",
-    summary: "Roguelike top-down com estética de desenho em papel: salas, chefes, loja e upgrades.",
+    summary:
+      "Jogo de ação visto de cima, com visual de desenho em papel. Você enfrenta inimigos e chefes em salas, compra melhorias na loja e tenta ir o mais longe possível.",
     image: {
       src: "/images/the-draft.jpg",
       width: 1600,
@@ -224,7 +225,7 @@ export const projects: Project[] = [
     tags: ["Python"],
     role: "Full stack",
     summary:
-      "Repaginação do portal do Jornal do Commercio em mobile first, pensada para aumentar a fidelidade dos leitores e levá-los ao segundo clique. Trabalhei no full stack com Django e Python.",
+      "Nova versão do visual do portal do Jornal do Commercio, pensada primeiro para o celular, para fazer o leitor ficar mais tempo e abrir uma segunda notícia. Trabalhei nas telas e no servidor.",
     image: {
       src: "/images/kivo.jpg",
       width: 950,
@@ -249,19 +250,19 @@ export const experience = [
   {
     name: "Sociiz Meet",
     slug: "sociiz-meet",
-    text: "Construí a interface de videoconferência em React 19 e Vite sobre o LiveKit e o serviço em Flask que emite os tokens de acesso às salas.",
+    text: "Plataforma de reuniões por vídeo da empresa. Construí a interface em React e o serviço que libera a entrada de cada pessoa nas salas.",
   },
   {
-    name: "Pipeline de OCR",
-    text: "Desenvolvi e mantenho as rotinas em Python que extraem dados de documentos e PDFs, com PaddleOCR, OpenCV, NumPy e PDF2Image. Elas são expostas por FastAPI, usam o Label Studio para anotação e se integram a um armazenamento em nuvem.",
+    name: "Leitura automática de documentos",
+    text: "Desenvolvi e mantenho as rotinas em Python que leem documentos e PDFs e extraem os dados deles, o que se conhece como OCR.",
   },
   {
     name: "API principal e fluxos financeiros",
-    text: "Criei vários endpoints na API principal da empresa e trabalhei em diversos fluxos financeiros do sistema.",
+    text: "Criei vários endpoints da API principal da empresa, os pontos por onde os outros sistemas pedem dados e ações, e trabalhei em diversos fluxos financeiros.",
   },
   {
     name: "AWS e automações",
-    text: "Trabalhei com serviços da AWS e escrevi automações em Python.",
+    text: "Trabalhei com serviços de nuvem da AWS e escrevi automações em Python, programas que fazem sozinhos tarefas repetitivas.",
   },
   {
     name: "Câmeras Intelbras",
@@ -269,7 +270,7 @@ export const experience = [
   },
   {
     name: "Backend e integrações",
-    text: "Mantive aplicações em Django e configurei o e-mail corporativo com SMTP, IMAP e POP3, com TLS/SSL e diagnóstico de falhas de autenticação.",
+    text: "Mantive aplicações em Django e configurei o e-mail corporativo, incluindo a conexão segura e o diagnóstico de falhas de login.",
   },
 ];
 

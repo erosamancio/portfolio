@@ -68,10 +68,9 @@ export default function Home() {
                 Entrei para cuidar de banco de dados e acabei no backend, nas integrações e na interface.
               </p>
               <p className={styles.soft}>
-                Na Sociiz, criei endpoints na API principal, trabalhei em fluxos financeiros e com serviços da AWS,
-                escrevi automações em Python, desenvolvi o pipeline de OCR e fiz a interface do Sociiz Meet. Quero
-                seguir em backend, full stack e segurança da informação, que tem a ver com o que já uso em redes,
-                autenticação por token e TLS.
+                Na Sociiz construí a interface de videoconferência, desenvolvi as rotinas que leem documentos e PDFs
+                automaticamente e criei vários endpoints da API principal. Quero seguir em backend, full stack e
+                segurança da informação.
               </p>
               <Link href="/sobre" className={styles.more}>
                 Experiência e formação completas <ArrowRight aria-hidden="true" />
@@ -90,10 +89,6 @@ export default function Home() {
                 <h3 className={styles.h3}>Sociiz</h3>
                 <p className={styles.meta}>Estagiário de Banco de Dados · Recife, PE</p>
               </header>
-              <p className={styles.soft}>
-                Entrei como estagiário de banco de dados e hoje trabalho em várias frentes da empresa, do backend à
-                interface.
-              </p>
               <ul className={styles.items} data-m="timeline">
                 {experience.map((e) => (
                   <li key={e.name}>
@@ -124,8 +119,8 @@ export default function Home() {
           <div className={styles.lead}>
             <H2 id="stack-title">Tecnologias</H2>
             <p className={styles.soft}>
-              O que já usei em projeto, no estágio ou na faculdade. Português nativo e inglês fluente, inclusive para
-              documentação e conversa técnica.
+              O que já usei em projeto, no estágio ou na faculdade. Falo português nativo e inglês fluente, inclusive
+              para ler documentação e conversar sobre trabalho.
             </p>
           </div>
           <figure className={`${code.panel} ${styles.json}`}>
@@ -181,12 +176,11 @@ export default function Home() {
           <div className={styles.lead}>
             <H2 id="este-site-title">Este site</H2>
             <p className={styles.soft}>
-              Fiz este portfólio do zero, em Next.js e TypeScript, sem template. O arquivo destacado no explorador muda
-              conforme a seção que você está lendo, e o trecho ao lado é o hook que faz isso, lido do código-fonte na
-              build.
+              Fiz este portfólio do zero, sem template. O arquivo destacado no explorador muda conforme a seção que você
+              está lendo, e o trecho ao lado é o código que faz isso, lido do próprio projeto.
             </p>
             <ul className={styles.proofs}>
-              <li>Páginas estáticas, geradas antes do acesso.</li>
+              <li>Carrega rápido: as páginas já saem prontas.</li>
               <li>Navegação completa pelo teclado.</li>
               <li>
                 <a href={`${contact.github}/portfolio`} target="_blank" rel="noopener">

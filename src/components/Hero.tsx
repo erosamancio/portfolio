@@ -18,7 +18,7 @@ export function Hero({ filter, onFilter }: Props) {
   // The profile panel's rows; the stack row is interactive and rendered on its own.
   const before: [string, React.ReactNode][] = [
     ["formacao", <Str key="f">Ciência da Computação, CESAR School, 4º período</Str>],
-    ["estagio", <Str key="e">Sociiz: backend, OCR, AWS e videoconferência</Str>],
+    ["estagio", <Str key="e">Sociiz: backend, leitura de documentos e videoconferência</Str>],
   ];
   const after: [string, React.ReactNode][] = [
     [
@@ -65,9 +65,9 @@ export function Hero({ filter, onFilter }: Props) {
             Desenvolvedor · Recife, PE
           </p>
           <p className={styles.lede} data-i="text">
-            Estudo Ciência da Computação na CESAR School e faço estágio na Sociiz. Lá criei endpoints na API principal,
-            trabalhei com serviços da AWS e escrevi automações em Python, e desenvolvi o pipeline de OCR e a interface
-            do Sociiz Meet em React.
+            Estudo Ciência da Computação na CESAR School, no 4º período, e faço estágio na Sociiz. Trabalho nas duas
+            pontas de um sistema: as telas que as pessoas usam e a parte que roda por trás delas, em Python, Java e
+            React.
           </p>
           <div className={styles.actions} data-i="actions">
             <a className={styles.primary} href="#trabalhos">

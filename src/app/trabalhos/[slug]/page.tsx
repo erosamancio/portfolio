@@ -4,7 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowRight, ArrowUpRight, Component, Lock, Mail, Send } from "lucide-react";
 import { GitHubIcon, WhatsAppIcon } from "@/components/BrandIcons";
-import { contact, projects, whatsappLink } from "@/content/site";
+import { contact, glossary, projects, techColor, whatsappLink } from "@/content/site";
 import code from "@/components/code.module.css";
 import styles from "./case.module.css";
 
@@ -52,7 +52,17 @@ export default async function CasePage({ params }: { params: Promise<Params> }) 
           {project.name}
         </h1>
         <p className={styles.summary}>{project.summary}</p>
-        <dl className={styles.facts}>
+        <dl className={styles.plainFacts} data-only="preview">
+          <div>
+            <dt>Contexto</dt>
+            <dd>{project.context}</dd>
+          </div>
+          <div>
+            <dt>Meu papel</dt>
+            <dd>{project.role}</dd>
+          </div>
+        </dl>
+        <dl className={styles.facts} data-only="code">
           <div>
             <dt>contexto:</dt>
             <dd>{project.context}</dd>
@@ -142,17 +152,54 @@ export default async function CasePage({ params }: { params: Promise<Params> }) 
       )}
 
       <div className={`wrap ${styles.body}`}>
-        {project.body.map((b) => (
-          <section key={b.heading} className={styles.block}>
-            <h2 className={styles.blockTitle}>
-              <span className="hash" aria-hidden="true">
-                ##
-              </span>
-              {b.heading}
-            </h2>
-            <p>{b.text}</p>
-          </section>
-        ))}
+        <section className={styles.block}>
+          <h2 className={styles.blockTitle}>
+            <span className="hash" aria-hidden="true">
+              ##
+            </span>
+            O que é
+          </h2>
+          <p>{project.about}</p>
+        </section>
+        <section className={styles.block}>
+          <h2 className={styles.blockTitle}>
+            <span className="hash" aria-hidden="true">
+              ##
+            </span>
+            Para quem
+          </h2>
+          <p>{project.audience}</p>
+        </section>
+        <section className={styles.block}>
+          <h2 className={styles.blockTitle}>
+            <span className="hash" aria-hidden="true">
+              ##
+            </span>
+            O que eu fiz
+          </h2>
+          {project.did.map((d) => (
+            <div key={d.label ?? d.text} className={styles.part}>
+              {d.label && <h3 className={styles.partTitle}>{d.label}</h3>}
+              <p>{d.text}</p>
+            </div>
+          ))}
+        </section>
+        <section className={styles.block}>
+          <h2 className={styles.blockTitle}>
+            <span className="hash" aria-hidden="true">
+              ##
+            </span>
+            Tecnologias
+          </h2>
+          <dl className={styles.stack}>
+            {project.stack.map((t) => (
+              <div key={t}>
+                <dt style={{ "--tech": techColor(t) } as React.CSSProperties}>{t}</dt>
+                {glossary[t] && <dd>{glossary[t]}</dd>}
+              </div>
+            ))}
+          </dl>
+        </section>
         {project.repo && (
           <a className={styles.repo} href={project.repo} target="_blank" rel="noopener">
             <GitHubIcon /> Ver o código no GitHub <ArrowUpRight aria-hidden="true" />

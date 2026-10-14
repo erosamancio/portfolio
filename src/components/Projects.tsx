@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Component, Lock } from "lucide-react";
 import { FilterChips } from "./FilterChips";
+import { TechLine } from "./TechLine";
 import { compactSlugs, featuredSlugs, projects, techColor, type Project } from "@/content/site";
 import { ProjectsMotion } from "@/motion/ProjectsMotion";
 import code from "./code.module.css";
@@ -12,19 +13,6 @@ const bySlug = (slugs: string[]) =>
     const project = projects.find((p) => p.slug === slug);
     return project ? [project] : [];
   });
-
-/** Up to three technologies, as quiet text with a small color dot. */
-function TechLine({ items }: { items: string[] }) {
-  return (
-    <ul className={styles.tech} aria-label="Tecnologias">
-      {items.map((t) => (
-        <li key={t} style={{ "--tech": techColor(t) } as React.CSSProperties}>
-          {t}
-        </li>
-      ))}
-    </ul>
-  );
-}
 
 function Hunk({ slug }: { slug: string }) {
   return (

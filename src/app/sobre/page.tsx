@@ -3,7 +3,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight, Mail } from "lucide-react";
 import { GitHubIcon, LinkedInIcon, WhatsAppIcon } from "@/components/BrandIcons";
-import { contact, knownTechColor, projects, skills, techColor, whatsappUrl } from "@/content/site";
+import { Disclosure } from "@/components/Disclosure";
+import { TechLine } from "@/components/TechLine";
+import { contact, experience, knownTechColor, projects, skills, whatsappUrl } from "@/content/site";
 import styles from "./sobre.module.css";
 
 export const metadata: Metadata = {
@@ -12,34 +14,6 @@ export const metadata: Metadata = {
     "Eros Amancio: estudante de Ciência da Computação na CESAR School e estagiário na Sociiz, com React, Python, Java e integrações.",
   alternates: { canonical: "/sobre" },
 };
-
-const sociiz = [
-  {
-    name: "Sociiz Meet",
-    slug: "sociiz-meet",
-    text: "Construí a interface de videoconferência em React 19 e Vite com LiveKit: lobby com prévia de câmera e microfone, sala com chat em tempo real, compartilhamento de tela, painel de participantes, mão levantada, indicador de sinal, convite por link, estados de conexão e tela de pós-reunião, com a identidade visual da Sociiz. No backend, um serviço em Flask emite os tokens de acesso às salas com as permissões de cada participante.",
-  },
-  {
-    name: "Pipeline de OCR",
-    text: "Desenvolvi e mantenho as rotinas em Python que extraem dados de documentos e PDFs, com PaddleOCR, OpenCV, NumPy e PDF2Image. Elas são expostas por FastAPI, usam o Label Studio para anotação e se integram a um armazenamento em nuvem.",
-  },
-  {
-    name: "API principal e fluxos financeiros",
-    text: "Criei vários endpoints na API principal da empresa e trabalhei em diversos fluxos financeiros do sistema.",
-  },
-  {
-    name: "AWS e automações",
-    text: "Trabalhei com serviços da AWS e escrevi automações em Python.",
-  },
-  {
-    name: "Câmeras Intelbras",
-    text: "Trabalhei com serviços de câmeras da Intelbras.",
-  },
-  {
-    name: "Backend e integrações",
-    text: "Mantive aplicações em Django e configurei o e-mail corporativo com SMTP, IMAP e POP3, com TLS/SSL e diagnóstico de falhas de autenticação.",
-  },
-];
 
 export default function SobrePage() {
   return (
@@ -54,7 +28,8 @@ export default function SobrePage() {
           </h1>
           <p className={styles.lead}>
             Estudo Ciência da Computação na CESAR School, no 4º período, e faço estágio na Sociiz, em Recife. Trabalho
-            com backend em Python e Java, frontend em React e as integrações entre os dois.
+            nas duas pontas de um sistema: as telas que as pessoas usam e a parte que roda por trás delas, em Python,
+            Java e React.
           </p>
           <ul className={styles.links}>
             <li>
@@ -97,9 +72,16 @@ export default function SobrePage() {
             interface.
           </p>
           <ul className={styles.items}>
-            {sociiz.map((s) => (
-              <li key={s.name}>
-                <strong>{s.slug ? <Link href={`/trabalhos/${s.slug}`}>{s.name}</Link> : s.name}.</strong> {s.text}
+            {experience.map((e) => (
+              <li key={e.name}>
+                <h4 className={styles.h4}>{e.slug ? <Link href={`/trabalhos/${e.slug}`}>{e.name}</Link> : e.name}</h4>
+                <p>{e.text}</p>
+                {e.tech && <TechLine items={e.tech} />}
+                {e.detail && (
+                  <Disclosure label="Ver detalhes">
+                    <p>{e.detail}</p>
+                  </Disclosure>
+                )}
               </li>
             ))}
           </ul>
@@ -117,8 +99,8 @@ export default function SobrePage() {
           <h3 className={styles.h3}>CESAR School</h3>
           <p className={styles.meta}>Ciência da Computação · em andamento, 4º período</p>
           <p>
-            Algoritmos, estruturas de dados, orientação a objetos, banco de dados, redes, infraestrutura de software e
-            hardware, sistemas distribuídos e concorrência.
+            Disciplinas até aqui: algoritmos, estruturas de dados, orientação a objetos, banco de dados, redes,
+            infraestrutura de software e hardware, sistemas distribuídos e concorrência.
           </p>
         </div>
       </section>
@@ -134,18 +116,7 @@ export default function SobrePage() {
           {projects.map((p) => (
             <li key={p.slug}>
               <Link href={`/trabalhos/${p.slug}`}>{p.name}</Link>
-              <span className={styles.projectMeta}>
-                <span>
-                  {p.context} · {p.role}
-                </span>
-                <span className={styles.stack}>
-                  {p.stack.map((t) => (
-                    <span key={t} style={{ color: techColor(t) }}>
-                      {t}
-                    </span>
-                  ))}
-                </span>
-              </span>
+              <span className={styles.projectMeta}>{p.context}</span>
             </li>
           ))}
         </ul>

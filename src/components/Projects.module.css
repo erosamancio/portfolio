@@ -120,31 +120,6 @@
   transform: translateX(3px);
 }
 
-.tech {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.25rem 1.1rem;
-  margin: 0.25rem 0 0;
-  padding: 0;
-  list-style: none;
-  font-size: var(--text-label);
-  color: var(--ink-soft);
-}
-
-.tech li {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.45rem;
-}
-
-.tech li::before {
-  content: "";
-  width: 0.5rem;
-  height: 0.5rem;
-  border-radius: 50%;
-  background: var(--tech, var(--ink-muted));
-}
-
 /* Shorter entries below the three main projects. */
 .compact {
   display: grid;

@@ -51,29 +51,6 @@
   align-content: start;
 }
 
-.more {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  font-weight: 700;
-  color: var(--accent);
-  text-decoration: none;
-}
-
-.more:hover {
-  text-decoration: underline;
-}
-
-.more svg {
-  width: 1em;
-  height: 1em;
-  transition: transform 200ms var(--ease-out);
-}
-
-.more:hover svg {
-  transform: translateX(3px);
-}
-
 .primary {
   display: inline-flex;
   align-items: center;
@@ -192,156 +169,6 @@
   color: var(--ink-soft);
 }
 
-/* ---------- tecnologias ---------- */
-
-.json {
-  margin: 0;
-  min-width: 0;
-}
-
-.skillList {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-/* ---------- sobre ---------- */
-
-/* Sobre sits right under the hero, so it stays compact: a small portrait beside a short text. */
-.aboutSection {
-  padding-block: clamp(2.5rem, 5vw, 4rem);
-}
-
-.aboutSection {
-  position: relative;
-}
-
-/* A line of JSX that types itself above the section, then gives way to the real content. */
-.signature {
-  position: absolute;
-  top: clamp(0.6rem, 1.6vw, 1.1rem);
-  left: max(var(--gutter), calc((100% - var(--max)) / 2));
-  font-family: var(--mono);
-  max-width: calc(100% - 2 * var(--gutter));
-  overflow: hidden;
-  font-size: 0.78rem;
-  color: var(--ink-muted);
-  white-space: nowrap;
-}
-
-.prompt {
-  margin: 0 0 0.35rem 1rem;
-  font-family: var(--mono);
-  color: var(--ink-soft);
-}
-
-.prompt span {
-  color: var(--vivid-green);
-}
-
-.about {
-  display: grid;
-  gap: clamp(1.5rem, 4vw, 3rem);
-  align-items: center;
-}
-
-.portrait {
-  width: min(100%, 11rem);
-  overflow: hidden;
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-}
-
-.aboutText {
-  display: grid;
-  gap: 1.1rem;
-  justify-items: start;
-}
-
-.big {
-  max-width: 24ch;
-  font-size: clamp(1.5rem, 2.8vw, 2.1rem);
-  font-weight: 650;
-  line-height: 1.26;
-  letter-spacing: -0.02em;
-  text-wrap: balance;
-}
-
-/* ---------- este site ---------- */
-
-.site {
-  display: grid;
-  gap: clamp(2rem, 5vw, 3.5rem);
-  align-items: start;
-}
-
-.proofs {
-  display: grid;
-  gap: 0.5rem;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.proofs li {
-  display: flex;
-  gap: 0.6rem;
-}
-
-.proofs li::before {
-  content: "-";
-  flex: none;
-  font-family: var(--mono);
-  color: var(--accent);
-}
-
-.proofs a {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.3rem;
-  font-weight: 700;
-}
-
-.proofs svg {
-  width: 1em;
-  height: 1em;
-}
-
-.snippet {
-  margin: 0;
-  min-width: 0;
-}
-
-/* The code fades at the right edge while more of it is off to the side; with no overflow the timeline is inactive and nothing fades. */
-@property --edge {
-  syntax: "<length>";
-  inherits: false;
-  initial-value: 0px;
-}
-
-.scroll {
-  overflow-x: auto;
-  scrollbar-width: thin;
-  mask-image: linear-gradient(to left, transparent, #000 var(--edge));
-}
-
-@supports (animation-timeline: scroll()) {
-  .scroll {
-    animation: edge linear both;
-    animation-timeline: scroll(self inline);
-  }
-
-  @keyframes edge {
-    0%,
-    92% {
-      --edge: 3rem;
-    }
-    100% {
-      --edge: 0px;
-    }
-  }
-}
-
 /* ---------- contato ---------- */
 
 .contact {
@@ -406,47 +233,83 @@
   height: 1em;
 }
 
-.contactPanel {
-  min-width: 0;
-}
-
 .contactList {
+  display: grid;
+  gap: 0.25rem;
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
+.contactList li {
+  display: grid;
+  gap: 0.1rem;
+  padding-block: 0.9rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.contactKey {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  font-weight: 650;
+  color: var(--ink-muted);
+}
+
+.contactKey svg {
+  width: 1.05em;
+  height: 1.05em;
+}
+
+.iconGithub {
+  color: var(--ink);
+}
+
+.iconLinkedin {
+  color: var(--vivid-blue);
+}
+
+.iconWhatsapp {
+  color: var(--whatsapp);
+}
+
 .contactLink {
   display: inline-block;
-  text-indent: 0;
+  justify-self: start;
   padding-block: 0.15rem;
-  color: var(--syn-str);
-  text-decoration-color: rgb(255 182 56 / 0.4);
+  font-size: clamp(1.05rem, 1.6vw, 1.2rem);
+  font-weight: 600;
+  color: var(--ink);
+  text-decoration-color: rgb(var(--accent-rgb) / 0.45);
   overflow-wrap: anywhere;
 }
 
 .contactLink:hover {
-  color: var(--ink);
+  color: var(--accent);
   text-decoration-color: currentColor;
 }
 
+.colophon {
+  margin-top: clamp(2.5rem, 6vw, 4rem);
+  font-size: 0.95rem;
+  color: var(--ink-muted);
+}
+
+.colophon a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  min-height: 2.75rem;
+  font-weight: 650;
+}
+
+.colophon svg {
+  width: 1em;
+  height: 1em;
+}
+
 /* ---------- layouts ---------- */
-
-@container (min-width: 36rem) {
-  .portrait {
-    width: 12rem;
-  }
-
-  .about {
-    grid-template-columns: auto minmax(0, 1fr);
-  }
-}
-
-@container (min-width: 56rem) {
-  .portrait {
-    width: 14rem;
-  }
-}
 
 @container (min-width: 56rem) {
   /* The heading column is a third of the row, so the title scales with the row instead of the window. */
@@ -477,11 +340,6 @@
 
   /* The rows grow instead, so neighbouring links never share a tap area. */
   .contactLink {
-    padding-block: 0.7rem;
-  }
-
-  .more,
-  .proofs a {
-    min-height: 2.75rem;
+    padding-block: 0.5rem;
   }
 }

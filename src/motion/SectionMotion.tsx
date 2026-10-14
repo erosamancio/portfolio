@@ -8,8 +8,7 @@ const belowFold = (el: Element, at = 0.6) => el.getBoundingClientRect().top > wi
 
 /**
  * Scroll-driven motion for the home sections, all driven from data attributes in the server markup:
- * titles, the experience timeline, stack.json and contato.ts writing themselves, the signature above Sobre
- * and the "reading" line in este-site.ts. The server HTML is the finished page; this only plays on top of it.
+ * titles, the experience timeline, the code panels writing themselves and the "reading" line in este-site.ts. The server HTML is the finished page; this only plays on top of it.
  */
 export function SectionMotion() {
   useGsap(({ gsap, ScrollTrigger, SplitText }) => {
@@ -92,22 +91,6 @@ export function SectionMotion() {
                 tl.from(tokens, { color: "#6e6e78", duration: 0.5, ease: "power2.out", clearProps: "color" }, at + 0.1);
             });
             ScrollTrigger.create({ trigger: el, start: "top 80%", once: true, onEnter: () => tl.play() });
-          });
-
-          // Sobre: a line of JSX types itself above the section, then fades as the portrait and text arrive.
-          all<HTMLElement>('[data-m="about"]').forEach((section) => {
-            const sig = section.querySelector<HTMLElement>("[data-sig]");
-            const parts = all<HTMLElement>("[data-about]", section);
-            if (!belowFold(section, 0.55) || !sig) return;
-            const split = SplitText.create(sig, { type: "chars", aria: "none" });
-            splits.push(split);
-            gsap.set(split.chars, { autoAlpha: 0 });
-            gsap.set(parts, { opacity: 0, y: 14 });
-            const tl = gsap.timeline({ paused: true, defaults: { ease: "expo.out" } });
-            tl.to(split.chars, { autoAlpha: 1, duration: 0.01, stagger: 0.028, ease: "none" }, 0);
-            tl.to(parts, { opacity: 1, y: 0, duration: 0.7, stagger: 0.12, clearProps: "all" }, 0.55);
-            tl.to(sig, { opacity: 0, duration: 0.6, ease: "power2.inOut" }, 1.9);
-            ScrollTrigger.create({ trigger: section, start: "top 78%", once: true, onEnter: () => tl.play() });
           });
 
           // este-site.ts: a highlighted line walks down the code as the section scrolls past (desktop only).

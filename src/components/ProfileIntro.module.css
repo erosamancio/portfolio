@@ -192,4 +192,14 @@
     grid-row: 1;
     width: 14rem;
   }
+
+  :global(html[data-view="code"]) .inner {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+
+  /* In the code view the profile panel takes the portrait's place. */
+  .inner > :last-child {
+    grid-column: 2;
+    grid-row: 1;
+  }
 }

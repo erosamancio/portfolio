@@ -1,0 +1,47 @@
+.group {
+  display: inline-flex;
+  align-self: center;
+  margin-inline: auto 0.75rem;
+  padding: 0.15rem;
+  border: 1px solid var(--line-strong);
+  border-radius: 6px;
+  background: var(--bg);
+  font-family: var(--font);
+  font-size: 0.85rem;
+}
+
+.option {
+  min-height: 1.9rem;
+  padding: 0 0.8rem;
+  border: 0;
+  border-radius: 4px;
+  background: transparent;
+  font: inherit;
+  font-weight: 650;
+  color: var(--ink-muted);
+  cursor: pointer;
+  transition:
+    background 160ms,
+    color 160ms,
+    scale 120ms var(--ease-out);
+}
+
+.option:active {
+  scale: 0.96;
+}
+
+.option:hover {
+  color: var(--ink);
+}
+
+.option[aria-pressed="true"] {
+  background: var(--accent);
+  color: var(--on-accent);
+}
+
+@media (pointer: coarse) {
+  .option {
+    min-height: 2.5rem;
+    padding: 0 1rem;
+  }
+}

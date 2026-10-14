@@ -5,6 +5,8 @@ import { SectionMotion } from "@/motion/SectionMotion";
 import { ProfileIntro } from "@/components/ProfileIntro";
 import { Projects } from "@/components/Projects";
 import { CopyButton } from "@/components/CopyButton";
+import { ContactPanel, SiteSnippet, StackPanel } from "@/components/CodePanels";
+import panels from "@/components/CodeSections.module.css";
 import { contact, experience, whatsappUrl } from "@/content/site";
 import { personJsonLd } from "@/content/jsonld";
 import styles from "./page.module.css";
@@ -80,6 +82,41 @@ export default function Home() {
         </div>
       </section>
 
+      <section id="stack" className={styles.section} aria-labelledby="stack-title" data-only="code">
+        <div className={`wrap ${styles.split}`}>
+          <div className={styles.lead}>
+            <H2 id="stack-title">Tecnologias</H2>
+            <p className={styles.soft}>
+              O que já usei em projeto, no estágio ou na faculdade. Falo português nativo e inglês fluente, inclusive
+              para ler documentação e conversar sobre trabalho.
+            </p>
+          </div>
+          <StackPanel />
+        </div>
+      </section>
+
+      <section id="este-site" className={styles.section} aria-labelledby="este-site-title" data-only="code">
+        <div className={`wrap ${panels.site}`}>
+          <div className={styles.lead}>
+            <H2 id="este-site-title">Este site</H2>
+            <p className={styles.soft}>
+              Fiz este portfólio do zero, sem template. O arquivo destacado no explorador muda conforme a seção que você
+              está lendo, e o trecho ao lado é o código que faz isso, lido do próprio projeto.
+            </p>
+            <ul className={panels.proofs}>
+              <li>Carrega rápido: as páginas já saem prontas.</li>
+              <li>Navegação completa pelo teclado.</li>
+              <li>
+                <a href={`${contact.github}/portfolio`} target="_blank" rel="noopener">
+                  Código aberto no GitHub <ArrowUpRight aria-hidden="true" />
+                </a>
+              </li>
+            </ul>
+          </div>
+          <SiteSnippet />
+        </div>
+      </section>
+
       <section id="contato" className={styles.contact} aria-labelledby="contato-title">
         <div className={`wrap ${styles.contactInner}`}>
           <div className={styles.lead}>
@@ -99,7 +136,7 @@ export default function Home() {
               <CopyButton value={contact.email} className={styles.copy} />
             </div>
           </div>
-          <ul className={styles.contactList}>
+          <ul className={styles.contactList} data-only="preview">
             {contactRows.map((r) => (
               <li key={r.key}>
                 <span className={styles.contactKey}>
@@ -115,8 +152,15 @@ export default function Home() {
               </li>
             ))}
           </ul>
+          <ContactPanel
+            rows={contactRows.map((r) => ({
+              key: r.key.toLowerCase().replace("-", ""),
+              label: r.label,
+              href: r.href,
+            }))}
+          />
         </div>
-        <p className={`wrap ${styles.colophon}`}>
+        <p className={`wrap ${styles.colophon}`} data-only="preview">
           Fiz este site do zero, sem template.{" "}
           <a href={`${contact.github}/portfolio`} target="_blank" rel="noopener">
             O código está aberto no GitHub <ArrowUpRight aria-hidden="true" />

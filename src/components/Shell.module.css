@@ -243,7 +243,8 @@
 }
 
 .tree,
-.tree ul {
+.tree ul,
+.outline {
   margin: 0;
   padding: 0;
   list-style: none;
@@ -271,6 +272,13 @@
 
 .folder {
   color: var(--ink);
+}
+
+/* The plain-reading view lists the four headings in the page's own font. */
+.outline .file {
+  font-family: var(--font);
+  font-size: 0.95rem;
+  font-weight: 550;
 }
 
 .file:hover {

@@ -229,3 +229,47 @@ html[data-intro="play"] [data-i] {
     opacity: 1;
   }
 }
+
+/* ---------- reading modes ----------
+   Both versions are in the page; data-view on <html> (set before first paint) decides which one shows. Without
+   JavaScript the page reads as the plain preview. */
+html:not([data-view="code"]) [data-only="code"],
+html[data-view="code"] [data-only="preview"] {
+  display: none;
+}
+
+/* The technology picked in the code view narrows the project list. It only counts there. */
+html[data-view="code"][data-filter="React"] [data-tags]:not([data-tags~="React"]),
+html[data-view="code"][data-filter="Python"] [data-tags]:not([data-tags~="Python"]),
+html[data-view="code"][data-filter="Java"] [data-tags]:not([data-tags~="Java"]),
+html[data-view="code"][data-filter="C"] [data-tags]:not([data-tags~="C"]) {
+  display: none;
+}
+
+/* Switching modes: the plain version fades in, the code panels open from the top. Never on a page load. */
+@keyframes view-fade {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes panel-open {
+  from {
+    opacity: 0;
+    clip-path: inset(0 0 100% 0);
+  }
+}
+
+html[data-switched] [data-only="preview"] {
+  animation: view-fade 200ms var(--ease-out) backwards;
+}
+
+html[data-switched] [data-only="code"] {
+  animation: panel-open 400ms var(--ease-out) backwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html[data-switched] [data-only] {
+    animation: none;
+  }
+}

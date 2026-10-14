@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ArrowDown, ArrowRight } from "lucide-react";
 import { GitHubIcon, LinkedInIcon, WhatsAppIcon } from "./BrandIcons";
 import { contact, whatsappUrl } from "@/content/site";
+import { CodeProfile } from "./CodeProfile";
 import styles from "./ProfileIntro.module.css";
 
 /** The top of the home page: who Eros is, in plain words, with the portrait and the ways to reach him. */
@@ -10,7 +11,7 @@ export function ProfileIntro() {
   return (
     <section id="sobre" className={styles.intro} aria-labelledby="sobre-title">
       <div className={`wrap ${styles.inner}`}>
-        <div className={styles.portrait} data-i="text">
+        <div className={styles.portrait} data-i="text" data-only="preview">
           <Image
             src="/images/eros.jpg"
             width={800}
@@ -59,6 +60,7 @@ export function ProfileIntro() {
             Experiência e formação completas <ArrowRight aria-hidden="true" />
           </Link>
         </div>
+        <CodeProfile />
       </div>
     </section>
   );

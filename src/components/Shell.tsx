@@ -7,6 +7,7 @@ import { useEffect, useId, useRef, useState } from "react";
 import { Braces, Check, ChevronDown, FileCode, FileText, FolderOpen, GitBranch, Mail, Menu, X } from "lucide-react";
 import { contact, projects, whatsappUrl } from "@/content/site";
 import { WhatsAppIcon } from "./BrandIcons";
+import { ViewModeToggle } from "./ViewModeToggle";
 import { Opening } from "@/motion/Opening";
 import styles from "./Shell.module.css";
 
@@ -20,9 +21,18 @@ const top: Entry[] = [
 const works: Entry[] = projects.map((p) => ({ file: `${p.slug}.md`, href: `/trabalhos/${p.slug}` }));
 const rest: Entry[] = [
   { file: "experiencia.md", href: "/#experiencia", section: "experiencia" },
+  { file: "stack.json", href: "/#stack", section: "stack" },
+  { file: "este-site.ts", href: "/#este-site", section: "este-site" },
   { file: "contato.ts", href: "/#contato", section: "contato" },
 ];
-const sections = [...top, ...rest].flatMap((e) => (e.section ? [e.section] : [])).concat("trabalhos");
+// The four headings of the plain-reading view, in page order.
+const outline = [
+  { label: "Sobre", section: "sobre" },
+  { label: "Projetos", section: "trabalhos" },
+  { label: "Experiência", section: "experiencia" },
+  { label: "Contato", section: "contato" },
+];
+const sections = [...top, ...rest].flatMap((e) => (e.section ? [e.section] : [])).concat("sobre", "trabalhos");
 
 function FileIcon({ file }: { file: string }) {
   if (file.endsWith(".json")) return <Braces className={styles.iconJson} aria-hidden="true" />;
@@ -151,7 +161,10 @@ export function Shell({ children }: { children: React.ReactNode }) {
     const el = bar.current;
     if (!nav || !el) return;
     const place = () => {
-      const current = nav.querySelector<HTMLElement>("a[aria-current]");
+      // Both lists are in the markup (one per reading mode); the highlight follows the one that is showing.
+      const current = [...nav.querySelectorAll<HTMLElement>("a[aria-current]")].find(
+        (a) => a.getClientRects().length > 0,
+      );
       el.style.opacity = current ? "1" : "0";
       if (!current) return;
       el.style.height = `${current.offsetHeight}px`;
@@ -161,9 +174,11 @@ export function Shell({ children }: { children: React.ReactNode }) {
     nav.dataset.slide = "";
     const frame = requestAnimationFrame(() => (nav.dataset.ready = ""));
     window.addEventListener("resize", place);
+    window.addEventListener("viewchange", place);
     return () => {
       cancelAnimationFrame(frame);
       window.removeEventListener("resize", place);
+      window.removeEventListener("viewchange", place);
     };
   }, [pathname, section]);
 
@@ -173,8 +188,13 @@ export function Shell({ children }: { children: React.ReactNode }) {
     section === "trabalhos" ? "trabalhos" : [...top, ...rest].find((e) => e.section === section)?.file;
   const crumbs = ["portfolio", ...(project ? ["trabalhos"] : []), sectionFile ?? pageFile];
 
+  // At the very top of the home page the active section is Sobre, which has no file of its own: README.md stands in.
   const isCurrent = (e: Entry) =>
-    isHome ? (e.section ? e.section === section : e.href === "/" && !section) : e.href === pathname;
+    isHome
+      ? e.section
+        ? e.section === section
+        : e.href === "/" && (!section || section === "sobre")
+      : e.href === pathname;
 
   const tabs: Entry[] = [{ file: "README.md", href: "/" }];
   if (!isHome) tabs.push({ file: pageFile, href: pathname });
@@ -204,7 +224,7 @@ export function Shell({ children }: { children: React.ReactNode }) {
             EA
           </span>
           Eros Amancio
-          <span className={styles.repo} aria-hidden="true">
+          <span className={styles.repo} aria-hidden="true" data-only="code">
             ~/portfolio
           </span>
         </Link>
@@ -225,8 +245,29 @@ export function Shell({ children }: { children: React.ReactNode }) {
 
       <nav id="explorador" ref={side} className={styles.side} data-open={open} aria-label="Principal">
         <span ref={bar} className={styles.highlight} aria-hidden="true" />
-        <p className={styles.sideTitle}>Explorador</p>
-        <ul className={styles.tree}>
+        <p className={styles.sideTitle} data-only="preview">
+          Estrutura
+        </p>
+        <ul className={styles.outline} data-only="preview">
+          {outline.map((o) => (
+            <li key={o.section}>
+              <IntentLink
+                href={`/#${o.section}`}
+                className={styles.file}
+                aria-current={
+                  isHome && (section === o.section || (!section && o.section === "sobre")) ? "location" : undefined
+                }
+                onClick={() => setOpen(false)}
+              >
+                {o.label}
+              </IntentLink>
+            </li>
+          ))}
+        </ul>
+        <p className={styles.sideTitle} data-only="code">
+          Explorador
+        </p>
+        <ul className={styles.tree} data-only="code">
           <li>
             <span className={styles.folder} data-i="tree">
               <ChevronDown aria-hidden="true" />
@@ -292,12 +333,14 @@ export function Shell({ children }: { children: React.ReactNode }) {
           <p
             className={styles.crumbs}
             aria-hidden="true"
+            data-only="code"
             data-dup={crumbs[crumbs.length - 1] === pageFile ? "" : undefined}
           >
             {crumbs.map((c, i) => (
               <span key={i}>{c}</span>
             ))}
           </p>
+          <ViewModeToggle />
         </div>
         <main id="conteudo" className={styles.main}>
           {children}
@@ -306,13 +349,13 @@ export function Shell({ children }: { children: React.ReactNode }) {
 
       <footer className={styles.status}>
         <p className={styles.statusLeft}>
-          <span className={styles.branch}>
+          <span className={styles.branch} data-only="code">
             <GitBranch aria-hidden="true" /> main
           </span>
-          <span ref={pos} className={styles.pos} aria-hidden="true">
+          <span ref={pos} className={styles.pos} aria-hidden="true" data-only="code">
             Ln 1, Col 1
           </span>
-          <span data-build="" className={styles.build}>
+          <span data-build="" className={styles.build} data-only="code">
             <Check aria-hidden="true" /> pronto
           </span>
           <span>Eros Amancio · Recife, PE</span>

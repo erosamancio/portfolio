@@ -211,3 +211,97 @@
     margin-block: -0.5rem;
   }
 }
+
+/* A line of diff output above each project: "+ trabalhos/cicle.md". */
+.hunk {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  color: var(--ink-muted);
+}
+
+.hunk span {
+  margin-right: 0.35em;
+  padding: 0 0.3em;
+  border-radius: 4px;
+  background: rgb(var(--accent-rgb) / 0.16);
+  color: var(--vivid-green);
+}
+
+.shotBar {
+  display: block;
+  padding: 0.4rem 0.85rem;
+  border-bottom: 1px solid var(--line);
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  color: var(--ink-muted);
+}
+
+.shot img {
+  width: 100%;
+  transition: transform 600ms var(--ease-out);
+}
+
+.structure {
+  display: grid;
+}
+
+.components {
+  display: grid;
+  gap: 0.15rem;
+  margin: 0;
+  padding: 1.1rem 1.25rem;
+  list-style: none;
+  font-family: var(--mono);
+  font-size: clamp(0.92rem, 1.4vw, 1.05rem);
+}
+
+.components li {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.components li::before {
+  content: "├─";
+  color: var(--line-strong);
+}
+
+.components li:last-child::before {
+  content: "└─";
+}
+
+.closed {
+  display: flex;
+  gap: 0.55rem;
+  align-items: baseline;
+  padding: 0.8rem 1.25rem 0.95rem;
+  border-top: 1px solid var(--line);
+  font-size: 0.92rem;
+  color: var(--ink-soft);
+}
+
+.closed svg {
+  flex: none;
+  width: 0.95rem;
+  height: 0.95rem;
+  translate: 0 0.12rem;
+  color: var(--ink-muted);
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 0.25rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tags li {
+  padding: 0.15rem 0.55rem;
+  border: 1px solid var(--line-strong);
+  border-radius: 4px;
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  color: var(--tech, var(--syn-ty));
+  border-color: color-mix(in oklab, var(--tech, var(--syn-ty)) 45%, transparent);
+}

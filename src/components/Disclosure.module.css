@@ -1,0 +1,64 @@
+.disclosure {
+  interpolate-size: allow-keywords;
+}
+
+.summary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  min-height: 2.75rem;
+  cursor: pointer;
+  font-size: var(--text-label);
+  font-weight: 650;
+  color: var(--accent);
+  list-style: none;
+  transition: scale 120ms var(--ease-out);
+}
+
+.summary::-webkit-details-marker {
+  display: none;
+}
+
+.summary:hover {
+  color: var(--accent-hover);
+}
+
+.summary:active {
+  scale: 0.96;
+}
+
+.summary svg {
+  width: 1em;
+  height: 1em;
+  transition: rotate 250ms var(--ease-out);
+}
+
+.disclosure[open] .summary svg {
+  rotate: 90deg;
+}
+
+.content {
+  padding-bottom: 0.5rem;
+  color: var(--ink-soft);
+}
+
+/* Height animates where ::details-content exists; elsewhere the panel simply opens. */
+.disclosure::details-content {
+  block-size: 0;
+  overflow: clip;
+  transition:
+    block-size 250ms var(--ease-out),
+    content-visibility 250ms allow-discrete;
+}
+
+.disclosure[open]::details-content {
+  block-size: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .disclosure::details-content,
+  .summary svg,
+  .summary {
+    transition: none;
+  }
+}

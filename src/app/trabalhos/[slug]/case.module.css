@@ -72,6 +72,29 @@
   color: var(--syn-str);
 }
 
+/* The same facts for the preview, as a plain list. */
+.plainFacts {
+  display: grid;
+  gap: 0.35rem;
+  margin: 0.25rem 0 0;
+}
+
+.plainFacts div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 0.75rem;
+}
+
+.plainFacts dt {
+  font-weight: 650;
+  color: var(--ink);
+}
+
+.plainFacts dd {
+  margin: 0;
+  color: var(--ink-soft);
+}
+
 .figure {
   margin-block: clamp(2rem, 5vw, 3.5rem) 0;
   overflow: hidden;
@@ -173,6 +196,49 @@
 
 .blockTitle {
   font-size: var(--text-item);
+}
+
+.part {
+  display: grid;
+  gap: 0.3rem;
+  margin-top: 0.4rem;
+}
+
+.partTitle {
+  font-size: var(--text-lede);
+  color: var(--ink);
+}
+
+.stack {
+  display: grid;
+  gap: 0.6rem;
+  margin: 0;
+}
+
+.stack div {
+  display: grid;
+  gap: 0.1rem;
+}
+
+.stack dt {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 650;
+  color: var(--ink);
+}
+
+.stack dt::before {
+  content: "";
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: var(--tech, var(--ink-muted));
+}
+
+.stack dd {
+  margin: 0 0 0 1rem;
+  color: var(--ink-soft);
 }
 
 .repo {

@@ -76,7 +76,12 @@ export type Project = {
   structure?: string[];
   /** A documented endpoint, shown as a request panel. */
   endpoint?: { request: string; note: string; values: string[] };
-  body: { heading: string; text: string }[];
+  /** Case study, "O que é". */
+  about: string;
+  /** Case study, "Para quem". */
+  audience: string;
+  /** Case study, "O que eu fiz": one paragraph, or labelled paragraphs when the work has distinct parts. */
+  did: { label?: string; text: string }[];
 };
 
 export const projects: Project[] = [
@@ -97,19 +102,13 @@ export const projects: Project[] = [
       note: "token JWT do LiveKit com as permissões",
       values: ["roomJoin", "canPublish", "canSubscribe", "canPublishData"],
     },
-    body: [
-      {
-        heading: "O que é",
-        text: "A plataforma de reuniões em tempo real da Sociiz. Começou sobre os componentes padrão do LiveKit e evoluiu para uma interface própria, com controles personalizados e a identidade visual da empresa.",
-      },
-      {
-        heading: "Frontend",
-        text: "Estruturei a aplicação nas etapas da reunião (App, JoinScreen, MeetingRoom e PostMeetingScreen) e construí a tela de entrada com nome e sala, o lobby com prévia de câmera e microfone, a sala com controles próprios, chat em tempo real, painel de participantes, mão levantada, indicador de intensidade de sinal, convite por link, os estados de conexão e a tela de pós-reunião.",
-      },
-      {
-        heading: "Backend",
-        text: "Um serviço em Flask, com Flask-CORS, que expõe o endpoint GET /token. Ele recebe a sala e o usuário e devolve um token JWT com as permissões de cada participante: entrar na sala, publicar e assinar áudio e vídeo e enviar dados.",
-      },
+    about:
+      "Reuniões com áudio, vídeo e chat. Começou sobre os componentes padrão do LiveKit, a base de áudio e vídeo em tempo real, e evoluiu para uma interface própria, com controles personalizados e a identidade visual da empresa.",
+    audience:
+      "Para quem participa das reuniões pela plataforma da Sociiz.",
+    did: [
+      { label: "Interface",  text: "Construí a interface da reunião, da entrada ao fim: a tela de entrada com nome e sala, o lobby com prévia de câmera e microfone, a sala com controles próprios, chat em tempo real, painel de participantes, mão levantada, indicador de intensidade de sinal, convite por link, os estados de conexão e a tela de pós-reunião. O código segue essas etapas: App, JoinScreen, MeetingRoom e PostMeetingScreen." },
+      { label: "Acesso às salas",  text: "Um serviço em Flask, com Flask-CORS, entrega a cada pessoa um token de acesso, uma chave temporária que diz em que sala ela pode entrar e o que pode fazer. O endpoint GET /token recebe a sala e o usuário e devolve um token JWT com as permissões do participante: entrar na sala, publicar e assinar áudio e vídeo e enviar dados." },
     ],
   },
   {
@@ -129,15 +128,12 @@ export const projects: Project[] = [
       alt: "Tela Memória de Cálculo do Ciclê, com volume de transações, barras de meios de pagamento e composição da frota física",
     },
     repo: "https://github.com/Lucascbayma/CICLE",
-    body: [
-      {
-        heading: "O que é",
-        text: "Uma ferramenta web desenvolvida no CESAR School para a Edenred, que calcula a emissão de carbono de uma empresa a partir das transações que ela processa. A tela de memória de cálculo mostra de onde vem cada número: volume de transações do mês, a divisão entre pagamentos por aproximação e cartões físicos e a composição da frota de cartões.",
-      },
-      {
-        heading: "O que eu fiz",
-        text: "Trabalhei no full stack: o backend em Java com Spring Boot, Spring Data JPA e H2, empacotado com Maven e Docker, e a interface em React e JavaScript, que apresenta o cálculo de forma legível para quem não é especialista.",
-      },
+    about:
+      "Uma ferramenta web que calcula a emissão de carbono de uma empresa a partir das transações que ela processa. A tela de memória de cálculo mostra de onde vem cada número: o volume de transações do mês, a divisão entre pagamentos por aproximação e cartões físicos e a composição da frota de cartões.",
+    audience:
+      "Para a Edenred, em um projeto do CESAR School. A tela foi pensada para ser lida por quem não é especialista no cálculo.",
+    did: [
+      {  text: "Trabalhei nas duas partes. O servidor é em Java com Spring Boot, Spring Data JPA e H2, empacotado com Maven e Docker. A interface é em React e JavaScript e apresenta o cálculo de forma legível." },
     ],
   },
   {
@@ -157,15 +153,12 @@ export const projects: Project[] = [
       alt: "Página inicial do Joyscore, com busca de jogos, filtro de gêneros, destaque de Elden Ring e cards de jogos",
     },
     repo: "https://github.com/Lucascbayma/JoyScore",
-    body: [
-      {
-        heading: "O que é",
-        text: "Uma plataforma para avaliar jogos. A página inicial reúne busca, filtro por gênero, destaques populares e os favoritos dos desenvolvedores.",
-      },
-      {
-        heading: "O que eu fiz",
-        text: "Atuei no full stack: construí telas e comportamento no frontend, integrei a interface com o backend em Django e Python e participei da identidade visual, inspirada em fliperamas e sistemas de pontuação. O projeto tem testes de ponta a ponta com Selenium e build e deploy automatizados com GitHub Actions.",
-      },
+    about:
+      "Uma plataforma para descobrir e avaliar jogos. A página inicial reúne busca, filtro por gênero, destaques populares e os favoritos dos desenvolvedores.",
+    audience:
+      "Para quem gosta de jogos e quer achar o próximo ou dar a sua nota. Foi um projeto da faculdade.",
+    did: [
+      {  text: "Atuei da interface ao servidor: construí telas e comportamento no frontend, integrei a interface com o backend em Django e Python e participei da identidade visual, inspirada em fliperamas e sistemas de pontuação. Os testes de ponta a ponta, que usam o site como uma pessoa usaria, são em Selenium, e o build e a publicação são automáticos com GitHub Actions." },
     ],
   },
   {
@@ -185,15 +178,12 @@ export const projects: Project[] = [
       alt: "Partida do Recife Beat no Recife Antigo ao pôr do sol, com trilhas de notas, botões coloridos e a mensagem Perfeito",
     },
     repo: "https://github.com/erosamancio/Recife_Beat",
-    body: [
-      {
-        heading: "O que é",
-        text: "Um jogo de ritmo inspirado em Friday Night Funkin' e Guitar Hero, ambientado em Recife, feito para a disciplina de Algoritmos e Estruturas de Dados.",
-      },
-      {
-        heading: "O que eu fiz",
-        text: "As notas da música são organizadas em uma lista encadeada com tempo, botão e estado de cada nota. O jogo tem entrada baseada em tempo, pontuação, avaliação de precisão, seleção de músicas e ranking ordenado com QuickSort e MergeSort. Também tem um editor de beatmap que grava as notas durante a música e salva em arquivo.",
-      },
+    about:
+      "Um jogo de ritmo inspirado em Friday Night Funkin' e Guitar Hero, ambientado em Recife. Você acerta as notas no tempo da música, e o jogo tem editor de fases e ranking de pontuação.",
+    audience:
+      "Para quem gosta de jogos de ritmo. Foi feito para a disciplina de Algoritmos e Estruturas de Dados.",
+    did: [
+      {  text: "As notas da música ficam em uma lista encadeada com tempo, botão e estado de cada nota. O jogo tem entrada baseada em tempo, pontuação, avaliação de precisão, seleção de músicas e um ranking ordenado com QuickSort e MergeSort, duas formas de ordenar dados. Também tem um editor de beatmap que grava as notas durante a música e salva em arquivo." },
     ],
   },
   {
@@ -213,15 +203,12 @@ export const projects: Project[] = [
       alt: "Arte de título do The Draft: um bonequinho desenhado a lápis em uma folha de caderno sobre papel quadriculado",
     },
     repo: "https://github.com/Lucascbayma/The_Draft",
-    body: [
-      {
-        heading: "O que é",
-        text: "Um roguelike top-down com visual de desenho em papel. O jogador atravessa salas com ondas de inimigos, enfrenta chefes e encontra loja, tesouros, armadilhas e upgrades.",
-      },
-      {
-        heading: "O que eu fiz",
-        text: "Desenvolvimento em C com Raylib, usando structs, ponteiros, alocação dinâmica, listas encadeadas, matrizes e arquivos para montar o sistema de salas, vida e moedas.",
-      },
+    about:
+      "Um jogo de ação visto de cima, com visual de desenho em papel. O jogador atravessa salas com ondas de inimigos, enfrenta chefes e encontra loja, tesouros, armadilhas e melhorias.",
+    audience:
+      "Para quem gosta de jogos de ação e quer ir o mais longe possível. Foi um projeto da faculdade.",
+    did: [
+      {  text: "Desenvolvi em C com Raylib. Usei structs, ponteiros, alocação dinâmica, listas encadeadas, matrizes e arquivos para montar o sistema de salas, vida e moedas." },
     ],
   },
   {
@@ -241,15 +228,12 @@ export const projects: Project[] = [
       alt: "Página inicial do KIVO no celular, com o cabeçalho do JC PE, a notícia em destaque sobre a greve no Metrô do Recife e o carrossel Estamos de olho",
     },
     repo: "https://github.com/Lucascbayma/KIVO",
-    body: [
-      {
-        heading: "O que é",
-        text: "Uma nova implementação do visual do portal do Jornal do Commercio, feita em um projeto do CESAR School com estudantes de Ciência da Computação e de Design. O desafio do jornal era aumentar a fidelidade dos leitores: fazer quem chega pelas buscas ficar mais tempo e dar o segundo clique.",
-      },
-      {
-        heading: "O que eu fiz",
-        text: "Atuei como full stack. O site foi pensado primeiro para o celular e construído em Django e Python, com testes de ponta a ponta em Selenium.",
-      },
+    about:
+      "Uma nova versão do visual do portal do Jornal do Commercio, feita em um projeto do CESAR School com estudantes de Ciência da Computação e de Design.",
+    audience:
+      "Para o Jornal do Commercio, cujo desafio era aumentar a fidelidade dos leitores: fazer quem chega pelas buscas ficar mais tempo e abrir uma segunda notícia.",
+    did: [
+      {  text: "Atuei da interface ao servidor. O site foi pensado primeiro para o celular e construído em Django e Python, com testes de ponta a ponta em Selenium." },
     ],
   },
 ];
@@ -258,15 +242,32 @@ export const projects: Project[] = [
 export const featuredSlugs = ["cicle", "kivo", "joyscore"];
 export const compactSlugs = ["recife-beat", "the-draft"];
 
-export const experience = [
+export type Experience = {
+  name: string;
+  slug?: string;
+  /** Plain-language sentence, shown first everywhere. */
+  text: string;
+  /** Main technologies, one secondary line. */
+  tech?: string[];
+  /** Technical detail, shown behind "Ver detalhes" on /sobre. */
+  detail?: string;
+};
+
+export const experience: Experience[] = [
   {
     name: "Sociiz Meet",
     slug: "sociiz-meet",
     text: "Plataforma de reuniões por vídeo da empresa. Construí a interface em React e o serviço que libera a entrada de cada pessoa nas salas.",
+    tech: ["React", "LiveKit", "Flask"],
+    detail:
+      "A interface usa React 19 e Vite com LiveKit: lobby com prévia de câmera e microfone, sala com chat em tempo real, compartilhamento de tela, painel de participantes, mão levantada, indicador de sinal, convite por link, estados de conexão e tela de pós-reunião, com a identidade visual da Sociiz. No backend, um serviço em Flask emite os tokens de acesso às salas com as permissões de cada participante.",
   },
   {
     name: "Leitura automática de documentos",
     text: "Desenvolvi e mantenho as rotinas em Python que leem documentos e PDFs e extraem os dados deles, o que se conhece como OCR.",
+    tech: ["Python", "PaddleOCR", "FastAPI"],
+    detail:
+      "As rotinas usam PaddleOCR, OpenCV, NumPy e PDF2Image. Elas são expostas por FastAPI, usam o Label Studio para anotação e se integram a um armazenamento em nuvem.",
   },
   {
     name: "API principal e fluxos financeiros",
@@ -275,6 +276,7 @@ export const experience = [
   {
     name: "AWS e automações",
     text: "Trabalhei com serviços de nuvem da AWS e escrevi automações em Python, programas que fazem sozinhos tarefas repetitivas.",
+    tech: ["AWS", "Python"],
   },
   {
     name: "Câmeras Intelbras",
@@ -283,21 +285,42 @@ export const experience = [
   {
     name: "Backend e integrações",
     text: "Mantive aplicações em Django e configurei o e-mail corporativo, incluindo a conexão segura e o diagnóstico de falhas de login.",
+    tech: ["Django"],
+    detail:
+      "A configuração do e-mail corporativo usou SMTP, IMAP e POP3, com TLS/SSL e diagnóstico de falhas de autenticação.",
   },
 ];
 
 export const skills = [
   { group: "linguagens", label: "Linguagens", items: ["Python", "JavaScript", "Java", "C", "SQL"] },
-  { group: "frontend", label: "Frontend", items: ["React", "Vite", "CSS responsivo"] },
+  { group: "frontend", label: "Para telas", items: ["React", "Vite", "CSS responsivo"] },
   {
     group: "backend",
-    label: "Backend",
+    label: "Para servidores",
     items: ["FastAPI", "Flask", "Django", "Spring Boot", "Spring Data JPA", "APIs REST"],
   },
-  { group: "tempoReal", label: "Tempo real", items: ["LiveKit", "WebRTC (integração)", "WebSockets"] },
-  { group: "documentos", label: "Documentos e OCR", items: ["PaddleOCR", "OpenCV", "PDF2Image"] },
+  { group: "tempoReal", label: "Vídeo e áudio ao vivo", items: ["LiveKit", "WebRTC (integração)", "WebSockets"] },
+  { group: "documentos", label: "Leitura de documentos", items: ["PaddleOCR", "OpenCV", "PDF2Image"] },
   { group: "nuvem", label: "Nuvem e automação", items: ["AWS (Boto3)", "Automações em Python"] },
-  { group: "testes", label: "Testes e entrega", items: ["Selenium", "GitHub Actions (CI/CD)", "Docker", "Maven"] },
+  { group: "testes", label: "Testes e publicação", items: ["Selenium", "GitHub Actions (CI/CD)", "Docker", "Maven"] },
   { group: "jogos", label: "Jogos", items: ["Raylib"] },
   { group: "ferramentas", label: "Ferramentas", items: ["Git", "GitHub", "VS Code", "IntelliJ IDEA"] },
 ];
+
+/** What a technology is, in one line for someone who does not program. Generic on purpose: it says nothing about what I did with it. */
+export const glossary: Record<string, string> = {
+  React: "Biblioteca para montar telas.",
+  "React 19": "Biblioteca para montar telas.",
+  Vite: "Ferramenta que prepara e serve o código da interface.",
+  LiveKit: "A base para áudio e vídeo em tempo real.",
+  Flask: "Base em Python para montar servidores pequenos.",
+  Django: "Base em Python para montar sites com servidor.",
+  "Spring Boot": "Base em Java para montar servidores.",
+  "Spring Data JPA": "A camada que liga o código Java ao banco de dados.",
+  Docker: "Empacota o programa para rodar igual em qualquer máquina.",
+  Selenium: "Testes automáticos que usam o site como uma pessoa usaria.",
+  "GitHub Actions": "Testes e publicação automáticos a cada mudança no código.",
+  Raylib: "Biblioteca em C para fazer jogos.",
+  Pillow: "Biblioteca de imagens para Python.",
+  "Bootstrap Icons": "Conjunto de ícones para o site.",
+};

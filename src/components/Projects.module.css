@@ -1,5 +1,5 @@
 .section {
-  padding-block: clamp(3rem, 8vw, 6rem);
+  padding-block: clamp(2.25rem, 8vw, 6rem);
   border-top: 1px solid var(--line);
 }
 
@@ -14,7 +14,7 @@
 .list {
   position: relative;
   display: grid;
-  gap: clamp(2.25rem, 7vw, 4.75rem);
+  gap: clamp(1.75rem, 7vw, 4.75rem);
   margin-top: clamp(1.5rem, 5vw, 3.25rem);
 }
 
@@ -123,8 +123,8 @@
 /* Shorter entries below the three main projects. */
 .compact {
   display: grid;
-  gap: clamp(2.25rem, 5vw, 3rem) clamp(1.5rem, 3vw, 2.5rem);
-  margin: clamp(2.25rem, 7vw, 4.75rem) 0 0;
+  gap: clamp(1.75rem, 5vw, 3rem) clamp(1.5rem, 3vw, 2.5rem);
+  margin: clamp(1.75rem, 7vw, 4.75rem) 0 0;
   padding: clamp(1.75rem, 5vw, 3rem) 0 0;
   border-top: 1px solid var(--line);
   list-style: none;

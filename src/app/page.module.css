@@ -1,7 +1,7 @@
 /* ---------- shared ---------- */
 
 .section {
-  padding-block: clamp(3rem, 8vw, 6rem);
+  padding-block: clamp(2.25rem, 8vw, 6rem);
   border-top: 1px solid var(--line);
 }
 
@@ -181,13 +181,13 @@
 /* ---------- contato ---------- */
 
 .contact {
-  padding-block: clamp(3rem, 9vw, 7rem);
+  padding-block: clamp(2.25rem, 9vw, 7rem);
   border-top: 1px solid var(--line);
 }
 
 .contactInner {
   display: grid;
-  gap: clamp(2rem, 5vw, 3.5rem);
+  gap: clamp(1.5rem, 5vw, 3.5rem);
   align-items: center;
 }
 
@@ -253,7 +253,7 @@
 .contactList li {
   display: grid;
   gap: 0.1rem;
-  padding-block: 0.7rem;
+  padding-block: 0.55rem;
   border-bottom: 1px solid var(--line);
 }
 

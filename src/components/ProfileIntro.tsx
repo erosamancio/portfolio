@@ -23,7 +23,7 @@ export function ProfileIntro() {
         </div>
         <div className={styles.text}>
           <h1 id="sobre-title" className={styles.title} data-i="name">
-            Eros{" "}
+            <span className={styles.first}>Eros</span>{" "}
             <span className={styles.last}>
               Amancio
               <span className={styles.caret} aria-hidden="true" />

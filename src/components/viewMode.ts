@@ -21,6 +21,10 @@ export function setViewMode(next: ViewMode) {
   // data-switched turns on the short entrance animation, which must not play on a page load.
   root.dataset.switched = "";
   root.dataset.view = next;
+  // The code panels open one after another: each gets its place in the sequence, capped so a long page stays quick.
+  document
+    .querySelectorAll<HTMLElement>('[data-only="code"]')
+    .forEach((el, i) => el.style.setProperty("--k", String(Math.min(i, 6))));
   try {
     localStorage.setItem(STORAGE_KEY, next);
   } catch {}

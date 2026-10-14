@@ -16,7 +16,7 @@ const bySlug = (slugs: string[]) =>
 /** Up to three technologies, as quiet text with a small color dot. */
 function TechLine({ items }: { items: string[] }) {
   return (
-    <ul className={styles.tech} aria-label="Tecnologias" data-reveal="">
+    <ul className={styles.tech} aria-label="Tecnologias">
       {items.map((t) => (
         <li key={t} style={{ "--tech": techColor(t) } as React.CSSProperties}>
           {t}
@@ -28,7 +28,7 @@ function TechLine({ items }: { items: string[] }) {
 
 function Hunk({ slug }: { slug: string }) {
   return (
-    <p className={styles.hunk} data-reveal="" aria-hidden="true" data-only="code">
+    <p className={styles.hunk} aria-hidden="true" data-only="code">
       <span>+</span> trabalhos/{slug}.md
     </p>
   );
@@ -107,11 +107,11 @@ export function Projects() {
     <section id="trabalhos" className={styles.section} aria-labelledby="trabalhos-title">
       <ProjectsMotion />
       <div className="wrap">
-        <h2 id="trabalhos-title" className={styles.h2} data-m="title">
-          <span className="hash" aria-hidden="true" data-hash="">
+        <h2 id="trabalhos-title" className={styles.h2}>
+          <span className="hash" aria-hidden="true">
             #
           </span>
-          <span data-title-text="">Projetos</span>
+          Projetos
         </h2>
         <div data-only="code">
           <FilterChips variant="bar" />
@@ -134,17 +134,15 @@ export function Projects() {
               />
               <div className={styles.text}>
                 <Hunk slug={p.slug} />
-                <h3 className={styles.h3} data-reveal="">
+                <h3 className={styles.h3}>
                   <Link href={`/trabalhos/${p.slug}`}>{p.name}</Link>
                 </h3>
-                <p className={styles.meta} data-reveal="">
+                <p className={styles.meta}>
                   {p.context} · {p.role}
                 </p>
-                <p className={styles.summary} data-reveal="">
-                  {p.summary}
-                </p>
+                <p className={styles.summary}>{p.summary}</p>
                 <TechLine items={p.mainStack} />
-                <Link href={`/trabalhos/${p.slug}`} className={styles.more} data-reveal="">
+                <Link href={`/trabalhos/${p.slug}`} className={styles.more}>
                   Ler o estudo de caso <ArrowRight aria-hidden="true" />
                 </Link>
               </div>
@@ -157,17 +155,13 @@ export function Projects() {
             <li key={p.slug} className={styles.small} data-tags={p.tags.join(" ")} data-diff="">
               <Shot project={p} sizes="(min-width: 56rem) 24rem, 92vw" />
               <Hunk slug={p.slug} />
-              <h3 className={styles.h4} data-reveal="">
+              <h3 className={styles.h4}>
                 <Link href={`/trabalhos/${p.slug}`}>{p.name}</Link>
               </h3>
-              <p className={styles.meta} data-reveal="">
-                {p.context}
-              </p>
-              <p className={styles.summary} data-reveal="">
-                {p.summary}
-              </p>
+              <p className={styles.meta}>{p.context}</p>
+              <p className={styles.summary}>{p.summary}</p>
               <TechLine items={p.mainStack} />
-              <Link href={`/trabalhos/${p.slug}`} className={styles.more} data-reveal="">
+              <Link href={`/trabalhos/${p.slug}`} className={styles.more}>
                 Ler o estudo de caso <ArrowRight aria-hidden="true" />
               </Link>
             </li>

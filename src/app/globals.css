@@ -281,6 +281,7 @@ html[data-switched] [data-only="preview"] {
 
 html[data-switched] [data-only="code"] {
   animation: panel-open 400ms var(--ease-out) backwards;
+  animation-delay: calc(var(--k, 0) * 60ms);
 }
 
 @media (prefers-reduced-motion: reduce) {

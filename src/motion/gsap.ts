@@ -4,9 +4,8 @@ import { useEffect } from "react";
 import { MOBILE_QUERY } from "./tokens";
 import type { gsap as Gsap } from "gsap";
 import type { ScrollTrigger as ScrollTriggerType } from "gsap/ScrollTrigger";
-import type { SplitText as SplitTextType } from "gsap/SplitText";
 
-export type GsapKit = { gsap: typeof Gsap; ScrollTrigger: typeof ScrollTriggerType; SplitText: typeof SplitTextType };
+export type GsapKit = { gsap: typeof Gsap; ScrollTrigger: typeof ScrollTriggerType };
 
 let kit: Promise<GsapKit> | undefined;
 
@@ -20,9 +19,16 @@ const whenIdle = () =>
   });
 
 const importKit = () =>
-  Promise.all([import("gsap"), import("gsap/ScrollTrigger"), import("gsap/SplitText")]).then(([g, st, sp]) => {
-    g.gsap.registerPlugin(st.ScrollTrigger, sp.SplitText);
-    return { gsap: g.gsap, ScrollTrigger: st.ScrollTrigger, SplitText: sp.SplitText };
+  Promise.all([import("gsap"), import("gsap/ScrollTrigger")]).then(([g, st]) => {
+    g.gsap.registerPlugin(st.ScrollTrigger);
+    return { gsap: g.gsap, ScrollTrigger: st.ScrollTrigger };
+  });
+
+/** SplitText is only for the opening sequence, so it is a separate chunk that the plain preview never downloads. */
+export const loadSplitText = () =>
+  Promise.all([loadGsap(), import("gsap/SplitText")]).then(([{ gsap }, { SplitText }]) => {
+    gsap.registerPlugin(SplitText);
+    return SplitText;
   });
 
 export const loadGsap = () => (kit ??= whenIdle().then(importKit));
@@ -30,10 +36,11 @@ export const loadGsap = () => (kit ??= whenIdle().then(importKit));
 /**
  * Runs `setup` once on mount, as soon as GSAP has loaded, inside a gsap.context that is reverted on unmount.
  * Phones skip it entirely: the scroll choreography is a desktop flourish, and not downloading GSAP there is faster.
+ * `enabled` is checked first, so a page with nothing to animate never downloads the library.
  */
-export function useGsap(setup: (kit: GsapKit) => void | (() => void)) {
+export function useGsap(setup: (kit: GsapKit) => void | (() => void), enabled: () => boolean = () => true) {
   useEffect(() => {
-    if (window.matchMedia(MOBILE_QUERY).matches) return;
+    if (window.matchMedia(MOBILE_QUERY).matches || !enabled()) return;
     let cancelled = false;
     let cleanup: (() => void) | void;
     let ctx: ReturnType<GsapKit["gsap"]["context"]> | undefined;

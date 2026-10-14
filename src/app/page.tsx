@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { ArrowUpRight, Mail } from "lucide-react";
 import { GitHubIcon, LinkedInIcon, WhatsAppIcon } from "@/components/BrandIcons";
-import { SectionMotion } from "@/motion/SectionMotion";
+import { CodeMotion } from "@/motion/CodeMotion";
 import { ProfileIntro } from "@/components/ProfileIntro";
 import { Projects } from "@/components/Projects";
 import { CopyButton } from "@/components/CopyButton";
@@ -13,11 +13,11 @@ import styles from "./page.module.css";
 
 function H2({ id, children }: { id: string; children: React.ReactNode }) {
   return (
-    <h2 id={id} className={styles.h2} data-m="title">
-      <span className="hash" aria-hidden="true" data-hash="">
+    <h2 id={id} className={styles.h2}>
+      <span className="hash" aria-hidden="true">
         #
       </span>
-      <span data-title-text="">{children}</span>
+      {children}
     </h2>
   );
 }
@@ -48,7 +48,7 @@ export default function Home() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }} />
-      <SectionMotion />
+      <CodeMotion />
       <ProfileIntro />
       <Projects />
 
@@ -61,7 +61,7 @@ export default function Home() {
                 <h3 className={styles.h3}>Sociiz</h3>
                 <p className={styles.meta}>Estagiário de Banco de Dados · Recife, PE</p>
               </header>
-              <ul className={styles.items} data-m="timeline">
+              <ul className={styles.items}>
                 {experience.map((e) => (
                   <li key={e.name}>
                     <h4 className={styles.h4}>
@@ -120,8 +120,8 @@ export default function Home() {
       <section id="contato" className={styles.contact} aria-labelledby="contato-title">
         <div className={`wrap ${styles.contactInner}`}>
           <div className={styles.lead}>
-            <h2 id="contato-title" className={styles.contactTitle} data-m="title">
-              <span data-title-text="">Vamos conversar?</span>
+            <h2 id="contato-title" className={styles.contactTitle}>
+              Vamos conversar?
             </h2>
             <p className={styles.soft}>
               Se for sobre uma vaga ou um projeto, ou só para trocar ideia, escreva por onde preferir. Eu respondo.
